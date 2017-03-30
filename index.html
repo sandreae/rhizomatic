@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Platform Prototype</title>
+    <link href="./assets/css/bootstrap.css" rel="stylesheet">
+    <link href="./assets/css/application.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <span class="brand">Platform</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="app-container">
+      <div id="main-region" class="container">
+        <p>Here is static content in the web page. You'll notice that it gets replaced by our app as soon as we start it.</p>
+      </div>
+    </div>
+      
+
+
+    <script type="text/template" id="publication-list-item">
+      <td><%- title %></td>
+      <td><%- contributor %></td>
+      <td>
+          <a href="#publications/<%- id %>" class="btn btn-small js-show">
+              <i class="icon-eye-open"></i>
+              Show
+          </a>
+
+          <button class="btn btn-small js-delete">
+              <i class="icon-remove"></i>
+              Delete
+          </button>
+      </td>
+    </script>
+      
+    <script type="text/template" id="publication-list">
+    <thead>
+        <tr>
+            <th>Publication</th>
+            <th>Contributor</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    </script>  
+
+    <script type="text/template" id="publication-view">
+      <h1><%- title %></h1>
+      <p><strong>contributor:</strong> <%- contributor %></p>
+      <p><strong>summary:</strong> <%- summary %></p>
+      
+    </script>
+
+    <script src="./assets/js/vendor/jquery.js"></script>
+    <script src="./assets/js/vendor/json2.js"></script>
+    <script src="./assets/js/vendor/underscore.js"></script>
+    <script src="./assets/js/vendor/backbone.js"></script>
+    <script src="./assets/js/vendor/backbone.marionette.js"></script>
+    <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/entities/publications.js"></script>
+    <script src="./assets/js/apps/publications/list/list_view.js"></script>
+    <script src="./assets/js/apps/publications/list/list_controller.js"></script>
+    <script src="./assets/js/apps/publications/show/show_view.js"></script>
+    <script src="./assets/js/apps/publications/show/show_controller.js"></script>
+    <script src="./assets/js/apps/publications/publications_app.js"></script>
+      
+    <script type="text/javascript">
+      Platform.start();
+    </script>
+  </body>
+</html>

@@ -2,36 +2,42 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Platform Prototype</title>
+    <title>Platform</title>
     <link href="./assets/css/bootstrap.css" rel="stylesheet">
-    <link href="./assets/css/application.css" rel="stylesheet">
+    <link href="./assets/css/jquery-ui-1.10.3.custom.css" rel="stylesheet">
   </head>
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <span class="brand">Platform</span>
-        </div>
-      </div>
-    </div>
-
     <div id="app-container">
-      <div id="main-region" class="container">
-        <p>Here is static content in the web page. You'll notice that it gets replaced by our app as soon as we start it.</p>
-      </div>
+        <div id="main-region" class="container">
+        </div>
+        <div id="dialog-region"></div>
     </div>
       
+    <script type="text/template" id="pub-list-layout">
+      <div id="pubs-region"></div>
+      <div id="panel-region"></div>
+    </script>
 
+    <script type="text/template" id="pub-list-panel">
+        <button class="btn btn-primary js-new">
+            New pub
+        </button>
+    </script>
 
-    <script type="text/template" id="publication-list-item">
-      <td><%- title %></td>
-      <td><%- contributor %></td>
+    <script type="text/template" id="pub-list-item">
+      <td><%- firstName %></td>
+      <td><%- lastName %></td>
       <td>
-          <a href="#publications/<%- id %>" class="btn btn-small js-show">
+          <a href="#pubs/<%- id %>" class="btn btn-small js-show">
               <i class="icon-eye-open"></i>
               Show
+          </a>
+          
+          <a href="#pubs/<%- id %>/edit" class="btn btn-small js-edit">
+              <i class="icon-pencil"></i>
+              Edit
           </a>
 
           <button class="btn btn-small js-delete">
@@ -41,11 +47,11 @@
       </td>
     </script>
       
-    <script type="text/template" id="publication-list">
+    <script type="text/template" id="pub-list">
     <thead>
         <tr>
-            <th>Publication</th>
-            <th>Contributor</th>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th></th>
         </tr>
     </thead>
@@ -53,26 +59,91 @@
     </tbody>
     </script>  
 
-    <script type="text/template" id="publication-view">
-      <h1><%- title %></h1>
-      <p><strong>contributor:</strong> <%- contributor %></p>
-      <p><strong>summary:</strong> <%- summary %></p>
+    <script type="text/template" id="pub-view-blog">
+      <h1><%- firstName %> <%- lastName %></h1>
+      <a href="#pubs/<%- id %>/edit" class="btn btn-small js-edit">
+        <i class="icon-pencil"></i>
+        Edit this pub
+      </a>
+      <p><strong>Phone number: </strong><%- phoneNumber %></p>
+    </script>
       
+    <script type="text/template" id="pub-view-img">
+      <img src="<%- img %>" width="100%">
+    </script>  
+      
+    <script type="text/template" id="pub-view-html">
+    <%= html %>
+    </script>    
+    
+    <script type="text/template" id="loading-view">
+      <h1><%- title %></h1>
+      <p><%- message %></p>
+      <div id="spinner"></div>
+    </script>
+      
+    <script type="text/template" id="missing-pub-view">
+      <div class"alert alert-error">This pub doesn't exist !</div>
+    </script>
+      
+    <script type="text/template" id="missing-pub-template">
+      <div class"alert alert-error">No template defined !</div>
     </script>
 
+    <script type="text/template" id="pub-form">
+      <form>
+        <div class="control-group">
+          <label for="pub-firstName" class="control-label">First name:</label>
+          <input id="pub-firstName" name="firstName" type="text" value="<%- firstName %>"/>
+        </div>
+        <div class="control-group">
+          <label for="pub-lastName" class="control-label">Last name:</label>
+          <input id="pub-lastName" name="lastName" type="text" value="<%- lastName %>"/>
+        </div>
+        <div class="control-group">
+          <label for="pub-phoneNumber" class="control-label">Phone number:</label>
+          <input id="pub-phoneNumber" name="phoneNumber" type="text" value="<%- phoneNumber %>"/>
+        </div>
+        <div class="control-group">
+          <label for="pub-img" class="control-label">Image:</label>
+          <input id="pub-img" name="img" type="text" value="<%- img %>"/>
+        </div>
+        <div class="control-group">
+          <label for="pub-html" class="control-label">html:</label>
+          <input id="pub-html" name="html" type="text" value="<%- html %>"/>
+        </div>
+        <div class="control-group">
+          <label for="pub-template" class="control-label">Template:</label>
+          <input id="pub-template" name="template" type="text" value="<%- template %>"/>
+        </div>
+        <button class="btn js-submit">Save</button>
+      </form>
+    </script>      
+      
     <script src="./assets/js/vendor/jquery.js"></script>
+    <script src="./assets/js/vendor/jquery-ui-1.10.3.js"></script>
     <script src="./assets/js/vendor/json2.js"></script>
     <script src="./assets/js/vendor/underscore.js"></script>
     <script src="./assets/js/vendor/backbone.js"></script>
+    <script src="./assets/js/vendor/backbone.syphon.js"></script>
+    <script src="./assets/js/vendor/backbone.localstorage.js"></script>
     <script src="./assets/js/vendor/backbone.marionette.js"></script>
+    <script src="./assets/js/vendor/spin.js"></script>
+    <script src="./assets/js/vendor/spin.jquery.js"></script>
     <script src="./assets/js/app.js"></script>
-    <script src="./assets/js/entities/publications.js"></script>
-    <script src="./assets/js/apps/publications/list/list_view.js"></script>
-    <script src="./assets/js/apps/publications/list/list_controller.js"></script>
-    <script src="./assets/js/apps/publications/show/show_view.js"></script>
-    <script src="./assets/js/apps/publications/show/show_controller.js"></script>
-    <script src="./assets/js/apps/publications/publications_app.js"></script>
-      
+    <script src="./assets/js/apps/config/storage/localstorage.js"></script>
+    <script src="./assets/js/entities/pub.js"></script>
+    <script src="./assets/js/common/views.js"></script>
+    <script src="./assets/js/apps/pubs/list/list_view.js"></script>
+    <script src="./assets/js/apps/pubs/list/list_controller.js"></script>
+    <script src="./assets/js/apps/pubs/show/show_view.js"></script>
+    <script src="./assets/js/apps/pubs/show/show_controller.js"></script>
+    <script src="./assets/js/apps/pubs/pubs_app.js"></script>
+    <script src="./assets/js/apps/pubs/common/views.js"></script>
+    <script src="./assets/js/apps/pubs/edit/edit_view.js"></script>
+    <script src="./assets/js/apps/pubs/edit/edit_controller.js"></script>
+    <script src="./assets/js/apps/pubs/new/new_view.js"></script>  
+
     <script type="text/javascript">
       Platform.start();
     </script>

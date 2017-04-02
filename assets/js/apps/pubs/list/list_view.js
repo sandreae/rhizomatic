@@ -2,6 +2,7 @@ Platform.module("PubsApp.List", function(List, Platform, Backbone, Marionette, $
     
     List.Layout = Marionette.LayoutView.extend({
         template: "#pub-list-layout",
+        className: "pub-list-layout",
         
         regions: {
             panelRegion: "#panel-region",
@@ -11,16 +12,17 @@ Platform.module("PubsApp.List", function(List, Platform, Backbone, Marionette, $
     
     List.Panel = Marionette.ItemView.extend({
         template: "#pub-list-panel",
-        
+
         triggers: {
             "click button.js-new": "pub:new"
         }
     });
     
     List.Pub = Marionette.ItemView.extend({
-        tagName: "tr",
+        tagName: "div",
         template: "#pub-list-item",
-        
+        className: "pub-list-item",
+
         triggers: {
             "click a.js-show": "pub:show",
             "click a.js-edit": "pub:edit",
@@ -45,10 +47,10 @@ Platform.module("PubsApp.List", function(List, Platform, Backbone, Marionette, $
 
     });
     List.Pubs = Marionette.CompositeView.extend({
-        tagName: "table",
-        className: "table table-hover",
+        tagName: "div",
+        className: "table-list",
         template: "#pub-list",
         childView: List.Pub,
-        childViewContainer: "tbody"
+        childViewContainer: "div"
     });
 });

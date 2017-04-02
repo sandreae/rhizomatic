@@ -1,0 +1,10 @@
+.pub-list-item{
+    background-color: aqua;
+    width: 220px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.pub-list-layout{
+    margin: 10px
+}

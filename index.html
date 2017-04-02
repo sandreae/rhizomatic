@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <title>Platform</title>
     <link href="./assets/css/bootstrap.css" rel="stylesheet">
+    <link href="./assets/css/platform.css" rel="stylesheet">
     <link href="./assets/css/jquery-ui-1.10.3.custom.css" rel="stylesheet">
   </head>
 
   <body>
 
     <div id="app-container">
-        <div id="main-region" class="container">
+        <div id="main-region" class="platform-container">
         </div>
         <div id="dialog-region"></div>
     </div>
@@ -27,8 +28,12 @@
     </script>
 
     <script type="text/template" id="pub-list-item">
-      <td><%- firstName %></td>
-      <td><%- lastName %></td>
+        
+      <table>
+      <tr>
+      <td><%- firstName %> <%- lastName %></td>
+      </tr>
+      <tr>
       <td>
           <a href="#pubs/<%- id %>" class="btn btn-small js-show">
               <i class="icon-eye-open"></i>
@@ -45,18 +50,13 @@
               Delete
           </button>
       </td>
+      </tr>
+      </table>
     </script>
       
     <script type="text/template" id="pub-list">
-    <thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
+    <div>
+    </div>
     </script>  
 
     <script type="text/template" id="pub-view-blog">

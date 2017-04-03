@@ -7,7 +7,7 @@ Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $
             lastName: "",
             phoneNumber: "",
             img:"",
-            template: "",
+            type: "",
             html: "",
     }
         

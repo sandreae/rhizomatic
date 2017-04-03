@@ -11,10 +11,26 @@ Platform.module("PubsApp.Show", function(Show, Platform, Backbone, Marionette, $
         var fetchingPub = Platform.request("pub:entity", id);
         $.when(fetchingPub).done(function(pub){
             var pubView;
+            var type = pub.get("type");
+            console.log(type);
             if(pub !== undefined){
-                pubView = new Show.Pub({
+                if (type === "blog") {
+                pubView = new Show.BlogPub({
                 model: pub
-                });
+                })
+                } else if (type === "img") {
+                pubView = new Show.ImgPub({
+                model: pub
+                })
+                } else if (type === "html") {
+                pubView = new Show.HtmlPub({
+                model: pub
+                })
+                } else {
+                pubView = new Show.BlogPub({
+                model: pub
+                })
+                }
                 
                 pubView.on("pub:edit", function(pub){
                     Platform.trigger("pub:edit", pub.get("id"));

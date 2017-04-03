@@ -67,7 +67,7 @@ Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $
                         defer.resolve(undefined);
                     }
                 });     
-            }, 2000);
+            }, 0);
         return defer.promise();
         }
     };

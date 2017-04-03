@@ -18,7 +18,7 @@ Platform.module("PubsApp.Show", function(Show, Platform, Backbone, Marionette, $
                 pubView = new Show.BlogPub({
                 model: pub
                 })
-                } else if (type === "img") {
+                } else if (type === "image") {
                 pubView = new Show.ImgPub({
                 model: pub
                 })

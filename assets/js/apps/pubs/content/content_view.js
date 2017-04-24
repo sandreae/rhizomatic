@@ -11,8 +11,19 @@ Content.Pub = Marionette.ItemView.extend({
 	submitClicked: function(e){
 		e.preventDefault();
 		//serialize the form data//
-		var data = Backbone.Syphon.serialize(this);
-		this.trigger("form:submit", data);
+		var content = this.$('#summernote').summernote('code');
+		this.trigger("form:submit", content);
+	},
+
+	onShow: function(){
+		var content = this.model.get("content");
+  		this.$('#summernote').summernote({
+		  height: 300,                 // set editor height
+		  minHeight: null,             // set minimum height of editor
+		  maxHeight: null,             // set maximum height of editor
+		  focus: true                  // set focus to editable area after initializing summernote
+		});
+  		this.$('#summernote').summernote('code', content);
 	}
 });
 });

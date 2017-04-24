@@ -8,8 +8,9 @@ Content.Controller = {
 		var editPubContentView = new Content.Pub({
 			model: pubModel
 		});
-		editPubContentView.on("form:submit", function(data){
-			pubModel.save(data);
+		editPubContentView.on("form:submit", function(content){
+			pubModel.set({content: content})
+			pubModel.save(content);
 			Platform.trigger("pub:show", pubModel.get("id"))
 		})
 

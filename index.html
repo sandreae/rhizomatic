@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Platform</title>
-    <link href="./assets/css/bootstrap.css" rel="stylesheet">
+    <link href="./assets/css/bootstrap.css" rel="stylesheet">    
     <link href="./assets/css/platform.css" rel="stylesheet">
+    <link href="./assets/js/vendor/dist/summernote.css" rel="stylesheet">
   </head>
 
   <body>
@@ -14,7 +15,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <span class="brand">Platform</span>
+          <span class="navbar-brand">Platform</span>
         </div>
       </div>
     </div>
@@ -33,12 +34,12 @@
       <td><%- contributor %></td>
       <td><%- title %></td>
       <td>
-      <a href="#contacts/" class="btn btn-small js-show-pub">
-      <i class="icon-eye-open"></i>
+      <a href="#contacts/" class="btn btn-secondary btn-sm js-show-pub">
+      <i class="glyphicon glyphicon-eye-open"></i>
       Show
       </a>
-      <button class="btn btn-small js-delete-pub">
-      <i class="icon-remove"></i>
+      <button class="btn btn-secondary btn-sm js-delete-pub">
+      <i class="glyphicon glyphicon-remove"></i>
       Delete
       </button>
       </td>
@@ -62,12 +63,13 @@
 
     <script type="text/template" id="pub-view">
     <h1><%- title %></h1>
-    <p><%- contributor %></p>
-    <a href="#publications/<%- id %>/edit/details" class="btn btn-small js-edit-details"><i class="icon-pencil"></i>
-    Edit publication details
-    </a>
-    <a href="#publications/<%- id %>/edit/content" class="btn btn-small js-edit-content"><i class="icon-pencil"></i>
-    Edit publication content
+    <p><b><%- contributor %></b></p>
+    <div><%= content %></div>
+    <a href="#publications/<%- id %>/edit/details" class="btn btn-secondary js-edit-details"><i class="glyphicon glyphicon-edit"></i>
+    Edit details
+    </a><br>
+    <a href="#publications/<%- id %>/edit/content" class="btn btn-secondary js-edit-content"><i class="glyphicon glyphicon-edit"></i>
+    Edit content
     </a>
     </script>
 
@@ -81,44 +83,43 @@
 
     <script type="text/template" id="pub-form-details">
       <form>
-        <div class="control-group">
-          <label for="pub-contributor" class="control-label">Contributor:</label>
-          <input id="pub-contributor" name="contributor" type="text" value="<%- contributor %>"/>
+        <div class="form-group">
+          <label for="pub-contributor">Contributor:</label>
+          <input class="form-control" id="pub-contributor" name="contributor" type="text" placeholder="<%- contributor %>"/>
         </div>
-        <div class="control-group">
-          <label for="pub-title" class="control-label">Title:</label>
-          <input id="pub-title" name="title" type="text" value="<%- title %>"/>
+        <div class="form-group">
+          <label for="pub-title">Title:</label>
+          <input class="form-control" id="pub-title" name="title" type="text" value="<%- title %>"/>
         </div>
-        <div class="control-group">
-          <label for="pub-type" class="control-label">Type:</label>
-          <select id="pub-type" name="type">
+        <div class="form-group">
+          <label for="pub-type" class="form-label">Type:</label>
+          <select class="form-control" id="pub-type" name="type">
           <option selected hidden value="<%- type %>"><%- type %></option>
           <option value="blog">blog</option>
           <option value="image">image</option>
           <option value="html">html</option>
         </select>
         </div>
-        <div class="control-group">
-          <label for="pub-pubDate" class="control-label">Publication Date:</label>
-          <input id="pub-pubDate" name="pubDate" type="text" value="<%- pubDate %>"/>
+        <div class="form-group">
+          <label for="pub-pubDate" class="form-label">Publication Date:</label>
+          <input class="form-control" id="pub-pubDate" name="pubDate" type="text" value="<%- pubDate %>"/>
         </div>
-        <button class="btn js-submit">Save</button>
+        <button class="btn btn-secondary js-submit">Save</button>
       </form>
     </script>     
 
     <!--template for editing pub content-->
 
     <script type="text/template" id="pub-form-content">
-      <form>
-        <div class="control-group">
-          <label for="pub-content" class="control-label">Content:</label>
-          <input id="pub-content" name="content" type="text" value="<%- content %>"/>
-        </div>
-        <button class="btn js-submit">Save</button>
-      </form>
+    <h1><%- title %></h1>
+    <p><%- contributor %></p>
+    <div id="summernote">Hello Summernote</div>
+    <button class="btn btn-secondary js-submit">Save</button>
     </script>     
 
     <script src="./assets/js/vendor/jquery.js"></script>
+    <script src="./assets/js/vendor/bootstrap.js"></script>
+    <script src="./assets/js/vendor/dist/summernote.js"></script>
     <script src="./assets/js/vendor/json2.js"></script>
     <script src="./assets/js/vendor/underscore.js"></script>
     <script src="./assets/js/vendor/backbone.js"></script>

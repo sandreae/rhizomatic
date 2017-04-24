@@ -5,151 +5,91 @@
     <title>Platform</title>
     <link href="./assets/css/bootstrap.css" rel="stylesheet">
     <link href="./assets/css/platform.css" rel="stylesheet">
-    <link href="./assets/css/jquery-ui-1.10.3.custom.css" rel="stylesheet">
   </head>
 
   <body>
 
-    <div id="app-container">
-        <div id="main-region" class="platform-container">
-        </div>
-        <div id="dialog-region"></div>
-    </div>
-      
-    <script type="text/template" id="pub-list-layout">
-      <div id="pubs-region"></div>
-      <div id="panel-region"></div>
-    </script>
+    <!--navbar template-->
 
-    <script type="text/template" id="pub-list-panel">
-        <button class="btn btn-primary js-new">
-            New pub
-        </button>
-    </script>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <span class="brand">Platform</span>
+        </div>
+      </div>
+    </div>
+
+    <!--main region template-->
+
+    <div id="app-container">
+      <div id="main-region" class="container">
+        <p>This is the main region, but somethings wrong if you're reading this...</p>
+      </div>
+    </div>
+
+    <!--child item template for the CompositeView-->
 
     <script type="text/template" id="pub-list-item">
-        
-      <table>
-      <tr>
-      <td><%- firstName %> <%- lastName %></td>
-      </tr>
-      <tr>
+      <td><%- contributor %></td>
+      <td><%- title %></td>
       <td>
-          <a href="#pubs/<%- id %>" class="btn btn-small js-show">
-              <i class="icon-eye-open"></i>
-              Show
-          </a>
-          
-          <a href="#pubs/<%- id %>/edit" class="btn btn-small js-edit">
-              <i class="icon-pencil"></i>
-              Edit
-          </a>
-
-          <button class="btn btn-small js-delete">
-              <i class="icon-remove"></i>
-              Delete
-          </button>
-      </td>
-      </tr>
-      </table>
-    </script>
-      
-    <script type="text/template" id="pub-list">
-    <div>
-    </div>
-    </script>
-
-    <script type="text/template" id="pub-view-blog">
-      <h1><%- firstName %> <%- lastName %></h1>
-      <a href="#pubs/<%- id %>/edit" class="btn btn-small js-edit">
-        <i class="icon-pencil"></i>
-        Edit this pub
+      <a href="#contacts/" class="btn btn-small js-show-pub">
+      <i class="icon-eye-open"></i>
+      Show
       </a>
-      <p><strong>Phone number: </strong><%- phoneNumber %></p>
-    </script>
-      
-    <script type="text/template" id="pub-view-img">
-      <img src="<%- img %>" width="100%">
-    </script>  
-      
-    <script type="text/template" id="pub-view-html">
-    <%= html %>
-    </script>    
-    
-    <script type="text/template" id="loading-view">
-      <h1><%- title %></h1>
-      <p><%- message %></p>
-      <div id="spinner"></div>
-    </script>
-      
-    <script type="text/template" id="missing-pub-view">
-      <div class"alert alert-error">This pub doesn't exist !</div>
-    </script>
-      
-    <script type="text/template" id="missing-pub-template">
-      <div class"alert alert-error">No template defined !</div>
+      <button class="btn btn-small js-delete-pub">
+      <i class="icon-remove"></i>
+      Delete
+      </button>
+      </td>
     </script>
 
-    <script type="text/template" id="pub-form">
-      <form>
-        <div class="control-group">
-          <label for="pub-firstName" class="control-label">First name:</label>
-          <input id="pub-firstName" name="firstName" type="text" value="<%- firstName %>"/>
-        </div>
-        <div class="control-group">
-          <label for="pub-lastName" class="control-label">Last name:</label>
-          <input id="pub-lastName" name="lastName" type="text" value="<%- lastName %>"/>
-        </div>
-        <div class="control-group">
-          <label for="pub-phoneNumber" class="control-label">Phone number:</label>
-          <input id="pub-phoneNumber" name="phoneNumber" type="text" value="<%- phoneNumber %>"/>
-        </div>
-        <div class="control-group">
-          <label for="pub-img" class="control-label">Image:</label>
-          <input id="pub-img" name="img" type="text" value="<%- img %>"/>
-        </div>
-        <div class="control-group">
-          <label for="pub-html" class="control-label">html:</label>
-          <input id="pub-html" name="html" type="text" value="<%- html %>"/>
-        </div>
-        <div class="control-group">
-          <label for="pub-type" class="control-label">Type:</label>
-          <select id="pub-type" name="type" type="text">
-          <option selected disabled hidden><%- type %></option>
-          <option value="blog">blog</option>
-          <option value="image">image</option>
-          <option value="html">html</option>
-        </select>
-        </div>
-        <button class="btn js-submit">Save</button>
-      </form>
-    </script>      
-      
+    <!--wrapper template for the CompositeView-->
+
+    <script type="text/template" id="pubs-list">
+      <thead>
+      <tr>
+      <th>Contributor</th>
+      <th>Publication</th>
+      <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </script>
+
+    <!--show single publication template-->
+
+    <script type="text/template" id="pub-view">
+    <h1><%- title %></h1>
+    <p><%- contributor %></p>
+    </script>
+
+    <!--template for nonexistent pub-->
+
+    <script type="text/template" id="missing-pub-view">
+    <div class="alert alert-error">This publication doesn't exist!</div>
+    </script>
+
     <script src="./assets/js/vendor/jquery.js"></script>
-    <script src="./assets/js/vendor/jquery-ui-1.10.3.js"></script>
     <script src="./assets/js/vendor/json2.js"></script>
     <script src="./assets/js/vendor/underscore.js"></script>
     <script src="./assets/js/vendor/backbone.js"></script>
-    <script src="./assets/js/vendor/backbone.syphon.js"></script>
     <script src="./assets/js/vendor/backbone.localstorage.js"></script>
     <script src="./assets/js/vendor/backbone.marionette.js"></script>
-    <script src="./assets/js/vendor/spin.js"></script>
-    <script src="./assets/js/vendor/spin.jquery.js"></script>
     <script src="./assets/js/app.js"></script>
     <script src="./assets/js/apps/config/storage/localstorage.js"></script>
     <script src="./assets/js/entities/pub.js"></script>
-    <script src="./assets/js/common/views.js"></script>
+    <script src="./assets/js/apps/pubs/pubs_router.js"></script>
     <script src="./assets/js/apps/pubs/list/list_view.js"></script>
     <script src="./assets/js/apps/pubs/list/list_controller.js"></script>
     <script src="./assets/js/apps/pubs/show/show_view.js"></script>
     <script src="./assets/js/apps/pubs/show/show_controller.js"></script>
-    <script src="./assets/js/apps/pubs/pubs_app.js"></script>
-    <script src="./assets/js/apps/pubs/common/views.js"></script>
-    <script src="./assets/js/apps/pubs/edit/edit_view.js"></script>
-    <script src="./assets/js/apps/pubs/edit/edit_controller.js"></script>
-    <script src="./assets/js/apps/pubs/new/new_view.js"></script>  
 
     <script type="text/javascript">
+
+      //start App//
+
       Platform.start();
     </script>
   </body>

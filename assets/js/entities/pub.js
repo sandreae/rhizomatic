@@ -1,82 +1,102 @@
 Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $, _){
-    Entities.Pub = Backbone.Model.extend({
-        urlRoot: "pubs",
-        
-        defaults: {
-            firstName: "",
-            lastName: "",
-            phoneNumber: "",
-            img:"",
-            type: "",
-            html: "",
-    }
-        
-});
-    
-    Entities.configureStorage("Platform.Entities.Pub")
-    
-    Entities.PubCollection = Backbone.Collection.extend({
-        url: "pubs",
-        model: Entities.Pub,
-        comparator: "firstName"
-    });
 
-    Entities.configureStorage("Platform.Entities.PubCollection")
-    
-    var initializePubs = function(){
-        var pubs = new Entities.PubCollection([
-            { id: 1, firstName: "Alice", lastName: "Arten", phoneNumber: "555-0184", template: "blog", img:""},
-            { id: 2, firstName: "Bob", lastName: "Brigham", phoneNumber: "555-0163"},
-            { id: 3, firstName: "Charlie", lastName: "Campbell", phoneNumber: "555-0129"}
-        ]);
-        pubs.forEach(function(pub){
-            pub.save();
-        });
-        return pubs.models;
-    };
-    
-    var API = {
-         getPubEntities: function(){
-      var pubs = new Entities.PubCollection();
-      var defer = $.Deferred();
-      pubs.fetch({
-        success: function(data){
-          defer.resolve(data);
-        }
-      });
-      var promise = defer.promise();
-      $.when(promise).done(function(fetchedPubs){
-        if(fetchedPubs.length === 0){
-          // if we don't have any pubs yet, create some for convenience
-          var models = initializePubs();
-          pubs.reset(models);
-        }
-      });
-      return promise;
+  // define Pub model in Platform.Entities module//
+
+  Entities.PubModel = Backbone.Model.extend({
+    urlRoot: "publications"
+  });
+
+  //configure local storage//
+
+  Entities.configureStorage("Platform.Entities.PubModel");
+
+  // define Pubs collection in Platform.Entities module//
+
+  Entities.PubsCollection = Backbone.Collection.extend({
+    url: "publications",
+    model: Entities.PubModel,
+    comparator: "contributor"
+  });
+
+  //configure local storage//
+
+  Entities.configureStorage("Platform.Entities.PubsCollection");
+
+  //initialize a collection of pubs (all private module variables)//
+
+  var initializePubs = function(){
+    var pubsCollection = new Entities.PubsCollection([
+      {
+        id: 1,
+        contributor: "Jane Doe",
+        title: "All about something",
+        type: "",
+        pubDate: "",
+        content: ""
+      },
+      {
+        id: 2,
+        contributor: "Adam Apple",
+        title: "More about something",
+        type: "",
+        pubDate: "",
+        content: ""
+      },
+      {
+        id: 3,
+        contributor: "Barry Belgium",
+        title: "Nothing about everything",
+        type: "",
+        pubDate: "",
+        content: ""
+      },
+      ]);
+    //save each pubModel in pubsCollection to localstorage//
+    pubsCollection.forEach(function(pubModel){
+      pubModel.save();
+    });
+    return pubsCollection;
+  };
+
+  //API object containing "get" functions to be called via request-response//
+
+  var API = {
+
+    //get Entities.PubsCollection function//
+    getPubEntities: function(){
+      var pubsCollection = new Entities.PubsCollection();
+      //fetch pubsCollection from their local storage URL location//
+      pubsCollection.fetch();
+      //if we don't have any pubs yet, create some//
+      if(pubsCollection.length === 0){
+        return initializePubs();
+      }
+      return pubsCollection;
     },
-        
+
+    //get Entities.PubModel function//
+    //accepts "pubId" argument//
     getPubEntity: function(pubId){
-            var pub = new Entities.Pub({id: pubId});
-            var defer = $.Deferred();
-            setTimeout(function(){
-                pub.fetch({
-                    success: function(data){
-                        defer.resolve(data);
-                    },
-                    error: function(data){
-                        defer.resolve(undefined);
-                    }
-                });     
-            }, 0);
-        return defer.promise();
-        }
-    };
+      //initiate new pubModel and set id attribute//
+      var pubModel = new Entities.PubModel({id: pubId});
+      pubModel.fetch();
+      return pubModel;
+    }
+  };
 
-Platform.reqres.setHandler("pub:entities", function(){
+  //make API functions public using a request-response call//
+  //these are the publicly accesible handlers that manage request calls from elswhere in the app//
+
+  //pubsCollection req-res handler//
+  Platform.reqres.setHandler("pubsCollection:entities", function(){
     return API.getPubEntities();
-    });
+  });
 
-Platform.reqres.setHandler("pub:entity", function(id){
+  //pubModel reqres handler accepting "id" argument and passing it on to getPubEntity function//
+  Platform.reqres.setHandler("pubModel:entities", function(id){
     return API.getPubEntity(id);
-    });
+  });
+
+
+
 });

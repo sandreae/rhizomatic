@@ -66,6 +66,9 @@
     <a href="#publications/<%- id %>/edit/details" class="btn btn-small js-edit-details"><i class="icon-pencil"></i>
     Edit publication details
     </a>
+    <a href="#publications/<%- id %>/edit/content" class="btn btn-small js-edit-content"><i class="icon-pencil"></i>
+    Edit publication content
+    </a>
     </script>
 
     <!--template for nonexistent pub-->
@@ -105,9 +108,15 @@
 
     <!--template for editing pub content-->
 
-    <script type="text/template" id="missing-pub-view">
-    <div class="alert alert-error">This publication doesn't exist!</div>
-    </script>
+    <script type="text/template" id="pub-form-content">
+      <form>
+        <div class="control-group">
+          <label for="pub-content" class="control-label">Content:</label>
+          <input id="pub-content" name="content" type="text" value="<%- content %>"/>
+        </div>
+        <button class="btn js-submit">Save</button>
+      </form>
+    </script>     
 
     <script src="./assets/js/vendor/jquery.js"></script>
     <script src="./assets/js/vendor/json2.js"></script>
@@ -126,6 +135,8 @@
     <script src="./assets/js/apps/pubs/show/show_controller.js"></script>
     <script src="./assets/js/apps/pubs/details/details_view.js"></script>
     <script src="./assets/js/apps/pubs/details/details_controller.js"></script>
+    <script src="./assets/js/apps/pubs/content/content_view.js"></script>
+    <script src="./assets/js/apps/pubs/content/content_controller.js"></script>
 
     <script type="text/javascript">
 

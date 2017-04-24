@@ -9,12 +9,13 @@ Show.Pub = Marionette.ItemView.extend({
 	template: "#pub-view",
 
 	events: {
-		"click js-edit-details": "editDetailsClicked"
+		"click js-edit-details": "editDetailsClicked",
+		"click js-edit-content": "editContentClicked"
 	},
 
 	editDetailsClicked: function(id){
 		e.preventDefault();
-		this.trigger("edit:pub:details", this.model);
+		this.trigger("details:edit:pub", this.model);
 	}
 });
 

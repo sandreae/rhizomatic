@@ -7,7 +7,8 @@ PubsApp.Router = Marionette.AppRouter.extend({
 	appRoutes: {
 		"publications": "listPubs",
 		"publications/:id": "showPub",
-		"publications/:id/edit/details": "editPubDetails"
+		"publications/:id/edit/details": "editPubDetails",
+		"publications/:id/edit/content": "editPubContent"
 	}
 });
 
@@ -25,6 +26,9 @@ var API = {
 
 	editPubDetails: function(id){
 		PubsApp.Details.Controller.editPubDetails(id);
+	},
+	editPubContent: function(id){
+		PubsApp.Content.Controller.editPubContent(id);
 	}
 };
 
@@ -40,9 +44,15 @@ Platform.on("pub:show", function(id){
 	Platform.navigate("publications/" + id);
 	API.showPub(id);
 })
+
 Platform.on("details:pub:edit", function(id){
 	Platform.navigate("publications/" + id + "/edit/details");
 	API.editPubDetails(id);
+})
+
+Platform.on("content:pub:edit", function(id){
+	Platform.navigate("publications/" + id + "/edit/content");
+	API.editPubContent(id);
 })
 
 //instantiate a new router instance in the PubApp "start" event handler//

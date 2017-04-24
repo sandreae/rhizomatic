@@ -8,6 +8,7 @@ Content.Controller = {
 		var editPubContentView = new Content.Pub({
 			model: pubModel
 		});
+		
 		editPubContentView.on("form:submit", function(content){
 			pubModel.set({content: content})
 			pubModel.save(content);

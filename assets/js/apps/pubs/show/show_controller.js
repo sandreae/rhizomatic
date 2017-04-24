@@ -11,8 +11,12 @@ Show.Controller = {
 			pubView = new Show.Pub({
 			model: pubModel
 		});
-			pubView.on("details:edit:pub", function(pubModel){
-			Platform.trigger("details:edit:pub", pubModel.get("id"));
+			pubView.on("details:pub:edit", function(model){
+			Platform.trigger("details:pub:edit", model.get("id"));
+		});
+
+			pubView.on("content:pub:edit", function(model){
+			Platform.trigger("content:pub:edit", model.get("id"));
 		});
 
 		}

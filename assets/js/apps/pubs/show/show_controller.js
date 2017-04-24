@@ -10,7 +10,11 @@ Show.Controller = {
 		if(pubModel !== undefined){
 			pubView = new Show.Pub({
 			model: pubModel
-		})
+		});
+			pubView.on("details:edit:pub", function(pubModel){
+			Platform.trigger("details:edit:pub", pubModel.get("id"));
+		});
+
 		}
 		//else show MissingPub//
 		else{

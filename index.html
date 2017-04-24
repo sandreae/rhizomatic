@@ -63,9 +63,47 @@
     <script type="text/template" id="pub-view">
     <h1><%- title %></h1>
     <p><%- contributor %></p>
+    <a href="#publications/<%- id %>/edit/details" class="btn btn-small js-edit-details"><i class="icon-pencil"></i>
+    Edit publication details
+    </a>
     </script>
 
     <!--template for nonexistent pub-->
+
+    <script type="text/template" id="missing-pub-view">
+    <div class="alert alert-error">This publication doesn't exist!</div>
+    </script>
+
+    <!--template for editing pub details-->
+
+    <script type="text/template" id="pub-form-details">
+      <form>
+        <div class="control-group">
+          <label for="pub-contributor" class="control-label">Contributor:</label>
+          <input id="pub-contributor" name="contributor" type="text" value="<%- contributor %>"/>
+        </div>
+        <div class="control-group">
+          <label for="pub-title" class="control-label">Title:</label>
+          <input id="pub-title" name="title" type="text" value="<%- title %>"/>
+        </div>
+        <div class="control-group">
+          <label for="pub-type" class="control-label">Type:</label>
+          <select id="pub-type" name="type">
+          <option selected hidden value="<%- type %>"><%- type %></option>
+          <option value="blog">blog</option>
+          <option value="image">image</option>
+          <option value="html">html</option>
+        </select>
+        </div>
+        <div class="control-group">
+          <label for="pub-pubDate" class="control-label">Publication Date:</label>
+          <input id="pub-pubDate" name="pubDate" type="text" value="<%- pubDate %>"/>
+        </div>
+        <button class="btn js-submit">Save</button>
+      </form>
+    </script>     
+
+    <!--template for editing pub content-->
 
     <script type="text/template" id="missing-pub-view">
     <div class="alert alert-error">This publication doesn't exist!</div>
@@ -75,6 +113,7 @@
     <script src="./assets/js/vendor/json2.js"></script>
     <script src="./assets/js/vendor/underscore.js"></script>
     <script src="./assets/js/vendor/backbone.js"></script>
+    <script src="./assets/js/vendor/backbone.syphon.js"></script>
     <script src="./assets/js/vendor/backbone.localstorage.js"></script>
     <script src="./assets/js/vendor/backbone.marionette.js"></script>
     <script src="./assets/js/app.js"></script>
@@ -85,6 +124,8 @@
     <script src="./assets/js/apps/pubs/list/list_controller.js"></script>
     <script src="./assets/js/apps/pubs/show/show_view.js"></script>
     <script src="./assets/js/apps/pubs/show/show_controller.js"></script>
+    <script src="./assets/js/apps/pubs/details/details_view.js"></script>
+    <script src="./assets/js/apps/pubs/details/details_controller.js"></script>
 
     <script type="text/javascript">
 

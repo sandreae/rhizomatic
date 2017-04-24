@@ -6,7 +6,8 @@ Platform.module("PubsApp", function(PubsApp, Platform, Backbone, Marionette, $, 
 PubsApp.Router = Marionette.AppRouter.extend({
 	appRoutes: {
 		"publications": "listPubs",
-		"publications/:id": "showPub"
+		"publications/:id": "showPub",
+		"publications/:id/edit/details": "editPubDetails"
 	}
 });
 
@@ -20,6 +21,10 @@ var API = {
 	//showPub function accepts "id" argument provided as URL fragment//
 	showPub: function(id){
 		PubsApp.Show.Controller.showPub(id);
+	},
+
+	editPubDetails: function(id){
+		PubsApp.Details.Controller.editPubDetails(id);
 	}
 };
 
@@ -34,6 +39,10 @@ Platform.on("pubs:list", function(){
 Platform.on("pub:show", function(id){
 	Platform.navigate("publications/" + id);
 	API.showPub(id);
+})
+Platform.on("details:pub:edit", function(id){
+	Platform.navigate("publications/" + id + "/edit/details");
+	API.editPubDetails(id);
 })
 
 //instantiate a new router instance in the PubApp "start" event handler//

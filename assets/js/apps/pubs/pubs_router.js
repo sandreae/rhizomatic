@@ -8,7 +8,9 @@ PubsApp.Router = Marionette.AppRouter.extend({
 		"publications": "listPubs",
 		"publications/:id": "showPub",
 		"publications/:id/edit/details": "editPubDetails",
-		"publications/:id/edit/content": "editPubContent"
+		"publications/:id/edit/image": "editPubImage",
+		"publications/:id/edit/wysiwyg": "editPubWysiwyg",
+		"publications/:id/edit/script": "editPubScript",
 	}
 });
 
@@ -27,19 +29,31 @@ var API = {
 	editPubDetails: function(id){
 		PubsApp.Details.Controller.editPubDetails(id);
 	},
-	editPubContent: function(id){
-		PubsApp.Content.Controller.editPubContent(id);
-	}
+
+	editPubImage: function(id){
+		PubsApp.Edit.Image.Controller.editPubImage(id);
+	},
+
+	editPubWysiwyg: function(id){
+		PubsApp.Edit.Wysiwyg.Controller.editPubWysiwyg(id);
+	},
+
+	editPubWysiwyg: function(id){
+		PubsApp.Edit.Wysiwyg.Controller.editPubWysiwyg(id);
+	},
+	editPubScript: function(id){
+		PubsApp.Edit.Wysiwyg.Controller.editPubWysiwyg(id);
+	},
 };
 
-//listen for "pubs:list" trigger then navigate to "publications" URL and call "listPubs" function//
+//listen for triggers then navigate to "publications" URL and call relevent controller function//
+
 Platform.on("pubs:list", function(){
 	Platform.navigate("publications");
 	API.listPubs();
 });
 
 //listen for "pub:show" containing model "id" argument sent from List.Controller onShowClicked//
-//execute relevent navigation and controller functions//
 Platform.on("pub:show", function(id){
 	Platform.navigate("publications/" + id);
 	API.showPub(id);
@@ -50,9 +64,19 @@ Platform.on("details:pub:edit", function(id){
 	API.editPubDetails(id);
 })
 
-Platform.on("content:pub:edit", function(id){
-	Platform.navigate("publications/" + id + "/edit/content");
-	API.editPubContent(id);
+Platform.on("wysiwyg:pub:edit", function(id){
+	Platform.navigate("publications/" + id + "/edit/wysiwyg");
+	API.editPubWysiwyg(id);
+})
+
+Platform.on("image:pub:edit", function(id){
+	Platform.navigate("publications/" + id + "/edit/image");
+	API.editPubImage(id);
+})
+
+Platform.on("script:pub:edit", function(id){
+	Platform.navigate("publications/" + id + "/edit/image");
+	API.editPubImage(id);
 })
 
 //instantiate a new router instance in the PubApp "start" event handler//

@@ -5,6 +5,7 @@
     <title>Platform</title>
     <link href="./assets/css/bootstrap.css" rel="stylesheet">    
     <link href="./assets/css/platform.css" rel="stylesheet">
+    <link href="./assets/css/dropzone.css" rel="stylesheet">
     <link href="./assets/js/vendor/dist/summernote.css" rel="stylesheet">
   </head>
 
@@ -64,7 +65,7 @@
     <script type="text/template" id="pub-view">
     <h1><%- title %></h1>
     <p><b><%- contributor %></b></p>
-    <div><%= content %></div>
+    <div><%= activeContent %></div>
     <a href="#" class="btn btn-secondary js-edit-details"><i class="glyphicon glyphicon-edit"></i>
     Edit details
     </a><br>
@@ -108,18 +109,39 @@
       </form>
     </script>     
 
-    <!--template for editing pub content-->
+    <!--template for editing pub wysiwyg-->
 
-    <script type="text/template" id="pub-form-content">
+    <script type="text/template" id="pub-edit-wysiwyg">
     <h1><%- title %></h1>
     <p><%- contributor %></p>
     <div id="summernote">Hello Summernote</div>
     <button class="btn btn-secondary js-submit">Save</button>
+    </script>  
+
+    <!--template for editing pub image-->
+
+    <script type="text/template" id="pub-edit-image">
+    <h1><%- title %></h1>
+    <p><%- contributor %></p>
+    <form
+      class="dropzone"
+      id="my-dropzone"></form>
+    <button class="btn btn-secondary js-submit">Save</button>
     </script>     
+
+    <!--template for editing pub script-->
+
+    <script type="text/template" id="pub-edit-script">
+    <h1><%- title %></h1>
+    <p><%- contributor %></p>
+    <div>some script</div>
+    <button class="btn btn-secondary js-submit">Save</button>
+    </script>
 
     <script src="./assets/js/vendor/jquery.js"></script>
     <script src="./assets/js/vendor/bootstrap.js"></script>
     <script src="./assets/js/vendor/dist/summernote.js"></script>
+    <script src="./assets/js/vendor/dropzone.js"></script>
     <script src="./assets/js/vendor/json2.js"></script>
     <script src="./assets/js/vendor/underscore.js"></script>
     <script src="./assets/js/vendor/backbone.js"></script>
@@ -136,8 +158,12 @@
     <script src="./assets/js/apps/pubs/show/show_controller.js"></script>
     <script src="./assets/js/apps/pubs/details/details_view.js"></script>
     <script src="./assets/js/apps/pubs/details/details_controller.js"></script>
-    <script src="./assets/js/apps/pubs/content/content_view.js"></script>
-    <script src="./assets/js/apps/pubs/content/content_controller.js"></script>
+    <script src="./assets/js/apps/pubs/content/image_view.js"></script>
+    <script src="./assets/js/apps/pubs/content/image_controller.js"></script>
+    <script src="./assets/js/apps/pubs/content/wysiwyg_view.js"></script>
+    <script src="./assets/js/apps/pubs/content/wysiwyg_controller.js"></script>
+
+
 
     <script type="text/javascript">
 

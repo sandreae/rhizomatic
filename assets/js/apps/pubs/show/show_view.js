@@ -20,7 +20,9 @@ Show.Pub = Marionette.ItemView.extend({
 
 	editContentClicked: function(e){
 		e.preventDefault();
-		this.trigger("content:pub:edit", this.model);
+		var type = this.model.get("type");
+		console.log(type);
+		this.trigger("content:pub:edit", this.model, type);
 	}
 });
 

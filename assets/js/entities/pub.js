@@ -29,27 +29,36 @@ Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $
       {
         id: 1,
         contributor: "Jane Doe",
-        title: "All about something",
-        type: "",
+        title: "Blog about something",
+        type: "blog",
         pubDate: "",
-        content: ""
+        contentWysiwyg: "",
+        contentImage: "",
+        contentScript: "",      
+        activeContent: "no content",      
       },
       {
         id: 2,
         contributor: "Adam Apple",
-        title: "More about something",
-        type: "",
+        title: "Image about nothing",
+        type: "image",
         pubDate: "",
-        content: ""
+        contentWysiwyg: "",
+        contentImage: "",
+        contentScript: "",      
+        activeContent: "no content",      
       },
       {
         id: 3,
         contributor: "Barry Belgium",
-        title: "Nothing about everything",
-        type: "",
+        title: "Script about everything",
+        type: "script",
         pubDate: "",
-        content: ""
-      },
+        contentWysiwyg: "",
+        contentImage: "",
+        contentScript: "",   
+        activeContent: "no content",   
+      },   
       ]);
     //save each pubModel in pubsCollection to localstorage//
     pubsCollection.forEach(function(pubModel){

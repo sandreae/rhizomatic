@@ -1,8 +1,8 @@
-Platform.module("PubsApp.Content", function(Content, Platform, Backbone, Marionette, $, _){
+Platform.module("PubsApp.Edit.Wysiwyg", function(Wysiwyg, Platform, Backbone, Marionette, $, _){
 //this is the view for editing publication content//
 
-Content.Pub = Marionette.ItemView.extend({
-	template: "#pub-form-content",
+Wysiwyg.Pub = Marionette.ItemView.extend({
+	template: "#pub-edit-wysiwyg",
 
 	events: {
 		"click button.js-submit": "submitClicked"
@@ -16,7 +16,7 @@ Content.Pub = Marionette.ItemView.extend({
 	},
 
 	onShow: function(){
-		var content = this.model.get("content");
+		var content = this.model.get("contentWysiwyg");
   		this.$('#summernote').summernote({
 		  height: 300,                 // set editor height
 		  minHeight: null,             // set minimum height of editor

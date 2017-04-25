@@ -12,11 +12,22 @@ Show.Controller = {
 			model: pubModel
 		});
 			pubView.on("details:pub:edit", function(model){
-			Platform.trigger("details:pub:edit", model.get("id"));
+				Platform.trigger("details:pub:edit", model.get("id"));
 		});
 
-			pubView.on("content:pub:edit", function(model){
-			Platform.trigger("content:pub:edit", model.get("id"));
+			pubView.on("content:pub:edit", function(model, type){
+				if(type === "blog"){
+					Platform.trigger("wysiwyg:pub:edit", model.get("id"));
+				}
+				else{
+					if(type === "image"){
+						Platform.trigger("image:pub:edit", model.get("id"));
+					}else{
+						if(type=== "script"){
+							Platform.trigger("script:pub:edit", model.get("id"));
+						}
+					}
+				}
 		});
 
 		}

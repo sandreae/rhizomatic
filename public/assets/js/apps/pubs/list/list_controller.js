@@ -8,7 +8,10 @@ List.Controller = {
 	listPubs: function(){
 
 		//request pubsCollection via API//
-		var pubsCollection = Platform.request("pubsCollection:entities");
+		var fetchingPubsCollection = Platform.request("pubsCollection:entities");
+
+		//wait for request to complete//
+		$.when(fetchingPubsCollection).done(function(pubsCollection){
 
 		//initiate new composite view listing pubsCollection//
 		var pubsCompositeView = new List.PubsCompositeView({
@@ -36,6 +39,7 @@ List.Controller = {
 		});
 
 		Platform.regions.main.show(pubsCompositeView);
+	})
 	},
 }
 

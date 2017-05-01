@@ -75,7 +75,7 @@ Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $
     pubsCollection.forEach(function(pubModel){
       pubModel.save();
     });
-    return pubsCollection;
+    return pubsCollection.models;
   };
 
   //API object containing "get" functions to be called via request-response//
@@ -85,13 +85,21 @@ Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $
     //get Entities.PubsCollection function//
     getPubEntities: function(){
       var pubsCollection = new Entities.PubsCollection();
-      //fetch pubsCollection from their local storage URL location//
-      pubsCollection.fetch();
-      //if we don't have any pubs yet, create some//
-      if(pubsCollection.length === 0){
-        return initializePubs();
-      }
-      return pubsCollection;
+      //set up a promise//
+      var defer = $.Deferred();
+      pubsCollection.fetch({
+        success: function(data){
+          defer.resolve(data)
+        }
+      });
+      var promise = defer.promise();
+        $.when(promise).done(function(fetchedPubsCollection){
+          if(fetchedPubsCollection !== 0){
+            var models = initializePubs();
+            pubsCollection.reset(models);
+          }
+        });
+      return promise;
     },
 
     //get Entities.PubModel function//
@@ -99,8 +107,18 @@ Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $
     getPubEntity: function(pubId){
       //initiate new pubModel and set id attribute//
       var pubModel = new Entities.PubModel({id: pubId});
-      pubModel.fetch();
-      return pubModel;
+      var defer = $.Deferred();
+      setTimeout(function(){
+        pubModel.fetch({
+          success: function(data){
+            defer.resolve(data);
+          },
+          error: function(data){
+            defer.resolve(undefined);
+          }
+        });
+      }, 2000);
+      return defer.promise();
     }
   };
 

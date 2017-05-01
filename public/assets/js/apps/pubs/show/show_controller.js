@@ -4,7 +4,8 @@ Platform.module("PubsApp.Show", function(Show, Platform, Backbone, Marionette, $
 Show.Controller = {
 	showPub: function(id){
 		//request the pub model via API handler using the "id" argument passed from the router//
-		var pubModel = Platform.request("pubModel:entities", id);
+		var fetchingPubModel = Platform.request("pubModel:entities", id);
+		$.when(fetchingPubModel).done(function(pubModel){ 
 		var pubView;
 		//if pub exists show it//
 		if(pubModel !== undefined){
@@ -37,6 +38,7 @@ Show.Controller = {
 		}
 
 		Platform.regions.main.show(pubView)
+	})
 	}
 }
 

@@ -4,8 +4,10 @@ Platform.module("PubsApp.Details", function(Details, Platform, Backbone, Marione
 Details.Controller = {
 	editPubDetails: function(id){
 		//request the pub model via API handler using the "id" argument passed from the router//
-		var pubModel = Platform.request("pubModel:entities", id);
-		var editPubDetailsView = new Details.Pub({
+		var fetchingPubModel = Platform.request("pubModel:entities", id);
+		$.when(fetchingPubModel).done(function(pubModel){ 		
+
+			var editPubDetailsView = new Details.Pub({
 			model: pubModel
 		});
 		editPubDetailsView.on("form:submit", function(data){
@@ -14,6 +16,7 @@ Details.Controller = {
 		})
 
 		Platform.regions.main.show(editPubDetailsView)
+	})
 	}
 }
 });

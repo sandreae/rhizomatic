@@ -4,7 +4,8 @@ Platform.module("PubsApp.Edit.Script", function(Script, Platform, Backbone, Mari
 Script.Controller = {
 	editPubScript: function(id){
 		//request the pub model via API handler using the "id" argument passed from the router//
-		var pubModel = Platform.request("pubModel:entities", id);
+		var fetchingPubModel = Platform.request("pubModel:entities", id);
+		$.when(fetchingPubModel).done(function(pubModel){ 		
 		var editPubContentView = new Script.Pub({
 			model: pubModel
 		});
@@ -17,6 +18,7 @@ Script.Controller = {
 		})
 
 		Platform.regions.main.show(editPubContentView)
+	})
 	}
 }
 });

@@ -4,7 +4,8 @@ Platform.module("PubsApp.Edit.Image", function(Image, Platform, Backbone, Marion
 Image.Controller = {
 	editPubImage: function(id){
 		//request the pub model via API handler using the "id" argument passed from the router//
-		var pubModel = Platform.request("pubModel:entities", id);
+		var fetchingPubModel = Platform.request("pubModel:entities", id);
+		$.when(fetchingPubModel).done(function(pubModel){ 		
 		var editPubContentView = new Image.Pub({
 			model: pubModel
 		});
@@ -17,6 +18,7 @@ Image.Controller = {
 		})
 
 		Platform.regions.main.show(editPubContentView)
+	})
 	}
 }
 });

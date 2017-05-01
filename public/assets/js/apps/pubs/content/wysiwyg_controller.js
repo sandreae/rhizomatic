@@ -4,7 +4,8 @@ Platform.module("PubsApp.Edit.Wysiwyg", function(Wysiwyg, Platform, Backbone, Ma
 Wysiwyg.Controller = {
 	editPubWysiwyg: function(id){
 		//request the pub model via API handler using the "id" argument passed from the router//
-		var pubModel = Platform.request("pubModel:entities", id);
+		var fetchingPubModel = Platform.request("pubModel:entities", id);
+		$.when(fetchingPubModel).done(function(pubModel){ 		
 		var editPubContentView = new Wysiwyg.Pub({
 			model: pubModel
 		});
@@ -17,6 +18,7 @@ Wysiwyg.Controller = {
 		})
 
 		Platform.regions.main.show(editPubContentView)
+	})
 	}
 }
 });

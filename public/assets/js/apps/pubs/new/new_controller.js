@@ -10,7 +10,11 @@ New.Controller = {
 				model: newPub,
 			});
 
-			var pubsCollection = Platform.request("pubsCollection:entities");
+		//request pubsCollection via API//
+		var fetchingPubsCollection = Platform.request("pubsCollection:entities");
+
+		//wait for request to complete//
+		$.when(fetchingPubsCollection).done(function(pubsCollection){
 
 			newPubView.on("form:submit", function(data){
 				if(pubsCollection.length > 0){
@@ -28,6 +32,7 @@ New.Controller = {
 			})
 
 		Platform.regions.main.show(newPubView)
+	})
 	}
 }
 });

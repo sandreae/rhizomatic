@@ -17,18 +17,20 @@ New.Controller = {
 		$.when(fetchingPubsCollection).done(function(pubsCollection){
 
 			newPubView.on("form:submit", function(data){
-				if(pubsCollection.length > 0){
-					var highestId = pubsCollection.max(function(c){ return c.id; }).get("id");
-					data.id = highestId + 1;
-				}
-				else{
-					data.id = 1;
-				}
-				if(newPub.save(data)){
-					console.log("new pub saved with id:" + newPub.get("id"))
-					pubsCollection.add(newPub);
-					Platform.trigger("pub:show", newPub.get("id"))
-				}
+				
+				newPub.save(data, { 
+                 success : function(model, response) { 
+                 	console.log("new pub saved with id:" + newPub.get("_id"));
+                 	pubsCollection.add(newPub);
+                 	Platform.trigger("pub:show", newPub.get("_id"))
+                 	} 
+               });
+
+				//if(newPub.save(data)){
+				//	console.log("new pub saved with id:" + newPub.get("_id"))
+				//	pubsCollection.add(newPub);
+				//	Platform.trigger("pub:show", newPub.get("id"))
+				//}
 			})
 
 		Platform.regions.main.show(newPubView)

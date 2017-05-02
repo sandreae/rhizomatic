@@ -16,15 +16,17 @@ Script.Pub = Marionette.ItemView.extend({
 		this.trigger("form:submit", content);
 	},
 
-	onShow: function(){
+	onRender: function(){
 		var thisModel = this.model;
 		var myTextArea = this.$("#myTextArea").get(0);
 		
 		var editor = CodeMirror(function(elt) {
-  		myTextArea.parentNode.replaceChild(elt, myTextArea);
-		}, {value: thisModel.get("contentScript"),
-		theme: "blackboard",
-		mode: "htmlmixed"
+  			myTextArea.parentNode.replaceChild(elt, myTextArea);
+		}, 
+		{
+			value: thisModel.get("contentScript"),
+			theme: "blackboard",
+			mode: "text/html",
 		});
 
 

@@ -6,38 +6,39 @@ Show.Controller = {
 		//request the pub model via API handler using the "id" argument passed from the router//
 		var fetchingPubModel = Platform.request("pubModel:entities", id);
 		$.when(fetchingPubModel).done(function(pubModel){ 
-		var pubView;
-		//if pub exists show it//
-		if(pubModel !== undefined){
-			pubView = new Show.Pub({
-			model: pubModel
-		});
+			var pubView;
+			//if pub exists show it//
+			if(pubModel !== undefined){
+				pubView = new Show.Pub({
+				model: pubModel
+			});
+
 			pubView.on("details:pub:edit", function(model){
-				Platform.trigger("details:pub:edit", model.get("id"));
-		});
+				Platform.trigger("details:pub:edit", model.get("_id"));
+			});
 
 			pubView.on("content:pub:edit", function(model, type){
 				if(type === "blog"){
-					Platform.trigger("wysiwyg:pub:edit", model.get("id"));
+					Platform.trigger("wysiwyg:pub:edit", model.get("_id"));
 				}
 				else{
 					if(type === "image"){
-						Platform.trigger("image:pub:edit", model.get("id"));
+						Platform.trigger("image:pub:edit", model.get("_id"));
 					}else{
 						if(type=== "script"){
-							Platform.trigger("script:pub:edit", model.get("id"));
+							Platform.trigger("script:pub:edit", model.get("_id"));
 						}
 					}
 				}
-		});
+			});
 
-		}
-		//else show MissingPub//
-		else{
-			pubView = new Show.MissingPub();
-		}
+			}
+			//else show MissingPub//
+			else{
+				pubView = new Show.MissingPub();
+			}
 
-		Platform.regions.main.show(pubView)
+			Platform.regions.main.show(pubView)
 	})
 	}
 }

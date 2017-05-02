@@ -1,11 +1,13 @@
 Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $, _){
 
+  Backbone.Model.prototype.idAttribute = "_id";
+
   // define Pub model in Platform.Entities module//
 
   Entities.PubModel = Backbone.Model.extend({
-    urlRoot: "publications",
+    urlRoot: "http://localhost:3000/api/publications",
     defaults: {
-      id: "",
+      pubId: "",
       contributor: "",
       title: "",
       type: "",
@@ -19,64 +21,21 @@ Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $
 
   //configure local storage//
 
-  Entities.configureStorage("Platform.Entities.PubModel");
+  //Entities.configureStorage("Platform.Entities.PubModel");
 
   // define Pubs collection in Platform.Entities module//
 
   Entities.PubsCollection = Backbone.Collection.extend({
-    url: "publications",
+    url: "http://localhost:3000/api/publications",
     model: Entities.PubModel,
     comparator: "contributor"
   });
 
   //configure local storage//
 
-  Entities.configureStorage("Platform.Entities.PubsCollection");
+  //Entities.configureStorage("Platform.Entities.PubsCollection");
 
   //initialize a collection of pubs (all private module variables)//
-
-  var initializePubs = function(){
-    var pubsCollection = new Entities.PubsCollection([
-      {
-        id: 1,
-        contributor: "Jane Doe",
-        title: "Blog about something",
-        type: "blog",
-        pubDate: "",
-        contentWysiwyg: "",
-        contentImage: "",
-        contentScript: "",      
-        activeContent: "no content",      
-      },
-      {
-        id: 2,
-        contributor: "Adam Apple",
-        title: "Image about nothing",
-        type: "image",
-        pubDate: "",
-        contentWysiwyg: "",
-        contentImage: "",
-        contentScript: "",      
-        activeContent: "no content",      
-      },
-      {
-        id: 3,
-        contributor: "Barry Belgium",
-        title: "Script about everything",
-        type: "script",
-        pubDate: "",
-        contentWysiwyg: "",
-        contentImage: "",
-        contentScript: "test",   
-        activeContent: "no content",   
-      },   
-      ]);
-    //save each pubModel in pubsCollection to localstorage//
-    pubsCollection.forEach(function(pubModel){
-      pubModel.save();
-    });
-    return pubsCollection.models;
-  };
 
   //API object containing "get" functions to be called via request-response//
 
@@ -89,26 +48,24 @@ Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $
       var defer = $.Deferred();
       pubsCollection.fetch({
         success: function(data){
+          _.each(data.toJSON(), function(item) {
+          console.log('Successfully GOT blog with _id: ' + item._id);
+          })
           defer.resolve(data)
+        },
+        error: function(){
+          console.log("Failed to GET pubs")
         }
       });
-      var promise = defer.promise();
-        $.when(promise).done(function(fetchedPubsCollection){
-          if(fetchedPubsCollection !== 0){
-            var models = initializePubs();
-            pubsCollection.reset(models);
-          }
-        });
-      return promise;
+      return defer.promise();
     },
 
     //get Entities.PubModel function//
     //accepts "pubId" argument//
     getPubEntity: function(pubId){
       //initiate new pubModel and set id attribute//
-      var pubModel = new Entities.PubModel({id: pubId});
+      var pubModel = new Entities.PubModel({_id: pubId});
       var defer = $.Deferred();
-      setTimeout(function(){
         pubModel.fetch({
           success: function(data){
             defer.resolve(data);
@@ -117,7 +74,6 @@ Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $
             defer.resolve(undefined);
           }
         });
-      }, 100);
       return defer.promise();
     }
   };
@@ -131,7 +87,7 @@ Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $
   });
 
   //pubModel reqres handler accepting "id" argument and passing it on to getPubEntity function//
-  Platform.reqres.setHandler("pubModel:entities", function(id){
-    return API.getPubEntity(id);
+  Platform.reqres.setHandler("pubModel:entities", function(_id){
+    return API.getPubEntity(_id);
   });
 });

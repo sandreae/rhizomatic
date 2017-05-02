@@ -14,7 +14,7 @@ Image.Controller = {
 			pubModel.set({contentImage: content})
 			pubModel.set({activeContent: content});
 			pubModel.save();
-			Platform.trigger("pub:show", pubModel.get("id"))
+			Platform.trigger("pub:show", pubModel.get("_id"))
 		})
 
 		Platform.regions.main.show(editPubContentView)

@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/sandreae/platform#readme",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.15.2",
-    "mongoose": "^4.9.6"
+    "mongoose": "^4.9.6",
+    "path": "^0.12.7"
   }
 }

@@ -4,7 +4,7 @@
   "description": "platform-prototype",
   "main": "index.js",
   "scripts": {
-    "start": "node server"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

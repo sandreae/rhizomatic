@@ -11,7 +11,6 @@ Details.Controller = {
 			model: pubModel
 		});
 		editPubDetailsView.on("form:submit", function(data){
-			pubModel.set({activeContent: "edit content"})
 			pubModel.save(data, {
 				success: function(){
 					Platform.trigger("pub:show", pubModel.get("_id"))

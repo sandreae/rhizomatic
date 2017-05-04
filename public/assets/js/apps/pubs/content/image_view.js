@@ -4,30 +4,28 @@ Platform.module("PubsApp.Edit.Image", function(Image, Platform, Backbone, Marion
 Image.Pub = Marionette.ItemView.extend({
 	template: "#pub-edit-image",
 
-	events: {
-		"click button.js-submit": "submitClicked"
-	},
-
-	submitClicked: function(e){
-		e.preventDefault();
-		//serialize the form data//
-		this.trigger("form:submit", content);
-	},
-
 	onShow: function(){
-		this.$("#my-dropzone").dropzone({
-			url: "/file/post", 
+		var self = this;
+		this.$("#my-dropzone").dropzone({				  
+		  paramName: 'file',
+		  maxFilesize: 20, // MB
+		  maxFiles: 1,
+		  dictDefaultMessage: 'Drag an image here to upload, or click to select one',
+		  acceptedFiles: 'image/*',
+		  autoProcessQueue: false,
 
-    		init : function() {
+		  init: function() {
+		  	var myDropzone = this;
+		  	self.$('button.js-submit').click(function(){           
+  			myDropzone.processQueue();
+			});
+		    this.on('success', function( file, resp ){
+		      self.trigger("form:submit", resp.filename)
+		    });
 
-        		myDropzone = this;
-
-		        //Restore initial message when queue has been completed
-		        this.on("thumbnail", function(event) {
-		            console.log(myDropzone.files);            
-		        });
-		    }
+		  },
 		});	
+
 	}
 });
 });

@@ -19,8 +19,9 @@ PubsApp.Router = Marionette.AppRouter.extend({
 //define public methods with API object which must contain the callbacks//
 //located in the appRoutes object//
 var API = {
-	listPubs: function(){
-		PubsApp.List.Controller.listPubs();
+	listPubs: function(criterion){
+		PubsApp.List.Controller.listPubs(criterion);
+		Platform.execute("set:active:header", "publications")
 	},
 
 	//showPub function accepts "id" argument provided as URL fragment//

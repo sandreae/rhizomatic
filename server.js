@@ -2,6 +2,9 @@ var express = require("express");
 var path = require("path"); //Utilities for dealing with file paths
 var mongoose = require("mongoose");
 var bodyParser = require('body-parser');
+var multer = require("multer");
+var upload = multer( { dest: 'public/uploads/' } );
+
 
 mongoose.connect("mongodb://localhost/pubs");
 
@@ -43,6 +46,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
+
 //ROUTES
 
 app.get("/api/publications", function(req, res) {
@@ -63,6 +67,19 @@ app.get('/api/publications/:id', function(req, res){
         }
     });
 });
+
+app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
+
+  if ( !req.file.mimetype.startsWith( 'image/' ) ) {
+    return res.status( 422 ).json( {
+      error : 'The uploaded file must be an image'
+    } );
+  }
+
+  return res.status( 200 ).send( req.file );
+});
+
+
 
 app.post('/api/publications', function (req, res) {
     var postPub = new Pub({

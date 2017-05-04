@@ -22,7 +22,8 @@
         var RegionContainer = Marionette.LayoutView.extend({
           el: "#app-container",
           regions: {
-            main: "#main-region"
+            header: "#header-region",
+            main: "#main-region",
           }
         });
 

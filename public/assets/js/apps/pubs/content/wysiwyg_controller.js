@@ -13,8 +13,11 @@ Wysiwyg.Controller = {
 		editPubContentView.on("form:submit", function(content){
 			pubModel.set({contentWysiwyg: content});
 			pubModel.set({activeContent: content});
-			pubModel.save();
-			Platform.trigger("pub:show", pubModel.get("_id"))
+			pubModel.save(null, {
+				success: function(){
+					Platform.trigger("pub:show", pubModel.get("_id"))
+				}
+			});
 		})
 
 		Platform.regions.main.show(editPubContentView)

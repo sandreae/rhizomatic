@@ -16,7 +16,6 @@ Script.Controller = {
 			pubModel.save(null, {
 				success: function(){
 					Platform.trigger("pub:show", pubModel.get("_id"))
-
 				}
 			});
 		})

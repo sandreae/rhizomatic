@@ -7,15 +7,14 @@ Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $
   Entities.PubModel = Backbone.Model.extend({
     urlRoot: "http://localhost:3000/api/publications",
     defaults: {
-      id: "",
-      contributor: "",
-      title: "",
-      type: "",
-      pubDate: "",
-      contentWysiwyg: "",
-      contentImage: "",
-      contentScript: "",      
-      activeContent: "",     
+        contributor: "Your Name",
+        title: "Your Title",
+        type: "script",
+        pubDate: "publication date",
+        contentWysiwyg: "blog content",
+        contentImage: "image url",
+        contentScript: "script content",   
+        activeContent: "your content",
     }
   });
 

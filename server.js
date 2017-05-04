@@ -11,7 +11,6 @@ mongoose.connect("mongodb://localhost/pubs");
 var Schema = mongoose.Schema;
 
 var PubSchema = new Schema({
-    id: Number,
     contributor: String,
     title: String,
     type: String,
@@ -27,15 +26,14 @@ mongoose.model("Pub", PubSchema);
 var Pub = mongoose.model("Pub")
 
 var pub = new Pub({
-        id: 0,
-        contributor: "Harry Belgium",
-        title: "Script about everything",
-        type: "script",
+        contributor: "",
+        title: "",
+        type: "",
         pubDate: "",
         contentWysiwyg: "",
         contentImage: "",
         contentScript: "",   
-        activeContent: "no content",
+        activeContent: "",
 })
 
 pub.save();

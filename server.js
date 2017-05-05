@@ -1,15 +1,13 @@
 var express = require("express");
 var path = require("path"); //Utilities for dealing with file paths
-var mongoose = require("mongoose");
 var bodyParser = require('body-parser');
 var multer = require("multer");
 var upload = multer( { dest: 'public/uploads/' } );
 
-
+var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/pubs");
 
 var Schema = mongoose.Schema;
-
 var PubSchema = new Schema({
     contributor: String,
     title: String,
@@ -18,7 +16,8 @@ var PubSchema = new Schema({
     contentWysiwyg: String,
     contentImage: String,
     contentScript: String,      
-    activeContent: String,    
+    activeContent: String,
+    drafts: Array,
 });
 
 mongoose.model("Pub", PubSchema);
@@ -34,9 +33,26 @@ var pub = new Pub({
         contentImage: "",
         contentScript: "",   
         activeContent: "",
+        drafts: [Draft],
 })
 
 pub.save();
+
+var DraftSchema = new Schema({
+    type: String,
+    content: String,
+});
+
+mongoose.model("Draft", DraftSchema);
+
+var Draft = mongoose.model("Draft")
+
+var draft = new Draft({
+        contributor: "",
+        title: "",
+})
+
+draft.save();
 
 var app = express();
 
@@ -66,19 +82,6 @@ app.get('/api/publications/:id', function(req, res){
     });
 });
 
-app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
-
-  if ( !req.file.mimetype.startsWith( 'image/' ) ) {
-    return res.status( 422 ).json( {
-      error : 'The uploaded file must be an image'
-    } );
-  }
-
-  return res.status( 200 ).send( req.file );
-});
-
-
-
 app.post('/api/publications', function (req, res) {
     var postPub = new Pub({
         contributor:req.body.contributor,
@@ -94,6 +97,35 @@ app.post('/api/publications', function (req, res) {
         }
     });
     return res.send(postPub);
+});
+
+
+app.delete('/api/publications/:id', function(req, res){
+    console.log('Deleting pub with id: ' + req.params.id);
+    return Pub.findById(req.params.id, function(err, pub){
+        return pub.remove(function(err){
+            if(!err){
+                console.log('Pub removed');
+                return res.send('');
+            } else {
+                console.log(err);
+            }
+        });
+    });
+});
+
+app.post('/api/drafts', function (req, res) {
+    
+    Pub.findById({_id: req.body.pub}, function(err, pub) {
+        
+        var newDraft = new Draft({type: req.body.type,
+                                   content: req.body.content,});
+        newDraft.save();
+        pub.drafts.push(newDraft);
+        pub.save();
+        
+        res.send(newDraft);
+    })
 });
 
 app.put('/api/publications/:id', function(req, res){
@@ -117,19 +149,36 @@ app.put('/api/publications/:id', function(req, res){
     });
 });
 
-app.delete('/api/publications/:id', function(req, res){
-    console.log('Deleting pub with id: ' + req.params.id);
-    return Pub.findById(req.params.id, function(err, pub){
-        return pub.remove(function(err){
+
+app.put('/api/drafts/:id', function (req, res) {
+    console.log('Updating draft ' + req.body.pub);
+    return Pub.findById({_id: req.body.pub}, function(err, pub) {
+        
+        draft.type = req.body.type;
+        draft.content = req.body.content;
+        
+        return draft.save(function(err){
             if(!err){
-                console.log('Pub removed');
-                return res.send('');
+                console.log('draft updated');
             } else {
                 console.log(err);
             }
-        });
-    });
+            return res.send(draft);
+        });    
+    })
 });
+
+app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
+
+  if ( !req.file.mimetype.startsWith( 'image/' ) ) {
+    return res.status( 422 ).json( {
+      error : 'The uploaded file must be an image'
+    } );
+  }
+
+  return res.status( 200 ).send( req.file );
+});
+
 
 var port = 3000;
 

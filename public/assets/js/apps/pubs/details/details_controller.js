@@ -7,12 +7,27 @@ Details.Controller = {
 		var fetchingPubModel = Platform.request("pubModel:entities", id);
 		$.when(fetchingPubModel).done(function(pubModel){ 		
 
-			var editPubDetailsView = new Details.Pub({
+		var editPubDetailsView = new Details.Pub({
 			model: pubModel
 		});
+
 		editPubDetailsView.on("form:submit", function(data){
+			var content;
+			var draft = pubModel.get("drafts").find(function(model) { 
+				return model.get('type') === data.type; });
+
+			if(draft === undefined){
+				content = "";	
+			} else {
+				content = draft.get("content")
+			}
+
+
+			pubModel.set({activeContent: content});
+			console.log(content);
 			pubModel.save(data, {
 				success: function(){
+
 					Platform.trigger("pub:show", pubModel.get("_id"))
 				}
 			});

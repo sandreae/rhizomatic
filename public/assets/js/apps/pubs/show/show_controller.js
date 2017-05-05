@@ -7,10 +7,13 @@ Show.Controller = {
 		var fetchingPubModel = Platform.request("pubModel:entities", id);
 		$.when(fetchingPubModel).done(function(pubModel){ 
 			var pubView;
+			var template = "#pub-view-" + pubModel.get("type")
+			console.log(template)
 			//if pub exists show it//
 			if(pubModel !== undefined){
 				pubView = new Show.Pub({
-				model: pubModel
+				model: pubModel,
+				template: template,
 			});
 
 			pubView.on("details:pub:edit", function(model){
@@ -18,18 +21,7 @@ Show.Controller = {
 			});
 
 			pubView.on("content:pub:edit", function(model, type){
-				if(type === "blog"){
-					Platform.trigger("wysiwyg:pub:edit", model.get("_id"));
-				}
-				else{
-					if(type === "image"){
-						Platform.trigger("image:pub:edit", model.get("_id"));
-					}else{
-						if(type=== "script"){
-							Platform.trigger("script:pub:edit", model.get("_id"));
-						}
-					}
-				}
+				Platform.trigger("content:pub:edit", model.get("_id"));
 			});
 
 			}

@@ -73,10 +73,7 @@
 
     <!--show single publication template-->
 
-    <script type="text/template" id="pub-view">
-    <h1><%- title %></h1>
-    <p><b><%- contributor %></b></p>
-    <div><%= activeContent %></div>
+    <script type="text/template" id="pub-view-image">
     <img src="http://localhost:3000/uploads/<%= activeContent %>" alt="image" width=800px><br>
     <a href="#" class="btn btn-secondary js-edit-details"><i class="glyphicon glyphicon-edit"></i>
     Edit details
@@ -84,7 +81,28 @@
     <a href="#publications/<%- _id %>/edit/content" class="btn btn-secondary js-edit-content"><i class="glyphicon glyphicon-edit"></i>
     Edit content
     </a>
+    </script>
 
+    <script type="text/template" id="pub-view-mixed">
+    <h1><%- title %></h1>
+    <p><b><%- contributor %></b></p>
+    <div><%= activeContent %></div>
+    <a href="#" class="btn btn-secondary js-edit-details"><i class="glyphicon glyphicon-edit"></i>
+    Edit details
+    </a><br>
+    <a href="#publications/<%- _id %>/edit/content" class="btn btn-secondary js-edit-content"><i class="glyphicon glyphicon-edit"></i>
+    Edit content
+    </a>
+    </script>
+
+    <script type="text/template" id="pub-view-script">
+    <div><%= activeContent %></div>
+    <a href="#" class="btn btn-secondary js-edit-details"><i class="glyphicon glyphicon-edit"></i>
+    Edit details
+    </a><br>
+    <a href="#publications/<%- _id %>/edit/content" class="btn btn-secondary js-edit-content"><i class="glyphicon glyphicon-edit"></i>
+    Edit content
+    </a>
     </script>
 
     <!--template for nonexistent pub-->
@@ -109,7 +127,7 @@
           <label for="pub-type" class="form-label">Type:</label>
           <select class="form-control" id="pub-type" name="type">
           <option selected hidden value="<%- type %>"><%- type %></option>
-          <option value="blog">blog</option>
+          <option value="mixed">mixed</option>
           <option value="image">image</option>
           <option value="script">script</option>
         </select>
@@ -122,9 +140,9 @@
       </form>
     </script>     
 
-    <!--template for editing pub wysiwyg-->
+    <!--template for editing pub mixed-->
 
-    <script type="text/template" id="pub-edit-wysiwyg">
+    <script type="text/template" id="pub-edit-mixed">
     <h1><%- title %></h1>
     <p><%- contributor %></p>
     <div id="summernote"><%= activeContent %></div>
@@ -149,7 +167,7 @@
     <script type="text/template" id="pub-edit-script">
     <h1><%- title %></h1>
     <p><%- contributor %></p>
-    <textarea id="myTextArea"><%- contentScript %></textarea>
+    <textarea id="myTextArea"><%- activeContent %></textarea>
     <button class="btn btn-secondary js-submit">Save</button>
     </script>
 
@@ -173,15 +191,17 @@
     <script src="./assets/js/vendor/json2.js"></script>
     <script src="./assets/js/vendor/underscore.js"></script>
     <script src="./assets/js/vendor/backbone.js"></script>
+    <script src="./assets/js/vendor/backbone-associations-min.js"></script>
+    <script src="./assets/js/vendor/backbone-relational.js"></script>
     <script src="./assets/js/vendor/backbone.picky.min.js"></script>
     <script src="./assets/js/vendor/backbone.syphon.js"></script>
     <script src="./assets/js/vendor/backbone.localstorage.js"></script>
     <script src="./assets/js/vendor/backbone.marionette.js"></script>
     <script src="./assets/js/app.js"></script>
-    <script src="./assets/js/apps/config/storage/localstorage.js"></script>
     <script src="./assets/js/entities/header.js"></script>
     <script src="./assets/js/apps/header/header_router.js"></script>
     <script src="./assets/js/entities/pub.js"></script>
+    <script src="./assets/js/apps/edit/edit_router.js"></script>
     <script src="./assets/js/apps/pubs/pubs_router.js"></script>
     <script src="./assets/js/apps/pubs/list/list_view.js"></script>
     <script src="./assets/js/apps/pubs/list/list_controller.js"></script>
@@ -191,12 +211,10 @@
     <script src="./assets/js/apps/pubs/show/show_controller.js"></script>
     <script src="./assets/js/apps/pubs/details/details_view.js"></script>
     <script src="./assets/js/apps/pubs/details/details_controller.js"></script>
-    <script src="./assets/js/apps/pubs/content/image_view.js"></script>
-    <script src="./assets/js/apps/pubs/content/image_controller.js"></script>
-    <script src="./assets/js/apps/pubs/content/wysiwyg_view.js"></script>
-    <script src="./assets/js/apps/pubs/content/wysiwyg_controller.js"></script>
-    <script src="./assets/js/apps/pubs/content/script_view.js"></script>
-    <script src="./assets/js/apps/pubs/content/script_controller.js"></script>
+    <script src="./assets/js/apps/edit/edit/image_view.js"></script>
+    <script src="./assets/js/apps/edit/edit/edit_controller.js"></script>
+    <script src="./assets/js/apps/edit/edit/mixed_view.js"></script>
+    <script src="./assets/js/apps/edit/edit/script_view.js"></script>
     <script src="./assets/js/apps/pubs/new/new_view.js"></script>
     <script src="./assets/js/apps/pubs/new/new_controller.js"></script>
     <script src="./assets/js/apps/about/about_router.js"></script>

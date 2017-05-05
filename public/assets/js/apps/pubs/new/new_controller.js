@@ -4,9 +4,8 @@ Platform.module("PubsApp.New", function(New, Platform, Backbone, Marionette, $, 
 New.Controller = {
 	newPubDetails: function(){
 			
-			var newPub = new Platform.Entities.PubModel();
-
-			var newPubView = new Platform.PubsApp.Details.Pub({
+			var newPub = new Platform.Entities.PubModel();			
+            var newPubView = new Platform.PubsApp.Details.Pub({
 				model: newPub,
 			});
 
@@ -17,15 +16,24 @@ New.Controller = {
 		$.when(fetchingPubsCollection).done(function(pubsCollection){
 
 			newPubView.on("form:submit", function(data){
-				
-				newPub.save(data, { 
-                 success : function(model, response) { 
-                 	console.log("new pub saved with id:" + newPub.get("_id"));
-                 	pubsCollection.add(newPub);
-                 	Platform.trigger("pub:show", newPub.get("_id"))
-                 	} 
-               });
+   	
+   				newPub.save(data, { 
+                 	success : function(pub, response) { 
+	                 	console.log("new pub saved with id:" + pub.get("_id"));
+	                 	var newDraft = new Platform.Entities.Draft({ 
+			            	type: data.type,
+			                content: "draft content",
+			                pub: pub.get("_id") 
 
+			            });
+			            newDraft.save({}, {
+			            	success: function(){
+			            	}
+			            })
+	                 	Platform.trigger("pub:show", newPub.get("_id"))
+	                 	console.log(newPub)
+                 	},
+               });
 				//if(newPub.save(data)){
 				//	console.log("new pub saved with id:" + newPub.get("_id"))
 				//	pubsCollection.add(newPub);

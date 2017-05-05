@@ -1,40 +1,49 @@
 Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $, _){
 
-  Backbone.Model.prototype.idAttribute = "_id";
+Backbone.Model.prototype.idAttribute = "_id";
+
+Entities.Draft = Backbone.RelationalModel.extend({
+    urlRoot: "http://localhost:3000/api/drafts",
+    idAttribute: "_id" ,
+  })
+
+Entities.Drafts = Backbone.Collection.extend({
+  model: Entities.Draft,
+});
 
   // define Pub model in Platform.Entities module//
 
-  Entities.PubModel = Backbone.Model.extend({
+  Entities.PubModel = Backbone.RelationalModel.extend({
     urlRoot: "http://localhost:3000/api/publications",
+    idAttribute: "_id",
+    relations: [{
+        type: Backbone.HasMany,
+        key: 'drafts',
+        relatedModel: Entities.Draft,
+        collectionType: Entities.Drafts,
+        reverseRelation: {
+          key: "pub",
+          includeInJSON: "_id"
+        },
+      }],
+
+
     defaults: {
         contributor: "Your Name",
         title: "Your Title",
         type: "script",
         pubDate: "publication date",
-        contentWysiwyg: "blog content",
-        contentImage: "image url",
-        contentScript: "script content",   
         activeContent: "your content",
     }
   });
-
-  //configure local storage//
-
-  //Entities.configureStorage("Platform.Entities.PubModel");
 
   // define Pubs collection in Platform.Entities module//
 
   Entities.PubsCollection = Backbone.Collection.extend({
     url: "http://localhost:3000/api/publications",
     model: Entities.PubModel,
-    comparator: "contributor"
   });
 
-  //configure local storage//
-
-  //Entities.configureStorage("Platform.Entities.PubsCollection");
-
-  //initialize a collection of pubs (all private module variables)//
 
   //API object containing "get" functions to be called via request-response//
 
@@ -63,7 +72,7 @@ Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $
     //accepts "pubId" argument//
     getPubEntity: function(pubId){
       //initiate new pubModel and set id attribute//
-      var pubModel = new Entities.PubModel({_id: pubId});
+      var pubModel = Entities.PubModel.findOrCreate({_id : pubId});
       var defer = $.Deferred();
         pubModel.fetch({
           success: function(data){

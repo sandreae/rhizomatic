@@ -11,17 +11,18 @@ Details.Controller = {
 			model: pubModel
 		});
 
+		//on "form:submit" set pub details//
 		editPubDetailsView.on("form:submit", function(data){
 			var content;
+			//find draft matching new pub type//
 			var draft = pubModel.get("drafts").find(function(model) { 
 				return model.get('type') === data.type; });
-
+			//if draft doesn't exist set content to "", else get and set existing content//
 			if(draft === undefined){
 				content = "";	
-			} else {
+			} else {	
 				content = draft.get("content")
 			}
-
 
 			pubModel.set({activeContent: content});
 			console.log(content);

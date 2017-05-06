@@ -1,8 +1,7 @@
 Platform.module("PubsApp", function(PubsApp, Platform, Backbone, Marionette, $, _){
-//this is the router//
+//this is the PubsApp router//
 
-//define router and pass it an object containing url fragments on the left//
-//and callback methods on the right//
+//define router and pass it an object containing url fragments on the left and callback methods on the right//
 PubsApp.Router = Marionette.AppRouter.extend({
 	appRoutes: {
 		"publications": "listPubs",
@@ -12,15 +11,14 @@ PubsApp.Router = Marionette.AppRouter.extend({
 	}
 });
 
-//define public methods with API object which must contain the callbacks//
-//located in the appRoutes object//
+//define public methods with API object which must contain the Router located in the appRoutes object//
+
 var API = {
 	listPubs: function(criterion){
 		PubsApp.List.Controller.listPubs(criterion);
 		Platform.execute("set:active:header", "publications")
 	},
 
-	//showPub function accepts "id" argument provided as URL fragment//
 	showPub: function(id){
 		PubsApp.Show.Controller.showPub(id);
 	},
@@ -34,14 +32,13 @@ var API = {
 	},
 };
 
-//listen for triggers then navigate to "publications" URL and call relevent controller function//
+//listen for triggers then navigate to URL and call relevent controller function//
 
 Platform.on("pubs:list", function(){
 	Platform.navigate("publications");
 	API.listPubs();
 });
 
-//listen for "pub:show" containing model "id" argument sent from List.Controller onShowClicked//
 Platform.on("pub:show", function(id){
 	Platform.navigate("publications/" + id);
 	API.showPub(id);

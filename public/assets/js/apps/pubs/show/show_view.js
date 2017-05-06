@@ -1,8 +1,6 @@
 Platform.module("PubsApp.Show", function(Show, Platform, Backbone, Marionette, $, _){
 //this is the view for individual publications//
 
-
-
 Show.MissingPub = Marionette.ItemView.extend({
 	template: "#missing-pub-view"
 });
@@ -25,8 +23,6 @@ Show.Pub = Marionette.ItemView.extend({
 		var type = this.model.get("type");
 		this.trigger("content:pub:edit", this.model, type);
 	},
-
 });
-
 });
 

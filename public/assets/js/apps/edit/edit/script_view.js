@@ -19,7 +19,6 @@ Script.Pub = Marionette.ItemView.extend({
 	onShow: function(){
 		var thisModel = this.model;
 		var myTextArea = this.$("#myTextArea").get(0);
-		
 		var editor = CodeMirror(function(elt) {
   			myTextArea.parentNode.replaceChild(elt, myTextArea);
   		}, 

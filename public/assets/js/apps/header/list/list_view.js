@@ -14,7 +14,7 @@ Platform.module("HeaderApp.List", function(List, Platform, Backbone, Marionette,
 
     onRender: function(){
       if(this.model.selected){
-        // add class so Bootstrap will highlight the active entry in the navbar
+        // add class so Bootstrap will highlight the active entry in the navbar //
         this.$el.addClass("active");
       }
     }

@@ -25,14 +25,11 @@ mongoose.model("Pub", PubSchema);
 var Pub = mongoose.model("Pub")
 
 var pub = new Pub({
-        contributor: "",
-        title: "",
-        type: "",
-        pubDate: "",
-        contentWysiwyg: "",
-        contentImage: "",
-        contentScript: "",   
-        activeContent: "",
+        contributor: "Your Name",
+        title: "Your Title",
+        type: "script",
+        pubDate: "publication date",
+        activeContent: "your content",
         drafts: [Draft],
 })
 
@@ -99,6 +96,24 @@ app.post('/api/publications', function (req, res) {
     return res.send(postPub);
 });
 
+app.put('/api/publications/:id', function(req, res){
+    console.log('Updating pub ' + req.body.title);
+    return Pub.findById(req.params.id, function(err, pub){
+        pub.title = req.body.title;
+        pub.contributor = req.body.contributor;
+        pub.type = req.body.type;
+        pub.activeContent = req.body.activeContent;
+        return pub.save(function(err){
+            if(!err){
+                console.log('pub updated');
+            } else {
+                console.log(err);
+            }
+            return res.send(pub);
+        });
+    });
+});
+
 
 app.delete('/api/publications/:id', function(req, res){
     console.log('Deleting pub with id: ' + req.params.id);
@@ -127,28 +142,6 @@ app.post('/api/drafts', function (req, res) {
         res.send(newDraft);
     })
 });
-
-app.put('/api/publications/:id', function(req, res){
-    console.log('Updating pub ' + req.body.title);
-    return Pub.findById(req.params.id, function(err, pub){
-        pub.title = req.body.title;
-        pub.contributor = req.body.contributor;
-        pub.type = req.body.type;
-        pub.contentScript = req.body.contentScript;
-        pub.contentWysiwyg = req.body.contentWysiwyg;
-        pub.contentImage = req.body.imageContent;
-        pub.activeContent = req.body.activeContent;
-        return pub.save(function(err){
-            if(!err){
-                console.log('pub updated');
-            } else {
-                console.log(err);
-            }
-            return res.send(pub);
-        });
-    });
-});
-
 
 app.put('/api/drafts/:id', function (req, res) {
     console.log('Updating draft ' + req.body.pub);

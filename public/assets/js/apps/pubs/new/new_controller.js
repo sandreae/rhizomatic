@@ -19,7 +19,6 @@ New.Controller = {
    	
    				newPub.save(data, { 
                  	success : function(pub, response) { 
-	                 	console.log("new pub saved with id:" + pub.get("_id"));
 	                 	var newDraft = new Platform.Entities.Draft({ 
 			            	type: data.type,
 			                content: "draft content",
@@ -31,7 +30,6 @@ New.Controller = {
 			            	}
 			            })
 	                 	Platform.trigger("pub:show", newPub.get("_id"))
-	                 	console.log(newPub)
                  	},
                });
 				//if(newPub.save(data)){

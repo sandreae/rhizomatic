@@ -12,13 +12,11 @@ Mixed.Pub = Marionette.ItemView.extend({
 		e.preventDefault();
 		//serialize the form data//
 		var content = this.$('#summernote').summernote('code');
-		console.log("on save content: " + content);
 		this.trigger("form:submit", content);
 	},
 
 	onShow: function(){
 		var content = this.model.get("activeContent");
-		console.log("on load content: " + content);
   		this.$('#summernote').summernote({
 		  height: 300,                 // set editor height
 		  minHeight: null,             // set minimum height of editor

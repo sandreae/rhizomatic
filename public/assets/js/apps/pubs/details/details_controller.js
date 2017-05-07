@@ -25,7 +25,6 @@ Details.Controller = {
 			}
 
 			pubModel.set({activeContent: content});
-			console.log(content);
 			pubModel.save(data, {
 				success: function(){
 

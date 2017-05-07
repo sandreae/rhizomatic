@@ -21,6 +21,10 @@ Script.Pub = Marionette.ItemView.extend({
 		var myTextArea = this.$("#myTextArea").get(0);
 		var editor = CodeMirror(function(elt) {
   			myTextArea.parentNode.replaceChild(elt, myTextArea);
+  			window.setTimeout(function(){
+  				window.callHandler();
+  			}, 100)
+  			
   		}, 
   		{
 			theme: "blackboard",

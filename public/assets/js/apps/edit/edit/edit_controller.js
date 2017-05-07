@@ -28,8 +28,8 @@ Edit.Controller = {
 			if(draft !== undefined){
 				draft.set({
 					content: content,
-			});
-			draft.save();
+				});
+				draft.save();
 			} else {
 				//if it doesn't exist, create new draft for this style//
 				console.log("no draft exists for this type of pub, creating new draft")

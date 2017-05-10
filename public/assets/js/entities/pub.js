@@ -34,6 +34,7 @@ Entities.Drafts = Backbone.Collection.extend({
         type: "script",
         pubDate: "publication date",
         activeContent: "your content",
+        drafts: [],
     }
   });
 

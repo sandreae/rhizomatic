@@ -5,36 +5,46 @@ Details.Controller = {
 	editPubDetails: function(id){
 		//request the pub model via API handler using the "id" argument passed from the router//
 		var fetchingPubModel = Platform.request("pubModel:entities", id);
-		$.when(fetchingPubModel).done(function(pubModel){ 		
+		$.when(fetchingPubModel).done(function(pubModel){
 
-		var editPubDetailsView = new Details.Pub({
+			var newDraft = new Platform.Entities.Draft({ 
+		            content: "draft content",
+		    });
+
+			var editPubDetailsView = new Details.Pub({
 			model: pubModel
-		});
-
-		//on "form:submit" set pub details//
-		editPubDetailsView.on("form:submit", function(data){
-			var content;
-			//find draft matching new pub type//
-			var draft = pubModel.get("drafts").find(function(model) { 
-				return model.get('type') === data.type; });
-			//if draft doesn't exist set content to "", else get and set existing content//
-			if(draft === undefined){
-				content = "";	
-			} else {	
-				content = draft.get("content")
-			}
-
-			pubModel.set({activeContent: content});
-			pubModel.save(data, {
-				success: function(){
-
-					Platform.trigger("pub:show", pubModel.get("_id"))
-				}
 			});
-		})
 
-		Platform.regions.main.show(editPubDetailsView)
-	})
+			//on "form:submit" set pub details//
+			editPubDetailsView.on("form:submit", function(data){
+				var drafts = pubModel.get("drafts");
+				var draft = drafts.findWhere({type: data.type})
+				if(draft === undefined){
+					newDraft.set({
+						type: data.type,
+						pub: pubModel.get("_id")
+
+					})
+					drafts.add(newDraft)
+				} else{
+					var content = draft.get("content");
+				}
+
+				pubModel.set({
+					type: data.type,
+					activeContent: content
+				})
+
+				pubModel.save(data, {
+					success: function(){
+
+						Platform.trigger("pub:show", pubModel.get("_id"))
+					}
+				});
+			})
+
+			Platform.regions.main.show(editPubDetailsView)
+		})
 	}
 }
 });

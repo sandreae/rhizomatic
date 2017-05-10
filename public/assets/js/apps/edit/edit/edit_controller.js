@@ -21,27 +21,9 @@ Edit.Controller = {
 		
 		editPubContentView.on("form:submit", function(content){
 			//find draft for current type//
-			var draft = pubModel.get("drafts").find(function(model) { 
-				return model.get('type') === pubType; });
-			
-			//if it exists set new content and save//
-			if(draft !== undefined){
-				draft.set({
-					content: content,
-				});
-				draft.save();
-			} else {
-				//if it doesn't exist, create new draft for this style//
-				console.log("no draft exists for this type of pub, creating new draft")
-				var newDraft = new Platform.Entities.Draft({ 
-			            	type: pubType,
-			                content: content,
-			                pub: pubModel.get("_id"),
-			            });
-			            newDraft.save()
-					}
-
-			//set active content for this pub//
+			var drafts = pubModel.get("drafts");
+			var draft = drafts.findWhere({type: pubType})
+			draft.set({content: content})
 			pubModel.set({activeContent: content});
 			pubModel.save(null, {
 				success: function(){

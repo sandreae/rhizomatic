@@ -38,6 +38,7 @@ pub.save();
 var DraftSchema = new Schema({
     type: String,
     content: String,
+    pub: String,
 });
 
 mongoose.model("Draft", DraftSchema);
@@ -47,9 +48,8 @@ var Draft = mongoose.model("Draft")
 var draft = new Draft({
         contributor: "",
         title: "",
+        pub: "",
 })
-
-draft.save();
 
 var app = express();
 
@@ -84,6 +84,7 @@ app.post('/api/publications', function (req, res) {
         contributor:req.body.contributor,
         title:req.body.title,
         type:req.body.type,
+        drafts:req.body.drafts
 
     });
     postPub.save(function (err) {
@@ -97,12 +98,12 @@ app.post('/api/publications', function (req, res) {
 });
 
 app.put('/api/publications/:id', function(req, res){
-    console.log('Updating pub ' + req.body.title);
     return Pub.findById(req.params.id, function(err, pub){
         pub.title = req.body.title;
         pub.contributor = req.body.contributor;
         pub.type = req.body.type;
         pub.activeContent = req.body.activeContent;
+        pub.drafts = req.body.drafts;
         return pub.save(function(err){
             if(!err){
                 console.log('pub updated');
@@ -130,35 +131,54 @@ app.delete('/api/publications/:id', function(req, res){
 });
 
 app.post('/api/drafts', function (req, res) {
-    
-    Pub.findById({_id: req.body.pub}, function(err, pub) {
-        
-        var newDraft = new Draft({type: req.body.type,
-                                   content: req.body.content,});
-        newDraft.save();
-        pub.drafts.push(newDraft);
-        pub.save();
-        
-        res.send(newDraft);
-    })
+            
+    var newDraft = new Draft({
+        type: req.body.type,
+        content: req.body.content,
+        pub: req.body.pub
+    });
+
+    newDraft.save(function (err) {
+        if (!err) {
+            return console.log('new Draft created');
+        } else {
+            return console.log(err);
+        }
+    });
+    return res.send(newDraft);
 });
 
+
 app.put('/api/drafts/:id', function (req, res) {
-    console.log('Updating draft ' + req.body.pub);
-    return Pub.findById({_id: req.body.pub}, function(err, pub) {
+    console.log(req.body)
+    return Draft.findById({_id: req.body._id}, function(err, draft) {
         
         draft.type = req.body.type;
         draft.content = req.body.content;
         
         return draft.save(function(err){
             if(!err){
-                console.log('draft updated');
+                console.log('Draft updated');
             } else {
                 console.log(err);
             }
             return res.send(draft);
-        });    
+        });
     })
+});
+
+app.delete('/api/drafts/:id', function(req, res){
+    console.log('Deleting draft with id: ' + req.params.id);
+    return Draft.findById({_id: req.body._id}, function(err, draft){
+        return draft.remove(function(err){
+            if(!err){
+                console.log('Draft removed');
+                return res.send('');
+            } else {
+                console.log(err);
+            }
+        });
+    });
 });
 
 app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {

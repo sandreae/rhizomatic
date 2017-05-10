@@ -18,8 +18,6 @@ List.Controller = {
 			collection: pubsCollection
 		});
 
-		console.log(pubsCollection);
-
 		//function to be run on "pub:delete" triggered from our pubItemView//
 		//which means we prefix the event with "childview"//
 
@@ -36,7 +34,6 @@ List.Controller = {
 		});
 
 		pubsCompositeView.on("pub:new", function(){
-			console.log("new-button click recieved by controller")
 			Platform.trigger("details:pub:new");
 		});
 

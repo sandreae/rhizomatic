@@ -68,7 +68,6 @@ Platform.module("PubsApp.List", function(List, Platform, Backbone, Marionette, $
     
         newClicked: function(e){
         e.preventDefault();
-        console.log("new button clicked")
         this.trigger("pub:new");
     }
   });

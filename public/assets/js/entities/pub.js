@@ -3,7 +3,6 @@ Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $
 Backbone.Model.prototype.idAttribute = "_id";
 
 Entities.Draft = Backbone.RelationalModel.extend({
-    urlRoot: "http://localhost:3000/api/drafts",
     idAttribute: "_id" ,
   })
 

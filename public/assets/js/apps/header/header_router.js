@@ -2,6 +2,10 @@ Platform.module("HeaderApp", function(Header, Platform, Backbone, Marionette, $,
   var API = {
     listHeader: function(){
       Header.List.Controller.listHeader();
+    },
+
+    updateUserInfo: function(){
+      Header.List.Controller.updateUserInfo();
     }
   };
 
@@ -9,7 +13,13 @@ Platform.module("HeaderApp", function(Header, Platform, Backbone, Marionette, $,
     Platform.HeaderApp.List.Controller.setActiveHeader(name);
   });
 
+  Platform.on("updateUserInfo", function(){
+    API.updateUserInfo();
+   })
+
   Header.on("start", function(){
     API.listHeader();
+    API.updateUserInfo();
+
   });
 });

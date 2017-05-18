@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Platform</title>
     <link href="./assets/css/bootstrap.css" rel="stylesheet">    
+    <link href="./assets/css/jquery-ui-1.10.3.custom.css" rel="stylesheet">    
     <link href="./assets/css/platform.css" rel="stylesheet">
     <link href="./assets/css/dropzone.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/js/vendor/codemirror/lib/codemirror.css">
@@ -16,13 +17,18 @@
 
     <!--main region template-->
 
-    <div id="app-container">
+    <div id="app-container" class="container">
       <div id="header-region"></div>
       <div id="main-region" class="container">
         <p>This is the main region, but somethings wrong if you're reading this...</p>
       </div>
+      <div id="footer-region"></div>
+      </div>
     </div>
 
+    <!-- header template -->
+
+  
     <script type="text/template" id="header-template">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -37,13 +43,19 @@
       <a class="nav-link" href="#<%- url %>"><%- name %></a>
     </script>
 
-    <!--child item template for the CompositeView-->
+    <script type="text/template" id="user-name">
+    <div class="container">
+    <p class="text-muted"><%- userName %></p>
+    </div>
+    </script>
+
+    <!--child item template for the listPubs CompositeView-->
 
     <script type="text/template" id="pub-list-item">
       <td><%- contributor %></td>
       <td><%- title %></td>
       <td>
-      <a href="#contacts/" class="btn btn-secondary btn-sm js-show-pub">
+      <a href="#users/" class="btn btn-secondary btn-sm js-show-pub">
       <i class="glyphicon glyphicon-eye-open"></i>
       Show
       </a>
@@ -54,7 +66,7 @@
       </td>
     </script>
 
-    <!--wrapper template for the CompositeView-->
+    <!--wrapper template for the listPubs CompositeView-->
 
     <script type="text/template" id="pubs-list">
       <thead>
@@ -70,6 +82,97 @@
       <tbody>
       </tbody>
     </script>
+
+    <!--child item template for the listUsers CompositeView-->
+
+    <script type="text/template" id="user-list-item">
+      <td><%- userName %></td>
+      <td><%- email %></td>
+      <td>
+      <a href="#users/" class="btn btn-secondary btn-sm js-edit-user">
+      <i class="glyphicon glyphicon-edit"></i>
+      Edit
+      </a>
+      <button class="btn btn-secondary btn-sm js-delete-user">
+      <i class="glyphicon glyphicon-remove"></i>
+      Delete
+      </button>
+      </td>
+    </script>
+
+    <!--wrapper template for the listUsers CompositeView-->
+
+    <script type="text/template" id="users-list">
+      <thead>
+      <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th><button class="btn btn-secondary js-new-user">
+      <i class="glyphicon glyphicon-plus"></i>
+      New User
+      </button></th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </script>
+
+    <!--template for editing user details-->
+
+    <script type="text/template" id="user-form">
+      <form>
+        <div class="form-group">
+          <label for="user-name">Name:</label>
+          <input class="form-control" id="user-name" name="userName" type="text" value="<%- userName %>"/>
+        </div>
+        <div class="form-group">
+          <label for="user-email">Email:</label>
+          <input class="form-control" id="user-email" name="email" type="text" value="<%- email %>"/>
+        </div>
+        <div class="form-group">
+          <label for="user-password">Password:</label>
+          <input class="form-control" id="user-password" name="password" type="text" value=""/>
+        </div>
+        <button class="btn btn-secondary js-submit">Save</button>
+      </form>
+    </script>   
+
+    <!--template for new user-->
+
+    <script type="text/template" id="new-user-form">
+      <form>
+        <div class="form-group">
+          <label for="user-name">Name:</label>
+          <input class="form-control" id="user-name" name="userName" type="text" value=""/>
+        </div>
+        <div class="form-group">
+          <label for="user-email">Email:</label>
+          <input class="form-control" id="user-email" name="email" type="text" value=""/>
+        </div>
+        <div class="form-group">
+          <label for="user-password">Password:</label>
+          <input class="form-control" id="user-password" name="password" type="text" value=""/>
+        </div>
+        <button class="btn btn-secondary js-submit">Save</button>
+      </form>
+    </script>      
+
+    <!--template for login form-->
+
+    <script type="text/template" id="login-form">
+      <div class="alert alert-warning" style="display: none;"></div>  
+      <form>
+        <div class="form-group">
+          <label for="user-email">Email:</label>
+          <input class="form-control" id="user-email" name="email" type="text" value="Email"/>
+        </div>
+        <div class="form-group">
+          <label for="user-password">Password:</label>
+          <input class="form-control" id="user-password" name="password" type="text" value="Password"/>
+        </div>
+        <button class="btn btn-secondary js-login">Login</button>
+      </form>
+    </script>     
 
     <!--show single image publication template-->
 
@@ -184,6 +287,7 @@
     </script>
 
     <script src="./assets/js/vendor/jquery.js"></script>
+    <script src="./assets/js/vendor/jquery-ui-1.10.3.js"></script>
     <script src="./assets/js/vendor/bootstrap.js"></script>
     <script src="./assets/js/vendor/dist/summernote.js"></script>
     <script src="./assets/js/vendor/dropzone.js"></script>
@@ -202,6 +306,7 @@
     <script src="./assets/js/vendor/backbone.localstorage.js"></script>
     <script src="./assets/js/vendor/backbone.marionette.js"></script>
     <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/entities/globals.js"></script>
     <script src="./assets/js/entities/header.js"></script>
     <script src="./assets/js/apps/header/header_router.js"></script>
     <script src="./assets/js/entities/pub.js"></script>
@@ -224,6 +329,18 @@
     <script src="./assets/js/apps/about/about_router.js"></script>
     <script src="./assets/js/apps/about/show/show_view.js"></script>
     <script src="./assets/js/apps/about/show/show_controller.js"></script>
+    <script src="./assets/js/entities/user.js"></script>
+    <script src="./assets/js/entities/authentification.js"></script>
+    <script src="./assets/js/entities/permissions.js"></script>
+    <script src="./assets/js/apps/users/user_router.js"></script>
+    <script src="./assets/js/apps/users/list/list_view.js"></script>
+    <script src="./assets/js/apps/users/list/list_controller.js"></script>
+    <script src="./assets/js/apps/users/edit/edit_view.js"></script>
+    <script src="./assets/js/apps/users/edit/edit_controller.js"></script>
+    <script src="./assets/js/apps/users/login/login_view.js"></script>
+    <script src="./assets/js/apps/users/login/login_controller.js"></script>
+    <script src="./assets/js/apps/users/new/new_view.js"></script>
+    <script src="./assets/js/apps/users/new/new_controller.js"></script>
     
     <script type="text/javascript">
 

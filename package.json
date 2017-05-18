@@ -17,11 +17,15 @@
   },
   "homepage": "https://github.com/sandreae/platform#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "jsonwebtoken": "^7.4.0",
     "mongoose": "^4.9.6",
+    "morgan": "^1.8.1",
     "multer": "^1.3.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "eslint": "^3.19.0",

@@ -22,8 +22,10 @@ Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $
 
   var initializeHeaders = function(){
     Entities.headers = new Entities.HeaderCollection([
-      { name: "Publications", url: "publications", navigationTrigger: "pubs:list" },
-      { name: "About", url: "about", navigationTrigger: "about:show" }
+      { name: "Publications", url: "publications", navigationTrigger: "pubs:list"},
+      { name: "About", url: "about", navigationTrigger: "about:show" },
+      { name: "Users", url: "users", navigationTrigger: "users:list" },
+      { name: "Logout", url: "logout", navigationTrigger: "logout" },
     ]);
   };
 

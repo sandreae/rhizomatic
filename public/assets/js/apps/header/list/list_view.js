@@ -36,4 +36,12 @@ Platform.module("HeaderApp.List", function(List, Platform, Backbone, Marionette,
       this.trigger("brand:clicked");
     }
   });
+
+  List.User = Marionette.ItemView.extend({
+    template: "#user-name",
+    tagName: "footer",
+    className: "footer",
+
+  })
+
 });

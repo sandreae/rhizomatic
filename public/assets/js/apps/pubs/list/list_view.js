@@ -65,10 +65,15 @@ Platform.module("PubsApp.List", function(List, Platform, Backbone, Marionette, $
     events: {
         "click button.js-new-pub": "newClicked"
     },
+
+    templateContext: {
+        model: "100"
+    },
     
         newClicked: function(e){
         e.preventDefault();
         this.trigger("pub:new");
-    }
+    },
+
   });
 });

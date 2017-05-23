@@ -6,7 +6,23 @@ Show.MissingPub = Marionette.ItemView.extend({
 });
 
 Show.Pub = Marionette.ItemView.extend({
-	template: "#pub-view",
+
+    serializeData: function(){
+		  var model = this.model;
+		  var author = this.model.get("contributorId")
+		  var user = Platform.request("getUser:entities")
+		  if (user !== undefined){ownerTest = (author === user.attributes._id)}else{ownerTest = false}
+
+		  return {
+		  	_id: model.get("_id"),
+			contributor: model.get("contributor"),
+	        title: model.get("title"),
+	        type: model.get("type"),
+	        pubDate: model.get("pubDate"),
+	        activeContent: model.get("activeContent"),
+	        isOwner: ownerTest
+		  }
+		},
 
 	events: {
 		"click a.js-edit-details": "editDetailsClicked",

@@ -30,7 +30,7 @@ Platform.module("HeaderApp.List", function(List, Platform, Backbone, Marionette,
         Platform.request("initializeUser:entities").done(function(){
           user = Platform.request("getUser:entities")
           if (user.get("userName") === undefined){
-            user.set({userName: "user not logged in"})
+            user.set({userName: "visitor"})
           }
           var userInfo = new List.User({model: user});
           Platform.regions.footer.show(userInfo)

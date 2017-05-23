@@ -18,7 +18,8 @@ Platform.module("Authentification", function(Authentification, Platform, Backbon
         window.localStorage.removeItem(Platform.Entities.Globals.auth.TOKEN_KEY);
         window.localStorage.removeItem(Platform.Entities.Globals.auth.USER_KEY);
         user = null;
-        Platform.trigger("updateUserInfo");  
+        permissions = false;
+        Platform.trigger("updateUserInfo")
         Platform.trigger("pubs:list")
         },
 
@@ -53,10 +54,10 @@ Platform.module("Authentification", function(Authentification, Platform, Backbon
         if (Platform.request("isAuthenticated:entities") && !user) {
             user = new Platform.Entities.User({_id: window.localStorage.getItem(Platform.Entities.Globals.auth.USER_KEY)});
             user.fetch().success(function () {
-                Platform.trigger("updateUserInfo");
                 console.log(user.get("permissions"))
                 permissions = Platform.request("permissions:entities", user.get('permissions'));
                 console.log(permissions)
+                Platform.trigger("updateUserInfo")
                 d.resolve();
             });
         } else {

@@ -11,7 +11,7 @@ module.exports = function (app, express) {
     userRouter.post('/authenticate', function (req, res) {  
         User.findOne({
             email: req.body.email
-        }).select('userName email password').exec(function (err, user) {
+        }).select('userName email password permissions').exec(function (err, user) {
             if (err) throw err;
 
             if (!user) {
@@ -57,6 +57,7 @@ module.exports = function (app, express) {
                     return res.status(401).send({success: false, message: 'Failed to authenticate token'});
                 } else {
                     req.decoded = decoded;
+                    console.log(req.decoded)
                     next();
                 }
             })
@@ -71,7 +72,7 @@ module.exports = function (app, express) {
             userName:req.body.userName,
             email:req.body.email,
             password:req.body.password,
-            permissions:req.query.permissions || []
+            permissions:req.body.permissions || []
 
         });
             

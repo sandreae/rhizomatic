@@ -43,9 +43,12 @@
       <a class="nav-link" href="#<%- url %>"><%- name %></a>
     </script>
 
+    <!--footer template-->
+
+
     <script type="text/template" id="user-name">
     <div class="container">
-    <p class="text-muted"><%- userName %></p>
+    <p class="text-muted">Hello <%- userName %></p>
     </div>
     </script>
 
@@ -178,12 +181,14 @@
 
     <script type="text/template" id="pub-view-image">
     <img src="http://localhost:3000/uploads/<%= activeContent %>" alt="image" width=800px><br>
+    <% if(isOwner === true) { %>
     <a href="#" class="btn btn-secondary js-edit-details"><i class="glyphicon glyphicon-edit"></i>
     Edit details
     </a><br>
     <a href="#publications/<%- _id %>/edit/content" class="btn btn-secondary js-edit-content"><i class="glyphicon glyphicon-edit"></i>
     Edit content
     </a>
+    <% } %>
     </script>
 
     <!--show single mixed publication template-->
@@ -192,24 +197,28 @@
     <h1><%- title %></h1>
     <p><b><%- contributor %></b></p>
     <div><%= activeContent %></div>
-    <a href="#" class="btn btn-secondary js-edit-details"><i class="glyphicon glyphicon-edit"></i>
+    <% if(isOwner === true) { %>
+        <a href="#" class="btn btn-secondary js-edit-details"><i class="glyphicon glyphicon-edit"></i>
     Edit details
     </a><br>
     <a href="#publications/<%- _id %>/edit/content" class="btn btn-secondary js-edit-content"><i class="glyphicon glyphicon-edit"></i>
     Edit content
     </a>
+    <% } %>
     </script>
 
     <!--show single script publication template-->
 
     <script type="text/template" id="pub-view-script">
     <div><%= activeContent %></div>
+    <% if(isOwner === true) { %>
     <a href="#" class="btn btn-secondary js-edit-details"><i class="glyphicon glyphicon-edit"></i>
     Edit details
     </a><br>
     <a href="#publications/<%- _id %>/edit/content" class="btn btn-secondary js-edit-content"><i class="glyphicon glyphicon-edit"></i>
     Edit content
     </a>
+    <% } %>
     </script>
 
     <!--template for nonexistent pub-->

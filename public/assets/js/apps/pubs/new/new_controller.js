@@ -12,6 +12,7 @@ New.Controller = {
             var newPubView = new Platform.PubsApp.Details.Pub({
 				model: newPub,
 			});
+		  	var user = Platform.request("getUser:entities")
 
 		//request pubsCollection via API//
 		var fetchingPubsCollection = Platform.request("pubsCollection:entities");
@@ -27,10 +28,11 @@ New.Controller = {
 							type: data.type,
 							pub: pub.id
 						})
+						newPub.set({contributorId: user.get("_id")})
 						drafts.add(newDraft)
 		            	newPub.set({drafts: drafts})
 		            	pubsCollection.add(newPub);
-			            newPub.save(data, {
+			            newPub.save(null, {
 			            	success: function(){
 			      				Platform.trigger("pub:show", pub.id)
 

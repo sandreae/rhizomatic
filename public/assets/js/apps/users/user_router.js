@@ -18,7 +18,7 @@ Platform.module("UsersApp", function(UsersApp, Platform, Backbone, Marionette, $
 
     login: function(){
     UsersApp.Login.Controller.login();
-      console.log("routing - login")
+    Platform.execute("set:active:header", "login")
     },
 
     logout: function() {  
@@ -32,6 +32,7 @@ Platform.module("UsersApp", function(UsersApp, Platform, Backbone, Marionette, $
       }
       else {
         Platform.trigger("user:login")
+
       }
     },
 

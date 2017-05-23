@@ -11,7 +11,6 @@ Platform.module("UsersApp.New", function(New, Platform, Backbone, Marionette, $,
             email: data.email,
             password: data.password,
             permissions: "admin"
-
           })
           user.save(null, {
             success: function(){

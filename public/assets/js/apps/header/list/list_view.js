@@ -17,6 +17,31 @@ Platform.module("HeaderApp.List", function(List, Platform, Backbone, Marionette,
         // add class so Bootstrap will highlight the active entry in the navbar //
         this.$el.addClass("active");
       }
+    },
+
+    serializeData: function(){
+      var model = this.model;
+      var loggedIn = Platform.request("isAuthenticated:entities");
+      if(model.get("name") === "Logout" && loggedIn === null){
+        model.set({
+          name: "Login",
+          url: "login",
+          navigationTrigger: "user:login"
+        })
+      }
+      if(model.get("name") === "Login" && loggedIn !== null){
+        model.set({
+          name: "Logout",
+          url: "logout",
+          navigationTrigger: "logout"
+        })
+      }
+
+      return {
+         name: model.get("name"),
+         url: model.get("url"), 
+         navigationTrigger: model.get("navigationTrigger"),
+      }
     }
   });
 
@@ -41,6 +66,15 @@ Platform.module("HeaderApp.List", function(List, Platform, Backbone, Marionette,
     template: "#user-name",
     tagName: "footer",
     className: "footer",
+
+    serializeData: function () {
+      var model = this.model;
+
+      return {
+          userName: model.get("userName"),
+          admin: Platform.request("getPermissions:entities"),
+      };
+    },
 
   })
 

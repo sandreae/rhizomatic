@@ -2,6 +2,7 @@ Platform.module("PubsApp.Show", function(Show, Platform, Backbone, Marionette, $
 //this is the controller for individual publication views//
 
 Show.Controller = {
+
 	showPub: function(id){
 		//request the pub model via API handler using the "id" argument passed from the router//
 		var fetchingPubModel = Platform.request("pubModel:entities", id);

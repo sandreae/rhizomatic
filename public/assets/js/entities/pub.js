@@ -1,9 +1,9 @@
-Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $, _){
+Platform.module('Entities', function(Entities, Platform, Backbone, Marionette, $, _){
 
-Backbone.Model.prototype.idAttribute = "_id";
+Backbone.Model.prototype.idAttribute = '_id';
 
 Entities.Draft = Backbone.RelationalModel.extend({
-    idAttribute: "_id" ,
+    idAttribute: '_id' ,
   })
 
 Entities.Drafts = Backbone.Collection.extend({
@@ -13,26 +13,26 @@ Entities.Drafts = Backbone.Collection.extend({
   // define Pub model in Platform.Entities module//
 
   Entities.PubModel = Backbone.RelationalModel.extend({
-    urlRoot: "http://localhost:3000/api/publications",
-    idAttribute: "_id",
+    urlRoot: 'http://localhost:3000/api/publications',
+    idAttribute: '_id',
     relations: [{
         type: Backbone.HasMany,
         key: 'drafts',
         relatedModel: Entities.Draft,
         collectionType: Entities.Drafts,
         reverseRelation: {
-          key: "pub",
-          includeInJSON: "_id"
+          key: 'pub',
+          includeInJSON: '_id'
         },
       }],
 
 
     defaults: {
-        contributor: "Your Name",
-        title: "Your Title",
-        type: "script",
-        pubDate: "publication date",
-        activeContent: "your content",
+        contributor: 'Your Name',
+        title: 'Your Title',
+        type: 'script',
+        pubDate: 'publication date',
+        activeContent: 'your content',
         drafts: [],
     }
   });
@@ -40,12 +40,12 @@ Entities.Drafts = Backbone.Collection.extend({
   // define Pubs collection in Platform.Entities module//
 
   Entities.PubsCollection = Backbone.Collection.extend({
-    url: "http://localhost:3000/api/publications",
+    url: 'http://localhost:3000/api/publications',
     model: Entities.PubModel,
   });
 
 
-  //API object containing "get" functions to be called via request-response//
+  //API object containing 'get' functions to be called via request-response//
 
   var API = {
 
@@ -62,14 +62,14 @@ Entities.Drafts = Backbone.Collection.extend({
           defer.resolve(data)
         },
         error: function(){
-          console.log("Failed to GET pubs")
+          console.log('Failed to GET pubs')
         }
       });
       return defer.promise();
     },
 
     //get Entities.PubModel function//
-    //accepts "pubId" argument//
+    //accepts 'pubId' argument//
     getPubEntity: function(pubId){
       //initiate new pubModel and set id attribute//
       var pubModel = Entities.PubModel.findOrCreate({_id : pubId});
@@ -90,12 +90,12 @@ Entities.Drafts = Backbone.Collection.extend({
   //these are the publicly accesible handlers that manage request calls from elswhere in the app//
 
   //pubsCollection req-res handler//
-  Platform.reqres.setHandler("pubsCollection:entities", function(){
+  Platform.reqres.setHandler('pubsCollection:entities', function(){
     return API.getPubEntities();
   });
 
-  //pubModel reqres handler accepting "id" argument and passing it on to getPubEntity function//
-  Platform.reqres.setHandler("pubModel:entities", function(_id){
+  //pubModel reqres handler accepting 'id' argument and passing it on to getPubEntity function//
+  Platform.reqres.setHandler('pubModel:entities', function(_id){
     return API.getPubEntity(_id);
   });
 });

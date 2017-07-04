@@ -60,11 +60,15 @@
       <td>
       <a href="#" class="btn btn-secondary btn-sm js-show-pub">
       <i class="glyphicon glyphicon-eye-open"></i>
-      Show
+      View
       </a>
-      <a href="#" class="btn btn-secondary btn-sm js-user-view">
+      <a href="#" class="btn btn-secondary btn-sm js-edit-details">
       <i class="glyphicon glyphicon-pencil"></i>
-      Edit
+      Details
+      </a>
+      <a href="#" class="btn btn-secondary btn-sm js-edit-content">
+      <i class="glyphicon glyphicon-pencil"></i>
+      Content
       </a>
       <button class="btn btn-secondary btn-sm js-delete-pub">
       <i class="glyphicon glyphicon-remove"></i>
@@ -181,34 +185,10 @@
       </form>
     </script>     
 
-    <!--user view publication template-->
-
-    <script type="text/template" id="pub-user-view">
-    <div><%- title %></div>
-    <div><%- contributor %></div>
-    <div><%- pubDate %></div>
-    <div><%- type %></div>
-    <a href="#" class="btn btn-secondary js-edit-details"><i class="glyphicon glyphicon-edit"></i>
-    Edit details
-    </a><br>
-    <a href="#publications/<%- _id %>/edit/content" class="btn btn-secondary js-edit-content"><i class="glyphicon glyphicon-edit"></i>
-    Edit content
-    </a>
-    </script>
-
-
     <!--show single image publication template-->
 
     <script type="text/template" id="pub-view-image">
     <img src="http://localhost:3000/uploads/<%= activeContent %>" alt="image" width=800px><br>
-    <% if(isOwner === true) { %>
-    <a href="#" class="btn btn-secondary js-edit-details"><i class="glyphicon glyphicon-edit"></i>
-    Edit details
-    </a><br>
-    <a href="#publications/<%- _id %>/edit/content" class="btn btn-secondary js-edit-content"><i class="glyphicon glyphicon-edit"></i>
-    Edit content
-    </a>
-    <% } %>
     </script>
 
     <!--show single mixed publication template-->
@@ -217,28 +197,12 @@
     <h1><%- title %></h1>
     <p><b><%- contributor %></b></p>
     <div><%= activeContent %></div>
-    <% if(isOwner === true) { %>
-        <a href="#" class="btn btn-secondary js-edit-details"><i class="glyphicon glyphicon-edit"></i>
-    Edit details
-    </a><br>
-    <a href="#publications/<%- _id %>/edit/content" class="btn btn-secondary js-edit-content"><i class="glyphicon glyphicon-edit"></i>
-    Edit content
-    </a>
-    <% } %>
     </script>
 
     <!--show single script publication template-->
 
     <script type="text/template" id="pub-view-script">
     <div><%= activeContent %></div>
-    <% if(isOwner === true) { %>
-    <a href="#" class="btn btn-secondary js-edit-details"><i class="glyphicon glyphicon-edit"></i>
-    Edit details
-    </a><br>
-    <a href="#publications/<%- _id %>/edit/content" class="btn btn-secondary js-edit-content"><i class="glyphicon glyphicon-edit"></i>
-    Edit content
-    </a>
-    <% } %>
     </script>
 
     <!--template for nonexistent pub-->
@@ -260,6 +224,10 @@
           <input class="form-control" id="pub-title" name="title" type="text" value="<%- title %>"/>
         </div>
         <div class="form-group">
+          <label for="pub-pubDate" class="form-label">Publication Date:</label>
+          <input class="form-control" id="pub-pubDate" name="pubDate" type="text" value="<%- pubDate %>"/>
+        </div>
+        <div class="form-group">
           <label for="pub-type" class="form-label">Type:</label>
           <select class="form-control" id="pub-type" name="type">
           <option selected hidden value="<%- type %>"><%- type %></option>
@@ -269,8 +237,16 @@
         </select>
         </div>
         <div class="form-group">
-          <label for="pub-pubDate" class="form-label">Publication Date:</label>
-          <input class="form-control" id="pub-pubDate" name="pubDate" type="text" value="<%- pubDate %>"/>
+          <label for="pub-tags" class="form-label">Tags:</label>
+          <input class="form-control" id="pub-tags" name="tags" type="text" value="<%- tags %>"/>
+        </div>
+        <div class="form-group">
+          <label for="pub-invitedBy" class="form-label">Invited By:</label>
+          <input class="form-control" id="pub-invitedBy" name="invitedBy" type="text" value="<%- invitedBy %>"/>        
+        </div>
+        <div class="form-group">
+          <label for="pub-directedAt" class="form-label">Direct publication at:</label>
+          <input class="form-control" id="pub-directedAt" name="directedAt" type="text" value="<%- directedAt %>"/>
         </div>
         <button class="btn btn-secondary js-submit">Save</button>
       </form>
@@ -343,8 +319,6 @@
     <script src="./assets/js/apps/pubs/pubs_router.js"></script>
     <script src="./assets/js/apps/pubs/list/list_view.js"></script>
     <script src="./assets/js/apps/pubs/list/list_controller.js"></script>
-    <script src="./assets/js/apps/pubs/user/user_view.js"></script>
-    <script src="./assets/js/apps/pubs/user/user_controller.js"></script>
     <script src="./assets/js/apps/header/list/list_view.js"></script>
     <script src="./assets/js/apps/header/list/list_controller.js"></script>
     <script src="./assets/js/apps/pubs/show/show_view.js"></script>

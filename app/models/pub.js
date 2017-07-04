@@ -1,14 +1,18 @@
-var mongoose = require('mongoose');  
-var Schema = mongoose.Schema;
+var mongoose = require('mongoose')
+var Schema = mongoose.Schema
 
 var PubSchema = new Schema({
-    contributor: String,
-    contributorId: String,
-    title: String,
-    type: String,
-    pubDate: String,
-    activeContent: String,
-    drafts: Array,
-});
+  contributor: String,
+  contributorId: String,
+  title: String,
+  type: String,
+  pubDate: String,
+  activeContent: String,
+  drafts: Array,
+  tags: Array,
+  invitedBy: String,
+  directedAt: Array,
+  published: String
+})
 
-module.exports = mongoose.model('Pub', PubSchema);
+module.exports = mongoose.model('Pub', PubSchema)

@@ -4,7 +4,7 @@ Platform.module('EditApp', function(EditApp, Platform, Backbone, Marionette, $, 
 // define router and pass it an object containing url fragments on the left and callback methods on the right//
   EditApp.Router = Marionette.AppRouter.extend({
     appRoutes: {
-      'publications/:id/edit/content': 'editPub',
+      'publications/:id/edit/content': 'editPub'
     }
   })
 

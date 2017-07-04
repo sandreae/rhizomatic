@@ -14,14 +14,14 @@ Platform.module('PubsApp.Show', function (Show, Platform, Backbone, Marionette, 
         if (pubModel !== undefined) {
           pubView = new Show.Pub({
             model: pubModel,
-            template: template,
+            template: template
           })
 
           pubView.on('details:pub:edit', function (model) {
             Platform.trigger('details:pub:edit', model.get('_id'))
           })
 
-          pubView.on('content:pub:edit', function (model, type) {
+          pubView.on('content:pub:edit', function (model) {
             Platform.trigger('content:pub:edit', model.get('_id'))
           })
         } else {

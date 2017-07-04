@@ -1,25 +1,24 @@
-Platform.module("HeaderApp", function(Header, Platform, Backbone, Marionette, $, _){
+Platform.module('HeaderApp', function (Header, Platform, Backbone, Marionette, $, _) {
   var API = {
-    listHeader: function(){
-      Header.List.Controller.listHeader();
+    listHeader: function () {
+      Header.List.Controller.listHeader()
     },
 
-    updateUserInfo: function(){
-      Header.List.Controller.updateUserInfo();
+    updateUserInfo: function () {
+      Header.List.Controller.updateUserInfo()
     }
-  };
+  }
 
-  Platform.commands.setHandler("set:active:header", function(name){
-    Platform.HeaderApp.List.Controller.setActiveHeader(name);
-  });
+  Platform.commands.setHandler('set:active:header', function (name) {
+    Platform.HeaderApp.List.Controller.setActiveHeader(name)
+  })
 
-  Platform.on("updateUserInfo", function(){
-    API.updateUserInfo();
-   })
+  Platform.on('updateUserInfo', function () {
+    API.updateUserInfo()
+  })
 
-  Header.on("start", function(){
-    API.listHeader();
-    API.updateUserInfo();
-
-  });
-});
+  Header.on('start', function () {
+    API.listHeader()
+    API.updateUserInfo()
+  })
+})

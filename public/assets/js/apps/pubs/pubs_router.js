@@ -6,9 +6,8 @@ Platform.module('PubsApp', function (PubsApp, Platform, Backbone, Marionette, $,
     appRoutes: {
       'publications': 'listPubs',
       'publications/:id': 'showPub',
-      'publications/userview/:id': 'userView',
       'publications/:id/edit/details': 'editPubDetails',
-      'publications/new/edit/new': 'newPubDetails',
+      'publications/new/edit/new': 'newPubDetails'
     }
   })
 
@@ -22,10 +21,6 @@ Platform.module('PubsApp', function (PubsApp, Platform, Backbone, Marionette, $,
 
     showPub: function (id) {
       PubsApp.Show.Controller.showPub(id)
-    },
-
-    userView: function (id) {
-      PubsApp.UserView.Controller.userView(id)
     },
 
     editPubDetails: function (id) {

@@ -1,5 +1,4 @@
 Platform.module('PubsApp.List', function (List, Platform, Backbone, Marionette, $, _) {
-
 // create controller object and attach 'listPubs' sub-module//
 // these these functions will be publicly available//
 // they should coordinate models and views, typically triggered by URLs//
@@ -11,9 +10,14 @@ Platform.module('PubsApp.List', function (List, Platform, Backbone, Marionette, 
 
       // wait for request to complete//
       $.when(fetchingPubsCollection).done(function (pubsCollection) {
-      // initiate new composite view listing pubsCollection//
+        var user = Platform.request('getUser:entities')
+        var userPubs = new Backbone.Collection(pubsCollection.filter(function (model) {
+          return model.get('contributorId') === user.id
+        }))
+        console.log(userPubs)
+        // initiate new composite view listing pubsCollection//
         var pubsCompositeView = new List.PubsCompositeView({
-          collection: pubsCollection
+          collection: userPubs
         })
         // function to be run on 'pub:delete' triggered from our pubItemView//
         // which means we prefix the event with 'childview'//
@@ -29,16 +33,17 @@ Platform.module('PubsApp.List', function (List, Platform, Backbone, Marionette, 
           Platform.trigger('pub:show', model.get('_id'))
         })
 
-        pubsCompositeView.on('childview:pub:user:view', function (childView, model) {
-        // trigger 'contact:show' when show button is clicked on ItemView//
-        // the router reacts to this trigger by updating the URL and executing the appropriate controller action//
-          Platform.trigger('pub:user:view', model.get('_id'))
+        pubsCompositeView.on('childview:details:pub:edit', function (childView, model) {
+          Platform.trigger('details:pub:edit', model.get('_id'))
+        })
+
+        pubsCompositeView.on('childview:content:pub:edit', function (childView, model) {
+          Platform.trigger('content:pub:edit', model.get('_id'))
         })
 
         pubsCompositeView.on('pub:new', function () {
           Platform.trigger('details:pub:new')
         })
-
         Platform.regions.main.show(pubsCompositeView)
       })
     }

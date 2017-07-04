@@ -1,5 +1,4 @@
 Platform.module('PubsApp.List', function (List, Platform, Backbone, Marionette, $, _) {
-
 // define pub list item view//
 
   List.PubItemView = Marionette.ItemView.extend({
@@ -12,7 +11,8 @@ Platform.module('PubsApp.List', function (List, Platform, Backbone, Marionette, 
       'click': 'highlightName',
       'click a.js-show-pub': 'showClicked',
       'click button.js-delete-pub': 'deleteClicked',
-      'click a.js-user-view': 'userViewClicked',
+      'click a.js-edit-details': 'editPubDetails',
+      'click a.js-edit-content': 'editPubContent'
     },
 
     // using e.target gives us the DOM element that triggered this event function//
@@ -39,21 +39,32 @@ Platform.module('PubsApp.List', function (List, Platform, Backbone, Marionette, 
       this.trigger('pub:show', this.model)
     },
 
-    userViewClicked: function (e) {
-      console.log('user-view button clicked')
+    editPubDetails: function (e) {
       e.preventDefault()
       e.stopPropagation()
-      this.trigger('pub:user:view', this.model)
+      this.trigger('details:pub:edit', this.model)
+      // this.trigger('pub:user:view', this.model)
+    },
+
+    editPubContent: function (e) {
+      e.preventDefault()
+      e.stopPropagation()
+      this.trigger('content:pub:edit', this.model)
+      // this.trigger('pub:user:view', this.model)
     },
 
     remove: function () {
       var self = this
       // fadeOut ItemView when deleted by accessing the 'remove' lifecycle event//
       this.$el.fadeOut(function () {
-        // once the fadeOut has finished, scope out the original 'remove' function using 'prototype' 
+        // once the fadeOut has finished, scope out the original 'remove' function using 'prototype'
         // and call it on 'this' to remove the model and clear up any dependencies//
         Marionette.ItemView.prototype.remove.call(self)
       })
+    },
+
+    onRender: function () {
+      console.log(this.model.get('contributorId'))
     }
 
   })
@@ -78,6 +89,5 @@ Platform.module('PubsApp.List', function (List, Platform, Backbone, Marionette, 
       e.preventDefault()
       this.trigger('pub:new')
     }
-
   })
 })

@@ -8,22 +8,21 @@ Platform.module('EditApp.Edit.Mixed', function(Mixed, Platform, Backbone, Marion
       'click button.js-submit': 'submitClicked'
     },
 
+    onShow: function () {
+      var element = $('#simplemde').get(0)
+      var editor = new SimpleMDE({ element: element})
+      $('#simplemde').data({editor: editor})
+    },
+
     submitClicked: function (e) {
       e.preventDefault()
       // serialize the form data//
-      var content = this.$('#summernote').summernote('code')
+      var simplemde = $("#simplemde").data('editor')
+      var content = simplemde.value()
+      var renderedHTML = simplemde.options.previewRender(content)
       this.trigger('form:submit', content)
-    },
 
-    onShow: function () {
-      var content = this.model.get('activeContent')
-      this.$('#summernote').summernote({
-        height: 300,                 // set editor height
-        minHeight: null,             // set minimum height of editor
-        maxHeight: null,             // set maximum height of editor
-        focus: true                  // set focus to editable area after initializing summernote
-      })
-      this.$('#summernote').summernote('code', content)
+      //this.trigger('form:submit', content)
     }
   })
 })

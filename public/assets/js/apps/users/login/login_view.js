@@ -12,7 +12,6 @@ Platform.module("UsersApp.Login", function(Login, Platform, Backbone, Marionette
         e.preventDefault();
         var data = Backbone.Syphon.serialize(this);
         this.$('.alert').hide();
-        console.log('login with ', data);
         this.trigger("form:submit", data)
     }
   });

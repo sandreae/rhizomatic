@@ -11,6 +11,7 @@ Platform.module('Authentification', function (Authentification, Platform, Backbo
       window.localStorage.setItem(Platform.Entities.Globals.auth.USER_KEY, response._id)
       Platform.request('initializeUser:entities')
       Platform.trigger('pubs:list')
+      Platform.trigger('user:listpubs')
     },
 
     logout: function () {
@@ -27,7 +28,6 @@ Platform.module('Authentification', function (Authentification, Platform, Backbo
     },
 
     initialize: function () {
-      console.log('initialize called')
       var d = $.Deferred()
       if (applicationInfo !== null) {
         d.resolve()
@@ -48,14 +48,11 @@ Platform.module('Authentification', function (Authentification, Platform, Backbo
     },
 
     initializeUser: function () {
-      console.log('initializeUser called')
       var d = $.Deferred()
       if (Platform.request('isAuthenticated:entities') && !user) {
         user = new Platform.Entities.User({_id: window.localStorage.getItem(Platform.Entities.Globals.auth.USER_KEY)})
         user.fetch().success(function () {
-          console.log(user.get('permissions'))
           permissions = Platform.request('permissions:entities', user.get('permissions'))
-          console.log(permissions)
           Platform.trigger('updateUserInfo')
           d.resolve()
         })
@@ -66,17 +63,14 @@ Platform.module('Authentification', function (Authentification, Platform, Backbo
     },
 
     getApplicationInfo: function () {
-      console.log('getApplicationInfo called')
       return applicationInfo
     },
 
     getUser: function () {
-      console.log('getUser called')
       return user || new Platform.Entities.User()
     },
 
     getPermissions: function () {
-      console.log('get permissions called')
       return permissions
     }
   }

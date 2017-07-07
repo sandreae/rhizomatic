@@ -15,14 +15,14 @@ Platform.module("UsersApp.Login", function(Login, Platform, Backbone, Marionette
               success: function(response){
                 console.log(response)
                   if (response.success){
-                      Platform.request("authenticated:entities", response);
+                      Platform.request("authenticated:entities", response)
                   } else {
                       self.$('.alert-warning').text(response.message).show();
                   }
               }
           });
         })
-        Platform.regions.main.show(loginView);
+        Platform.regions.sidenav.show(loginView)
     }
   };
 });

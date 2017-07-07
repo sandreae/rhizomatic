@@ -3,19 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title>Platform</title>
-    <link href="./assets/css/bootstrap.css" rel="stylesheet">    
     <link href="./assets/css/jquery-ui-1.10.3.custom.css" rel="stylesheet">    
-    <link href="./assets/css/platform.css" rel="stylesheet">
+    <link href="./assets/stylesheets/platform.css" rel="stylesheet">
     <link href="./assets/css/dropzone.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/js/vendor/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="./assets/js/vendor/codemirror/theme/blackboard.css">
     <link href="./assets/js/vendor/dist/summernote.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/js/vendor/simplemde/dist/simplemde.min.css"></script>
+
   </head>
 
   <body>
 
-
-    <!--main region template-->
+    <!-- region templates -->
 
     <div id="app-container" class="container">
       <div id="header-region"></div>
@@ -23,20 +23,22 @@
         <p>This is the main region, but somethings wrong if you're reading this...</p>
       </div>
       <div id="footer-region"></div>
-      </div>
+      <div id="sidenav-region" class="sidenav"></div>
     </div>
 
     <!-- header template -->
 
-  
     <script type="text/template" id="header-template">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#publications">Platform</a>
-        </div>
-          <ul class="nav navbar-nav">
-          </ul>
-        </div>
+    <header>
+      <a href="#" class="navclose" id="navclose">&times;</a>
+      <a class="mobile" href="#">&#9776;</a>
+      <nav class="navbarmobile">
+        <ul>
+        </ul>
+        <div style="clear:both;"></div>
+      </nav>
+    </header>
+    <a href="#" class="navopen">Profile</a>
     </script>
 
     <script type="text/template" id="header-link">
@@ -44,7 +46,6 @@
     </script>
 
     <!--footer template-->
-
 
     <script type="text/template" id="user-name">
     <div class="container">
@@ -56,24 +57,14 @@
 
     <script type="text/template" id="pub-list-item">
       <td><%- contributor %></td>
-      <td><%- title %></td>
-      <td>
-      <a href="#" class="btn btn-secondary btn-sm js-show-pub">
-      <i class="glyphicon glyphicon-eye-open"></i>
-      View
-      </a>
-      <a href="#" class="btn btn-secondary btn-sm js-edit-details">
-      <i class="glyphicon glyphicon-pencil"></i>
-      Details
-      </a>
-      <a href="#" class="btn btn-secondary btn-sm js-edit-content">
-      <i class="glyphicon glyphicon-pencil"></i>
-      Content
-      </a>
-      <button class="btn btn-secondary btn-sm js-delete-pub">
-      <i class="glyphicon glyphicon-remove"></i>
-      Delete
-      </button>
+      <td><a href="#" class="js-show-pub">
+      <%- title %>
+      </a></td>
+      <td><%- inRhizome %></td>
+      <td>            
+        <a href="#" class="js-delete-pub">
+          Delete
+        </a>
       </td>
     </script>
 
@@ -84,10 +75,58 @@
       <tr>
       <th>Contributor</th>
       <th>Publication</th>
-      <th><button class="btn btn-secondary js-new-pub">
-      <i class="glyphicon glyphicon-plus"></i>
+      <th>Rhizome</th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </script>
+
+    <!--child item template for the listUserPubs CompositeView-->
+
+    <script type="text/template" id="userpubs-list-item">
+      <td><a href="#" class="js-show-pub">
+      <%- title %>
+      </a></td>
+      <td>
+        <ul>
+          <% if (published == 'false') { %>
+            <li>
+              <a href="#" class="js-publish">
+              Publish
+              </a>
+            </li> 
+          <% } %>
+          <li>
+            <a href="#" class="js-edit-details">
+            Edit Details
+            </a>
+          </li>
+          <li>
+            <a href="#" class="js-edit-content">
+            Edit Content
+            </a>
+          </li>
+          <li>
+            <a href="#" class="js-delete-pub">
+              Delete
+            </a>
+          </li>
+        </ul>
+      </td>
+    </script>
+
+    <!--wrapper template for the listUserPubs CompositeView-->
+
+    <script type="text/template" id="userpubs-list">
+      <thead>
+      <tr>
+      <th>Your Publications</th>
+      <th>
+      <button class="js-new-pub">
       New Publication
-      </button></th>
+      </button>
+      </th>
       </tr>
       </thead>
       <tbody>
@@ -100,14 +139,12 @@
       <td><%- userName %></td>
       <td><%- email %></td>
       <td>
-      <a href="#users/" class="btn btn-secondary btn-sm js-edit-user">
-      <i class="glyphicon glyphicon-edit"></i>
+      <a href="#users/" class="js-edit-user">
       Edit
       </a>
-      <button class="btn btn-secondary btn-sm js-delete-user">
-      <i class="glyphicon glyphicon-remove"></i>
+      <a href="#" class="js-delete-user">
       Delete
-      </button>
+      </a>
       </td>
     </script>
 
@@ -118,8 +155,7 @@
       <tr>
       <th>Name</th>
       <th>Email</th>
-      <th><button class="btn btn-secondary js-new-user">
-      <i class="glyphicon glyphicon-plus"></i>
+      <th><button class="js-new-user">
       New User
       </button></th>
       </tr>
@@ -132,19 +168,13 @@
 
     <script type="text/template" id="user-form">
       <form>
-        <div class="form-group">
           <label for="user-name">Name:</label>
           <input class="form-control" id="user-name" name="userName" type="text" value="<%- userName %>"/>
-        </div>
-        <div class="form-group">
           <label for="user-email">Email:</label>
           <input class="form-control" id="user-email" name="email" type="text" value="<%- email %>"/>
-        </div>
-        <div class="form-group">
           <label for="user-password">Password:</label>
           <input class="form-control" id="user-password" name="password" type="text" value=""/>
-        </div>
-        <button class="btn btn-secondary js-submit">Save</button>
+        <button class="js-submit">Save</button>
       </form>
     </script>   
 
@@ -152,19 +182,13 @@
 
     <script type="text/template" id="new-user-form">
       <form>
-        <div class="form-group">
           <label for="user-name">Name:</label>
           <input class="form-control" id="user-name" name="userName" type="text" value=""/>
-        </div>
-        <div class="form-group">
           <label for="user-email">Email:</label>
           <input class="form-control" id="user-email" name="email" type="text" value=""/>
-        </div>
-        <div class="form-group">
           <label for="user-password">Password:</label>
           <input class="form-control" id="user-password" name="password" type="text" value=""/>
-        </div>
-        <button class="btn btn-secondary js-submit">Save</button>
+        <button class="js-submit">Save</button>
       </form>
     </script>      
 
@@ -173,17 +197,50 @@
     <script type="text/template" id="login-form">
       <div class="alert alert-warning" style="display: none;"></div>  
       <form>
-        <div class="form-group">
           <label for="user-email">Email:</label>
-          <input class="form-control" id="user-email" name="email" type="text" value="Email"/>
-        </div>
-        <div class="form-group">
+          <input class="form-control" id="user-email" name="email" type="text" placeholder="Email"/>
           <label for="user-password">Password:</label>
-          <input class="form-control" id="user-password" name="password" type="text" value="Password"/>
-        </div>
-        <button class="btn btn-secondary js-login">Login</button>
+          <input class="form-control" id="user-password" name="password" type="text" placeholder="Password"/>
+        <button class="js-login">Login</button>
       </form>
     </script>     
+
+    <!--child item template for the listRhizomes CompositeView-->
+
+    <script type="text/template" id="rhizome-list-item">
+      <td><%- rhizomeName %></td>
+      <td>
+      <a href="#" class="js-delete-rhizome">
+      Delete
+      </a>
+      </td>
+    </script>
+
+    <!--wrapper template for the listRhizomes CompositeView-->
+
+    <script type="text/template" id="rhizomes-list">
+      <thead>
+      <tr>
+      <th>Name</th>
+      <th><button class="js-new-rhizome">
+      New Rhizome
+      </button></th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </script>
+
+    <!--template for new rhizome-->
+
+    <script type="text/template" id="new-rhizome-form">
+      <form>
+          <label for="rhizome-name">Name:</label>
+          <input class="form-control" id="rhizome-name" name="rhizomeName" type="text" value=""/>
+        <button class="js-submit">Save</button>
+      </form>
+    </script>      
+
 
     <!--show single image publication template-->
 
@@ -194,8 +251,6 @@
     <!--show single mixed publication template-->
 
     <script type="text/template" id="pub-view-mixed">
-    <h1><%- title %></h1>
-    <p><b><%- contributor %></b></p>
     <div><%= activeContent %></div>
     </script>
 
@@ -215,40 +270,33 @@
 
     <script type="text/template" id="pub-form-details">
       <form>
-        <div class="form-group">
           <label for="pub-contributor">Contributor:</label>
           <input class="form-control" id="pub-contributor" name="contributor" type="text" value="<%- contributor %>"/>
-        </div>
-        <div class="form-group">
           <label for="pub-title">Title:</label>
           <input class="form-control" id="pub-title" name="title" type="text" value="<%- title %>"/>
-        </div>
-        <div class="form-group">
           <label for="pub-pubDate" class="form-label">Publication Date:</label>
           <input class="form-control" id="pub-pubDate" name="pubDate" type="text" value="<%- pubDate %>"/>
-        </div>
-        <div class="form-group">
           <label for="pub-type" class="form-label">Type:</label>
           <select class="form-control" id="pub-type" name="type">
-          <option selected hidden value="<%- type %>"><%- type %></option>
-          <option value="mixed">mixed</option>
-          <option value="image">image</option>
-          <option value="script">script</option>
-        </select>
-        </div>
-        <div class="form-group">
+            <option selected hidden value="<%- type %>"><%- type %></option>
+            <option value="mixed">mixed</option>
+            <option value="image">image</option>
+            <option value="script">script</option>
+          </select>
           <label for="pub-tags" class="form-label">Tags:</label>
           <input class="form-control" id="pub-tags" name="tags" type="text" value="<%- tags %>"/>
-        </div>
-        <div class="form-group">
-          <label for="pub-invitedBy" class="form-label">Invited By:</label>
+          <label for="pub-invitedBy" class="form-label">Invited by:</label>
           <input class="form-control" id="pub-invitedBy" name="invitedBy" type="text" value="<%- invitedBy %>"/>        
-        </div>
-        <div class="form-group">
           <label for="pub-directedAt" class="form-label">Direct publication at:</label>
           <input class="form-control" id="pub-directedAt" name="directedAt" type="text" value="<%- directedAt %>"/>
-        </div>
-        <button class="btn btn-secondary js-submit">Save</button>
+          <label for="pub-inRhizome" class="form-label">In rhizome:</label>
+          <select class="form-control" id="pub-inRhizome" name="inRhizome">
+            <option selected hidden value="<%- inRhizome %>"><%- inRhizome %></option>
+            <option value="#001">#001</option>
+            <option value="#002">#002</option>
+          </select>
+
+        <button class="js-submit">Save</button>
       </form>
     </script>     
 
@@ -257,8 +305,8 @@
     <script type="text/template" id="pub-edit-mixed">
     <h1><%- title %></h1>
     <p><%- contributor %></p>
-    <div id="summernote"><%= activeContent %></div>
-    <button class="btn btn-secondary js-submit">Save</button>
+    <textarea id="simplemde"><%= activeContent %></textarea>
+    <button class="js-submit">Save</button>
     </script>  
 
     <!--template for editing pub image-->
@@ -271,7 +319,7 @@
         <input name="image" type="file" />
       </div>
     </form>
-    <button class="btn btn-secondary js-submit">Save</button>
+    <button class="js-submit">Save</button>
     </script>     
 
     <!--template for editing pub script-->
@@ -280,7 +328,7 @@
     <h1><%- title %></h1>
     <p><%- contributor %></p>
     <textarea id="myTextArea"><%- activeContent %></textarea>
-    <button class="btn btn-secondary js-submit">Save</button>
+    <button class="js-submit">Save</button>
     </script>
 
     <!--template for about page-->
@@ -289,6 +337,16 @@
     <h1>About Platform</h1>
     <p>this is our lovely about page.</p>
     <p>You are very welcome !</p>
+    </script>
+
+    <script type="text/template" id="login-message">
+    <div>
+    <h1>Welcome!</h1>
+    <p>Welcome to our platform, browse rhizome as a visitor or if you are a contributor login to edit your publications.</p>
+    <button class="js-login">
+      Login
+    </button>
+    <div>
     </script>
 
     <script src="./assets/js/vendor/jquery.js"></script>
@@ -302,6 +360,8 @@
     <script src="./assets/js/vendor/codemirror/mode/css/css.js"></script>
     <script src="./assets/js/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
     <script src="./assets/js/vendor/json2.js"></script>
+    <script src="./assets/js/vendor/simplemde/dist/simplemde.min.js"></script>
+    <script src="./assets/js/vendor/showdown/dist/showdown.min.js"></script>
     <script src="./assets/js/vendor/underscore.js"></script>
     <script src="./assets/js/vendor/backbone.js"></script>
     <script src="./assets/js/vendor/backbone-associations-min.js"></script>
@@ -319,6 +379,8 @@
     <script src="./assets/js/apps/pubs/pubs_router.js"></script>
     <script src="./assets/js/apps/pubs/list/list_view.js"></script>
     <script src="./assets/js/apps/pubs/list/list_controller.js"></script>
+    <script src="./assets/js/apps/pubs/list/userlist_view.js"></script>
+    <script src="./assets/js/apps/pubs/list/userlist_controller.js"></script>
     <script src="./assets/js/apps/header/list/list_view.js"></script>
     <script src="./assets/js/apps/header/list/list_controller.js"></script>
     <script src="./assets/js/apps/pubs/show/show_view.js"></script>
@@ -337,6 +399,7 @@
     <script src="./assets/js/entities/user.js"></script>
     <script src="./assets/js/entities/authentification.js"></script>
     <script src="./assets/js/entities/permissions.js"></script>
+    <script src="./assets/js/entities/rhizome.js"></script>
     <script src="./assets/js/apps/users/user_router.js"></script>
     <script src="./assets/js/apps/users/list/list_view.js"></script>
     <script src="./assets/js/apps/users/list/list_controller.js"></script>
@@ -346,7 +409,15 @@
     <script src="./assets/js/apps/users/login/login_controller.js"></script>
     <script src="./assets/js/apps/users/new/new_view.js"></script>
     <script src="./assets/js/apps/users/new/new_controller.js"></script>
-    
+    <script src="./assets/js/apps/sidebar/show/show_controller.js"></script>
+    <script src="./assets/js/apps/sidebar/show/show_view.js"></script>
+    <script src="./assets/js/apps/sidebar/sidebar_router.js"></script>
+    <script src="./assets/js/apps/rhizomes/rhizome_router.js"></script>
+    <script src="./assets/js/apps/rhizomes/list/list_view.js"></script>
+    <script src="./assets/js/apps/rhizomes/list/list_controller.js"></script>
+    <script src="./assets/js/apps/rhizomes/new/new_view.js"></script>
+    <script src="./assets/js/apps/rhizomes/new/new_controller.js"></script>
+
     <script type="text/javascript">
 
       //start App//

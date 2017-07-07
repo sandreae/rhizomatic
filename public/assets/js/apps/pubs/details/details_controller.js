@@ -18,7 +18,6 @@ Platform.module('PubsApp.Details', function (Details, Platform, Backbone, Marion
         editPubDetailsView.on('form:submit', function (data) {
           data.tags = data.tags.split(',')
           data.directedAt = data.directedAt.split(',')
-          console.log(data)
           var drafts = pubModel.get('drafts')
           var draft = drafts.findWhere({type: data.type})
           if (draft === undefined) {
@@ -39,12 +38,13 @@ Platform.module('PubsApp.Details', function (Details, Platform, Backbone, Marion
 
           pubModel.save(data, {
             success: function () {
+              Platform.trigger('user:listpubs')
               Platform.trigger('pubs:list')
             }
           })
         })
 
-        Platform.regions.main.show(editPubDetailsView)
+        Platform.regions.sidenav.show(editPubDetailsView)
       })
     }
   }

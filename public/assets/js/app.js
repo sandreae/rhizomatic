@@ -24,7 +24,8 @@ Platform.on('before:start', function(){
     regions: {
       header: '#header-region',
       main: '#main-region',
-      footer: '#footer-region'
+      footer: '#footer-region',
+      sidenav: '#sidenav-region'
     }
   });
 

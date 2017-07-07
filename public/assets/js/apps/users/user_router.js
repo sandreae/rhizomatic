@@ -32,7 +32,6 @@ Platform.module("UsersApp", function(UsersApp, Platform, Backbone, Marionette, $
       }
       else {
         Platform.trigger("user:login")
-
       }
     },
 

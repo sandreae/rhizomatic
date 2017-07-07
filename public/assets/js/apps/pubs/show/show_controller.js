@@ -8,6 +8,7 @@ Platform.module('PubsApp.Show', function (Show, Platform, Backbone, Marionette, 
       var fetchingPubModel = Platform.request('pubModel:entities', id)
       $.when(fetchingPubModel).done(function (pubModel) {
         var pubView
+        
         // set template for view depending on pub type//
         var template = '#pub-view-' + pubModel.get('type')
         // if pub exists show it//

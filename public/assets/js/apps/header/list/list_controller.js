@@ -4,9 +4,6 @@ Platform.module('HeaderApp.List', function (List, Platform, Backbone, Marionette
     listHeader: function () {
       var links = Platform.request('header:entities')
       var headers = new List.Headers({collection: links})
-      headers.on('brand:clicked', function () {
-        Platform.trigger('pubs:list')
-      })
 
       headers.on('childview:navigate', function (childView, model) {
         var trigger = model.get('navigationTrigger')

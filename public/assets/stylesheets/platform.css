@@ -1,0 +1,499 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: middle; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1;
+  overflow-x: hidden; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+button {
+  background-color: pink;
+  border: 2px solid gray;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px; }
+
+.clear:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0; }
+
+.clear {
+  display: inline-block; }
+
+/* start commented backslash hack \*/
+* html .clear {
+  height: 1%; }
+
+.clear {
+  display: block; }
+
+/* close commented backslash hack */
+/****************************************
+BASIC ELEMENTS
+*****************************************/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+hr {
+  clear: both;
+  border: none;
+  outline: none; }
+
+em {
+  font-style: italic; }
+
+a {
+  text-decoration: none;
+  transition: all 0.1s ease;
+  color: black; }
+  a:hover {
+    color: #00aedb;
+    transition: all 0.2s ease; }
+  a ul {
+    list-style: disc; }
+  a ol {
+    list-style: decimal; }
+  a ul, a ol {
+    padding: 0 0 0 0;
+    list-style: none; }
+
+blockquote {
+  padding: 0 0 0 0; }
+
+table {
+  margin: 0 0;
+  width: 100%; }
+  table th {
+    font-weight: bold;
+    text-align: left;
+    padding-right: 10px; }
+  table tr td {
+    padding-right: 10px;
+    padding-bottom: 10px; }
+
+button:hover {
+  cursor: pointer; }
+
+::selection {
+  background: #000;
+  color: white; }
+
+::-moz-selection {
+  background: #000;
+  color: white; }
+
+h1 {
+  color: black;
+  font-size: 3em;
+  margin: 0; }
+
+h2 {
+  font-size: 2em;
+  color: black;
+  margin: 0; }
+
+h3 {
+  font-size: 16px;
+  margin: 0.67em 0; }
+
+h4 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+p {
+  color: black;
+  font-family: sans-serif;
+  line-height: 22px; }
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+b,
+strong {
+  font-weight: bold; }
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+dfn {
+  font-style: italic; }
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0; }
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+mark {
+  background: #ff0;
+  color: #000; }
+
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em; }
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+pre {
+  white-space: pre-wrap; }
+
+/**
+ * Set consistent quote types.
+ */
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019"; }
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+  font-size: 80%; }
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -0.5em; }
+
+sub {
+  bottom: -0.25em; }
+
+/*********************
+VARIABLES
+**********************/
+/*Controls Menu top & bottom padding*/
+/*Contols Menu left & right padding*/
+/*Control Menu Color Scheme*/
+/*********************
+RESPONSIVE BREAKPOINTS
+**********************/
+/*********************
+NAVIGATION STYLES
+**********************/
+nav {
+  width: 100%;
+  background: pink; }
+  @media (max-width: 715px) {
+    nav {
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.5s ease; } }
+
+nav ul {
+  margin: 0 0 0 0;
+  width: 100%;
+  list-style: none;
+  position: absolute; }
+  @media (max-width: 715px) {
+    nav ul {
+      padding: 0;
+      width: 100%;
+      z-index: 15;
+      position: relative; } }
+  nav ul li {
+    float: left;
+    position: relative;
+    z-index: 1;
+    /******************
+    SUBNAV
+    ******************/ }
+    @media (max-width: 715px) {
+      nav ul li {
+        float: none;
+        position: relative;
+        margin: 0; } }
+    nav ul li a {
+      display: block;
+      padding: 5px 10px;
+      text-align: center;
+      color: black;
+      text-decoration: none;
+      transition: all 0.1s ease; }
+      nav ul li a:hover {
+        color: #00aedb;
+        transition: all 0.2s ease; }
+      @media (max-width: 715px) {
+        nav ul li a {
+          display: table;
+          margin: 0;
+          padding: 15px 2px;
+          color: black;
+          width: 100%; } }
+    nav ul li:hover ul {
+      max-height: 1000px;
+      transition: all 0.3s ease; }
+      @media (max-width: 715px) {
+        nav ul li:hover ul {
+          max-height: 0; } }
+    nav ul li ul {
+      background: #ff8da1;
+      list-style: none;
+      padding: 0;
+      position: absolute;
+      width: 200px;
+      max-height: 0;
+      z-index: 0;
+      opacity: 0;
+      overflow: hidden;
+      font-size: .9em;
+      transition: all 0.3s ease; }
+      @media (max-width: 715px) {
+        nav ul li ul {
+          max-height: 0;
+          width: 100%;
+          position: relative;
+          overflow: hidden;
+          transition: all 2s ease; } }
+      nav ul li ul li {
+        float: none;
+        margin: 0; }
+        @media (max-width: 715px) {
+          nav ul li ul li {
+            margin: 0; } }
+        nav ul li ul li a {
+          display: block;
+          text-align: left;
+          padding: 3.33333px 6.66667px;
+          margin: 0;
+          border-right: none;
+          text-transform: none;
+          text-shadow: none;
+          transition: all 0.2s ease; }
+          nav ul li ul li a:hover {
+            color: #00aedb;
+            transition: all 0.5s ease; }
+          @media (max-width: 715px) {
+            nav ul li ul li a {
+              color: black;
+              padding-left: 20px;
+              background: none; } }
+
+/***************************
+MOBILE NAV STYLES
+***************************/
+.mobile {
+  display: none;
+  margin: 0px;
+  padding: 5px 5px;
+  position: absolute;
+  color: black;
+  text-decoration: none;
+  top: 15px;
+  left: 15px;
+  line-height: 0;
+  z-index: 100; }
+  @media (max-width: 715px) {
+    .mobile {
+      display: table; } }
+
+.active {
+  max-height: 9000px !important;
+  transition: all 2s ease; }
+
+@media (max-width: 715px) {
+  .arrow {
+    display: block;
+    float: right;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    right: 25px;
+    top: 5px;
+    transition: all 0.3s ease; }
+    .arrow:hover {
+      cursor: pointer; }
+
+  .rotate {
+    transition: all 0.3s ease;
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg); } }
+#main-region {
+  background: pink;
+  padding: 40px 10px 10px 10px; }
+
+#footer-region {
+  background: grey;
+  padding: 0 0 0 10px; }
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; }
+
+/* The side navigation menu */
+.sidenav {
+  height: 100%;
+  /* 100% Full-height */
+  width: 0;
+  /* 0 width - change this with JavaScript */
+  position: fixed;
+  /* Stay in place */
+  z-index: 21;
+  /* Stay on top */
+  top: 0;
+  right: 0;
+  background-color: gray;
+  /* Black*/
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  padding-top: 60px;
+  /* Place content 60px from the top */
+  padding-left: 0px;
+  transition: 0.5s;
+  /* 0.5 second transition effect to slide in the sidenav */ }
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 0 0 0 0;
+  display: block; }
+
+.sidenav div {
+  padding: 8px 8px 8px 8px;
+  display: block;
+  width: 400px;
+  min-width: 400px; }
+
+.sidenav table {
+  margin: 8px 8px 8px 8px;
+  width: 100%; }
+
+.sidenav form {
+  margin: 8px 8px 8px 8px; }
+
+.sidenav td, th {
+  padding: 0 10px 10px 0px; }
+
+.sidenav td, tr, th {
+  width: 200px;
+  min-width: 200px; }
+
+/* When you mouse over the navigation links, change their color */
+/* Position and style the close button (top right corner) */
+.navclose {
+  position: absolute;
+  top: 5px;
+  color: pink;
+  text-decoration: none;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  z-index: 26;
+  display: none;
+  transition: all 1s ease; }
+
+.navopen {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  z-index: 20; }
+
+.sidenavactive {
+  width: 400px; }
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px; }
+
+  .sidenav a {
+    font-size: 18px; } }
+/****************************************
+STRUCTURES
+*****************************************/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+body {
+  overflow-x: hidden;
+  font-family: sans-serif; }
+
+section {
+  width: 1100px;
+  margin: 20px auto;
+  background: #f4f4f4;
+  border-radius: 2px;
+  padding: 20px; }
+  @media (max-width: 1300px) {
+    section {
+      width: 90%; } }
+
+/*# sourceMappingURL=platform.css.map */

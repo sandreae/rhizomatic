@@ -1,0 +1,111 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "simplemde",
+        "scope": null,
+        "escapedName": "simplemde",
+        "name": "simplemde",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/home/sam/Documents/platform"
+    ]
+  ],
+  "_from": "simplemde@latest",
+  "_id": "simplemde@1.11.2",
+  "_inCache": true,
+  "_location": "/simplemde",
+  "_nodeVersion": "5.1.1",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/simplemde-1.11.2.tgz_1465927103945_0.3092012421693653"
+  },
+  "_npmUser": {
+    "name": "nextstepwebs",
+    "email": "support@nextstepwebs.com"
+  },
+  "_npmVersion": "3.3.12",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "simplemde",
+    "scope": null,
+    "escapedName": "simplemde",
+    "name": "simplemde",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/simplemde/-/simplemde-1.11.2.tgz",
+  "_shasum": "a23a35d978d2c40ef07dec008c92f070d8e080e3",
+  "_shrinkwrap": null,
+  "_spec": "simplemde",
+  "_where": "/home/sam/Documents/platform",
+  "author": {
+    "name": "Wes Cossick",
+    "url": "http://www.WesCossick.com"
+  },
+  "bugs": {
+    "url": "https://github.com/NextStepWebs/simplemde-markdown-editor/issues"
+  },
+  "company": "Next Step Webs, Inc.",
+  "dependencies": {
+    "codemirror": "*",
+    "codemirror-spell-checker": "*",
+    "marked": "*"
+  },
+  "description": "A simple, beautiful, and embeddable JavaScript Markdown editor. Features autosaving and spell checking.",
+  "devDependencies": {
+    "browserify": "*",
+    "debug": "*",
+    "eslint": "*",
+    "gulp": "*",
+    "gulp-clean-css": "*",
+    "gulp-concat": "*",
+    "gulp-debug": "*",
+    "gulp-eslint": "*",
+    "gulp-header": "*",
+    "gulp-jsbeautifier": "*",
+    "gulp-rename": "*",
+    "gulp-uglify": "*",
+    "vinyl-buffer": "*",
+    "vinyl-source-stream": "*"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "a23a35d978d2c40ef07dec008c92f070d8e080e3",
+    "tarball": "https://registry.npmjs.org/simplemde/-/simplemde-1.11.2.tgz"
+  },
+  "gitHead": "0d9f7d90126a2526eb2d393636b46aad8e564ceb",
+  "homepage": "https://github.com/NextStepWebs/simplemde-markdown-editor",
+  "keywords": [
+    "embeddable",
+    "markdown",
+    "editor",
+    "javascript",
+    "wysiwyg"
+  ],
+  "license": "MIT",
+  "main": "./src/js/simplemde.js",
+  "maintainers": [
+    {
+      "name": "nextstepwebs",
+      "email": "support@nextstepwebs.com"
+    }
+  ],
+  "name": "simplemde",
+  "optionalDependencies": {},
+  "readme": "# SimpleMDE - Markdown Editor\nA drop-in JavaScript textarea replacement for writing beautiful and understandable Markdown. The WYSIWYG-esque editor allows users who may be less experienced with Markdown to use familiar toolbar buttons and shortcuts. In addition, the syntax is rendered while editing to clearly show the expected result. Headings are larger, emphasized words are italicized, links are underlined, etc. SimpleMDE is one of the first editors to feature both built-in autosaving and spell checking.\n\n[**Demo**](https://simplemde.com)\n\n[![Preview](http://i.imgur.com/zqWfJwO.png)](https://simplemde.com)\n\n## Why not a WYSIWYG editor or pure Markdown?\nWYSIWYG editors that produce HTML are often complex and buggy. Markdown solves this problem in many ways, plus Markdown can be rendered natively on more platforms than HTML. However, Markdown is not a syntax that an average user will be familiar with, nor is it visually clear while editing. In otherwords, for an unfamiliar user, the syntax they write will make little sense until they click the preview button. SimpleMDE has been designed to bridge this gap for non-technical users who are less familiar with or just learning Markdown syntax.\n\n## Install\n\nVia [npm](https://www.npmjs.com/package/simplemde).\n```\nnpm install simplemde --save\n```\n\nVia [bower](https://www.bower.io).\n```\nbower install simplemde --save\n```\n\nVia [jsDelivr](https://www.jsdelivr.com/#!simplemde). *Please note, jsDelivr may take a few days to update to the latest release.*\n\n```HTML\n<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css\">\n<script src=\"https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js\"></script>\n```\n\n## Quick start\n\nAfter installing, load SimpleMDE on the first textarea on a page\n\n```HTML\n<script>\nvar simplemde = new SimpleMDE();\n</script>\n```\n\n#### Using a specific textarea\n\nPure JavaScript method\n\n```HTML\n<script>\nvar simplemde = new SimpleMDE({ element: document.getElementById(\"MyID\") });\n</script>\n```\n\njQuery method\n\n```HTML\n<script>\nvar simplemde = new SimpleMDE({ element: $(\"#MyID\")[0] });\n</script>\n```\n\n## Get/set the content\n\n```JavaScript\nsimplemde.value();\n```\n\n```JavaScript\nsimplemde.value(\"This text will appear in the editor\");\n```\n\n## Configuration\n\n- **autoDownloadFontAwesome**: If set to `true`, force downloads Font Awesome (used for icons). If set to `false`, prevents downloading. Defaults to `undefined`, which will intelligently check whether Font Awesome has already been included, then download accordingly.\n- **autofocus**: If set to `true`, autofocuses the editor. Defaults to `false`.\n- **autosave**: *Saves the text that's being written and will load it back in the future. It will forget the text when the form it's contained in is submitted.*\n  - **enabled**: If set to `true`, autosave the text. Defaults to `false`.\n  - **delay**: Delay between saves, in milliseconds. Defaults to `10000` (10s).\n  - **uniqueId**: You must set a unique string identifier so that SimpleMDE can autosave. Something that separates this from other instances of SimpleMDE elsewhere on your website.\n- **blockStyles**: Customize how certain buttons that style blocks of text behave.\n  - **bold** Can be set to `**` or `__`. Defaults to `**`.\n  - **code** Can be set to  ```` ``` ```` or `~~~`.  Defaults to ```` ``` ````.\n  - **italic** Can be set to `*` or `_`. Defaults to `*`.\n- **element**: The DOM element for the textarea to use. Defaults to the first textarea on the page.\n- **forceSync**: If set to `true`, force text changes made in SimpleMDE to be immediately stored in original textarea. Defaults to `false`.\n- **hideIcons**: An array of icon names to hide. Can be used to hide specific icons shown by default without completely customizing the toolbar.\n- **indentWithTabs**: If set to `false`, indent using spaces instead of tabs. Defaults to `true`.\n- **initialValue**: If set, will customize the initial value of the editor.\n- **insertTexts**: Customize how certain buttons that insert text behave. Takes an array with two elements. The first element will be the text inserted before the cursor or highlight, and the second element will be inserted after. For example, this is the default link value: `[\"[\", \"](http://)\"]`.\n  - horizontalRule\n  - image\n  - link\n  - table\n- **lineWrapping**: If set to `false`, disable line wrapping. Defaults to `true`.\n- **parsingConfig**: Adjust settings for parsing the Markdown during editing (not previewing).\n  - **allowAtxHeaderWithoutSpace**: If set to `true`, will render headers without a space after the `#`. Defaults to `false`.\n  - **strikethrough**: If set to `false`, will not process GFM strikethrough syntax. Defaults to `true`.\n  - **underscoresBreakWords**: If set to `true`, let underscores be a delimiter for separating words. Defaults to `false`.\n- **placeholder**: Custom placeholder that should be displayed\n- **previewRender**: Custom function for parsing the plaintext Markdown and returning HTML. Used when user previews.\n- **promptURLs**: If set to `true`, a JS alert window appears asking for the link or image URL. Defaults to `false`.\n- **renderingConfig**: Adjust settings for parsing the Markdown during previewing (not editing).\n  - **singleLineBreaks**: If set to `false`, disable parsing GFM single line breaks. Defaults to `true`.\n  - **codeSyntaxHighlighting**: If set to `true`, will highlight using [highlight.js](https://github.com/isagalaev/highlight.js). Defaults to `false`. To use this feature you must include highlight.js on your page. For example, include the script and the CSS files like:<br>`<script src=\"https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js\"></script>`<br>`<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css\">`\n- **shortcuts**: Keyboard shortcuts associated with this instance. Defaults to the [array of shortcuts](#keyboard-shortcuts).\n- **showIcons**: An array of icon names to show. Can be used to show specific icons hidden by default without completely customizing the toolbar.\n- **spellChecker**: If set to `false`, disable the spell checker. Defaults to `true`.\n- **status**: If set to `false`, hide the status bar. Defaults to the array of built-in status bar items.\n  - Optionally, you can set an array of status bar items to include, and in what order. You can even define your own custom status bar items.\n- **styleSelectedText**: If set to `false`, remove the `CodeMirror-selectedtext` class from selected lines. Defaults to `true`.\n- **tabSize**: If set, customize the tab size. Defaults to `2`.\n- **toolbar**: If set to `false`, hide the toolbar. Defaults to the [array of icons](#toolbar-icons).\n- **toolbarTips**: If set to `false`, disable toolbar button tips. Defaults to `true`.\n\n```JavaScript\n// Most options demonstrate the non-default behavior\nvar simplemde = new SimpleMDE({\n\tautofocus: true,\n\tautosave: {\n\t\tenabled: true,\n\t\tuniqueId: \"MyUniqueID\",\n\t\tdelay: 1000,\n\t},\n\tblockStyles: {\n\t\tbold: \"__\",\n\t\titalic: \"_\"\n\t},\n\telement: document.getElementById(\"MyID\"),\n\tforceSync: true,\n\thideIcons: [\"guide\", \"heading\"],\n\tindentWithTabs: false,\n\tinitialValue: \"Hello world!\",\n\tinsertTexts: {\n\t\thorizontalRule: [\"\", \"\\n\\n-----\\n\\n\"],\n\t\timage: [\"![](http://\", \")\"],\n\t\tlink: [\"[\", \"](http://)\"],\n\t\ttable: [\"\", \"\\n\\n| Column 1 | Column 2 | Column 3 |\\n| -------- | -------- | -------- |\\n| Text     | Text      | Text     |\\n\\n\"],\n\t},\n\tlineWrapping: false,\n\tparsingConfig: {\n\t\tallowAtxHeaderWithoutSpace: true,\n\t\tstrikethrough: false,\n\t\tunderscoresBreakWords: true,\n\t},\n\tplaceholder: \"Type here...\",\n\tpreviewRender: function(plainText) {\n\t\treturn customMarkdownParser(plainText); // Returns HTML from a custom parser\n\t},\n\tpreviewRender: function(plainText, preview) { // Async method\n\t\tsetTimeout(function(){\n\t\t\tpreview.innerHTML = customMarkdownParser(plainText);\n\t\t}, 250);\n\n\t\treturn \"Loading...\";\n\t},\n\tpromptURLs: true,\n\trenderingConfig: {\n\t\tsingleLineBreaks: false,\n\t\tcodeSyntaxHighlighting: true,\n\t},\n\tshortcuts: {\n\t\tdrawTable: \"Cmd-Alt-T\"\n\t},\n\tshowIcons: [\"code\", \"table\"],\n\tspellChecker: false,\n\tstatus: false,\n\tstatus: [\"autosave\", \"lines\", \"words\", \"cursor\"], // Optional usage\n\tstatus: [\"autosave\", \"lines\", \"words\", \"cursor\", {\n\t\tclassName: \"keystrokes\",\n\t\tdefaultValue: function(el) {\n\t\t\tthis.keystrokes = 0;\n\t\t\tel.innerHTML = \"0 Keystrokes\";\n\t\t},\n\t\tonUpdate: function(el) {\n\t\t\tel.innerHTML = ++this.keystrokes + \" Keystrokes\";\n\t\t}\n\t}], // Another optional usage, with a custom status bar item that counts keystrokes\n\tstyleSelectedText: false,\n\ttabSize: 4,\n\ttoolbar: false,\n\ttoolbarTips: false,\n});\n```\n\n#### Toolbar icons\n\nBelow are the built-in toolbar icons (only some of which are enabled by default), which can be reorganized however you like. \"Name\" is the name of the icon, referenced in the JS. \"Action\" is either a function or a URL to open. \"Class\" is the class given to the icon. \"Tooltip\" is the small tooltip that appears via the `title=\"\"` attribute. Note that shortcut hints are added automatically and reflect the specified action if it has a keybind assigned to it (i.e. with the value of `action` set to `bold` and that of `tooltip` set to `Bold`, the final text the user will see would be \"Bold (Ctrl-B)\").\n\nAdditionally, you can add a separator between any icons by adding `\"|\"` to the toolbar array.\n\nName | Action | Tooltip<br>Class\n:--- | :----- | :--------------\nbold | toggleBold | Bold<br>fa fa-bold\nitalic | toggleItalic | Italic<br>fa fa-italic\nstrikethrough | toggleStrikethrough | Strikethrough<br>fa fa-strikethrough\nheading | toggleHeadingSmaller | Heading<br>fa fa-header\nheading-smaller | toggleHeadingSmaller | Smaller Heading<br>fa fa-header\nheading-bigger | toggleHeadingBigger | Bigger Heading<br>fa fa-lg fa-header\nheading-1 | toggleHeading1 | Big Heading<br>fa fa-header fa-header-x fa-header-1\nheading-2 | toggleHeading2 | Medium Heading<br>fa fa-header fa-header-x fa-header-2\nheading-3 | toggleHeading3 | Small Heading<br>fa fa-header fa-header-x fa-header-3\ncode | toggleCodeBlock | Code<br>fa fa-code\nquote | toggleBlockquote | Quote<br>fa fa-quote-left\nunordered-list | toggleUnorderedList | Generic List<br>fa fa-list-ul\nordered-list | toggleOrderedList | Numbered List<br>fa fa-list-ol\nclean-block | cleanBlock | Clean block<br>fa fa-eraser fa-clean-block\nlink | drawLink | Create Link<br>fa fa-link\nimage | drawImage | Insert Image<br>fa fa-picture-o\ntable | drawTable | Insert Table<br>fa fa-table\nhorizontal-rule | drawHorizontalRule | Insert Horizontal Line<br>fa fa-minus\npreview | togglePreview | Toggle Preview<br>fa fa-eye no-disable\nside-by-side | toggleSideBySide | Toggle Side by Side<br>fa fa-columns no-disable no-mobile\nfullscreen | toggleFullScreen | Toggle Fullscreen<br>fa fa-arrows-alt no-disable no-mobile\nguide | [This link](https://simplemde.com/markdown-guide) | Markdown Guide<br>fa fa-question-circle\n\nCustomize the toolbar using the `toolbar` option like:\n\n```JavaScript\n// Customize only the order of existing buttons\nvar simplemde = new SimpleMDE({\n\ttoolbar: [\"bold\", \"italic\", \"heading\", \"|\", \"quote\"],\n});\n\n// Customize all information and/or add your own icons\nvar simplemde = new SimpleMDE({\n\ttoolbar: [{\n\t\t\tname: \"bold\",\n\t\t\taction: SimpleMDE.toggleBold,\n\t\t\tclassName: \"fa fa-bold\",\n\t\t\ttitle: \"Bold\",\n\t\t},\n\t\t{\n\t\t\tname: \"custom\",\n\t\t\taction: function customFunction(editor){\n\t\t\t\t// Add your own code\n\t\t\t},\n\t\t\tclassName: \"fa fa-star\",\n\t\t\ttitle: \"Custom Button\",\n\t\t},\n\t\t\"|\", // Separator\n\t\t...\n\t],\n});\n```\n\n#### Keyboard shortcuts\n\nSimpleMDE comes with an array of predefined keyboard shortcuts, but they can be altered with a configuration option. The list of default ones is as follows:\n\nShortcut | Action\n:------- | :-----\n*Cmd-'* | \"toggleBlockquote\"\n*Cmd-B* | \"toggleBold\"\n*Cmd-E* | \"cleanBlock\"\n*Cmd-H* | \"toggleHeadingSmaller\"\n*Cmd-I* | \"toggleItalic\"\n*Cmd-K* | \"drawLink\"\n*Cmd-L* | \"toggleUnorderedList\"\n*Cmd-P* | \"togglePreview\"\n*Cmd-Alt-C* | \"toggleCodeBlock\"\n*Cmd-Alt-I* | \"drawImage\"\n*Cmd-Alt-L* | \"toggleOrderedList\"\n*Shift-Cmd-H* | \"toggleHeadingBigger\"\n*F9* | \"toggleSideBySide\"\n*F11* | \"toggleFullScreen\"\n\nHere is how you can change a few, while leaving others untouched:\n\n```JavaScript\nvar simplemde = new SimpleMDE({\n\tshortcuts: {\n\t\t\"toggleOrderedList\": \"Ctrl-Alt-K\", // alter the shortcut for toggleOrderedList\n\t\t\"toggleCodeBlock\": null, // unbind Ctrl-Alt-C\n\t\t\"drawTable\": \"Cmd-Alt-T\" // bind Cmd-Alt-T to drawTable action, which doesn't come with a default shortcut\n\t}\n});\n```\n\nShortcuts are automatically converted between platforms. If you define a shortcut as \"Cmd-B\", on PC that shortcut will be changed to \"Ctrl-B\". Conversely, a shortcut defined as \"Ctrl-B\" will become \"Cmd-B\" for Mac users.\n\nThe list of actions that can be bound is the same as the list of built-in actions available for [toolbar buttons](#toolbar-icons).\n\n#### Height\n\nTo change the minimum height (before it starts auto-growing):\n\n```CSS\n.CodeMirror, .CodeMirror-scroll {\n\tmin-height: 200px;\n}\n```\n\nOr, you can keep the height static:\n\n```CSS\n.CodeMirror {\n\theight: 300px;\n}\n```\n\n## Event handling\nYou can catch the following list of events: https://codemirror.net/doc/manual.html#events\n\n```JavaScript\nvar simplemde = new SimpleMDE();\nsimplemde.codemirror.on(\"change\", function(){\n\tconsole.log(simplemde.value());\n});\n```\n\n## Removing SimpleMDE from textarea\nYou can revert to the initial textarea by calling the `toTextArea` method. Note that this clears up the autosave (if enabled) associated with it. The textarea will retain any text from the destroyed SimpleMDE instance.\n\n```JavaScript\nvar simplemde = new SimpleMDE();\n...\nsimplemde.toTextArea();\nsimplemde = null;\n```\n\n## Useful methods\nThe following self-explanatory methods may be of use while developing with SimpleMDE.\n\n```js\nvar simplemde = new SimpleMDE();\nsimplemde.isPreviewActive(); // returns boolean\nsimplemde.isSideBySideActive(); // returns boolean\nsimplemde.isFullscreenActive(); // returns boolean\nsimplemde.clearAutosavedValue(); // no returned value\n```\n\n## How it works\nSimpleMDE began as an improvement of [lepture's Editor project](https://github.com/lepture/editor), but has now taken on an identity of its own. It is bundled with [CodeMirror](https://github.com/codemirror/codemirror) and depends on [Font Awesome](http://fontawesome.io).\n\nCodeMirror is the backbone of the project and parses much of the Markdown syntax as it's being written. This allows us to add styles to the Markdown that's being written. Additionally, a toolbar and status bar have been added to the top and bottom, respectively. Previews are rendered by [Marked](https://github.com/chjj/marked) using GFM.\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NextStepWebs/simplemde-markdown-editor.git"
+  },
+  "scripts": {},
+  "version": "1.11.2"
+}

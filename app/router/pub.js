@@ -33,7 +33,8 @@ module.exports = function (app, express) {
       tags: req.body.tags,
       invitedBy: req.body.invitedBy,
       directedAt: req.body.directedAt,
-      published: req.body.published
+      published: req.body.published,
+      inRhizome: req.body.inRhizome
 
     })
     postPub.save(function (err) {
@@ -58,6 +59,7 @@ module.exports = function (app, express) {
       pub.invitedBy = req.body.invitedBy
       pub.directedAt = req.body.directedAt
       pub.published = req.body.published
+      pub.inRhizome = req.body.inRhizome
       return pub.save(function (err) {
         if (!err) {
           console.log('pub updated')

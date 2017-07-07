@@ -5,44 +5,20 @@ Platform.module('PubsApp.List', function (List, Platform, Backbone, Marionette, 
 
   List.Controller = {
     listPubs: function () {
-      // request pubsCollection via API//
       var fetchingPubsCollection = Platform.request('pubsCollection:entities')
 
-      // wait for request to complete//
       $.when(fetchingPubsCollection).done(function (pubsCollection) {
-        var user = Platform.request('getUser:entities')
-        var userPubs = new Backbone.Collection(pubsCollection.filter(function (model) {
-          return model.get('contributorId') === user.id
-        }))
-        console.log(userPubs)
-        // initiate new composite view listing pubsCollection//
         var pubsCompositeView = new List.PubsCompositeView({
-          collection: userPubs
-        })
-        // function to be run on 'pub:delete' triggered from our pubItemView//
-        // which means we prefix the event with 'childview'//
-        pubsCompositeView.on('childview:pub:delete', function (childView, model) {
-        // the callback function revieves a reference to the childview that triggered the event//
-        // followed by the arguments that were provided when the event was triggered//
-          model.destroy()
+          collection: pubsCollection
         })
 
         pubsCompositeView.on('childview:pub:show', function (childView, model) {
-        // trigger 'contact:show' when show button is clicked on ItemView//
-        // the router reacts to this trigger by updating the URL and executing the appropriate controller action//
           Platform.trigger('pub:show', model.get('_id'))
         })
 
-        pubsCompositeView.on('childview:details:pub:edit', function (childView, model) {
-          Platform.trigger('details:pub:edit', model.get('_id'))
-        })
-
-        pubsCompositeView.on('childview:content:pub:edit', function (childView, model) {
-          Platform.trigger('content:pub:edit', model.get('_id'))
-        })
-
-        pubsCompositeView.on('pub:new', function () {
-          Platform.trigger('details:pub:new')
+        pubsCompositeView.on('childview:pub:delete', function (childView, model) {
+          pubsCollection.remove(model)
+          model.destroy()
         })
         Platform.regions.main.show(pubsCompositeView)
       })

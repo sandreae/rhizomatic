@@ -13,6 +13,13 @@ Platform.module('PubsApp.Show', function (Show, Platform, Backbone, Marionette, 
       var user = Platform.request('getUser:entities')
       if (user !== undefined) { ownerTest = (author === user.attributes._id) } else { ownerTest = false }
 
+      if (this.model.get('type') === 'mixed') {
+        var content = model.get('activeContent')
+        var converter = new showdown.Converter()
+        var html = converter.makeHtml(content)
+        model.set({activeContent: html})
+      }
+
       return {
         _id: model.get('_id'),
         contributor: model.get('contributor'),
@@ -38,6 +45,9 @@ Platform.module('PubsApp.Show', function (Show, Platform, Backbone, Marionette, 
       e.preventDefault()
       var type = this.model.get('type')
       this.trigger('content:pub:edit', this.model, type)
+    },
+
+    onRender: function () {
     }
   })
 })

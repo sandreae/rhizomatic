@@ -1,28 +1,25 @@
-Platform.module("UsersApp.Edit", function(Edit, Platform, Backbone, Marionette, $, _){
+Platform.module('UsersApp.Edit', function(Edit, Platform, Backbone, Marionette, $, _){
   Edit.Controller = {
-    editUser: function(id){
+    editUser: function (id) {
+      var fetchingUser = Platform.request('user:entity', id)
+      $.when(fetchingUser).done(function (user) {
+        var editView = new Edit.User({model: user})
 
-      var fetchingUser = Platform.request("user:entity", id);
-      $.when(fetchingUser).done(function(user){
-
-        var editView = new Edit.User({model: user}); 
-
-        editView.on("form:submit", function(data){
-
+        editView.on('form:submit', function (data) {
           user.set({
             userName: data.userName,
             email: data.email,
             password: data.password,
-            permissions: ["admin"]
+            permissions: ['admin']
           })
           user.save(null, {
-            success: function(){
-              Platform.trigger("users:list");
+            success: function () {
+              Platform.trigger('users:list')
             }
-          });
+          })
         })
-        Platform.regions.main.show(editView);
-      });
+        Platform.regions.main.show(editView)
+      })
     }
-  };
-});
+  }
+})

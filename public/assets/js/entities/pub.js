@@ -36,7 +36,8 @@ Platform.module('Entities', function (Entities, Platform, Backbone, Marionette, 
       tags: '',
       invitedBy: 'contributor name',
       directedAt: '',
-      published: 'false'
+      published: 'false',
+      inRhizome: ''
     }
   })
 

@@ -27,6 +27,10 @@ Platform.module('PubsApp', function (PubsApp, Platform, Backbone, Marionette, $,
       PubsApp.Details.Controller.editPubDetails(id)
     },
 
+    userListPubs: function () {
+      PubsApp.UserList.Controller.userListPubs()
+    },
+
     newPubDetails: function () {
       PubsApp.New.Controller.newPubDetails()
     }
@@ -44,8 +48,11 @@ Platform.module('PubsApp', function (PubsApp, Platform, Backbone, Marionette, $,
     API.showPub(id)
   })
 
+  Platform.on('user:listpubs', function () {
+    API.userListPubs()
+  })
+
   Platform.on('pub:user:view', function (id) {
-    console.log('userView triggered and recieved')
     Platform.navigate('publications/userview/' + id)
     API.userView(id)
   })

@@ -35,6 +35,10 @@ app.use('/api', pubRoutes)
 var userRoutes = require('./app/router/user')(app, express)
 app.use('/api', userRoutes)
 
+// user routes
+var rhizomeRoutes = require('./app/router/rhizome')(app, express)
+app.use('/api', rhizomeRoutes)
+
 var port = 3000
 
 app.listen(port)

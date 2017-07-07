@@ -25,6 +25,7 @@ Platform.module("Entities", function(Entities, Platform, Backbone, Marionette, $
       { name: "Publications", url: "publications", navigationTrigger: "pubs:list"},
       { name: "About", url: "about", navigationTrigger: "about:show" },
       { name: "Users", url: "users", navigationTrigger: "users:list" },
+      { name: "Rhizomes", url: "rhizomes", navigationTrigger: "rhizomes:list" },
       { name: "Logout", url: "logout", navigationTrigger: "logout" },
     ]);
   };

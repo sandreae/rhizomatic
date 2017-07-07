@@ -3,10 +3,9 @@ Platform.module('PubsApp.New', function(New, Platform, Backbone, Marionette, $, 
 
   New.Controller = {
     newPubDetails: function () {
-     
       var drafts = new Platform.Entities.Drafts()
       var newDraft = new Platform.Entities.Draft({
-        content: 'draft content',
+        content: 'draft content'
       })
       var newPub = new Platform.Entities.PubModel({})
       var newPubView = new Platform.PubsApp.Details.Pub({
@@ -20,6 +19,8 @@ Platform.module('PubsApp.New', function(New, Platform, Backbone, Marionette, $, 
     // wait for request to complete//
       $.when(fetchingPubsCollection).done(function (pubsCollection) {
         newPubView.on('form:submit', function (data) {
+          data.tags = data.tags.split(',')
+          data.directedAt = data.directedAt.split(',')
           newPub.save(data, {
             success: function (pub, response) {
               newDraft.set({
@@ -33,6 +34,7 @@ Platform.module('PubsApp.New', function(New, Platform, Backbone, Marionette, $, 
               newPub.save(null, {
                 success: function () {
                   Platform.trigger('pub:show', pub.id)
+                  Platform.trigger('user:listpubs')
                 }
               })
             }
@@ -43,7 +45,7 @@ Platform.module('PubsApp.New', function(New, Platform, Backbone, Marionette, $, 
         //  Platform.trigger('pub:show', newPub.get('id'))
         //  }
         })
-        Platform.regions.main.show(newPubView)
+        Platform.regions.sidenav.show(newPubView)
       })
     }
   }

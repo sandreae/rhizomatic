@@ -10,7 +10,8 @@ Platform.module('UsersApp.New', function (New, Platform, Backbone, Marionette, $
           email: data.email,
           password: data.password,
           permissions: 'admin',
-          pendingPub: 'false'
+          pendingPub: 'false',
+          memberOf: data.memberOf
         })
         user.save(null, {
           success: function () {

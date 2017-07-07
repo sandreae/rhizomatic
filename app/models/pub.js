@@ -12,7 +12,8 @@ var PubSchema = new Schema({
   tags: Array,
   invitedBy: String,
   directedAt: Array,
-  published: String
+  published: String,
+  inRhizome: String
 })
 
 module.exports = mongoose.model('Pub', PubSchema)

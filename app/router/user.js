@@ -72,7 +72,8 @@ module.exports = function (app, express) {
         email: req.body.email,
         password: req.body.password,
         permissions: req.body.permissions || [],
-        pendingPub: req.body.pendingPub
+        pendingPub: req.body.pendingPub,
+        memberOf: req.body.memberOf
       })
 
       user.save(function (err) {
@@ -111,6 +112,7 @@ module.exports = function (app, express) {
         if (req.body.password) user.password = req.body.password
         if (req.body.permissions) user.permissions = req.body.permissions
         if (req.body.pendingPub) user.pendingPub = req.body.pendingPub
+        if (req.body.memberOf) user.memberOf = req.body.memberOf
 
         user.save(function (err) {
           if (err)res.send(err)

@@ -6,7 +6,8 @@ var UserSchema = new Schema({
   email: {type: String, required: true, index: {unique: true}},
   password: {type: String, required: true, select: false},
   permissions: [String],
-  pendingPub: String
+  pendingPub: String,
+  memberOf: String
 })
 
 var bcrypt = require('bcrypt-nodejs')

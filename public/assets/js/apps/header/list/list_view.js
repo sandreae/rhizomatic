@@ -4,11 +4,14 @@ Platform.module('HeaderApp.List', function (List, Platform, Backbone, Marionette
     tagName: 'li',
 
     events: {
-      'click a': 'navigate'
+      'click a': 'navigate',
     },
 
     navigate: function (e) {
       e.preventDefault()
+      if (this.model.get('navigationTrigger') === ('user:login')) {
+        Platform.trigger('sidebarOpen')
+      }
       this.trigger('navigate', this.model)
     },
 
@@ -48,17 +51,30 @@ Platform.module('HeaderApp.List', function (List, Platform, Backbone, Marionette
   List.Headers = Marionette.CompositeView.extend({
     template: '#header-template',
     tagName: 'nav',
-    className: 'navbar navbar-default',
+    className: 'navbarmobile',
     childView: List.Header,
     childViewContainer: 'ul',
 
     events: {
-      'click a.brand': 'brandClicked'
+      'click a.navopen': 'navopen',
+      'click a.mobile': 'mobile',
+      'click a.navclose': 'navclose'
+
     },
 
-    brandClicked: function (e) {
+    navopen: function (e) {
       e.preventDefault()
-      this.trigger('brand:clicked')
+      Platform.trigger('sidebarOpen')
+    },
+
+    mobile: function (e) {
+      e.preventDefault()
+      $(".navbarmobile").toggleClass("active")
+    },
+
+    navclose: function (e) {
+      e.preventDefault()
+      Platform.trigger('sidebarClose')
     }
   })
 

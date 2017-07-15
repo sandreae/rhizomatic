@@ -1,0 +1,15 @@
+.fullwidth {
+  width: 100%;
+}
+
+.navigation {
+  background: #f4f5f6;
+}
+
+form {
+  width: 100%;
+}
+
+.is-hidden {
+  display: none;
+}

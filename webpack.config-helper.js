@@ -2,6 +2,7 @@
 const Path = require('path');
 const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 var DashboardPlugin = require('webpack-dashboard/plugin');
 
 
@@ -14,10 +15,10 @@ module.exports = (options) => {
       filename: 'bundle.js'
     },
     headers: {
-      'Access-Control-Allow-Origin': 'http://localhost:3000',
+      'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': 'true',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization, x-id, Content-Length, X-Requested-With',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
+      'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, x-access-token, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers',
+      'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT'
     },
     plugins: [
       new Webpack.DefinePlugin({
@@ -37,6 +38,7 @@ module.exports = (options) => {
         Marionette: 'backbone.marionette',
         Mn: 'backbone.marionette',
       }),
+      new ExtractTextPlugin('style.css')
     ],
     module: {
       loaders: [{
@@ -50,10 +52,12 @@ module.exports = (options) => {
       }, {
         test: /\.jst$/,
         loader: 'underscore-template-loader',
-      }, {
-        test: /\.s?css$/i,
-        loaders: ['style', 'css']
-      }],
+      },
+        {
+          test: /\.scss$/,
+          loader: ExtractTextPlugin.extract('css!sass')
+        }
+      ],
     },
     resolve: {
       //fallback: path.resolve(__dirname, 'node_modules'),
@@ -73,14 +77,16 @@ module.exports = (options) => {
         mangle: {screw_ie8: true, keep_fnames: true}
       }),
       new Webpack.optimize.OccurenceOrderPlugin(),
-      new Webpack.optimize.AggressiveMergingPlugin()
+      new Webpack.optimize.AggressiveMergingPlugin(),
+      new ExtractTextPlugin('style.css', {
+        allChunks: true
+      })
     );
 
-    /*
     webpackConfig.module.loaders.push({
-      test: /\.scss$/i,
-      loader: ExtractSASS.extract(['css', 'sass'])
-    });*/
+      test: /\.s?css$/i, 
+      loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+    });
 
   } else {
     webpackConfig.plugins.push(

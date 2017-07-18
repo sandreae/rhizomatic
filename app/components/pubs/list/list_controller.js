@@ -1,27 +1,21 @@
-Platform.module('PubsApp.List', function (List, Platform, Backbone, Marionette, $, _) {
-// create controller object and attach 'listPubs' sub-module//
-// these these functions will be publicly available//
-// they should coordinate models and views, typically triggered by URLs//
+import {TableView} from './views/list_view'
+import {gc} from '../../radio'
 
-  List.Controller = {
-    listPubs: function () {
-      var fetchingPubsCollection = Platform.request('pubsCollection:entities')
+var Controller = {
+  listPubs: function() {
 
-      $.when(fetchingPubsCollection).done(function (pubsCollection) {
-        var pubsCompositeView = new List.PubsCompositeView({
-          collection: pubsCollection
-        })
-
-        pubsCompositeView.on('childview:pub:show', function (childView, model) {
-          Platform.trigger('pub:show', model.get('_id'))
-        })
-
-        pubsCompositeView.on('childview:pub:delete', function (childView, model) {
-          pubsCollection.remove(model)
-          model.destroy()
-        })
-        Platform.regions.main.show(pubsCompositeView)
+   $.when(gc.request('pubs:get')).done(function (pubs) {
+      var tableView = new TableView({
+        collection: pubs
       })
-    }
+
+      tableView.on('childview:pub:delete', function (model) {
+        pubs.remove(model)
+        model.destroy()
+      })
+      Platform.Regions.getRegion('main').show(tableView)
+    })
   }
-})
+}
+
+export {Controller}

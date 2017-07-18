@@ -5,11 +5,11 @@ var Controller = {
   editPubDetails: function(id) {
     var fetchingPubModel = gc.request('pub:get', id)
     $.when(fetchingPubModel).done(function (pubModel) {
-      var newDraft = new Platform.Entities.Draft({
+      var newDraft = new Platform.Entities.Pubs.Draft({
         content: 'draft content'
       })
 
-      var editPubDetailsView = new Details.Pub({
+      var editPubDetailsView = new View({
         model: pubModel
       })
 
@@ -26,9 +26,9 @@ var Controller = {
 
           })
           drafts.add(newDraft)
-        } else {
-          var content = draft.get('content')
-        }
+        } 
+        
+        var content = draft.get('content')
 
         pubModel.set({
           type: data.type,
@@ -37,13 +37,14 @@ var Controller = {
 
         pubModel.save(data, {
           success: function () {
-            Platform.trigger('user:listpubs')
-            Platform.trigger('pubs:list')
+            console.log(data)
+            gc.trigger('user:listPubs')
+            gc.trigger('pubs:list')
           }
         })
       })
 
-      Platform.regions.sidenav.show(editPubDetailsView)
+      Platform.Regions.getRegion('sidebar').show(editPubDetailsView)
     })
   }
 }

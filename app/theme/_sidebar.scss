@@ -1,0 +1,82 @@
+ /* The side navigation menu */
+.sidebar {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 21; /* Stay on top */
+    top: 0;
+    right: 0;
+    background-color: gray; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    padding-left: 0px;
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+/* The navigation menu links */
+.sidebar a {
+    padding: 0 0 0 0;
+    display: block;
+}
+
+.sidebar div {
+    padding: 8px 8px 8px 8px;
+    display: block;
+    width: 400px;
+    min-width: 400px;
+}
+
+.sidebar table {
+    margin: 8px 8px 8px 8px;
+    width: 100%;
+}
+
+.sidebar form {
+    margin: 8px 8px 8px 8px;
+}
+
+.sidebar td, th {
+    padding: 0 10px 10px 0px;
+}
+
+.sidebar td, tr, th {
+    width: 200px;
+    min-width: 200px;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover, .offcanvas a:focus{
+}
+
+/* Position and style the close button (top right corner) */
+.sidebarclose {
+    position: absolute;
+    top: 5px;
+    color: pink;
+    text-decoration: none;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    z-index: 26;
+    display: none;
+    transition: all 1s ease;
+
+}
+
+.sidebaropen {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor:pointer;
+    z-index: 20;
+}
+
+.sidebaractive {
+    width: 400px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+} 

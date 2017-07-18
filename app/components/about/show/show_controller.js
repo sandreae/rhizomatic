@@ -3,7 +3,8 @@ import {View} from './show_view'
 var Controller = {
 
   showAbout: function() {
-    window.Platform.getRegion('main').show(new View())
+  	var view = new View()
+    Platform.Regions.getRegion('main').show(view)
   }
 }
 

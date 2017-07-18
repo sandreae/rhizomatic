@@ -1,24 +1,32 @@
 import * as Show from './show/show_controller'
 import * as New from './new/new_controller'
 import * as Details from './details/details_controller'
+import * as List from './list/list_controller'
+import * as UserList from './userlist/userlist_controller'
+import PubsRouter from './pubs_router'
 import {gc} from '../radio'
 
 var PubsApp = {}
 PubsApp.Show = Show
 PubsApp.New = New
-
-console.log(PubsApp)
+PubsApp.List = List
+PubsApp.UserList = UserList
 
 var PubsRadio = Marionette.Object.extend({
   channelName: 'gc',
-  radioRequests: {
-    'publications/:id': 'showPub',
-    'new:pub': 'newPub',
+  radioEvents: {
+    'pubs:list': 'listPubs',
+    'pub:show': 'showPub',
+    'pub:new': 'newPub',
+    'pub:details:edit': 'editPubDetails',
+    'pub:content:edit': 'editPubContent',
+    'user:loggedIn': 'userListPubs',
+    'user:listPubs': 'userListPubs',
   },
 
-  listPubs: function(criterion) {
-    List.Controller.listPubs(criterion)
-    Platform.execute('set:active:header', 'publications')
+  listPubs: function() {
+    List.Controller.listPubs()
+    Platform.navigate('publications')
   },
 
   showPub: function(id) {
@@ -27,7 +35,13 @@ var PubsRadio = Marionette.Object.extend({
   },
 
   editPubDetails: function(id) {
+    console.log('editPubDetails trigger recieved')
     Details.Controller.editPubDetails(id)
+  },
+
+  editPubContent: function(id) {
+  console.log('editPubContent trigger recieved')
+   Details.Controller.editPub(id)
   },
 
   userListPubs: function() {
@@ -35,10 +49,12 @@ var PubsRadio = Marionette.Object.extend({
   },
 
   newPub: function() {
-
     New.Controller.newPub()
+
+   // New.Controller.newPub()
   }})
 
 PubsApp.Radio = new PubsRadio()
+PubsApp.Router = new PubsRouter({controller: PubsApp.Radio})
 
 export {PubsApp}

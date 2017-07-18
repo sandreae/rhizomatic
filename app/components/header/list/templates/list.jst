@@ -1,0 +1,13 @@
+<a href="#" class="sidebarclose" id="js-sidebarclose">&times;</a>
+<a href="#" class="sidebaropen" id="js-sidebaropen">Profile</a>
+<a href="#" class="mobile" id="js-mobile">&#9776;</a>
+<nav class="navbarmobile">
+  <ul>
+  <% _.each(items, function(item) { %>
+    <li><a class="nav-link" id ='js-navigate'href="#<%- item.url %>"><%- item.name %></a></li>
+  <% }) %>
+  </ul>
+  <div style="clear:both;"></div>
+</nav>
+
+

@@ -7,6 +7,6 @@ var newDraft = new Entities.Pubs.Draft({
 })
 var newPub = new Entities.Pubs.PubModel()
 
-var user = gc.request('user:get')
 
-export {drafts, newDraft, newPub, user}
+
+export {drafts, newDraft, newPub}

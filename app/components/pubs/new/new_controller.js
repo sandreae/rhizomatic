@@ -1,5 +1,5 @@
 import {View} from './views/new_view'
-import {drafts, newDraft, newPub, user} from './helpers/new_pub'
+import {drafts, newDraft, newPub} from './helpers/new_pub'
 import {gc} from '../../radio'
 
 var Controller = {
@@ -11,10 +11,11 @@ var Controller = {
 
   // request pubsCollection via API//
     var fetchingPubsCollection = gc.request('pubs:get')
-
   // wait for request to complete//
+
     $.when(fetchingPubsCollection).done(function (pubsCollection) {
       newPubView.on('form:submit', function (data) {
+        var user = gc.request('user:getCurrentUser')
         data.tags = data.tags.split(',')
         data.directedAt = data.directedAt.split(',')
         newPub.save(data, {
@@ -30,7 +31,7 @@ var Controller = {
             newPub.save(null, {
               success: function () {
                 gc.trigger('pub:show', pub.id)
-                gc.trigger('user:listpubs')
+                gc.trigger('user:listPubs')
               }
             })
           }
@@ -41,7 +42,7 @@ var Controller = {
       //  Platform.trigger('pub:show', newPub.get('id'))
       //  }
       })
-      Platform.getRegion('sidenav').show(newPubView)
+      Platform.Regions.getRegion('sidebar').show(newPubView)
     })
   }
 }

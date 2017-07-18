@@ -6,6 +6,9 @@ var Globals = {
   urls: {
     AUTHENTICATE: 'http://localhost:3000/api/authenticate',
     APP_INFO: 'http://localhost:3000/api/applicationInfo'
+  },
+  app: {
+    INFO: 'RHIZOMATIC DIGITAL ZINE'
   }
 }
 

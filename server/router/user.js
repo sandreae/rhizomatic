@@ -18,7 +18,7 @@ module.exports = function (app, express) {
         memberOf: req.body.memberOf
       })
 
-      user.save(function (err) {
+      user.save(function(err) {
         if (err) {
           if (err.code === 11000) {
             return res.send({success: false, message: 'Duplicate useruserName.'})
@@ -30,8 +30,8 @@ module.exports = function (app, express) {
         }
       })
     })
-    .get(function (req, res) {
-      User.find(function (err, users) {
+    .get(function(req, res) {
+      User.find(function(err, users) {
         if (err) {
           res.send(err)
         }
@@ -40,13 +40,16 @@ module.exports = function (app, express) {
     })
 
   userRouter.route('/users/:user_id')
-    .get(function (req, res) {
+    .get(function(req, res) {
       User.findById(req.params.user_id, function (err, user) {
-        if (err) res.send(err)
+        if (err) {
+          res.send(err)
+        }
         res.send(user)
       })
     })
-    .put(function (req, res) {
+
+    .put(function(req, res) {
       User.findById(req.params.user_id, function (err, user) {
         if (err) res.send(err)
         if (req.body.userName) user.userName = req.body.userName
@@ -56,12 +59,13 @@ module.exports = function (app, express) {
         if (req.body.pendingPub) user.pendingPub = req.body.pendingPub
         if (req.body.memberOf) user.memberOf = req.body.memberOf
 
-        user.save(function (err) {
+        user.save(function(err) {
           if (err)res.send(err)
           res.send(user)
         })
       })
     })
+
     .delete(function (req, res) {
       if (_.contains(req.decoded.permissions, 'admin')) {
         User.remove({_id: req.params.user_id}, function (err, user) {

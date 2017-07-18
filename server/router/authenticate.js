@@ -2,14 +2,15 @@ var User = require('../models/user')
 var jwt = require('jsonwebtoken')
 var superSecret = 'TheAmazingKreskin'
 
-module.exports = function (app, express) {
+module.exports = function(app, express) {
+
   var authenticateRoute = express.Router()
 
-  authenticateRoute.post('/authenticate', function (req, res) {
+  authenticateRoute.post('/authenticate', function(req, res) {
     User.findOne({
       email: req.body.email
-    }).select('userName email password permissions').exec(function (err, user) {
-      if (err) throw err
+    }).select('userName email password permissions').exec(function(err, user) {
+      if (err) {throw err}
 
       if (!user) {
         res.json({success: false, message: 'User not found'})
@@ -38,10 +39,10 @@ module.exports = function (app, express) {
     })
   })
 
-  authenticateRoute.use(function (req, res, next) {
+  authenticateRoute.use(function(req, res, next) {
     var token = req.body.token || req.params.token || req.headers['x-access-token']
     if (token) {
-      jwt.verify(token, superSecret, function (err, decoded) {
+      jwt.verify(token, superSecret, function(err, decoded) {
         if (err) {
           return res.status(401).send({success: false, message: 'Failed to authenticate token'})
         } else {
@@ -54,7 +55,5 @@ module.exports = function (app, express) {
       return res.status(401).send({success: false, message: 'No token provided'})
     }
   })
-
-
   return authenticateRoute
 }

@@ -1,14 +1,12 @@
-import 'milligram';
-import './application.css';
+import './platform.scss';
+import {gc} from '../../app/components/radio'
 
 export default Mn.View.extend({
-  el: 'body',
+  el: '#app',
   regions: {
-    'region1': '#js-region-1',
-    'region2': '#js-region-2',
-    'region3': '#js-region-3',
-    'region4': '#js-region-4',
-    'region5': '#js-region-5',
+    'main': '#js-main-region',
+    'header': '#js-header-region',
+    'sidebar': '#js-sidebar-region',
+    'footer': '#js-footer-region'
   },
-  template: false
 })

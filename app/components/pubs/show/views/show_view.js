@@ -5,11 +5,20 @@ import script from './../templates/script.jst'
 import showdown from 'showdown'
 import {gc} from '../../../radio'
 
-var Pub = Marionette.View.extend({
+console.log(mixed)
+
+export default Marionette.View.extend({
+
+  getTemplate: function(){
+    var type = this.model.get('type')
+    var template
+    if (type === 'mixed'){template = mixed}
+    if (type === 'image'){template = image}
+    if (type === 'script'){template = script}
+    return template},
+
   initialize: function() {
-
     var model = this.model
-
     if (model.get('type') === 'mixed') {
       var content = model.get('activeContent')
       var converter = new showdown.Converter()
@@ -17,23 +26,4 @@ var Pub = Marionette.View.extend({
       model.set({activeContent: html})
     }
   },
-
-  template: image,
-
-  events: {
-    'click a.js-edit-details': 'editDetailsClicked',
-    'click a.js-edit-content': 'editContentClicked'
-  },
-
-  editDetailsClicked: function(e) {
-    e.preventDefault()
-    Platform.trigger('details:pub:edit', this.model.get('_id'))
-  },
-
-  editContentClicked: function(e) {
-    e.preventDefault()
-    Platform.trigger('content:pub:edit', this.model.get('_id'), this.model.get('type'))
-  },
 })
-
-export {Pub}

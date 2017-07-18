@@ -16,21 +16,8 @@ var Authentication = {
     window.localStorage.setItem(Globals.auth.USER_KEY, response._id)
   },
 
-  userPermissions: function(permissions) {
+  isAdmin: function(permissions) {
     return _.contains(permissions, 'admin');
-  },
-
-  initUser: function() {
-    if (Authentication.getKey !== null) {
-      user = Authentication.getCurrentUser()
-      user.fetch().success(function () {
-        permissions = Authentication.userPermissions(user.get('permissions'))
-        gc.trigger('user:loggedIn')
-      })
-    } else {
-      user = false
-    }
-    return user
   },
 
   getAppInfo: function () {
@@ -38,15 +25,11 @@ var Authentication = {
   },
 
   getCurrentUser: function () {
-    user = new Platform.Entities.Users.User({_id: window.localStorage.getItem(Globals.auth.USER_KEY)})
+    user = new Platform.Entities.Users.User({_id: window.localStorage.userId})
     user.fetch().success(function () {
       return user
     })
     return user
-  },
-
-  getPermissions: function () {
-    return permissions
   },
 
   logoutUser: function() {

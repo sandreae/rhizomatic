@@ -2,6 +2,7 @@ import * as Users from './models/user'
 import * as Pubs from './models/pub'
 import * as Rhizomes from './models/rhizome'
 import * as Headers from './models/header'
+import * as AppState from './models/app'
 import {gc} from '../../components/radio'
 
 var Radio = Marionette.Object.extend({
@@ -20,6 +21,7 @@ var Radio = Marionette.Object.extend({
     'rhizome:get': 'getRhizome',
     'rhizomes:get': 'getRhizomes',
     'headers:get': 'getHeaders',
+    'appState:get': 'getAppState',
   },
 
   getUser: function(id) {
@@ -55,8 +57,12 @@ var Radio = Marionette.Object.extend({
     console.log('headers:get request recieved')
     return Headers.HeadersAPI.getHeaders()
   },
+  getAppState: function() {
+    console.log('appState:get request recieved')
+    return AppState.AppStateAPI.getAppState()
+  },
 })
 
 var Router = new Radio()
 
-export {Users, Pubs, Rhizomes, Headers, Router}
+export {Users, Pubs, Rhizomes, Headers, Router, AppState}

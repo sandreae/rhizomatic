@@ -19,6 +19,8 @@ var Controller = {
         data.directedAt = data.directedAt.split(', ')
         var drafts = pubModel.get('drafts')
         var draft = drafts.findWhere({type: data.type})
+                    console.log(draft)
+
         if (draft === undefined) {
           newDraft.set({
             type: data.type,

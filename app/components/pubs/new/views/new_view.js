@@ -13,7 +13,6 @@ var View = Marionette.View.extend({
 	//serialize the form data//
 	var data = Backbone.Syphon.serialize(this);
 	this.trigger('form:submit', data);
-	console.log(data)
   }
 });
 

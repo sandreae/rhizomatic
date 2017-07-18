@@ -27,12 +27,10 @@ var UsersRadio = Marionette.Object.extend({
 
   showLogin: function(){
     UsersApp.Login.Controller.showLogin();
-    Platform.navigate('login');
   },
 
   logoutUser: function() {  
     gc.request('logout:entities')
-    Platform.navigate('logout');
   },
 
   listUsers: function(){

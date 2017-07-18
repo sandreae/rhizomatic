@@ -1,11 +1,13 @@
 import template from '../templates/list_template.jst'
 import ItemView from './item_view'
 
-console.log(template)
-
 var TableBody = Mn.CollectionView.extend({
   tagName: 'tbody',
-  childView: ItemView
+  childView: ItemView,
+
+  collectionEvents: {
+    'change': 'render'
+  },
 });
 
 var TableView = Mn.View.extend({
@@ -22,7 +24,12 @@ var TableView = Mn.View.extend({
 
   onRender: function() {
     this.showChildView('body', new TableBody({
-      collection: this.collection
+      collection: this.collection,
+
+      filter: function (child, index, collection) {
+        return child.get('published') === 'true';
+      },
+
     }));
   }
 });

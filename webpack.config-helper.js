@@ -56,6 +56,11 @@ module.exports = (options) => {
         {
           test: /\.scss$/,
           loader: ExtractTextPlugin.extract('css!sass')
+        },
+
+        {
+          test: /\.css$/, 
+          loader: ExtractTextPlugin.extract("style-loader", "css-loader")
         }
       ],
     },
@@ -77,16 +82,8 @@ module.exports = (options) => {
         mangle: {screw_ie8: true, keep_fnames: true}
       }),
       new Webpack.optimize.OccurenceOrderPlugin(),
-      new Webpack.optimize.AggressiveMergingPlugin(),
-      new ExtractTextPlugin('style.css', {
-        allChunks: true
-      })
-    );
-
-    webpackConfig.module.loaders.push({
-      test: /\.s?css$/i, 
-      loader: ExtractTextPlugin.extract("style-loader", "css-loader")
-    });
+      new Webpack.optimize.AggressiveMergingPlugin()
+      );
 
   } else {
     webpackConfig.plugins.push(

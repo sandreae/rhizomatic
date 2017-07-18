@@ -28,6 +28,15 @@ export default Mn.View.extend({
     'click @ui.navigate': 'navigate',
   },
 
+  /* isAdmin: function(isAdmin) {
+    console.log('isAdmin filter triggered')
+    var list = this.getChildView('nav-region')
+    var filter = function(child, index, collection) {
+      return child.get('isAdmin') === 'true';
+    };
+    list.setFilter(filter);
+  }, */
+
   sidebarOpen: function (e) {
     e.preventDefault()
     gc.trigger('sidebar:open')

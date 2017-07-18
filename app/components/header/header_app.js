@@ -7,9 +7,11 @@ var MainHandler = Marionette.Object.extend({
     'headers:list': 'listHeaders',
     'user:loggedIn': 'userLoggedIn',
     'user:loggedOut': 'userLoggedOut',
+    'appState:changed': 'appStateChanged',
   },
 
   listHeaders: function() {
+    console.log('listheaders')
     HeaderApp.Controller.listHeaders()
   },
 
@@ -20,8 +22,11 @@ var MainHandler = Marionette.Object.extend({
   userLoggedOut: function() {
     HeaderApp.Controller.userLoggedOut()
   },
-  userLoggedIn: function() {
+  userLoggedIn: function(isAdmin) {
     HeaderApp.Controller.userLoggedIn()
+  },
+
+  appStateChanged: function() {
   },
 })
 

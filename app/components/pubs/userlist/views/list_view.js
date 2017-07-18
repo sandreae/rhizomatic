@@ -5,15 +5,17 @@ import {gc} from '../../../radio'
 var TableBody = Mn.CollectionView.extend({
   tagName: 'tbody',
   childView: ItemView,
+
   collectionEvents: {
     'change': 'render'
   },
-  childViewEvents: {
+
+  childViewTriggers: {
     'showClicked': 'showClicked',
     'deleteClicked': 'deleteClicked',
     'editPubDetails': 'editPubDetails',
     'editPubContent': 'editPubContent',
-    'publishClicked': 'publishClicked'
+    'publishClicked': 'pub:publish'
   },
 
   // using e.target gives us the DOM element that triggered this event function//
@@ -40,6 +42,11 @@ var TableView = Mn.View.extend({
 
   events: {
     'click button.js-new-pub': 'newClicked'
+  },
+
+  onChildviewPubPublish: function(childView) {
+    console.log(childView.model)
+    this.trigger('pub:publish')
   },
 
   newClicked: function(e) {

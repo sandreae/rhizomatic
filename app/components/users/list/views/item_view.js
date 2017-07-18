@@ -1,4 +1,5 @@
 import template from '../templates/item.jst'
+import {gc} from '../../../radio'
 
 export default Marionette.View.extend({
   tagName: 'tr',
@@ -15,20 +16,21 @@ export default Marionette.View.extend({
   },
 
   deleteClicked: function (e) {
+    e.preventDefault()
     e.stopPropagation()
-    this.trigger('user:delete', this.model)
+    this.remove(this.model)  
   },
 
   editClicked: function (e) {
     e.preventDefault()
     e.stopPropagation()
-    this.trigger('user:edit', this.model)
+    gc.trigger('user:edit', this.model.get('_id'))
   },
 
   remove: function () {
     var self = this
     this.$el.fadeOut(function () {
-    Marionette.View.prototype.remove.call(self)
+    self.model.destroy()
     })
   }
 })

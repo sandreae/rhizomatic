@@ -14,6 +14,10 @@ export default Marionette.View.extend({
     'click a.js-delete-pub': 'deleteClicked',
     'click a.js-edit-details': 'editPubDetails',
     'click a.js-edit-content': 'editPubContent',
+    'click a.js-publish': 'pub:publish'
+  },
+
+  triggers: {
     'click a.js-publish': 'publishClicked'
   },
 
@@ -36,7 +40,6 @@ export default Marionette.View.extend({
   editPubDetails: function (e) {
     e.preventDefault()
     e.stopPropagation()
-    console.log('editPubDetails clicked')
     this.trigger('pub:details:edit', this.model)
     gc.trigger('pub:details:edit', this.model.get('_id'))
   },
@@ -50,7 +53,6 @@ export default Marionette.View.extend({
 
   publishClicked: function (e) {
     e.preventDefault()
-    e.stopPropagation()
     this.trigger('pub:publish', this.model)
     gc.trigger('pub:publish', this.model.get('_id'))
 

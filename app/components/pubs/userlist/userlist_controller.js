@@ -6,7 +6,7 @@ var Controller = {
     var fetchingpubs = gc.request('pubs:get')
 
     $.when(fetchingpubs).done(function (pubs) {
-      var user = gc.request('users:get')
+      var user = gc.request('user:getCurrentUser')
       var userPubs = new Backbone.Collection(pubs.filter(function (model) {
         return model.get('contributorId') === user.id
       }))
@@ -15,12 +15,9 @@ var Controller = {
         collection: userPubs
       })
 
-      userPubsList.on('childview:pub:delete', function (childView, model) {
-        pubs.remove(model)
-        model.destroy()
-      })
 
-      userPubsList.on('childview:pub:publish', function (childView, model) {
+      userPubsList.on('childview:pub:publish', function (childView) {
+        var model = childView.model
         model.set({published: true})
         model.save(null, {
           success: function () {

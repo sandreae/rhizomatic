@@ -5,8 +5,6 @@ import script from './../templates/script.jst'
 import showdown from 'showdown'
 import {gc} from '../../../radio'
 
-console.log(mixed)
-
 export default Marionette.View.extend({
 
   getTemplate: function(){

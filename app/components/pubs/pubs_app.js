@@ -1,3 +1,4 @@
+import * as Edit from './edit/edit_controller'
 import * as Show from './show/show_controller'
 import * as New from './new/new_controller'
 import * as Details from './details/details_controller'
@@ -7,6 +8,7 @@ import PubsRouter from './pubs_router'
 import {gc} from '../radio'
 
 var PubsApp = {}
+PubsApp.Edit = Edit
 PubsApp.Show = Show
 PubsApp.New = New
 PubsApp.List = List
@@ -35,13 +37,11 @@ var PubsRadio = Marionette.Object.extend({
   },
 
   editPubDetails: function(id) {
-    console.log('editPubDetails trigger recieved')
     Details.Controller.editPubDetails(id)
   },
 
   editPubContent: function(id) {
-  console.log('editPubContent trigger recieved')
-   Details.Controller.editPub(id)
+    Edit.Controller.editPub(id)
   },
 
   userListPubs: function() {

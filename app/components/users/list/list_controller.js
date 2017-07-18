@@ -16,14 +16,6 @@ var Controller = {
         })
       })
 
-      listUsers.on('childview:user:edit', function (childView, model) {
-        gc.trigger('users:edit', model.get('_id'))
-      })
-
-      listUsers.on('user:new', function () {
-        gc.trigger('user:new')
-      })
-
       Platform.Regions.getRegion('main').show(listUsers)
     })
   }

@@ -1,30 +1,33 @@
 import {View} from './views/new_view'
-import {drafts, newDraft, newPub} from './helpers/new_pub'
 import {gc} from '../../radio'
 
 var Controller = {
   newPub: function () {
 
+  var newPub = new Platform.Entities.Pubs.PubModel()
+  var drafts = new Platform.Entities.Pubs.Drafts()
+  var newDraft = new Platform.Entities.Pubs.Draft({
+    content: 'draft content'
+  })
   var newPubView = new View({
     model: newPub
   })
+  var userID = window.localStorage.userId
 
-  // request pubsCollection via API//
     var fetchingPubsCollection = gc.request('pubs:get')
-  // wait for request to complete//
-
     $.when(fetchingPubsCollection).done(function (pubsCollection) {
       newPubView.on('form:submit', function (data) {
-        var user = gc.request('user:getCurrentUser')
+        console.log(data)
         data.tags = data.tags.split(',')
         data.directedAt = data.directedAt.split(',')
         newPub.save(data, {
           success: function (pub, response) {
+            console.log(pub)
             newDraft.set({
               type: data.type,
               pub: pub.id
             })
-            newPub.set({contributorId: user.get('_id')})
+            newPub.set({contributorId: userID})
             drafts.add(newDraft)
             newPub.set({drafts: drafts})
             pubsCollection.add(newPub)
@@ -45,6 +48,7 @@ var Controller = {
       Platform.Regions.getRegion('sidebar').show(newPubView)
     })
   }
+
 }
 
 export {Controller}

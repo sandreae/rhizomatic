@@ -21,11 +21,11 @@ var Headers = Backbone.Collection.extend({
 
 var initializeHeaders = function() {
   headers = new Headers([
-    {id: '1', name: 'Publications', url: 'publications', navigationTrigger: 'pubs:list'},
-    {id: '2', name: 'About', url: 'about', navigationTrigger: 'about:show' },
-    {id: '3', name: 'Users', url: 'users', navigationTrigger: 'users:list' },
-    {id: '4', name: 'Rhizomes', url: 'rhizomes', navigationTrigger: 'rhizomes:list' },
-    {id: '5', name: 'Login', url: 'login', navigationTrigger: 'user:loginShow' },
+    {id: '1', name: 'Publications', url: 'publications', navigationTrigger: 'pubs:list', admin: false},
+    {id: '2', name: 'About', url: 'about', navigationTrigger: 'about:show', admin: false },
+    {id: '3', name: 'Users', url: 'users', navigationTrigger: 'users:list', admin: true },
+    {id: '4', name: 'Rhizomes', url: 'rhizomes', navigationTrigger: 'rhizomes:list', admin: true },
+    {id: '5', name: 'Login', url: 'login', navigationTrigger: 'user:loginShow', admin: false },
   ]);
   return headers
 };

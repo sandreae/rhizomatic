@@ -11,7 +11,6 @@ export default Marionette.View.extend({
 
   modelEvents: {
   'change': function() {
-    console.log('model in collection was changed');
     }
   },
 
@@ -19,6 +18,5 @@ export default Marionette.View.extend({
     e.preventDefault()
     var model = this.model
     var trigger = model.get('navigationTrigger')
-    console.log(model)
     gc.trigger(trigger)},
 })

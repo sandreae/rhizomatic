@@ -1,5 +1,6 @@
-import './platform.scss';
-import {gc} from '../../app/components/radio'
+import '../css/platform.scss';
+import '../css/simplemde.min.css';
+import {gc} from '../../../app/components/radio'
 
 export default Mn.View.extend({
   el: '#app',

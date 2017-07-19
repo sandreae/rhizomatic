@@ -13,7 +13,7 @@ var Drafts = Backbone.Collection.extend({
   // define Pub model in Platform.Entities module//
 
 var PubModel = Backbone.RelationalModel.extend({
-  urlRoot: '/api/publications',
+  urlRoot: 'process.env.MONGODB_URI/api/publications',
   idAttribute: '_id',
   relations: [{
     type: Backbone.HasMany,

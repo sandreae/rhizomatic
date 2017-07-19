@@ -1,6 +1,11 @@
 import Layout from './theme/layout/layout'
 import {gc} from './components/radio'
 
+var pub = new Platform.Entities.Pubs.Pub({
+  contributor: 'Sam',
+  published: true
+})
+
 var App = Marionette.Application.extend({
   el: 'body',
   region: '#app',
@@ -13,7 +18,8 @@ var App = Marionette.Application.extend({
   },
 
   onStart: function() {
-  	gc.request('user:init')
+    pub.save()
+    gc.request('user:init')
     gc.trigger('headers:list')
 
     if (Backbone.history) {

@@ -13,6 +13,8 @@ mongoose.connect(process.env.MONGODB_URI, function (error) {
     else console.log('mongo connected');
 });
 
+console.log(process.env.MONGODB_URI);
+
 var app = express()
 
 //////JUST FOR DEV////////

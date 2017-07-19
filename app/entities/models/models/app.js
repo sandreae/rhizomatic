@@ -5,7 +5,7 @@ var AppState = Backbone.Model.extend({
 var appState
 
 var initAppState = function() {
-  appState = new AppState({userName: 'visitor', loggedIn: false, isAdmin: false});
+  appState = new AppState({userName: 'visitor', loggedIn: false, isAdmin: true});
   return appState
 };
 

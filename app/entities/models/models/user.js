@@ -1,13 +1,14 @@
 import 'backbone-validation'
 
 var User = Backbone.Model.extend({
+
   idAttribute: '_id',
-  urlRoot: 'http://localhost:3000/api/users'
+  urlRoot: 'mongodb://heroku_h881776d:8tkqo5655d6ep59hpfmd5vc10a@ds161022.mlab.com:61022/heroku_h881776d/api/users'
 })
 
 var Users = Backbone.Collection.extend({
   model: User,
-  url: 'http://localhost:3000/api/users'
+  url: 'mongodb://heroku_h881776d:8tkqo5655d6ep59hpfmd5vc10a@ds161022.mlab.com:61022/heroku_h881776d/api/users'
 })
 
 var UserAPI = {

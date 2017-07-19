@@ -6,12 +6,12 @@ var morgan = require('morgan')
 var cors = require('cors')
 
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/pubs')
+mongoose.connect('mongodb://heroku_h881776d:8tkqo5655d6ep59hpfmd5vc10a@ds161022.mlab.com:61022/heroku_h881776d')
 
 var app = express()
 
 //////JUST FOR DEV////////
-app.use(cors())
+// app.use(cors())
 //////////////////////////
 
 app.use(bodyParser.json({limit: '20mb'}))
@@ -20,14 +20,14 @@ app.use(morgan('dev'))
 
 // JUST FOR DEV COMMUNICATION FOR WEBPACKS PROXY SERVER ///
 
-app.use(function(req, res, next) {
-  // Website you wish to allow to connect
+/* app.use(function(req, res, next) {
+  Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
   res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, x-access-token, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
   next();
-})
+}) */
 
 /////////////////ROUTES///////////////////////
 
@@ -51,7 +51,6 @@ app.use('/api', authenticateRoutes)
 var userRoutes = require('./server/router/user')(app, express)
 app.use('/api', userRoutes)
 
-var port = 3000
-
-app.listen(port)
-console.log('serve on' + port)
+app.listen(process.env.PORT || 3000, function() {
+  console.log('Express server is up and running!');
+})

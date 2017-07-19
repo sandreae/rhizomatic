@@ -13,7 +13,7 @@ var Drafts = Backbone.Collection.extend({
   // define Pub model in Platform.Entities module//
 
 var PubModel = Backbone.RelationalModel.extend({
-  urlRoot: 'http://localhost:3000/api/publications',
+  urlRoot: 'mongodb://heroku_h881776d:8tkqo5655d6ep59hpfmd5vc10a@ds161022.mlab.com:61022/heroku_h881776d/api/publications',
   idAttribute: '_id',
   relations: [{
     type: Backbone.HasMany,
@@ -44,7 +44,7 @@ var PubModel = Backbone.RelationalModel.extend({
   // define Pubs collection in Platform.Entities module//
 
 var PubsCollection = Backbone.Collection.extend({
-  url: 'http://localhost:3000/api/publications',
+  url: 'mongodb://heroku_h881776d:8tkqo5655d6ep59hpfmd5vc10a@ds161022.mlab.com:61022/heroku_h881776d/api/publications',
   model: PubModel
 })
 

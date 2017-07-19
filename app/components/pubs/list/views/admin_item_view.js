@@ -1,4 +1,4 @@
-import template from '../templates/item_template.jst'
+import template from '../templates/admin_template.jst'
 import {gc} from '../../../radio'
 
 export default Marionette.View.extend({

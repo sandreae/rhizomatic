@@ -17,7 +17,6 @@ var Controller = {
     var fetchingPubsCollection = gc.request('pubs:get')
     $.when(fetchingPubsCollection).done(function (pubsCollection) {
       newPubView.on('form:submit', function (data) {
-        console.log(data)
         data.tags = data.tags.split(',')
         data.directedAt = data.directedAt.split(',')
         newPub.save(data, {

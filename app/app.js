@@ -1,7 +1,7 @@
 import Layout from './theme/layout/layout'
 import {gc} from './components/radio'
 
-var pub = new Platform.Entities.Pubs.Pub({
+var pub = new Platform.Entities.Pubs.PubModel({
   contributor: 'Sam',
   published: true
 })

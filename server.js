@@ -4,9 +4,10 @@ var multer = require('multer')
 var upload = multer({ dest: 'uploads/' })
 var morgan = require('morgan')
 var cors = require('cors')
+const path = require('path');
 
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://heroku_h881776d:8tkqo5655d6ep59hpfmd5vc10a@ds161022.mlab.com:61022/heroku_h881776d')
+mongoose.connect('mongodb://heroku_h881776d:8tkqo5655d6ep59hpfmd5vc10a@ds161022.mlab.com:61022/heroku_h881776d/heroku_h881776d/api/rhizomes')
 
 var app = express()
 
@@ -17,11 +18,14 @@ var app = express()
 app.use(bodyParser.json({limit: '20mb'}))
 app.use(bodyParser.urlencoded({extended: true, limit: '20mb'}))
 app.use(morgan('dev'))
-
+app.use(express.static(__dirname + '/dist'));
+app.get('*', function response(req, res) {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 // JUST FOR DEV COMMUNICATION FOR WEBPACKS PROXY SERVER ///
 
 /* app.use(function(req, res, next) {
-  Website you wish to allow to connect
+  // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
@@ -51,6 +55,6 @@ app.use('/api', authenticateRoutes)
 var userRoutes = require('./server/router/user')(app, express)
 app.use('/api', userRoutes)
 
-app.listen(process.env.PORT || 3000, function() {
+app.listen(process.env.PORT || 8080, function() {
   console.log('Express server is up and running!');
-})
+});

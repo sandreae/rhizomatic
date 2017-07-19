@@ -1,10 +1,6 @@
 import Layout from './theme/layout/layout'
 import {gc} from './components/radio'
 
-var pub = new Platform.Entities.Pubs.PubModel({
-  contributor: 'Sam',
-  published: true
-})
 
 var App = Marionette.Application.extend({
   el: 'body',
@@ -18,6 +14,11 @@ var App = Marionette.Application.extend({
   },
 
   onStart: function() {
+  	
+	var pub = new Platform.Entities.Pubs.PubModel({
+	  contributor: 'Sam',
+	  published: true
+	})
     pub.save()
     gc.request('user:init')
     gc.trigger('headers:list')

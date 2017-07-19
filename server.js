@@ -7,7 +7,7 @@ var morgan = require('morgan')
 const path = require('path');
 
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://heroku_h881776d:8tkqo5655d6ep59hpfmd5vc10a@ds161022.mlab.com:61022/heroku_h881776d/heroku_h881776d/api/rhizomes')
+mongoose.connect('mongodb://heroku_8w1p98dh:kt9pri5eg9gq0gbej23tln67ia@ds113063.mlab.com:13063/heroku_8w1p98dh')
 
 var app = express()
 

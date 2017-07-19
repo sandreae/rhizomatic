@@ -1,6 +1,6 @@
 var Rhizome = Backbone.Model.extend({
   idAttribute: '_id',
-  urlRoot: 'mongodb://heroku_h881776d:8tkqo5655d6ep59hpfmd5vc10a@ds161022.mlab.com:61022/heroku_h881776d/api/rhizomes',
+  urlRoot: 'mongodb://heroku_8w1p98dh:kt9pri5eg9gq0gbej23tln67ia@ds113063.mlab.com:13063/heroku_8w1p98dh/api/rhizomes',
   defaults: {
     rhizomeName: '#001'
   }
@@ -8,7 +8,7 @@ var Rhizome = Backbone.Model.extend({
 
 var Rhizomes = Backbone.Collection.extend({
   model: Rhizome,
-  url: 'mongodb://heroku_h881776d:8tkqo5655d6ep59hpfmd5vc10a@ds161022.mlab.com:61022/heroku_h881776d/heroku_h881776d/api/rhizomes'
+  url: 'mongodb://heroku_8w1p98dh:kt9pri5eg9gq0gbej23tln67ia@ds113063.mlab.com:13063/heroku_8w1p98dh/api/rhizomes'
 })
 
 var RhizomeAPI = {

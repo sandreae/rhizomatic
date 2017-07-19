@@ -8,7 +8,9 @@ const path = require('path');
 
 var mongoose = require('mongoose')
 
-mongoose.connect(process.env.MONGODB_URI, function (error) {
+var connect = process.env.MONGODB_URI  ||  "mongodb://localhost/pubs"
+
+mongoose.connect(connect, function (error) {
     if (error) console.error(error);
     else console.log('mongo connected');
 });
@@ -25,9 +27,11 @@ app.use(bodyParser.json({limit: '20mb'}))
 app.use(bodyParser.urlencoded({extended: true, limit: '20mb'}))
 app.use(morgan('dev'))
 app.use(express.static(__dirname + '/dist'));
+
 app.get('*', function response(req, res) {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
+
 // JUST FOR DEV COMMUNICATION FOR WEBPACKS PROXY SERVER ///
 
 /* app.use(function(req, res, next) {
@@ -61,6 +65,6 @@ app.use('/api', authenticateRoutes)
 var userRoutes = require('./server/router/user')(app, express)
 app.use('/api', userRoutes)
 
-app.listen(process.env.PORT || 8080, function() {
+app.listen(process.env.PORT || 3000, function() {
   console.log('Express server is up and running!');
 });

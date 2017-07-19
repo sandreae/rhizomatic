@@ -4,8 +4,8 @@ var Globals = {
     USER_KEY: 'userId'
   },
   urls: {
-    AUTHENTICATE: 'http://localhost:3000/api/authenticate',
-    APP_INFO: 'http://localhost:3000/api/applicationInfo'
+    AUTHENTICATE: '/api/authenticate',
+    APP_INFO: '/api/applicationInfo'
   },
   app: {
     INFO: 'RHIZOMATIC DIGITAL ZINE'

@@ -7,7 +7,11 @@ var morgan = require('morgan')
 const path = require('path');
 
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://heroku_8w1p98dh:kt9pri5eg9gq0gbej23tln67ia@ds113063.mlab.com:13063/heroku_8w1p98dh')
+
+mongoose.connect(process.env.MONGOLAB_URI, function (error) {
+    if (error) console.error(error);
+    else console.log('mongo connected');
+});
 
 var app = express()
 

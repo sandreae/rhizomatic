@@ -3,7 +3,7 @@ var bodyParser = require('body-parser')
 var multer = require('multer')
 var upload = multer({ dest: 'uploads/' })
 var morgan = require('morgan')
-var cors = require('cors')
+// var cors = require('cors')
 const path = require('path');
 
 var mongoose = require('mongoose')

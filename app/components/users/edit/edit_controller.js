@@ -5,6 +5,7 @@ var Controller = {
   editUser: function (id) {
     var fetchingUser = gc.request('user:get', id)
     $.when(fetchingUser).done(function (user) {
+
       var editView = new View({model: user})
 
       editView.on('form:submit', function (data) {

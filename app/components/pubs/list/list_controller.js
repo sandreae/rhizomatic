@@ -9,10 +9,6 @@ var Controller = {
         collection: pubs
       })
 
-      tableView.on('childview:pub:delete', function (model) {
-        pubs.remove(model)
-        model.destroy()
-      })
       Platform.Regions.getRegion('main').show(tableView)
     })
   }

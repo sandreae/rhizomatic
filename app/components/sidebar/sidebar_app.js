@@ -9,7 +9,8 @@ var SidebarRadio = Marionette.Object.extend({
   radioEvents: {
     'sidebar:open': 'sidebarOpen',
     'sidebar:close': 'sidebarClose',
-    'user:loginShow': 'showLogin',
+    'login:clicked': 'showLoginOpen',
+    'sidebar:show:login': 'showLogin',
     'user:loggedOut': 'loggedOut'
   },
 
@@ -36,10 +37,13 @@ var SidebarRadio = Marionette.Object.extend({
     })
   }, */
 
-  showLogin: function() {
-        console.log('loginview triggered')
+  showLoginOpen: function() {
     Show.Controller.showLogin()
     this.sidebarOpen()
+  },
+
+  showLogin: function() {
+    Show.Controller.showLogin()
   },
 
   loggedOut: function() {

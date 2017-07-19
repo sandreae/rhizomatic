@@ -15,13 +15,11 @@ export default Marionette.CollectionView.extend({
   },
 
   appStateChanged: function(appState) {
-  	console.log(appState.get('isAdmin'))
   	var self = this
   	var filter = function(child, index, collection) {
   	  return child.get('admin') === false;
 	};
     if (appState.get('isAdmin') === true){
-    	console.log('remove filter')
       	self.removeFilter({ preventRender: false })}
     else
       {self.setFilter(filter, { preventRender: false })}

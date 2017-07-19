@@ -6,13 +6,8 @@ export default Marionette.View.extend({
   template: template,
 
   events: {
-    'click': 'highlightName',
     'click a.js-edit-user': 'editClicked',
     'click a.js-delete-user': 'deleteClicked'
-  },
-
-  highlightName: function () {
-    this.$el.toggleClass('warning')
   },
 
   deleteClicked: function (e) {

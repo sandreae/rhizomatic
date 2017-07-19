@@ -3,7 +3,6 @@ import {Globals} from './globals'
 
 var user
 var applicationInfo
-var permissions
 
 var Authentication = {
 
@@ -26,7 +25,7 @@ var Authentication = {
 
   getCurrentUser: function () {
     user = new Platform.Entities.Users.User({_id: window.localStorage.userId})
-    user.fetch().success(function () {
+    user.fetch().then(function () {
       return user
     })
     return user

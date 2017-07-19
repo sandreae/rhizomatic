@@ -3,10 +3,10 @@ import {gc} from '../../radio'
 
 var Controller = {
     newUser: function (id) {
-      var newView = new New.User()
+      var user = new Platform.Entities.Users.User()
+      var newView = new View({model: user})
 
       newView.on('form:submit', function (data) {
-        var user = new Platform.Entities.User()
         user.set({
           userName: data.userName,
           email: data.email,

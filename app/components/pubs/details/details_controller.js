@@ -15,11 +15,11 @@ var Controller = {
 
       // on 'form:submit' set pub details//
       editPubDetailsView.on('form:submit', function (data) {
+        var content
         data.tags = data.tags.split(', ')
         data.directedAt = data.directedAt.split(', ')
         var drafts = pubModel.get('drafts')
         var draft = drafts.findWhere({type: data.type})
-                    console.log(draft)
 
         if (draft === undefined) {
           newDraft.set({
@@ -28,10 +28,11 @@ var Controller = {
 
           })
           drafts.add(newDraft)
-        } 
+          content = ''
+        } else {
+          content = draft.get('content')
+        }
         
-        var content = draft.get('content')
-
         pubModel.set({
           type: data.type,
           activeContent: content

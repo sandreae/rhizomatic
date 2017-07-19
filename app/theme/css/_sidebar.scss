@@ -28,7 +28,8 @@
 
 .sidebar table {
     margin: 8px 8px 8px 8px;
-    width: 100%;
+    width: 400px;
+    min-width: 400px;
 }
 
 .sidebar form {
@@ -39,10 +40,6 @@
     padding: 0 10px 10px 0px;
 }
 
-.sidebar td, tr, th {
-    width: 200px;
-    min-width: 200px;
-}
 
 /* When you mouse over the navigation links, change their color */
 .sidebar a:hover, .offcanvas a:focus{

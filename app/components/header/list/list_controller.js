@@ -25,7 +25,7 @@ var Controller = {
       links.findWhere({id: '5'}).set({
         name: 'Login',
         url: 'login',
-        navigationTrigger: 'user:loginShow'
+        navigationTrigger: 'login:clicked'
       })
     },
 

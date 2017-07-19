@@ -12,7 +12,7 @@ module.exports = (options) => {
     devtool: options.devtool,
     output: {
       path: Path.join(__dirname, 'dist'),
-      filename: 'bundle.js'
+      filename: 'bundle.js',
     },
     headers: {
       'Access-Control-Allow-Origin': '*',
@@ -61,12 +61,20 @@ module.exports = (options) => {
         {
           test: /\.css$/, 
           loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i, 
+          loaders: [
+          'file?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false',
+          ]
         }
       ],
     },
     resolve: {
       //fallback: path.resolve(__dirname, 'node_modules'),
       root: Path.join(__dirname, './app/components'),
+      alias: {'jquery-ui': 'jquery-ui-dist/jquery-ui.js'}
     },
     resolveLoader: {
       root: Path.join(__dirname, './node_modules'),

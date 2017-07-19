@@ -1,5 +1,5 @@
 import template from '../templates/image.jst'
-
+import 'dropzone'
 var Image = Marionette.View.extend({
     template: template,
 

@@ -17,7 +17,7 @@ npm install
 ## Development
 
 ```bash
-npm run serve // server runs by default on localhost:3000
+npm run start // server runs by default on localhost:3000
 npm run dev // this runs webpack-dev-server at localhost:8080 and ports via proxy to mongodb
 ```
 

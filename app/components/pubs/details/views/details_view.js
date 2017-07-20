@@ -27,6 +27,4 @@ var View = Marionette.View.extend({
   }
 })
 
-
-
 export {View}

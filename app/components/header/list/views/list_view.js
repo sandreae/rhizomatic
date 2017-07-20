@@ -24,6 +24,7 @@ export default Marionette.CollectionView.extend({
     else
       {self.setFilter(filter, { preventRender: false })}
   },
+  
   filter: function (child, index, collection) {
     return child.get('admin') === false;
   },

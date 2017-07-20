@@ -1,8 +1,6 @@
 Form validation
 Date Picker
 Tag Pool
-Heroku (local storage?)
-remove pub date
 
 :::::DONE:::::
 

@@ -83,7 +83,7 @@
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
     "underscore-template-loader": "^0.7.2",
-    "webpack": "^2.14.0",
+    "webpack": "^1.14.0",
     "webpack-dashboard": "^0.2.0",
     "webpack-dev-server": "^1.16.2",
     "webpack-merge": "^0.15.0"

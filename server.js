@@ -8,14 +8,12 @@ const path = require('path');
 
 var mongoose = require('mongoose')
 
-var connect = process.env.MONGODB_URI  ||  "mongodb://localhost/pubs"
+var address = process.env.MONGODB_URI  ||  "mongodb://localhost/pubs"
 
-mongoose.connect(connect, function (error) {
-    if (error) console.error(error);
-    else console.log('mongo connected');
+var promise = mongoose.connect(address, {
+  useMongoClient: true,
+  /* other options */
 });
-
-console.log(process.env.MONGODB_URI);
 
 var app = express()
 
@@ -64,8 +62,6 @@ app.use('/api', authenticateRoutes)
 
 var userRoutes = require('./server/router/user')(app, express)
 app.use('/api', userRoutes)
-
-
 
 app.listen(process.env.PORT || 3000, function() {
   console.log('Express server is up and running!');

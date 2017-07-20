@@ -28,9 +28,9 @@ app.use(bodyParser.urlencoded({extended: true, limit: '20mb'}))
 app.use(morgan('dev'))
 app.use(express.static(__dirname + '/dist'));
 
-app.get('*', function response(req, res) {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
-});
+// app.get('*', function response(req, res) {
+//  res.sendFile(path.join(__dirname, 'dist/index.html'));
+// });
 
 // JUST FOR DEV COMMUNICATION FOR WEBPACKS PROXY SERVER ///
 
@@ -55,6 +55,9 @@ app.use('/api', uploadRoutes)
 var pubRoutes = require('./server/router/pub')(app, express)
 app.use('/api', pubRoutes)
 
+var userRoutes = require('./server/router/user')(app, express)
+app.use('/api', userRoutes)
+
 // ANY ROUTE AFTER THIS NEEDS AUTHENTICATION //
 
 var authenticateRoutes = require('./server/router/authenticate')(app, express)
@@ -62,8 +65,7 @@ app.use('/api', authenticateRoutes)
 
 ///////////////////////////////////////////////
 
-var userRoutes = require('./server/router/user')(app, express)
-app.use('/api', userRoutes)
+
 
 app.listen(process.env.PORT || 3000, function() {
   console.log('Express server is up and running!');

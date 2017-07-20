@@ -55,15 +55,15 @@ app.use('/api', uploadRoutes)
 var pubRoutes = require('./server/router/pub')(app, express)
 app.use('/api', pubRoutes)
 
-var userRoutes = require('./server/router/user')(app, express)
-app.use('/api', userRoutes)
-
 // ANY ROUTE AFTER THIS NEEDS AUTHENTICATION //
 
 var authenticateRoutes = require('./server/router/authenticate')(app, express)
 app.use('/api', authenticateRoutes)
 
 ///////////////////////////////////////////////
+
+var userRoutes = require('./server/router/user')(app, express)
+app.use('/api', userRoutes)
 
 
 

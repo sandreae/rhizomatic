@@ -32,14 +32,6 @@ var TableView = Mn.View.extend({
     }
   },
 
-  initialize: function(){
-    var self = this
-    gc.on('appState:changed', function(appState) {
-      console.log('view recieved appState change trigger')
-      self.triggerMethod('render')
-    })
-  },
-
   onRender: function() {
     this.showChildView('body', new TableBody({
       collection: this.collection,

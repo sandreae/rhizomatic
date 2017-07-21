@@ -1,7 +1,8 @@
 {
-  "name": "RHIZOMATIC_DIGITAL_ZINE",
-  "description": "",
+  "name": "rhizomatic_web_zine",
+  "description": "A community tool for creative discourse and sharing.",
   "author": "Sam Andreae",
+  "license": "MIT",
   "version": "1.0.2",
   "repository": {
     "type": "git",

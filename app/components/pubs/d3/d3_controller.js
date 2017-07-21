@@ -1,4 +1,4 @@
-import {TableView} from './views/list_view'
+import {TableView} from './views/d3_view'
 import {gc} from '../../radio'
 
 var Controller = {

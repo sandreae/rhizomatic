@@ -17,6 +17,19 @@ module.exports = function (app, express) {
     })
   })
 
+  pubRouter.get('/publicationsd3', function(req, res) {
+    Pub.find(function (err, pubs) {
+      pubs.forEach(function (item) {
+        console.log('Received a GET request for _id: ' + item._id)
+      })
+      if (!err) {
+      return res.send(pubs)
+    } else {
+      return console.log(err)
+    }
+    })
+  })
+
   pubRouter.get('/publications/:id', function (req, res) {
     return Pub.findById(req.params.id, function (err, pub) {
       if (!err) {

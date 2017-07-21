@@ -30,6 +30,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
     "codemirror": "^5.27.4",
+    "d3": "^4.10.0",
     "dropzone": "^5.1.1",
     "express": "^4.15.3",
     "jquery": "^1.12.4",

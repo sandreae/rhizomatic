@@ -1,15 +1,15 @@
-import {TableView} from './views/list_view'
+import {D3View} from './views/d3_view'
 import {gc} from '../../radio'
 
 var Controller = {
   listPubs: function() {
 
    $.when(gc.request('pubs:get')).done(function (pubs) {
-      var tableView = new TableView({
-        collection: pubs
+      var d3View = new D3View({
+        model: false
       })
 
-      Platform.Regions.getRegion('main').show(tableView)
+      Platform.Regions.getRegion('main').show(d3View)
     })
   }
 }

@@ -1,5 +1,6 @@
 import template from '../templates/mixed.jst'
 import SimpleMDE from 'simplemde'
+
 var Mixed = Marionette.View.extend({
     template: template,
 
@@ -9,7 +10,6 @@ var Mixed = Marionette.View.extend({
 
     onAttach: function () {
       var element = $('#simplemde').get(0)
-      console.log(element)
       var editor = new SimpleMDE({element: element})
       $('#simplemde').data({editor: editor})
     },

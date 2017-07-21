@@ -1,0 +1,179 @@
+{
+  "nodes": [
+    {
+      "id": "1",
+      "activeContent" : "5f624e5da9c219247d7e8100b3331a88",
+      "contributor" : "Sam",
+      "contributorId" : "595136e8d58381673bae6c26",
+      "directedAt" : [
+        "Rod"
+      ],
+      "drafts": [],
+      "invitedBy" : "null",
+      "inRhizome" : "#001",
+      "pubDate": "2017-01-21T15:59:27",
+      "published" : "true",
+      "tags" : [
+        "Graphic Scores",
+        "Improvised Music",
+        "Composition"
+      ],
+      "title" : "Graphic Scores and Improvised Music",
+      "type" : "image"
+    },
+    {
+      "id": "2",
+      "activeContent" : "Some text and sentences.",
+      "contributor" : "Rod",
+      "contributorId" : "09876543",
+      "directedAt" : [
+        "Tom"
+      ],
+      "drafts": [],
+      "invitedBy" : "",
+      "inRhizome" : "#001",
+      "pubDate": "2017-04-19T09:03:00",
+      "published" : "true",
+      "tags" : [
+        "Writing",
+        "Categories",
+        "Tags",
+        "Publishing"
+      ],
+      "title" : "Organizational structures for online publishing (the classic categories vs tags gaff)",
+      "type" : "mixed"
+    },
+
+
+
+    {
+      "id": "3",
+      "activeContent" : "Lots of sentences about stuff here",
+      "contributor" : "Tom",
+      "contributorId" : "12345678",
+      "directedAt" : [
+        "Sam"
+      ],
+      "drafts": [],
+      "invitedBy" : "Rod",
+      "inRhizome" : "#001",
+      "pubDate": "2017-05-21T19:39:00",
+      "published" : "true",
+      "tags" : [
+        "saxophone",
+        "Composition",
+        "Ensemble",
+        "Improvisation"
+      ],
+      "title" : "Writing for lots of Saxophones at once (like several people playing them, not one person playing them all at the same time)",
+      "type" : "mixed"
+    },
+
+ {
+      "id": "4",
+      "activeContent" : "5f624e5da9c219247d7e8100b3331a88",
+      "contributor" : "Sam",
+      "contributorId" : "595136e8d58381673bae6c26",
+      "directedAt" : [
+        "Rod",
+        "Ang"
+      ],
+      "drafts": [],
+      "invitedBy" : "Tom",
+      "inRhizome" : "#001",
+      "pubDate": "2017-07-20T15:59:27",
+      "published" : "true",
+      "tags" : [
+        "Objects",
+        "Improvised Music",
+        "Voice",
+        "Gesture",
+        "Body"
+      ],
+      "title" : "Instruments Don’t Matter",
+      "type" : "mixed"
+    },
+
+ {
+      "id": "5",
+      "activeContent" : "5f624e5da9c219247d7e8100b3331a88",
+      "contributor" : "Ang",
+      "contributorId" : "595136e8d58381673bae6c26",
+      "directedAt" : [
+        "Braxton",
+        "Alex Harker"
+      ],
+      "drafts": [],
+      "invitedBy" : "Sam",
+      "inRhizome" : "#001",
+      "pubDate": "2017-07-21T17:59:27",
+      "published" : "true",
+      "tags" : [
+        "Heritage",
+        "Timbre",
+        "Sound",
+        "Method",
+        "Interface",
+        "Integration",
+        "Tools"
+      ],
+      "title" : "You can’t just do without instruments",
+      "type" : "mixed"
+    },
+
+ {
+      "id": "6",
+      "activeContent" : "5f624e5da9c219247d7e8100b3331a88",
+      "contributor" : "Rod",
+      "contributorId" : "595136e8d58381673bae6c26",
+      "directedAt" : [
+        "Ang"
+      ],
+      "drafts": [],
+      "invitedBy" : "Sam",
+      "inRhizome" : "#001",
+      "pubDate": "2017-07-21T14:59:27",
+      "published" : "true",
+      "tags" : [
+        "Objects",
+        "Improvised Music",
+        "Gesture",
+        "Body"
+      ],
+      "title" : "Instruments Don’t Matter - A Response",
+      "type" : "mixed"
+    }
+  ],
+
+  "links": {
+    "directedAtPub":  [
+      { "source": "1", "target": "2"},
+      { "source": "2", "target": "3"},
+      { "source": "3", "target": "4"},
+      { "source": "4", "target": "5"},
+      { "source": "4", "target": "6"}
+    ],
+    "chronology":  [
+      { "source": "1", "target": "2"},
+      { "source": "2", "target": "3"},
+      { "source": "3", "target": "4"},
+      { "source": "4", "target": "6"},
+      { "source": "4", "target": "5"}
+    ],
+    "authorChronological":  [
+      { "source": "1", "target": "4"},
+      { "source": "2", "target": "6"}
+    ],
+    "tagsImprov":  [
+      { "source": "1", "target": "3"},
+      { "source": "1", "target": "4"},
+      { "source": "1", "target": "6"},
+      { "source": "3", "target": "4"},
+      { "source": "3", "target": "6"},
+      { "source": "4", "target": "6"}
+    ],
+    "tagsComposition":  [
+      { "source": "1", "target": "3"}
+    ]
+  }
+}

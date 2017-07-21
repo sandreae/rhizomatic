@@ -5,7 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 var DashboardPlugin = require('webpack-dashboard/plugin');
 
-
 module.exports = (options) => {
 
   let webpackConfig = {
@@ -63,6 +62,10 @@ module.exports = (options) => {
           'file?hash=sha512&digest=hex&name=[hash].[ext]',
           'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false',
           ]
+        },
+        {
+          test: /\.json$/,
+          loader: 'json-loader'
         }
       ],
     },

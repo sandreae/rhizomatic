@@ -8,24 +8,35 @@ var D3View = Mn.View.extend({
   className: 'd3',
   template: template,
 
+  events: {
+  'change select.form-control': 'submitClicked'
+  },
 
   onAttach: function() {
+    var filter = 'directedAtPub'
+    this.runD3(filter)
+  },
 
-    console.log(data)
-    var dataJSON = JSON.stringify(data)
-    console.log(dataJSON)
+  submitClicked: function(e){
+  e.preventDefault();
+  //serialize the form data//
+  var formdata = Backbone.Syphon.serialize(this);
+  var filter = formdata.filter
+  this.runD3(filter)
+  },
 
-
+  runD3: function(filter) {
+    d3.selectAll("svg > *").remove();
     var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
-var color = d3.scaleOrdinal(d3.schemeCategory10);
-var simulation = d3.forceSimulation()
+    var color = d3.scaleOrdinal(d3.schemeCategory10);
+    var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }))
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2));
   var root = data
-  var myLinks = root.links.tagsImprov;
+  var myLinks = root.links[filter];
   console.log(myLinks);
   
   var link = svg.append("g")

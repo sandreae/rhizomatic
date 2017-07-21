@@ -30,6 +30,7 @@ module.exports = function (app, express) {
         }
       })
     })
+
     .get(function(req, res) {
       User.find(function(err, users) {
         if (err) {

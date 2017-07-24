@@ -3,28 +3,29 @@ import {gc} from '../../radio'
 
 var Controller = {
   editPubDetails: function(id) {
-    var fetchingPubModel = gc.request('pub:get', id)
-    $.when(fetchingPubModel).done(function (pubModel) {
+    var fetchingPub = gc.request('pub:get', id)
+    $.when(fetchingPub).done(function (pub) {
       var newDraft = new Platform.Entities.Pubs.Draft({
         content: 'draft content'
       })
 
       var editPubDetailsView = new View({
-        model: pubModel
+        model: pub
       })
 
       // on 'form:submit' set pub details//
       editPubDetailsView.on('form:submit', function (data) {
         var content
-        data.tags = data.tags.split(', ')
-        data.directedAt = data.directedAt.split(', ')
-        var drafts = pubModel.get('drafts')
+        if (data.tags !== "") {data.tags = data.tags.split(', ')}
+        if (data.directedAt !== "") { data.directedAt.split(', ')}
+        console.log(data)
+        var drafts = pub.get('drafts')
         var draft = drafts.findWhere({type: data.type})
 
         if (draft === undefined) {
           newDraft.set({
             type: data.type,
-            pub: pubModel.get('_id')
+            pub: pub.get('_id')
 
           })
           drafts.add(newDraft)
@@ -32,19 +33,18 @@ var Controller = {
         } else {
           content = draft.get('content')
         }
-        
-        pubModel.set({
+
+        pub.set({
           type: data.type,
           activeContent: content
         })
 
-        pubModel.save(data, {
-          success: function () {
-            console.log(data)
-            gc.trigger('user:listPubs')
-            gc.trigger('pubs:list')
-          }
-        })
+        if (pub.save(data)){
+          gc.trigger('user:listPubs')
+          gc.trigger('pub:content:edit', pub.get('_id'));
+        } else {
+          editPubDetailsView.triggerMethod('form:data:invalid', pub.validationError);
+        }
       })
 
       Platform.Regions.getRegion('sidebar').show(editPubDetailsView)

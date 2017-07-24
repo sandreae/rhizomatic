@@ -38,6 +38,35 @@ var PubModel = Backbone.RelationalModel.extend({
     directedAt: '',
     published: 'false',
     inRhizome: ''
+  },
+
+  validate: function(attrs, options) {
+    var errors = {}
+    if (!attrs.contributor) {
+      errors.contributor = "please choose your author name for this article"
+    } else {
+      if (attrs.contributor.length < 2) {
+        errors.contributor = "author name must be more than 1 character"
+      }
+    }
+    if (!attrs.title) {
+      errors.title = "can't be blank"
+    }
+    if (!attrs.type) {
+      errors.type = "please choose an editing mode"
+    }
+    if (!attrs.pubDate) {
+      errors.pubDate = "please choose a publication date"
+    }
+    if (typeof attrs.tags === 'undefined' || attrs.tags.length < 1) {
+      errors.tags = "please choose one or more tags"
+    }
+    if (!attrs.directedAt) {
+      errors.directedAt = "please choose someone to invite a response from"
+    }
+    if (!_.isEmpty(errors)) {
+      return errors;
+    }
   }
 })
 

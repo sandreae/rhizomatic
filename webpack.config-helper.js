@@ -32,7 +32,7 @@ module.exports = (options) => {
         Marionette: 'backbone.marionette',
         Mn: 'backbone.marionette',
       }),
-      new ExtractTextPlugin('style.css')
+      new ExtractTextPlugin('style.css'),
     ],
     module: {
       loaders: [{

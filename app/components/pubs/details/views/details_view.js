@@ -1,7 +1,6 @@
 import template from './..//templates/details.jst'
 import 'backbone.syphon'
 import 'jquery-ui'
-import 'backbone-forms'
 
 var View = Marionette.View.extend({
   

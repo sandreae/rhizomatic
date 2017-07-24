@@ -1,6 +1,7 @@
 import {Mixed} from './views/mixed_view'
 import {Image} from './views/image_view'
 import {Script} from './views/script_view'
+import {ImageSidebar} from './views/image_sidebar'
 import {gc} from '../../radio'
 
 var Controller = {
@@ -10,6 +11,7 @@ var Controller = {
       $.when(fetchingPubModel).done(function(pubModel){
 
         // grab pub type and instantiate appropriate view//
+        var editSidebarView = new ImageSidebar()
         var editPubContentView
         var type = pubModel.get('type')
         if (type === 'mixed'){
@@ -26,7 +28,7 @@ var Controller = {
           })}
 
       // on 'form:submit' save form content to existing or new draft, then save pub//
-        editPubContentView.on('form:submit', function (content) {
+        editSidebarView.on('form:submit', function (content) {
           // find draft for current type//
           var drafts = pubModel.get('drafts')
           var draft = drafts.findWhere({type: type})
@@ -40,6 +42,7 @@ var Controller = {
           })
         })
         Platform.Regions.getRegion('main').show(editPubContentView)
+        Platform.Regions.getRegion('sidebar').show(editSidebarView)
       })
     }
   }

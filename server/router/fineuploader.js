@@ -1,71 +1,15 @@
-var express = require('express')
-var bodyParser = require('body-parser')
-var multer = require('multer')
-var upload = multer({ dest: 'uploads/' })
-var morgan = require('morgan')
-var cors = require('cors')
-const path = require('path');
-
-var mongoose = require('mongoose')
-
-var address = process.env.MONGODB_URI  ||  "mongodb://localhost/pubs"
-
-var promise = mongoose.connect(address, {
-  useMongoClient: true,
-  /* other options */
-});
-
-var app = express()
-
-//////JUST FOR DEV////////
-app.use(cors())
-//////////////////////////
-
-app.use(bodyParser.json({limit: '20mb'}))
-app.use(bodyParser.urlencoded({extended: true, limit: '20mb'}))
-app.use(morgan('dev'))
-app.use(express.static(__dirname + '/dist'));
-
-// app.get('*', function response(req, res) {
-//  res.sendFile(path.join(__dirname, 'dist/index.html'));
-// });
-
-// JUST FOR DEV COMMUNICATION FOR WEBPACKS PROXY SERVER ///
-
-/* app.use(function(req, res, next) {
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
-  res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, x-access-token, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
-  next();
-}) */
-
-/////////////////ROUTES///////////////////////
-
-
-var rhizomeRoutes = require('./server/router/rhizome')(app, express)
-app.use('/api', rhizomeRoutes)
-
-// var uploadRoutes = require('./server/router/uploads')(app, express)
-// app.use('/api', uploadRoutes)
-
-var pubRoutes = require('./server/router/pub')(app, express)
-app.use('/api', pubRoutes)
-
-var userRoutes = require('./server/router/user')(app, express)
-app.use('/api', userRoutes)
-
-var fs = require("fs"),
+var express = require("express"),
+    fs = require("fs"),
     rimraf = require("rimraf"),
     mkdirp = require("mkdirp"),
     multiparty = require('multiparty'),
-    
+    app = express(),
+
     // paths/constants
     fileInputName = process.env.FILE_INPUT_NAME || "qqfile",
     publicDir = process.env.PUBLIC_DIR,
     nodeModulesDir = process.env.NODE_MODULES_DIR,
-    uploadedFilesPath = ("dist/uploads/"),
+    uploadedFilesPath = process.env.UPLOADED_FILES_DIR,
     chunkDirName = "chunks",
     maxFileSize = process.env.MAX_FILE_SIZE || 0; // in bytes, 0 for unlimited
 
@@ -73,6 +17,7 @@ var fs = require("fs"),
 // routes
 app.post("/uploads", onUpload);
 app.delete("/uploads/:uuid", onDeleteFile);
+module.exports = function(app, express) {
 
 
 function onUpload(req, res) {
@@ -103,12 +48,8 @@ function onSimpleUpload(fields, file, res) {
 
     if (isValid(file.size)) {
         moveUploadedFile(file, uuid, function() {
-        	responseData.url = "uploads/" + uuid + "/" + file.name
-        	responseData.file = file
-        	responseData.uuid = uuid
                 responseData.success = true;
                 res.send(responseData);
-
             },
             function() {
                 responseData.error = "Problem copying the file!";
@@ -279,13 +220,5 @@ function getChunkFilename(index, count) {
 
     return (zeros + index).slice(-digits);
 }
-// ANY ROUTE AFTER THIS NEEDS AUTHENTICATION //
 
-var authenticateRoutes = require('./server/router/authenticate')(app, express)
-app.use('/api', authenticateRoutes)
-
-///////////////////////////////////////////////
-
-app.listen(process.env.PORT || 3000, function() {
-  console.log('Express server is up and running!');
-});
+}

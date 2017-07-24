@@ -32,6 +32,7 @@ var Controller = {
           var draft = drafts.findWhere({type: type})
           draft.set({content: content})
           pubModel.set({activeContent: content})
+          console.log(pubModel)
           pubModel.save(null, {
             success: function () {
               gc.trigger('pub:show', pubModel.get('_id'))

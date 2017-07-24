@@ -1,28 +1,51 @@
 import template from '../templates/image.jst'
-import 'dropzone'
+import qq from 'fine-uploader'
+import {gc} from '../../../radio'
+import 'jquery-ui'
+
 var Image = Marionette.View.extend({
     template: template,
 
     onAttach: function () {
-      var self = this
-      this.$('#my-dropzone').dropzone({
-        paramName: 'file',
-        maxFilesize: 20, // MB
-        maxFiles: 1,
-        dictDefaultMessage: 'Drag an image here to upload, or click to select one',
-        acceptedFiles: 'image/*',
-        autoProcessQueue: false,
 
-        init: function () {
-          var myDropzone = this
-          self.$('button.js-submit').click(function () {
-            myDropzone.processQueue()
-          })
-          this.on('success', function (file, resp) {
-            self.trigger('form:submit', resp.filename)
-          })
-        }
-      })
+
+
+
+    this.$("#draggable").draggable()
+    this.$( "#resizable" ).resizable();
+
+    var self = this
+    var token = gc.request('user:getKey')
+
+      var manualUploader = new qq.FineUploader({
+            element: document.getElementById('fine-uploader-manual-trigger'),
+            template: 'qq-template-manual-trigger',
+            request: {
+                endpoint: '/uploads',
+                customHeaders: {
+                  'x-access-token': token
+                }
+            },
+            thumbnails: {
+                placeholders: {
+                    waitingPath: '/source/placeholders/waiting-generic.png',
+                    notAvailablePath: '/source/placeholders/not_available-generic.png'
+                }
+            },
+            autoUpload: false,
+            debug: true,
+            callbacks: {
+              onComplete: function(id, name, response) {
+              console.log(response.url) // prints "bar"
+              var content = response.url
+              self.trigger('form:submit', content)
+            },
+          }
+        });
+
+        qq(document.getElementById("trigger-upload")).attach("click", function() {
+            manualUploader.uploadStoredFiles();
+        });
     }
   })
  export {Image}

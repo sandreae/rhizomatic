@@ -39,7 +39,7 @@ var Controller = {
           activeContent: content
         })
 
-        if (pub.save(data)){
+        if (pub.save(data)) {
           gc.trigger('user:listPubs')
           gc.trigger('pub:content:edit', pub.get('_id'));
         } else {
@@ -47,7 +47,7 @@ var Controller = {
         }
       })
 
-      Platform.Regions.getRegion('sidebar').show(editPubDetailsView)
+      gc.trigger('sidebar:show', editPubDetailsView)
     })
   }
 }

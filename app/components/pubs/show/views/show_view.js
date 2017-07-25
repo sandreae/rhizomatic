@@ -24,4 +24,16 @@ export default Marionette.View.extend({
       model.set({activeContent: html})
     }
   },
+
+  onAttach: function() {
+    var self = this
+    var model = this.model
+    if (model.type === 'image') {
+    // self.$('.ui-draggable').draggable('disable');
+    // self.$('.ui-resizable').resizable('disable');
+    // self.$('.ui.resizable-handle').display = 'none'
+
+    }
+  }
+
 })

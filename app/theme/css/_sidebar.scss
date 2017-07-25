@@ -19,8 +19,8 @@
     display: block;
 }
 
-.sidebar div {
-    padding: 8px 8px 8px 8px;
+.sidebar #js-sidebar-region{
+    padding: 10px 10px 10px 10px;
     display: block;
     width: 400px;
     min-width: 400px;
@@ -69,7 +69,7 @@
 }
 
 .sidebaractive {
-    width: 400px;
+    width: 450px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */

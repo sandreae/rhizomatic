@@ -7,9 +7,9 @@ var Image = Marionette.View.extend({
     template: template,
 
     onAttach: function () {
-
-    this.$("#draggable").draggable()
-    this.$( "#resizable" ).resizable();
+    console.log('onAttach')
+    this.$(".ui-draggable").draggable()
+    this.$(".ui-resizable" ).resizable();
     }
   })
  export {Image}

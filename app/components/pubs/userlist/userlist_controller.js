@@ -26,7 +26,7 @@ var Controller = {
           }
         })
       })
-      Platform.Regions.getRegion('sidebar').show(userPubsList)
+      gc.trigger('sidebar:show', userPubsList)
     })
   },
 

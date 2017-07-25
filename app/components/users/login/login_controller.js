@@ -24,7 +24,7 @@ var Controller = {
             }
         });
       })
-      Platform.Regions.getRegion('sidebar').show(loginView)
+    gc.trigger('sidebar:show', loginView)
   }
 };
 

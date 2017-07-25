@@ -18,5 +18,4 @@ export default Marionette.View.extend({
     e.preventDefault()
     gc.trigger('user:new')
   },
-
 })

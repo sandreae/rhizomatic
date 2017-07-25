@@ -2,6 +2,7 @@ import {Mixed} from './views/mixed_view'
 import {Image} from './views/image_view'
 import {Script} from './views/script_view'
 import {ImageSidebar} from './views/image_sidebar'
+import {MixedSidebar} from './views/mixed_sidebar'
 import {gc} from '../../radio'
 
 var Controller = {
@@ -14,15 +15,22 @@ var Controller = {
         var editSidebarView = new ImageSidebar()
         var editPubContentView
         var type = pubModel.get('type')
-        if (type === 'mixed'){
+        if (type === 'mixed') {
           editPubContentView = new Mixed({
             model: pubModel
-          })}
-        if (type === 'image'){ 
+          })
+          editSidebarView = new MixedSidebar({
+            model: pubModel
+          })
+        }
+        if (type === 'image') {
           editPubContentView = new Image({
             model: pubModel
+          })
+          editPubContentView = new ImageSidebar({
+            model: pubModel
           })}
-        if (type === 'script'){
+        if (type === 'script') {
           editPubContentView = new Script({
             model: pubModel
           })}
@@ -38,11 +46,12 @@ var Controller = {
           pubModel.save(null, {
             success: function () {
               gc.trigger('pub:show', pubModel.get('_id'))
+              gc.trigger('user:listPubs')
             }
           })
         })
         Platform.Regions.getRegion('main').show(editPubContentView)
-        Platform.Regions.getRegion('sidebar').show(editSidebarView)
+        gc.trigger('sidebar:show', editSidebarView)
       })
     }
   }

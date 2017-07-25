@@ -43,11 +43,6 @@ export default Mn.View.extend({
     console.log('sidebar open triggered')
   },
 
-  sidebarClose: function (e) {
-    e.preventDefault()
-    gc.trigger('sidebar:close')
-  },
-
   mobile: function (e) {
     e.preventDefault()
     $(".navbarmobile").toggleClass("active")

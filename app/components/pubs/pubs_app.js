@@ -24,7 +24,6 @@ var PubsRadio = Marionette.Object.extend({
     'pub:new': 'newPub',
     'pub:details:edit': 'editPubDetails',
     'pub:content:edit': 'editPubContent',
-    'pub:publish': 'publishPub',
     'user:loggedIn': 'userListPubs',
     'user:listPubs': 'userListPubs',
   },
@@ -50,11 +49,6 @@ var PubsRadio = Marionette.Object.extend({
     Edit.Controller.editPub(id)
     Edit.Controller.editPubSidebar(id)
     Platform.navigate('publications/edit/' + id)
-  },
-
-  publishPub: function(id) {
-    console.log('published triggered')
-    Publish.Controller.publish(id)
   },
 
   userListPubs: function() {

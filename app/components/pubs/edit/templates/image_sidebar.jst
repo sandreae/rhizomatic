@@ -14,10 +14,18 @@
     <label for="pub-tags" class="form-label">Tags:</label>
     <input class="form-control" id="pub-tags" name="tags" type="text" value="<%- tags %>"/>
   </div>
+  <div class="control-group">      
+    <label for="pub-directedAt" class="form-label">Direct publication at:</label>
+    <input class="form-control" id="pub-directedAt" name="directedAt" type="text" value="<%- directedAt %>"/>
+  </div>
   <div class="control-group">    
     <button class="js-submit">Save</button>
-  </div>    
+  </div>      
 </form>
+<% if (published == 'false') { %>
+  <button class="js-publish">Publish</a>
+<% } else { %> <p>this is published</p> <% } %>
+
 
         
 <script type="text/template" id="qq-template-manual-trigger">

@@ -13,13 +13,6 @@ var Mixed = Marionette.View.extend({
       var editor = new SimpleMDE({element: element})
       $('#simplemde').data({editor: editor})
     },
-
-    submitClicked: function (e) {
-      e.preventDefault()
-      // serialize the form data//
-
-      //this.trigger('form:submit', content)
-    }
   })
 
 export {Mixed}

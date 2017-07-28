@@ -30,5 +30,6 @@ export default Marionette.View.extend({
   backClicked: function (e) {
     e.stopPropagation()
     gc.trigger('user:listPubs')
+    gc.trigger('pubs:list')
   },
 })

@@ -2,17 +2,12 @@
 <td>
 	<ul>
 	  <% if (published == 'false') { %>
-	    <li>
-	      <a href="#" class="js-publish">
-	      Publish
-	      </a>
-	    </li> 
-	  <% } %>
-	  <li>
-	    <a href="#" class="js-edit-details">
-	    Edit Details
-	    </a>
-	  </li>
+        <li>
+	      <a href="#" class="js-edit-details">
+	      Edit Details
+	      </a>  
+	    </li>
+	    <% } else { %> published <% } %>
 	  <li>
 	    <a href="#" class="js-edit-content">
 	    Edit Content

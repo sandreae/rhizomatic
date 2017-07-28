@@ -8,7 +8,8 @@ var ImageSidebar = Marionette.View.extend({
     template: template,
 
     events: {
-      'click button.js-submit': 'submitClicked'
+      'click button.js-submit': 'submitClicked',
+      'click button.js-publish': 'publishClicked'
     },
 
   onAttach: function () {
@@ -63,10 +64,8 @@ var ImageSidebar = Marionette.View.extend({
     e.preventDefault()
     var data = Backbone.Syphon.serialize(this);
     var container = $('#draggable-container')
-    console.log(container)
     var content = $(container).html()
-    console.log(content)
-    this.trigger('form:submit', content, data);
+    this.trigger('form:submit', content, data, this.model)
   },
 
   onFormDataInvalid: function(errors) {
@@ -91,6 +90,11 @@ var ImageSidebar = Marionette.View.extend({
 
     clearFormErrors();
     _.each(errors, markErrors);
-  }
+  },
+
+  publishClicked: function (e) {
+    this.model.set({published: true})
+    this.submitClicked(e)
+  },
 })
 export {ImageSidebar}

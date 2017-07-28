@@ -5,7 +5,8 @@ var MixedSidebar = Marionette.View.extend({
   template: template,
 
   events: {
-    'click button.js-submit': 'submitClicked'
+    'click button.js-submit': 'submitClicked',
+    'click button.js-publish': 'publishClicked'
   },
 
   submitClicked: function(e) {
@@ -13,8 +14,7 @@ var MixedSidebar = Marionette.View.extend({
     var data = Backbone.Syphon.serialize(this);
     var simplemde = $('#simplemde').data('editor')
     var content = simplemde.value()
-    var renderedHTML = simplemde.options.previewRender(content)
-    this.trigger('form:submit', content, data)
+    this.trigger('form:submit', content, data, this.model)
 
     //nvar data = Backbone.Syphon.serialize(this);
     //  this.trigger('form:submit', data);
@@ -42,7 +42,12 @@ var MixedSidebar = Marionette.View.extend({
 
     clearFormErrors();
     _.each(errors, markErrors);
-  }
+  },
+
+  publishClicked: function(e) {
+    this.model.set({published: true})
+    this.submitClicked(e)
+  },
 })
 
 export {MixedSidebar}

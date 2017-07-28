@@ -9,35 +9,35 @@ import {gc} from '../../radio'
 var Controller = {
     editPub: function (id) {
       // request the pub model via API handler using the 'id' argument passed from the router//
-      var fetchingPubModel = gc.request('pub:get', id)
-      $.when(fetchingPubModel).done(function(pubModel){
+      var fetchingpub = gc.request('pub:get', id)
+      $.when(fetchingpub).done(function(pub){
 
         // grab pub type and instantiate appropriate view//
         var editSidebarView = new ImageSidebar()
         var editPubContentView
-        var type = pubModel.get('type')
+        var type = pub.get('type')
         if (type === 'mixed') {
           editPubContentView = new Mixed({
-            model: pubModel
+            model: pub
           })
           editSidebarView = new MixedSidebar({
-            model: pubModel
+            model: pub
           })
         }
         if (type === 'image') {
           editPubContentView = new Image({
-            model: pubModel
+            model: pub
           })
           editSidebarView = new ImageSidebar({
-            model: pubModel
+            model: pub
           })
         }
         if (type === 'script') {
           editPubContentView = new Script({
-            model: pubModel
+            model: pub
           })
           editSidebarView = new ScriptSidebar({
-            model: pubModel
+            model: pub
           })
         }
         Platform.Regions.getRegion('main').show(editPubContentView)
@@ -46,30 +46,30 @@ var Controller = {
 
   editPubSidebar: function (id) {
     // request the pub model via API handler using the 'id' argument passed from the router//
-    var fetchingPubModel = gc.request('pub:get', id)
-    $.when(fetchingPubModel).done(function(pubModel){
+    var fetchingpub = gc.request('pub:get', id)
+    $.when(fetchingpub).done(function(pub){
 
       // grab pub type and instantiate appropriate view//
       var editSidebarView = new ImageSidebar()
       var editPubContentView
-      var type = pubModel.get('type')
+      var type = pub.get('type')
       if (type === 'mixed') {
         editSidebarView = new MixedSidebar({
-          model: pubModel
+          model: pub
         })
       }
       if (type === 'image') {
         editSidebarView = new ImageSidebar({
-          model: pubModel
+          model: pub
         })
       }
       if (type === 'script') {
         editSidebarView = new ScriptSidebar({
-          model: pubModel
+          model: pub
         })
       }
 
-      editSidebarView.on('form:submit', function (content, data) {
+      editSidebarView.on('form:submit', function (content, data, pubModel) {
         var drafts = pubModel.get('drafts')
         var draft = drafts.findWhere({type: type})
         draft.set({content: content})
@@ -79,11 +79,11 @@ var Controller = {
           title: data.title,
           tags: data.tags,
         })
-        pubModel.save(null, {
-          success: function() {
-            gc.trigger('pub:show', pubModel.get('_id'))
-          }
-        })
+        if (pubModel.save(data)) {
+          gc.trigger('pubs:list')
+        } else {
+          editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError);
+        }
       })
       gc.trigger('sidebar:show', editSidebarView)
     })

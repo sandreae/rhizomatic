@@ -2,8 +2,8 @@ export default Mn.AppRouter.extend({
   appRoutes: {
     'publications/:id': 'showPub',
     'publications': 'listPubs',
-    'publications/new/': 'newPub',
-    'publications/:id/edit/details': 'editPubDetails',
-    'publications/:id/edit/content': 'editPubContent'
+    'publications/new': 'newPub',
+    'publications/details/:id': 'editPubDetails',
+    'publications/edit/:id': 'editPubContent'
   },
 });

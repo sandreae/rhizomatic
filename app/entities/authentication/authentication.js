@@ -24,11 +24,14 @@ var Authentication = {
   },
 
   getCurrentUser: function () {
-    user = new Platform.Entities.Users.User({_id: window.localStorage.userId})
-    user.fetch().then(function () {
+    var userId = window.localStorage.userId
+    if (userId) {
+      user = new Platform.Entities.Users.User({_id: window.localStorage.userId})
+      user.fetch().then(function () {
+        return user
+      })
       return user
-    })
-    return user
+    } else {return false}
   },
 
   logoutUser: function() {

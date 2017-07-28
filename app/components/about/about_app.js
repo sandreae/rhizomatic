@@ -10,6 +10,7 @@ var PubsRadio = Marionette.Object.extend({
 
   showAbout: function() {
     AboutApp.Controller.showAbout()
+    Platform.PubsApp.UserList.Controller.userListPubs()
     Platform.navigate('about')
   }
 })

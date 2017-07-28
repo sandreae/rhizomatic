@@ -2,34 +2,24 @@ import {TableView} from './views/list_view'
 import {gc} from '../../radio'
 
 var Controller = {
-  userListPubs: function () {
-    var fetchingpubs = gc.request('pubs:get')
+  userListPubs: function() {
+    console.log(gc.request('user:getCurrentUser'))
+    if (gc.request('user:getCurrentUser')) {
+      var fetchingpubs = gc.request('pubs:get')
+      $.when(fetchingpubs).done(function (pubs) {
+        var user = gc.request('user:getCurrentUser')
+        var userPubs = new Backbone.Collection(pubs.filter(function (model) {
+          return model.get('contributorId') === user.id
+        }))
 
-    $.when(fetchingpubs).done(function (pubs) {
-      var user = gc.request('user:getCurrentUser')
-      var userPubs = new Backbone.Collection(pubs.filter(function (model) {
-        return model.get('contributorId') === user.id
-      }))
-
-      var userPubsList = new TableView({
-        collection: userPubs
-      })
-
-
-      userPubsList.on('childview:pub:publish', function (childView) {
-        var model = childView.model
-        model.set({published: true})
-        model.save(null, {
-          success: function () {
-            console.log('pub published')
-            Controller.newInvitedPub(model)
-          }
+        var userPubsList = new TableView({
+          collection: userPubs
         })
-      })
-      gc.trigger('sidebar:show', userPubsList)
-    })
+        gc.trigger('sidebar:show', userPubsList)
+      })} else {
+      gc.trigger('user:login')
+    }
   },
-
   newInvitedPub: function (model) {
     var invitedUsers = model.get('directedAt')
     var fetchingUsers = gc.request('users:get')

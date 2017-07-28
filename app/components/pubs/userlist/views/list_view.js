@@ -44,11 +44,6 @@ var TableView = Mn.View.extend({
     'click button.js-new-pub': 'newClicked'
   },
 
-  onChildviewPubPublish: function(childView) {
-    console.log(childView.model)
-    this.trigger('pub:publish')
-  },
-
   newClicked: function(e) {
     e.preventDefault()
     gc.trigger('pub:new')

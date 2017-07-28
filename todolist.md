@@ -1,5 +1,5 @@
-Form validation
-Date Picker
+Validations form
+split editing views (in folders)
 Tag Pool
 
 :::::DONE:::::

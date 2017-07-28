@@ -17,9 +17,7 @@ var Controller = {
     var fetchingPubsCollection = gc.request('pubs:get')
     $.when(fetchingPubsCollection).done(function (pubsCollection) {
       newPubView.on('form:submit', function (data) {
-        data.tags = data.tags.split(',')
-        data.directedAt = data.directedAt.split(',')
-        newPub.save(data, {
+        if (newPub.save(data, {
           success: function (pub, response) {
             console.log(pub)
             newDraft.set({
@@ -36,8 +34,10 @@ var Controller = {
                 gc.trigger('user:listPubs')
               }
             })
-          }
-        })
+          },
+        })) {console.log('sucess')} else {
+          newPubView.triggerMethod('form:data:invalid', newPub.validationError);
+        }
       //  if(newPub.save(data)){
       //  console.log('new pub saved with id:' + newPub.get('_id'))
       //  pubsCollection.add(newPub)

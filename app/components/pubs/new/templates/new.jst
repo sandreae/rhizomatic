@@ -1,0 +1,26 @@
+<form>
+  <div class="control-group">
+    <label for="pub-contributor">Contributor:</label>
+    <input class="form-control" id="pub-contributor" name="contributor" type="text" value="<%- contributor %>"/>
+  </div>
+  <div class="control-group">   
+    <label for="pub-title">Title:</label>
+    <input class="form-control" id="pub-title" name="title" type="text" value="<%- title %>"/>
+  </div>
+  <div class="control-group">      
+    <label for="pub-pubDate" class="form-label">Publication Date:</label>
+    <input class="form-control" id="pub-pubDate" name="pubDate" type="text" value="<%- pubDate %>"/>
+  </div>
+  <div class="control-group">      
+    <label for="pub-type" class="form-label">Type:</label>
+    <select class="form-control" id="pub-type" name="type">
+      <option selected hidden value="<%- type %>"><%- type %></option>
+      <option value="mixed">mixed</option>
+      <option value="image">image</option>
+      <option value="script">script</option>
+    </select>
+  </div>
+  <div class="control-group">    
+    <button class="js-submit">Save</button>
+  </div>    
+</form>

@@ -10,6 +10,7 @@ var Controller = {
       })
 
       Platform.Regions.getRegion('main').show(listUsers)
+      UserList.Controller.userListPubs()
     })
   }
 }

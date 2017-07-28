@@ -14,11 +14,8 @@ export default Marionette.View.extend({
     'click a.js-delete-pub': 'deleteClicked',
     'click a.js-edit-details': 'editPubDetails',
     'click a.js-edit-content': 'editPubContent',
-    'click a.js-publish': 'pub:publish'
-  },
-
-  triggers: {
     'click a.js-publish': 'publishClicked'
+
   },
 
   deleteClicked: function (e) {
@@ -53,10 +50,8 @@ export default Marionette.View.extend({
 
   publishClicked: function (e) {
     e.preventDefault()
-    this.trigger('pub:publish', this.model)
+    console.log('published clicked')
     gc.trigger('pub:publish', this.model.get('_id'))
-
-    // this.trigger('pub:user:view', this.model)
   },
 
   remove: function () {

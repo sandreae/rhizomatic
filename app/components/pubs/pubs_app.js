@@ -4,6 +4,7 @@ import * as New from './new/new_controller'
 import * as Details from './details/details_controller'
 import * as List from './list/list_controller'
 import * as UserList from './userlist/userlist_controller'
+import * as Publish from './publish/publish_controller'
 import PubsRouter from './pubs_router'
 import {gc} from '../radio'
 
@@ -13,6 +14,7 @@ PubsApp.Show = Show
 PubsApp.New = New
 PubsApp.List = List
 PubsApp.UserList = UserList
+PubsApp.Publish = Publish
 
 var PubsRadio = Marionette.Object.extend({
   channelName: 'gc',
@@ -22,26 +24,37 @@ var PubsRadio = Marionette.Object.extend({
     'pub:new': 'newPub',
     'pub:details:edit': 'editPubDetails',
     'pub:content:edit': 'editPubContent',
+    'pub:publish': 'publishPub',
     'user:loggedIn': 'userListPubs',
     'user:listPubs': 'userListPubs',
   },
 
   listPubs: function() {
     List.Controller.listPubs()
+    UserList.Controller.userListPubs()
     Platform.navigate('publications')
   },
 
   showPub: function(id) {
     Show.Controller.showPub(id)
+    UserList.Controller.userListPubs()
     Platform.navigate('publications/' + id)
   },
 
   editPubDetails: function(id) {
     Details.Controller.editPubDetails(id)
+    Platform.navigate('publications/details/' + id)
   },
 
   editPubContent: function(id) {
     Edit.Controller.editPub(id)
+    Edit.Controller.editPubSidebar(id)
+    Platform.navigate('publications/edit/' + id)
+  },
+
+  publishPub: function(id) {
+    console.log('published triggered')
+    Publish.Controller.publish(id)
   },
 
   userListPubs: function() {
@@ -50,8 +63,7 @@ var PubsRadio = Marionette.Object.extend({
 
   newPub: function() {
     New.Controller.newPub()
-
-   // New.Controller.newPub()
+    Platform.navigate('publications/new')
   }})
 
 PubsApp.Radio = new PubsRadio()

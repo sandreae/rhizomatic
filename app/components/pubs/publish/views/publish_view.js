@@ -1,29 +1,21 @@
-import template from './../templates/new.jst'
+import template from './..//templates/publish.jst'
 import 'backbone.syphon'
+import 'jquery-ui'
 
 var View = Marionette.View.extend({
+  
   template: template,
 
   events: {
-	'click button.js-submit': 'submitClicked'
+    'click button.js-submit': 'submitClicked'
   },
 
-  onDomRefresh: function() {
-    console.log('date picker shown')
-    $("#pub-pubDate").datepicker({
-      changeMonth: true,//this option for allowing user to select month
-      changeYear: true //this option for allowing user to select from year range
-    });
-  },
+  submitClicked: function (e) {
+    e.preventDefault()
+    var data = Backbone.Syphon.serialize(this);
+      this.trigger("form:submit", data);
+    },
 
-  submitClicked: function(e){
-	e.preventDefault();
-	//serialize the form data//
-	var data = Backbone.Syphon.serialize(this);
-	console.log(data)
-	this.trigger('form:submit', data);
-  },
-  
   onFormDataInvalid: function(errors){
     console.log(errors)
     var $view = this.$el;
@@ -47,7 +39,6 @@ var View = Marionette.View.extend({
     clearFormErrors();
     _.each(errors, markErrors);
   }
-
-});
+})
 
 export {View}

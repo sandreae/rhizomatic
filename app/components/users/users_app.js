@@ -35,8 +35,8 @@ var UsersRadio = Marionette.Object.extend({
 
   listUsers: function(){
     // if (gc.request('isAuth')){
-      UsersApp.List.Controller.listUsers();
-      Platform.navigate('users')
+    UsersApp.List.Controller.listUsers();
+    Platform.navigate('users')
     // } else {
     //  gc.request('user:login')
     //,

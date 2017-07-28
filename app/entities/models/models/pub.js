@@ -58,10 +58,10 @@ var PubModel = Backbone.RelationalModel.extend({
     if (!attrs.pubDate) {
       errors.pubDate = "please choose a publication date"
     }
-    if (typeof attrs.tags === 'undefined' || attrs.tags.length < 1) {
+    if (attrs.published === true && attrs.tags.length < 1) {
       errors.tags = "please choose one or more tags"
     }
-    if (!attrs.directedAt) {
+    if (attrs.published === true && attrs.directedAt < 1) {
       errors.directedAt = "please choose someone to invite a response from"
     }
     if (!_.isEmpty(errors)) {

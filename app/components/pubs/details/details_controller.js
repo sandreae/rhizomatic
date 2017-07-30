@@ -15,12 +15,13 @@ var Controller = {
 
       // on 'form:submit' set pub details//
       editPubDetailsView.on('form:submit', function (data) {
-        var content
-        if (data.tags !== "") {data.tags = data.tags.split(', ')}
-        if (data.directedAt !== "") { data.directedAt.split(', ')}
-        console.log(data)
+        var content = ''
         var drafts = pub.get('drafts')
         var draft = drafts.findWhere({type: data.type})
+        if (data.type === 'audio'){content = []}
+        if (data.tags !== "") {data.tags = data.tags.split(', ')}
+        if (data.directedAt !== "") { data.directedAt.split(', ')}
+
 
         if (draft === undefined) {
           newDraft.set({
@@ -29,7 +30,6 @@ var Controller = {
 
           })
           drafts.add(newDraft)
-          content = ''
         } else {
           content = draft.get('content')
         }

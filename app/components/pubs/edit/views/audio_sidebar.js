@@ -38,7 +38,6 @@ var AudioSidebar = Marionette.View.extend({
             var drafts = self.model.get('drafts')
             var draft = drafts.findWhere({type: 'audio'})
             var content = draft.get('content')
-            if (Array.isArray(content) === false) {content = []}
             content.unshift(response.url)
             draft.set({content: content})
           } else {console.log('error uploading file')}

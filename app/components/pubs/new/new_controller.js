@@ -17,9 +17,13 @@ var Controller = {
     var fetchingPubsCollection = gc.request('pubs:get')
     $.when(fetchingPubsCollection).done(function (pubsCollection) {
       newPubView.on('form:submit', function (data) {
+        if (data.type === 'audio') {
+          newDraft.set({content: []})
+          newPub.set({activeContent: []})
+        }
+        console.log(newPub)
         if (newPub.save(data, {
           success: function (pub, response) {
-            console.log(pub)
             newDraft.set({
               type: data.type,
               pub: pub.id

@@ -39,7 +39,7 @@ var AudioSidebar = Marionette.View.extend({
             var draft = drafts.findWhere({type: 'audio'})
             var content = draft.get('content')
             if (Array.isArray(content) === false) {content = []}
-            content.unshift('http://localhost:3000/' + response.url)
+            content.unshift(response.url)
             draft.set({content: content})
           } else {console.log('error uploading file')}
         },

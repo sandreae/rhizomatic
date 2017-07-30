@@ -1,4 +1,7 @@
-activeContent can be array or string
+collage view: 
+- make resizable when editing
+- make corner dragger lowwer index
+- remove editing elements when viewing
 split editing views (in folders)
 Tag Pool
 
@@ -9,3 +12,5 @@ Admin navigation routes:
 - users
 - rhizomes
 Validations form
+activeContent can be array or string
+audio upload

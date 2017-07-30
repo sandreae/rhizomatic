@@ -27,14 +27,14 @@ var PubModel = Backbone.RelationalModel.extend({
   }],
 
   defaults: {
-    contributor: 'Your Name',
-    title: 'Your Title',
+    contributor: '',
+    title: '',
     type: 'script',
-    pubDate: 'publication date',
-    activeContent: 'your content',
+    pubDate: '',
+    activeContent: '',
     drafts: '',
     tags: '',
-    invitedBy: 'contributor name',
+    invitedBy: '',
     directedAt: '',
     published: 'false',
     inRhizome: ''

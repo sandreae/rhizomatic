@@ -1,4 +1,4 @@
-import {gc} from '../app/components/radio'
+import * as Entities from '../app/entities/models/radio'
 import {Platform} from './../app/app'
 import {PubsApp} from '../app/components/pubs/pubs_app'
 import {AboutApp} from '../app/components/about/about_app'
@@ -6,7 +6,8 @@ import {HeaderApp} from '../app/components/header/header_app'
 import {SidebarApp} from '../app/components/sidebar/sidebar_app'
 import {UsersApp} from '../app/components/users/users_app'
 import {Auth} from '../app/entities/authentication/authentication_router'
-import * as Entities from '../app/entities/models/radio'
+import {gc} from '../app/components/radio'
+
 
 // import {Globals, Authentication} from './../app/entities/authentication'
 

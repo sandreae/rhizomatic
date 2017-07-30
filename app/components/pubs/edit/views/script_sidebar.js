@@ -6,18 +6,24 @@ var ScriptSidebar = Marionette.View.extend({
 
   events: {
     'click button.js-submit': 'submitClicked',
-      'click button.js-publish': 'publishClicked'
-
+    'click button.js-publish': 'publishClicked'
   },
 
-  submitClicked: function (e) {
+  behaviors: {
+    validate: Platform.Behaviours.FormValidate,
+  },
+
+  submitClicked: function(e) {
     e.preventDefault()
-      this.trigger('form:submit', content, data, this.model)
+    var content = 'url here'
+    var data = Backbone.Syphon.serialize(this);
+    this.trigger('form:submit', content, data, this.model)
 
-    },
+    //nvar data = Backbone.Syphon.serialize(this);
+    //  this.trigger('form:submit', data);
+  },
 
-  
-  publishClicked: function (e) {
+  publishClicked: function(e) {
     this.model.set({published: true})
     this.submitClicked(e)
   },

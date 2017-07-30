@@ -2,6 +2,7 @@ import missing from './../templates/missing.jst'
 import mixed from './../templates/mixed.jst'
 import image from './../templates/image.jst'
 import script from './../templates/script.jst'
+import audio from './../templates/audio.jst'
 import showdown from 'showdown'
 import {gc} from '../../../radio'
 
@@ -13,6 +14,7 @@ export default Marionette.View.extend({
     if (type === 'mixed'){template = mixed}
     if (type === 'image'){template = image}
     if (type === 'script'){template = script}
+    if (type === 'audio'){template = audio}
     return template},
 
   initialize: function() {

@@ -1,9 +1,11 @@
 import {Mixed} from './views/mixed_view'
 import {Image} from './views/image_view'
 import {Script} from './views/script_view'
+import {Audio} from './views/audio_view'
 import {ImageSidebar} from './views/image_sidebar'
 import {MixedSidebar} from './views/mixed_sidebar'
 import {ScriptSidebar} from './views/script_sidebar'
+import {AudioSidebar} from './views/audio_sidebar'
 import {gc} from '../../radio'
 
 var Controller = {
@@ -13,14 +15,10 @@ var Controller = {
       $.when(fetchingpub).done(function(pub){
 
         // grab pub type and instantiate appropriate view//
-        var editSidebarView = new ImageSidebar()
         var editPubContentView
         var type = pub.get('type')
         if (type === 'mixed') {
           editPubContentView = new Mixed({
-            model: pub
-          })
-          editSidebarView = new MixedSidebar({
             model: pub
           })
         }
@@ -28,15 +26,14 @@ var Controller = {
           editPubContentView = new Image({
             model: pub
           })
-          editSidebarView = new ImageSidebar({
-            model: pub
-          })
         }
         if (type === 'script') {
           editPubContentView = new Script({
             model: pub
           })
-          editSidebarView = new ScriptSidebar({
+        }
+        if (type === 'audio') {
+          editPubContentView = new Audio({
             model: pub
           })
         }
@@ -51,7 +48,6 @@ var Controller = {
 
       // grab pub type and instantiate appropriate view//
       var editSidebarView = new ImageSidebar()
-      var editPubContentView
       var type = pub.get('type')
       if (type === 'mixed') {
         editSidebarView = new MixedSidebar({
@@ -68,8 +64,15 @@ var Controller = {
           model: pub
         })
       }
+      if (type === 'audio') {
+        editSidebarView = new AudioSidebar({
+          model: pub
+        })
+      }
 
       editSidebarView.on('form:submit', function (content, data, pubModel) {
+        data.tags = data.tags.split(',')
+        data.directedAt = data.directedAt.split(',')
         var drafts = pubModel.get('drafts')
         var draft = drafts.findWhere({type: type})
         draft.set({content: content})
@@ -78,10 +81,13 @@ var Controller = {
           contributor: data.contributor,
           title: data.title,
           tags: data.tags,
+          directedAt: data.directedAt
         })
+        console.log(pubModel)
         if (pubModel.save(data)) {
           gc.trigger('pubs:list')
         } else {
+          console.log('data invalid')
           editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError);
         }
       })

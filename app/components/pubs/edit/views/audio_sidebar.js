@@ -1,10 +1,10 @@
-import template from '../templates/image_sidebar.jst'
+import template from '../templates/audio_sidebar.jst'
 import qq from 'fine-uploader'
 import {gc} from '../../../radio'
 import 'jquery-ui'
 import 'fine-uploader/fine-uploader/fine-uploader-new.css'
 
-var ImageSidebar = Marionette.View.extend({
+var AudioSidebar = Marionette.View.extend({
   template: template,
 
   events: {
@@ -30,31 +30,17 @@ var ImageSidebar = Marionette.View.extend({
           'x-access-token': token
         }
       },
-      thumbnails: {
-        placeholders: {
-          waitingPath: '/source/placeholders/waiting-generic.png',
-          notAvailablePath: '/source/placeholders/not_available-generic.png'
-        }
-      },
       autoUpload: false,
       callbacks: {
 
         onComplete: function(id, name, response) {
-
           if (response.success !== false) {
-            var resizable = document.createElement('img')
-            resizable.style.width = '100%'
-            resizable.style.height = '100%'
-            resizable.src = 'http://localhost:3000/' + response.url
-            var draggable = document.createElement('div')
-            draggable.style.width = '200px'
-            draggable.style.height = '200px'
-            draggable.style.display = 'inline-block'
-            draggable.appendChild(resizable)
-            var destinationParent = document.getElementById('draggable-container')
-            destinationParent.appendChild(draggable)
-            $(draggable).draggable()
-            $(resizable).resizable()
+            var drafts = self.model.get('drafts')
+            var draft = drafts.findWhere({type: 'audio'})
+            var content = draft.get('content')
+            if (Array.isArray(content) === false) {content = []}
+            content.unshift('http://localhost:3000/' + response.url)
+            draft.set({content: content})
           } else {console.log('error uploading file')}
         },
       }
@@ -65,10 +51,13 @@ var ImageSidebar = Marionette.View.extend({
   },
 
   submitClicked: function(e) {
+    console.log('submitClicked')
     e.preventDefault()
     var data = Backbone.Syphon.serialize(this);
-    var container = $('#draggable-container')
-    var content = $(container).html()
+    var drafts = this.model.get('drafts')
+    console.log(drafts)
+    var draft = drafts.findWhere({type: 'audio'})
+    var content = draft.get('content')
     this.trigger('form:submit', content, data, this.model)
   },
 
@@ -77,4 +66,4 @@ var ImageSidebar = Marionette.View.extend({
     this.submitClicked(e)
   },
 })
-export {ImageSidebar}
+export {AudioSidebar}

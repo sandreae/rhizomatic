@@ -1,0 +1,9 @@
+<h1><%= title %></h1>
+<h3><%= contributor %></h3>
+
+<% _.each(activeContent, function(value){ %>
+  <audio controls>
+    <source src="<%= value %>" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio> 
+<% }); %>

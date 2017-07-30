@@ -44,7 +44,7 @@ var Controller = {
       //  Platform.trigger('pub:show', newPub.get('id'))
       //  }
       })
-      Platform.Regions.getRegion('sidebar').show(newPubView)
+      gc.trigger('sidebar:show', newPubView)
     })
   }
 

@@ -34,7 +34,6 @@ export default Marionette.View.extend({
     // self.$('.ui-draggable').draggable('disable');
     // self.$('.ui-resizable').resizable('disable');
     // self.$('.ui.resizable-handle').display = 'none'
-
     }
   }
 

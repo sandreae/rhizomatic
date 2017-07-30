@@ -1,7 +1,5 @@
 var express = require('express')
 var bodyParser = require('body-parser')
-var multer = require('multer')
-var upload = multer({ dest: 'uploads/' })
 var morgan = require('morgan')
 var cors = require('cors')
 const path = require('path');
@@ -18,28 +16,13 @@ var promise = mongoose.connect(address, {
 var app = express()
 
 //////JUST FOR DEV////////
-app.use(cors())
+// app.use(cors())
 //////////////////////////
 
 app.use(bodyParser.json({limit: '20mb'}))
 app.use(bodyParser.urlencoded({extended: true, limit: '20mb'}))
 app.use(morgan('dev'))
 app.use(express.static(__dirname + '/dist'));
-
-// app.get('*', function response(req, res) {
-//  res.sendFile(path.join(__dirname, 'dist/index.html'));
-// });
-
-// JUST FOR DEV COMMUNICATION FOR WEBPACKS PROXY SERVER ///
-
-/* app.use(function(req, res, next) {
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
-  res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, x-access-token, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
-  next();
-}) */
 
 /////////////////ROUTES///////////////////////
 

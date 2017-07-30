@@ -17,13 +17,11 @@ export default Mn.View.extend({
 
   ui: {
     sidebarOpen: '#js-sidebaropen',
-    sidebarClose: '#js-sidebarclose',
     mobile: '#js-mobile',
   },
 
   events: {
     'click @ui.sidebarOpen': 'sidebarOpen',
-    'click @ui.sidebarClose': 'sidebarClose',
     'click @ui.mobile': 'mobile',
     'click @ui.navigate': 'navigate',
   },

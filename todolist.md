@@ -1,9 +1,14 @@
-collage view: 
-- make resizable when editing
-- make corner dragger lowwer index
-- remove editing elements when viewing
+
 split editing views (in folders)
 Tag Pool
+
+
+-in the ‘new publication’ view, “Publication Date:” should default to today (and have a little calendar icon in the date field)
+
+
+-hitting the X in the sidebar should return you to the previous view (so if im in the ‘Your Publications’ view, and click on ‘edit details’ or whatever, if I X out of that, it should return me to ‘Your Publications’, so the X should be local/relative to the ‘current sidebar view’, rather than X-ing out of the whole sidebar altogether)
+-i dont remember if we talked about this, but are we going to have a ‘user’ page at all? (especially if we’re including anonymity). this can possibly fall as just a filter
+-logout should be in the ‘right’ sidebar (from what i remember, the right one had the login/logout, and was the ‘user’ one (hence the ‘Your Publications’ being there), and the left sidebar has the about/publications/etc…
 
 :::::DONE:::::
 
@@ -14,3 +19,11 @@ Admin navigation routes:
 Validations form
 activeContent can be array or string
 audio upload
+collage view: 
+- make resizable when editing
+- make corner dragger lowwer index
+- remove editing elements when viewing
+-hitting “Save” on the ‘new publication’ page should take you directly into the ‘edit contents’ page
+-the “delete” button needs a few warnings before just nuking the pub!
+-hitting ‘publish’ should be a terminal destination in that you go to the forcemap view AND close the sidebar
+

@@ -12,7 +12,8 @@ var SidebarRadio = Marionette.Object.extend({
     'login:clicked': 'showLoginOpen',
     'sidebar:show:login': 'showLogin',
     'user:loggedOut': 'loggedOut',
-    'sidebar:show': 'show'
+    'sidebar:show': 'show',
+    'sidebar:show:full': 'showFull'
   },
 
   sidebarOpen: function () {
@@ -40,7 +41,10 @@ var SidebarRadio = Marionette.Object.extend({
 
   show: function(view) {
     Show.Controller.show(view)
-    console.log("show trigger recieved")
+  },
+
+  showFull: function(view) {
+    Show.Controller.showFull(view)
   },
 
   showLoginOpen: function() {

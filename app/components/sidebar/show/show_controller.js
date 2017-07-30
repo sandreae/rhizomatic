@@ -5,7 +5,7 @@ var Controller = {
   showLogin: function(){
   	  	var layoutView = new Layout({
   		onRender: function(){
-  			this.showChildView('sidebarRegion', new View);
+  			this.showChildView('sidebarFull', new View);
   		}
   	})
     Platform.Regions.getRegion('sidebar').show(layoutView)
@@ -15,6 +15,15 @@ var Controller = {
   	var layoutView = new Layout({
   		onRender: function(){
   			this.showChildView('sidebarRegion', view);
+  		}
+  	})
+  	Platform.Regions.getRegion('sidebar').show(layoutView)
+  },
+
+  showFull(view){
+  	var layoutView = new Layout({
+  		onRender: function(){
+  			this.showChildView('sidebarFull', view);
   		}
   	})
   	Platform.Regions.getRegion('sidebar').show(layoutView)

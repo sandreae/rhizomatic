@@ -19,6 +19,7 @@ var Controller = {
         pub.set({published: true})
         if (pub.save(data)) {
           gc.trigger('user:listPubs')
+          gc.trigger('sidebar:close')
         } else {
           publishView.triggerMethod('form:data:invalid', pub.validationError);
         }

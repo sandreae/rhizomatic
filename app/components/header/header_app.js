@@ -5,8 +5,6 @@ var MainHandler = Marionette.Object.extend({
   channelName: 'gc',
   radioEvents: {
     'headers:list': 'listHeaders',
-    'user:loggedIn': 'userLoggedIn',
-    'user:loggedOut': 'userLoggedOut',
     'appState:changed': 'appStateChanged',
   },
 
@@ -17,13 +15,6 @@ var MainHandler = Marionette.Object.extend({
 
   initialize: function() {
     HeaderApp.Controller.listHeaders()
-  },
-
-  userLoggedOut: function() {
-    HeaderApp.Controller.userLoggedOut()
-  },
-  userLoggedIn: function(isAdmin) {
-    HeaderApp.Controller.userLoggedIn()
   },
 
   appStateChanged: function() {

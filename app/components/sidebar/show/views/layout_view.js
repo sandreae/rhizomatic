@@ -6,6 +6,7 @@ export default Marionette.View.extend({
 
   regions: {
     'sidebarRegion': '#js-sidebar-region',
+    'sidebarFull': '#js-sidebar-full',
   },
 
   onRender: function() {
@@ -14,11 +15,13 @@ export default Marionette.View.extend({
   ui: {
     backClicked: '#js-back',
     sidebarClose: '#js-sidebarclose',
+    logoutClicked: '#js-logout',
   },
 
   events: {
     'click @ui.backClicked': 'backClicked',
     'click @ui.sidebarClose': 'sidebarClose',
+    'click @ui.logoutClicked': 'logoutClicked',
   },
 
   sidebarClose: function (e) {
@@ -31,5 +34,10 @@ export default Marionette.View.extend({
     e.stopPropagation()
     gc.trigger('user:listPubs')
     gc.trigger('pubs:list')
+  },
+
+  logoutClicked: function (e) {
+    e.stopPropagation()
+    gc.trigger('user:logout')
   },
 })

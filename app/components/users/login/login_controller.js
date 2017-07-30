@@ -24,7 +24,7 @@ var Controller = {
             }
         });
       })
-    gc.trigger('sidebar:show', loginView)
+    gc.trigger('sidebar:show:full', loginView)
   }
 };
 

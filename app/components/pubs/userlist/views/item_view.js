@@ -21,9 +21,16 @@ export default Marionette.View.extend({
   deleteClicked: function (e) {
     // stops the 'click' event bubbling up to parent elements//
     e.stopPropagation()
-    this.trigger('pub:delete', this.model)
-    this.remove()
-    this.model.destroy()
+    var answer = confirm('Do you want to delete?')
+    if (answer) {
+      this.trigger('pub:delete', this.model)
+      this.remove()
+      this.model.destroy()
+      alert('Deleted')
+    }
+    else {
+      alert('Not Deleted')
+    }
   },
 
   showClicked: function (e) {

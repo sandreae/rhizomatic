@@ -34,8 +34,7 @@ var Controller = {
             pubsCollection.add(newPub)
             newPub.save(null, {
               success: function () {
-                gc.trigger('pub:show', pub.id)
-                gc.trigger('user:listPubs')
+                gc.trigger('pub:content:edit', pub.id)
               }
             })
           },

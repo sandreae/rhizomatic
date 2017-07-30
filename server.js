@@ -1,7 +1,7 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var morgan = require('morgan')
-var cors = require('cors')
+// var cors = require('cors')
 const path = require('path');
 
 var mongoose = require('mongoose')

@@ -5,7 +5,7 @@ import template from '../templates/audio.jst'
 
     initialize: function() {
       var content = this.model.get('activeContent')
-      console.log(typeof content)
+      if (Array.isArray(content) === false) {content = []}
     },
   })
 export {Audio}

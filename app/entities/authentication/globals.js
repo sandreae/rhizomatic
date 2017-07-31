@@ -9,7 +9,7 @@ var Globals = {
   },
   app: {
     INFO: 'RHIZOMATIC DIGITAL ZINE'
-  }
+  },
 }
 
 export {Globals}

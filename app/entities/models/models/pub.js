@@ -29,7 +29,7 @@ var PubModel = Backbone.RelationalModel.extend({
   defaults: {
     contributor: '',
     title: '',
-    type: 'script',
+    type: 'mixed',
     pubDate: '',
     activeContent: '',
     drafts: '',
@@ -74,7 +74,7 @@ var PubModel = Backbone.RelationalModel.extend({
 
 var PubsCollection = Backbone.Collection.extend({
   url: '/api/publications',
-  model: PubModel
+  model: PubModel,
 })
 
   // API object containing 'get' functions to be called via request-response//

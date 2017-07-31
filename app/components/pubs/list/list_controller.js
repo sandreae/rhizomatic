@@ -5,6 +5,7 @@ var Controller = {
   listPubs: function() {
 
    $.when(gc.request('pubs:get')).done(function (pubs) {
+   	console.log(gc.request('appState:get'))
       var d3View = new D3View({
         model: false
       })

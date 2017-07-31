@@ -1,4 +1,5 @@
 import template from './..//templates/details.jst'
+import {gc} from '../../../radio'
 import 'backbone.syphon'
 import 'jquery-ui'
 
@@ -11,11 +12,20 @@ var View = Marionette.View.extend({
   },
 
   onDomRefresh: function() {
-    console.log('date picker shown')
     $("#pub-pubDate").datepicker({
       changeMonth: true,//this option for allowing user to select month
       changeYear: true //this option for allowing user to select from year range
     });
+    var appState = gc.request('appState:get')
+    var tagPool = appState.get('tags')
+    var contributors = appState.get('contributors')
+    $('#pub-tags').autocomplete({
+      source: tagPool
+    })
+    $('#pub-directedAt').autocomplete({
+      source: contributors
+    })
+
   },
 
   submitClicked: function (e) {

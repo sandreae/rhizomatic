@@ -11,9 +11,6 @@ var App = Marionette.Application.extend({
     this.Regions = new Layout()    
   },
 
-  onBeforeStart: function() {
-  },
-
   onStart: function() {
     gc.request('user:init')
     gc.trigger('headers:list')

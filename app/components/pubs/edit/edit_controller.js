@@ -83,12 +83,12 @@ var Controller = {
           tags: data.tags,
           directedAt: data.directedAt
         })
-        console.log(pubModel)
         if (pubModel.save(data)) {
           gc.trigger('pubs:list')
         } else {
-          console.log('data invalid')
           editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError);
+          pubModel.set({published: false})
+          pub.save()
         }
       })
       gc.trigger('sidebar:show', editSidebarView)

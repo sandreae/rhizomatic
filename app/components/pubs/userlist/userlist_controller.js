@@ -3,7 +3,6 @@ import {gc} from '../../radio'
 
 var Controller = {
   userListPubs: function() {
-    console.log(gc.request('user:getCurrentUser'))
     if (gc.request('user:getCurrentUser')) {
       var fetchingpubs = gc.request('pubs:get')
       $.when(fetchingpubs).done(function (pubs) {
@@ -11,7 +10,9 @@ var Controller = {
         var userPubs = new Backbone.Collection(pubs.filter(function (model) {
           return model.get('contributorId') === user.id
         }))
-
+        console.log(user)
+        console.log(userPubs)
+        console.log(pubs)
         var userPubsList = new TableView({
           collection: userPubs
         })

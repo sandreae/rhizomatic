@@ -30,7 +30,6 @@ var PubModel = Backbone.RelationalModel.extend({
     contributor: '',
     title: '',
     type: 'mixed',
-    pubDate: '',
     activeContent: '',
     drafts: '',
     tags: '',
@@ -55,10 +54,7 @@ var PubModel = Backbone.RelationalModel.extend({
     if (!attrs.type) {
       errors.type = "please choose an editing mode"
     }
-    if (!attrs.pubDate) {
-      errors.pubDate = "please choose a publication date"
-    }
-    if (attrs.published === true && attrs.tags.length < 1) {
+    if (attrs.published === true && attrs.tags.length < 2) {
       errors.tags = "please choose one or more tags"
     }
     if (attrs.published === true && attrs.directedAt < 1) {

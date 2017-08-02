@@ -16,7 +16,6 @@ var ScriptSidebar = Marionette.View.extend({
 
   initialize: function() {
   	var url = this.model.get('activeContent')
-  	this.showIframe(url)
   },
 
   submitClicked: function(e) {
@@ -38,18 +37,8 @@ var ScriptSidebar = Marionette.View.extend({
   	e.preventDefault()
   	var data = Backbone.Syphon.serialize(this);
   	var url = data.url
-  	this.showIframe(url)
+  	this.model.set({activeContent: url})
 	},
-
-  showIframe:  function(url) {
-  	$('#placeholder').empty();
-	var container = document.getElementById("placeholder");
-    var ifrm = document.createElement("iframe");
-    ifrm.setAttribute("src", url)
-    ifrm.style.width = "640px";
-    ifrm.style.height = "480px";
-    container.append(ifrm)
-  }
 })
 
 export {ScriptSidebar}

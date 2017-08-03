@@ -14,6 +14,7 @@ var ImageSidebar = Marionette.View.extend({
 
   behaviors: {
     validate: Platform.Behaviours.FormValidate,
+    autocomplete: Platform.Behaviours.Autocomplete,
   },
 
   onAttach: function () {

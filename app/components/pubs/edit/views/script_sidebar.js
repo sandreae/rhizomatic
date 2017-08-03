@@ -12,6 +12,7 @@ var ScriptSidebar = Marionette.View.extend({
 
   behaviors: {
     validate: Platform.Behaviours.FormValidate,
+    autocomplete: Platform.Behaviours.Autocomplete,
   },
 
   initialize: function() {

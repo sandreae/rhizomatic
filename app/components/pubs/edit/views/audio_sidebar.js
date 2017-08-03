@@ -11,6 +11,7 @@ var AudioSidebar = Marionette.View.extend({
 
   behaviors: {
     validate: Platform.Behaviours.FormValidate,
+    autocomplete: Platform.Behaviours.Autocomplete,
   },
 
   submitClicked: function(e) {
@@ -23,6 +24,7 @@ var AudioSidebar = Marionette.View.extend({
   },
 
   publishClicked: function (e) {
+    e.preventDefault()
     this.model.set({published: true})
     this.submitClicked(e)
   },

@@ -11,6 +11,7 @@ var MixedSidebar = Marionette.View.extend({
 
   behaviors: {
     validate: Platform.Behaviours.FormValidate,
+    autocomplete: Platform.Behaviours.Autocomplete,
   },
 
   submitClicked: function(e) {

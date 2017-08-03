@@ -29,7 +29,7 @@ var PubModel = Backbone.RelationalModel.extend({
   defaults: {
     contributor: '',
     title: '',
-    type: 'mixed',
+    type: 'markdown',
     activeContent: '',
     drafts: '',
     tags: '',

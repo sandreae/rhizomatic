@@ -1,4 +1,4 @@
-import template from './../templates/new.jst'
+import template from './../../details/templates/details.jst'
 import 'backbone.syphon'
 
 var View = Marionette.View.extend({

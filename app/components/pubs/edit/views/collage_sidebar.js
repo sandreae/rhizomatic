@@ -1,10 +1,10 @@
-import template from '../templates/image_sidebar.jst'
+import template from '../templates/collage_sidebar.jst'
 import qq from 'fine-uploader'
 import {gc} from '../../../radio'
 import 'jquery-ui'
 import 'fine-uploader/fine-uploader/fine-uploader-new.css'
 
-var ImageSidebar = Marionette.View.extend({
+var CollageSidebar = Marionette.View.extend({
   template: template,
 
   events: {
@@ -106,4 +106,4 @@ var ImageSidebar = Marionette.View.extend({
     this.submitClicked(e)
   },
 })
-export {ImageSidebar}
+export {CollageSidebar}

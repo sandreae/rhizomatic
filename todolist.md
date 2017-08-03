@@ -4,13 +4,20 @@ split editing views (in folders)
 auto-complete for list of items
 add published date
 position of validation error text
+change back button to "home"
+edit profile page
+change landing sidebar page to 'home'
+remove details page and have type selector in sidebar
+collage edit view
+listPubs/home navigation confusion
+
 EDIT METHODS:
 - image
 - video
 - collage video
 preview button
 change pub type button
-
+- selector confusiong
 
 -hitting the X in the sidebar should return you to the previous view (so if im in the ‘Your Publications’ view, and click on ‘edit details’ or whatever, if I X out of that, it should return me to ‘Your Publications’, so the X should be local/relative to the ‘current sidebar view’, rather than X-ing out of the whole sidebar altogether)
 
@@ -25,7 +32,7 @@ activeContent can be array or string
 audio upload
 collage view: 
 - make resizable when editing
-- make corner dragger lowwer index
+- make corner dragger lower index
 - remove editing elements when viewing
 -hitting “Save” on the ‘new publication’ page should take you directly into the ‘edit contents’ page
 -the “delete” button needs a few warnings before just nuking the pub!
@@ -38,9 +45,11 @@ Validation as behaviours for all views
 Tag Pool
 Author pool 
 autocomplete for all form views
+new pub and details save doesn't navigate right (default select item probelmd?)
 
 
 QUESTIONS FOR ROD:
+editing views
 'back' and cross discussion
 go through how to edit styles
 setup email

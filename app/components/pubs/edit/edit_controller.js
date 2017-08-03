@@ -1,9 +1,9 @@
-import {Mixed} from './views/mixed_view'
-import {Image} from './views/image_view'
+import {Markdown} from './views/markdown_view'
+import {Collage} from './views/collage_view'
 import {Script} from './views/script_view'
 import {Audio} from './views/audio_view'
-import {ImageSidebar} from './views/image_sidebar'
-import {MixedSidebar} from './views/mixed_sidebar'
+import {CollageSidebar} from './views/collage_sidebar'
+import {MarkdownSidebar} from './views/markdown_sidebar'
 import {ScriptSidebar} from './views/script_sidebar'
 import {AudioSidebar} from './views/audio_sidebar'
 import {gc} from '../../radio'
@@ -17,13 +17,13 @@ var Controller = {
         // grab pub type and instantiate appropriate view//
         var editPubContentView
         var type = pub.get('type')
-        if (type === 'mixed') {
-          editPubContentView = new Mixed({
+        if (type === 'markdown') {
+          editPubContentView = new Markdown({
             model: pub
           })
         }
-        if (type === 'image') {
-          editPubContentView = new Image({
+        if (type === 'collage') {
+          editPubContentView = new Collage({
             model: pub
           })
         }
@@ -47,15 +47,15 @@ var Controller = {
     $.when(fetchingpub).done(function(pub){
 
       // grab pub type and instantiate appropriate view//
-      var editSidebarView = new ImageSidebar()
+      var editSidebarView = new CollageSidebar()
       var type = pub.get('type')
-      if (type === 'mixed') {
-        editSidebarView = new MixedSidebar({
+      if (type === 'markdown') {
+        editSidebarView = new MarkdownSidebar({
           model: pub
         })
       }
-      if (type === 'image') {
-        editSidebarView = new ImageSidebar({
+      if (type === 'collage') {
+        editSidebarView = new CollageSidebar({
           model: pub
         })
       }
@@ -71,11 +71,14 @@ var Controller = {
       }
 
       editSidebarView.on('form:submit', function (content, data, pubModel) {
-        data.tags = data.tags.split(',')
-        data.directedAt = data.directedAt.split(',')
+        var newDraft = new Platform.Entities.Pubs.Draft()
+
+        if (data.tags !== "") {data.tags = data.tags.split(', ')}
+        if (data.directedAt !== "") { data.directedAt.split(', ')}
         var drafts = pubModel.get('drafts')
         var draft = drafts.findWhere({type: type})
         draft.set({content: content})
+
         pubModel.set({
           activeContent: content,
           contributor: data.contributor,
@@ -83,8 +86,23 @@ var Controller = {
           tags: data.tags,
           directedAt: data.directedAt
         })
+
+        if (data.type !== type) {
+          console.log('pubtype does not match')
+          newDraft.set({
+            type: data.type,
+            pub: pubModel.get('_id')
+          })
+          drafts.add(newDraft)
+        }
+
         if (pubModel.save(data)) {
-          gc.trigger('pubs:list')
+          if (pubModel.get('type') === type) {
+            gc.trigger('user:home')
+          } else {
+            gc.trigger('pub:content:edit', pubModel.get('_id'))
+          }
+          if (pubModel.get('published') === true) {gc.trigger('sidebar:close')}
         } else {
           editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError);
           pubModel.set({published: false})

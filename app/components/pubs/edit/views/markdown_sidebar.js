@@ -1,6 +1,6 @@
-import template from '../templates/mixed_sidebar.jst'
+import template from '../templates/edit_sidebar.jst'
 
-var MixedSidebar = Marionette.View.extend({
+var MarkdownSidebar = Marionette.View.extend({
 
   template: template,
 
@@ -31,4 +31,4 @@ var MixedSidebar = Marionette.View.extend({
   },
 })
 
-export {MixedSidebar}
+export {MarkdownSidebar}

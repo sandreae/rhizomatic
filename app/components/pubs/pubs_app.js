@@ -24,13 +24,12 @@ var PubsRadio = Marionette.Object.extend({
     'pub:new': 'newPub',
     'pub:details:edit': 'editPubDetails',
     'pub:content:edit': 'editPubContent',
-    'user:loggedIn': 'userListPubs',
     'user:listPubs': 'userListPubs',
   },
 
   listPubs: function() {
     List.Controller.listPubs()
-    UserList.Controller.userListPubs()
+    Platform.UsersApp.Home.Controller.showHome();
     Platform.navigate('publications')
   },
 

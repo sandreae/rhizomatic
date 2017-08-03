@@ -11,10 +11,7 @@ var TableBody = Mn.CollectionView.extend({
   },
 
   childViewTriggers: {
-    'showClicked': 'showClicked',
     'deleteClicked': 'deleteClicked',
-    'editPubDetails': 'editPubDetails',
-    'editPubContent': 'editPubContent',
     'publishClicked': 'pub:publish'
   },
 

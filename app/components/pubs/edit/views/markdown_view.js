@@ -1,7 +1,7 @@
-import template from '../templates/mixed.jst'
+import template from '../templates/markdown.jst'
 import SimpleMDE from 'simplemde'
 
-var Mixed = Marionette.View.extend({
+var Markdown = Marionette.View.extend({
     template: template,
 
     events: {
@@ -15,4 +15,4 @@ var Mixed = Marionette.View.extend({
     },
   })
 
-export {Mixed}
+export {Markdown}

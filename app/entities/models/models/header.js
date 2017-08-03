@@ -8,7 +8,6 @@ var Header = Backbone.Model.extend({
   }
 });
 
-
 var Headers = Backbone.Collection.extend({
   model: Header,
 
@@ -17,7 +16,6 @@ var Headers = Backbone.Collection.extend({
     _.extend(this, singleSelect); */
   }
 });
-
 
 var initializeHeaders = function() {
   headers = new Headers([

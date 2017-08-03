@@ -22,7 +22,6 @@ var Controller = {
         if (data.tags !== "") {data.tags = data.tags.split(', ')}
         if (data.directedAt !== "") { data.directedAt.split(', ')}
 
-
         if (draft === undefined) {
           newDraft.set({
             type: data.type,

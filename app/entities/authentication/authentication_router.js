@@ -28,16 +28,13 @@ var Radio = Marionette.Object.extend({
     'user:getCurrentUser': 'getCurrentUser'
   },
 
-  radioEvents: {
-    'user:logout': 'logoutUser',
-  },
-
   getGlobals: function() {
     return Globals;
   },
 
   logoutUser: function() {
     Authentication.logoutUser()
+    console.log('user logged out')
     gc.trigger('user:loggedOut')
     gc.request('user:init')
     gc.trigger('pubs:list')

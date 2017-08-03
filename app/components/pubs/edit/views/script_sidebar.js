@@ -1,4 +1,4 @@
-import template from '../templates/script_sidebar.jst'
+import template from '../templates/edit_sidebar.jst'
 
 var ScriptSidebar = Marionette.View.extend({
   

@@ -17,11 +17,11 @@ var Controller = {
         })
         user.save(null, {
           success: function () {
-            gc.trigger('users:list')
+            gc.trigger('user:home')
           }
         })
       })
-      Platform.Regions.getRegion('main').show(editView)
+      Platform.Regions.getRegion('sidebar').show(editView)
     })
   }
 }

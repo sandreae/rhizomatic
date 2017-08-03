@@ -1,4 +1,4 @@
-import template from '../templates/audio_sidebar.jst'
+import template from '../templates/edit_sidebar.jst'
 import 'jquery-ui'
 
 var AudioSidebar = Marionette.View.extend({

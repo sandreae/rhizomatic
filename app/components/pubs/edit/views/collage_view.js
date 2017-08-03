@@ -1,9 +1,9 @@
-import template from '../templates/image.jst'
+import template from '../templates/collage.jst'
 import qq from 'fine-uploader'
 import {gc} from '../../../radio'
 import 'jquery-ui'
 
-var Image = Marionette.View.extend({
+var Collage = Marionette.View.extend({
     template: template,
 
     onAttach: function () {
@@ -14,4 +14,4 @@ var Image = Marionette.View.extend({
 
     }
   })
- export {Image}
+ export {Collage}

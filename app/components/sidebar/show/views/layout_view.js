@@ -13,13 +13,13 @@ export default Marionette.View.extend({
   },
 
   ui: {
-    backClicked: '#js-back',
+    homeClicked: '#js-home',
     sidebarClose: '#js-sidebarclose',
     logoutClicked: '#js-logout',
   },
 
   events: {
-    'click @ui.backClicked': 'backClicked',
+    'click @ui.homeClicked': 'homeClicked',
     'click @ui.sidebarClose': 'sidebarClose',
     'click @ui.logoutClicked': 'logoutClicked',
   },
@@ -30,14 +30,15 @@ export default Marionette.View.extend({
     console.log('close clicked')
   },
 
-  backClicked: function (e) {
+  homeClicked: function (e) {
+    e.preventDefault()
     e.stopPropagation()
-    gc.trigger('user:listPubs')
-    gc.trigger('pubs:list')
+    gc.trigger('user:home')
   },
 
   logoutClicked: function (e) {
+    e.preventDefault()
     e.stopPropagation()
-    gc.trigger('user:logout')
+    gc.request('user:logout')
   },
 })

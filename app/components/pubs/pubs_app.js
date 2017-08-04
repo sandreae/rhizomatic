@@ -29,7 +29,6 @@ var PubsRadio = Marionette.Object.extend({
 
   listPubs: function() {
     List.Controller.listPubs()
-    Platform.UsersApp.Home.Controller.showHome();
     Platform.navigate('publications')
   },
 

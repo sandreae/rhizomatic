@@ -1,9 +1,9 @@
-import template from '../templates/audio.jst'
+import template from '../templates/image.jst'
 import {gc} from '../../../radio'
 import qq from 'fine-uploader'
 import 'fine-uploader/fine-uploader/fine-uploader-new.css'
 
-var Audio = Marionette.View.extend({
+var Image = Marionette.View.extend({
   template: template,
   events: {
     'click button.js-submit': 'submitClicked'
@@ -29,7 +29,7 @@ var Audio = Marionette.View.extend({
         onComplete: function(id, name, response) {
           if (response.success !== false) {
             var drafts = self.model.get('drafts')
-            var draft = drafts.findWhere({type: 'audio'})
+            var draft = drafts.findWhere({type: 'image'})
             var content = draft.get('content')
             content.unshift(response.url)
             draft.set({content: content})
@@ -39,4 +39,4 @@ var Audio = Marionette.View.extend({
     });
   },
 })
-export {Audio}
+export {Image}

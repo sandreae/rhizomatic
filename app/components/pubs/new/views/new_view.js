@@ -1,4 +1,4 @@
-import template from './../../details/templates/details.jst'
+import template from './../templates/new.jst'
 import 'backbone.syphon'
 
 var View = Marionette.View.extend({
@@ -15,7 +15,6 @@ var View = Marionette.View.extend({
 
 
   onDomRefresh: function() {
-    console.log('date picker shown')
     $("#pub-pubDate").datepicker({
       changeMonth: true,//this option for allowing user to select month
       changeYear: true //this option for allowing user to select from year range
@@ -27,7 +26,6 @@ var View = Marionette.View.extend({
 	e.preventDefault();
 	//serialize the form data//
 	var data = Backbone.Syphon.serialize(this);
-	console.log(data)
 	this.trigger('form:submit', data);
   },
 });

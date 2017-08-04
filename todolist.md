@@ -1,21 +1,19 @@
-iframes doesn't work, change to new window link
 collage: check file type then apply correct process
 auto-complete for list of items
 add published date
 edit profile page
-change landing sidebar page to 'home'
 collage edit view
-listPubs/home navigation confusion
 loading gif
 pub type selector confusiong
-pub preview button
 click anywhere hide sidebar
+info texts for media uploads
+open pub in new page
+tidy up scss files for Rod
 
 EDIT METHODS:
-- image
 - video
 - collage video
-
+- text for collage view
 
 :::::DONE:::::
 
@@ -48,6 +46,8 @@ position of validation error text
 change back button to "home"
 split editing views (in folders)
 -hitting the X in the sidebar should return you to the previous view (so if im in the ‘Your Publications’ view, and click on ‘edit details’ or whatever, if I X out of that, it should return me to ‘Your Publications’, so the X should be local/relative to the ‘current sidebar view’, rather than X-ing out of the whole sidebar altogether)
+change landing sidebar page to 'home'
+iframes doesn't work, change to new window link
 
 
 QUESTIONS FOR ROD:

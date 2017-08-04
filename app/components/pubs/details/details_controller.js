@@ -18,7 +18,7 @@ var Controller = {
         var content = ''
         var drafts = pub.get('drafts')
         var draft = drafts.findWhere({type: data.type})
-        if (data.type === 'audio'){content = []}
+        if (data.type === 'audio' || 'image'){content = []}
         if (data.tags !== "") {data.tags = data.tags.split(', ')}
         if (data.directedAt !== "") { data.directedAt.split(', ')}
 

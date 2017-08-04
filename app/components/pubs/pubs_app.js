@@ -34,7 +34,6 @@ var PubsRadio = Marionette.Object.extend({
 
   showPub: function(id) {
     Show.Controller.showPub(id)
-    UserList.Controller.userListPubs()
     Platform.navigate('publications/' + id)
   },
 

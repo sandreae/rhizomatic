@@ -4,12 +4,9 @@
 <div id="fine-uploader-manual-trigger"></div>
 
 <% _.each(activeContent, function(value){ %>
-  <audio controls>
-    <source src="<%= value %>" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio> 
+    <img src="<%= value %>" type="audio/mpeg" id="image-view">
 <% }); %>
-       
+
 <script type="text/template" id="qq-template-manual-trigger">
     <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="Drop files here">
       

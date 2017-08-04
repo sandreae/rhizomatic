@@ -47,7 +47,6 @@ var UsersRadio = Marionette.Object.extend({
   },
   showHome: function(){
     UsersApp.Home.Controller.showHome();
-    Platform.PubsApp.List.Controller.listPubs()
   },
 })
 

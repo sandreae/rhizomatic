@@ -2,10 +2,12 @@ import {Markdown} from './views/markdown_view'
 import {Collage} from './views/collage_view'
 import {Script} from './views/script_view'
 import {Audio} from './views/audio_view'
+import {Image} from './views/image_view'
 import {CollageSidebar} from './views/collage_sidebar'
 import {MarkdownSidebar} from './views/markdown_sidebar'
 import {ScriptSidebar} from './views/script_sidebar'
 import {AudioSidebar} from './views/audio_sidebar'
+import {ImageSidebar} from './views/image_sidebar'
 import {gc} from '../../radio'
 
 var Controller = {
@@ -34,6 +36,11 @@ var Controller = {
         }
         if (type === 'audio') {
           editPubContentView = new Audio({
+            model: pub
+          })
+        }
+        if (type === 'image') {
+          editPubContentView = new Image({
             model: pub
           })
         }
@@ -69,6 +76,11 @@ var Controller = {
           model: pub
         })
       }
+      if (type === 'image') {
+        editSidebarView = new ImageSidebar({
+          model: pub
+        })
+      }
 
       editSidebarView.on('form:submit', function (content, data, pubModel) {
         var newDraft = new Platform.Entities.Pubs.Draft()
@@ -99,6 +111,8 @@ var Controller = {
         if (pubModel.save(data)) {
           if (pubModel.get('type') === type) {
             gc.trigger('user:home')
+            gc.trigger('pubs:list')
+            gc.trigger('sidebar:close')
           } else {
             gc.trigger('pub:content:edit', pubModel.get('_id'))
           }

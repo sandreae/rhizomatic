@@ -39,12 +39,6 @@ export default Marionette.View.extend({
     gc.trigger('pub:show', this.model.get('_id'))
   },
 
-  editPubDetails: function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-    gc.trigger('pub:details:edit', this.model.get('_id'))
-  },
-
   editPubContent: function (e) {
     e.preventDefault()
     e.stopPropagation()

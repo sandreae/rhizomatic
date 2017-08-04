@@ -28,6 +28,7 @@ export default Marionette.View.extend({
     this.$el.fadeOut(function () {
        self.model.destroy()
     })
+    gc.trigger('sidebar:close')
   }
 })
 

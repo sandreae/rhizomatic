@@ -43,10 +43,11 @@ module.exports = (options) => {
           presets: ['es2015'],
           plugins: ['syntax-async-functions', 'transform-regenerator'],
         },
-      }, {
-        test: /\.jst$/,
-        loader: 'underscore-template-loader',
       },
+        {
+          test: /\.jst$/,
+          loader: 'underscore-template-loader',
+        },
         {
           test: /\.scss$/,
           loader: ExtractTextPlugin.extract('css!sass')
@@ -66,7 +67,7 @@ module.exports = (options) => {
         {
           test: /\.json$/,
           loader: 'json-loader'
-        }
+        },
       ],
     },
     resolve: {

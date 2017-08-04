@@ -1,3 +1,4 @@
+import * as pace from 'pace-progress'
 import * as Entities from '../app/entities/models/radio'
 import {Platform} from './../app/app'
 import {PubsApp} from '../app/components/pubs/pubs_app'
@@ -10,7 +11,7 @@ import {gc} from '../app/components/radio'
 
 
 // import {Globals, Authentication} from './../app/entities/authentication'
-
+pace.start()
 Platform.Entities = Entities
 Platform.HeaderApp = HeaderApp
 Platform.AboutApp = AboutApp

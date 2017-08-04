@@ -1,25 +1,21 @@
 iframes doesn't work, change to new window link
 collage: check file type then apply correct process
-split editing views (in folders)
 auto-complete for list of items
 add published date
-position of validation error text
-change back button to "home"
 edit profile page
 change landing sidebar page to 'home'
-remove details page and have type selector in sidebar
 collage edit view
 listPubs/home navigation confusion
+loading gif
+pub type selector confusiong
+pub preview button
+click anywhere hide sidebar
 
 EDIT METHODS:
 - image
 - video
 - collage video
-preview button
-change pub type button
-- selector confusiong
 
--hitting the X in the sidebar should return you to the previous view (so if im in the ‘Your Publications’ view, and click on ‘edit details’ or whatever, if I X out of that, it should return me to ‘Your Publications’, so the X should be local/relative to the ‘current sidebar view’, rather than X-ing out of the whole sidebar altogether)
 
 :::::DONE:::::
 
@@ -46,11 +42,14 @@ Tag Pool
 Author pool 
 autocomplete for all form views
 new pub and details save doesn't navigate right (default select item probelmd?)
+remove details page and have type selector in sidebar
+change pub type button
+position of validation error text
+change back button to "home"
+split editing views (in folders)
+-hitting the X in the sidebar should return you to the previous view (so if im in the ‘Your Publications’ view, and click on ‘edit details’ or whatever, if I X out of that, it should return me to ‘Your Publications’, so the X should be local/relative to the ‘current sidebar view’, rather than X-ing out of the whole sidebar altogether)
 
 
 QUESTIONS FOR ROD:
-editing views
-'back' and cross discussion
-go through how to edit styles
 setup email
 seeding the rhizome

@@ -152,17 +152,16 @@ nav ul {
 MOBILE NAV STYLES
 ***************************/
 .mobile {
+  position: absolute;
   display:none;
   margin:0px;
-  padding: 5px 5px;
   position:absolute;
   color:black;
   text-decoration:none;
-  top:15px;
+  font-size: 25px;
+  top:13px;
   left:15px;
-  line-height:0;
   z-index:100;
-
   
   @include breakpoint(715) {
     display:table;

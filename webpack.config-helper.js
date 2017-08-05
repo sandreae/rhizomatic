@@ -26,6 +26,7 @@ module.exports = (options) => {
       new Webpack.ProvidePlugin({
         _: 'underscore',
         $: 'jquery',
+        "jQuery.tagsinput": "jquery-tags-input",
         jQuery: 'jquery',
         Backbone: 'backbone',
         Bb: 'backbone',
@@ -63,6 +64,9 @@ module.exports = (options) => {
           'file?hash=sha512&digest=hex&name=[hash].[ext]',
           'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false',
           ]
+        },
+        { test: /vendor\/.+\.(jsx|js)$/,
+          loader: 'imports?jQuery=jquery,$=jquery,this=>window'
         },
         {
           test: /\.json$/,

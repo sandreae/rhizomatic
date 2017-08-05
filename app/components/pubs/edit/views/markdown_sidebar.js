@@ -11,7 +11,13 @@ var MarkdownSidebar = Marionette.View.extend({
 
   behaviors: {
     validate: Platform.Behaviours.FormValidate,
-    autocomplete: Platform.Behaviours.Autocomplete,
+    tagsautocomplete: Platform.Behaviours.TagsAutocomplete,
+    atautocomplete: Platform.Behaviours.AtAutocomplete,
+  },
+
+  onDomRefresh: function() {
+    this.triggerMethod('tagsautocomplete', this.model.get('tags'))
+    this.triggerMethod('atautocomplete', this.model.get('directedAt'))
   },
 
   submitClicked: function(e) {

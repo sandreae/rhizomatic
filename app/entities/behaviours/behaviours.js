@@ -1,4 +1,5 @@
 import {FormValidate} from './form_validate'
-import {Autocomplete} from './auto_complete'
+import {TagsAutocomplete} from './tags_autocomplete'
+import {AtAutocomplete} from './at_autocomplete'
 
-export {FormValidate, Autocomplete}
+export {FormValidate, TagsAutocomplete, AtAutocomplete}

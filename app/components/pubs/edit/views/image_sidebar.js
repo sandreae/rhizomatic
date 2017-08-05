@@ -9,9 +9,13 @@ var ImageSidebar = Marionette.View.extend({
     'click button.js-publish': 'publishClicked'
   },
 
-  behaviors: {
+ behaviors: {
     validate: Platform.Behaviours.FormValidate,
-    autocomplete: Platform.Behaviours.Autocomplete,
+    tagsautocomplete: Platform.Behaviours.TagsAutocomplete,
+  },
+
+  onDomRefresh: function() {
+    this.triggerMethod('tagsautocomplete', this.model.get('tags'))
   },
 
   submitClicked: function(e) {

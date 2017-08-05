@@ -17,11 +17,12 @@ var Controller = {
     var fetchingPubsCollection = gc.request('pubs:get')
     $.when(fetchingPubsCollection).done(function (pubsCollection) {
       newPubView.on('form:submit', function (data) {
+        if (data.tags !== "") {data.tags = data.tags.split(', ')}
+        if (data.directedAt !== "") {data.directedAt = data.directedAt.split(', ')}
         if (data.type === 'audio' || 'image') {
           newDraft.set({content: []})
           newPub.set({activeContent: []})
         }
-        console.log(newPub)
         if (newPub.save(data, {
           success: function (pub, response) {
             newDraft.set({
@@ -32,8 +33,10 @@ var Controller = {
             drafts.add(newDraft)
             newPub.set({drafts: drafts})
             pubsCollection.add(newPub)
+            console.log(newPub)
             newPub.save(null, {
               success: function () {
+                console.log(newPub)
                 gc.trigger('pub:content:edit', pub.id)
                 gc.trigger('sidebar:close')
               }

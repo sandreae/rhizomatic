@@ -10,16 +10,13 @@ var View = Marionette.View.extend({
 
   behaviors: {
     validate: Platform.Behaviours.FormValidate,
-    autocomplete: Platform.Behaviours.Autocomplete,
+    tagsautocomplete: Platform.Behaviours.TagsAutocomplete,
+    atautocomplete: Platform.Behaviours.AtAutocomplete,
   },
 
-
   onDomRefresh: function() {
-    $("#pub-pubDate").datepicker({
-      changeMonth: true,//this option for allowing user to select month
-      changeYear: true //this option for allowing user to select from year range
-    });
-    this.triggerMethod('autocomplete')
+    this.triggerMethod('tagsautocomplete', [])
+    this.triggerMethod('atautocomplete', [])
   },
 
   submitClicked: function(e){

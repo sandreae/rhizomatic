@@ -15,7 +15,7 @@ var Controller = {
       // request the pub model via API handler using the 'id' argument passed from the router//
       var fetchingpub = gc.request('pub:get', id)
       $.when(fetchingpub).done(function(pub){
-
+        console.log(pub)
         // grab pub type and instantiate appropriate view//
         var editPubContentView
         var type = pub.get('type')
@@ -86,17 +86,13 @@ var Controller = {
         var newDraft = new Platform.Entities.Pubs.Draft()
 
         if (data.tags !== "") {data.tags = data.tags.split(', ')}
-        if (data.directedAt !== "") { data.directedAt.split(', ')}
+        if (data.directedAt !== "") {data.directedAt = data.directedAt.split(', ')}
         var drafts = pubModel.get('drafts')
         var draft = drafts.findWhere({type: type})
         draft.set({content: content})
 
         pubModel.set({
           activeContent: content,
-          contributor: data.contributor,
-          title: data.title,
-          tags: data.tags,
-          directedAt: data.directedAt
         })
 
         if (data.type !== type) {
@@ -120,7 +116,8 @@ var Controller = {
         } else {
           editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError);
           pubModel.set({published: false})
-          pub.save()
+          console.log(pubModel)
+          pubModel.save()
         }
       })
       gc.trigger('sidebar:show', editSidebarView)

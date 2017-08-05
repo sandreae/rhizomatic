@@ -16,15 +16,42 @@ export default Mn.View.extend({
   },
 
   ui: {
-    sidebarOpen: '#js-sidebaropen',
+    sidebarleftOpen: '#js-sidebarleftopen',
     mobile: '#js-mobile',
+    sidebarleftOpen: '#js-sidebarleftopen',
+    sidebarOpen: '#js-sidebaropen',
+
   },
 
   events: {
-    'click @ui.sidebarOpen': 'sidebarOpen',
     'click @ui.mobile': 'mobile',
     'click @ui.navigate': 'navigate',
+    'click @ui.sidebarleftOpen': 'sidebarleftOpen',
+    'click @ui.sidebarOpen': 'sidebarOpen',
+
   },
+
+  sidebarleftClose: function (e) {
+    e.preventDefault()
+    console.log('close')
+    gc.trigger('sidebarleft:close')
+  },
+
+  sidebarleftOpen: function (e) {
+    e.preventDefault()
+    e.stopPropagation()
+        console.log('open')
+
+    gc.trigger('sidebarleft:open')
+  },
+
+  sidebarOpen: function (e) {
+    e.preventDefault()
+    e.stopPropagation()
+        console.log('open')
+    gc.trigger('sidebar:open')
+  }
+
 
   /* isAdmin: function(isAdmin) {
     console.log('isAdmin filter triggered')
@@ -34,16 +61,4 @@ export default Mn.View.extend({
     };
     list.setFilter(filter);
   }, */
-
-  sidebarOpen: function (e) {
-    e.preventDefault()
-    gc.trigger('sidebar:open')
-    console.log('sidebar open triggered')
-  },
-
-  mobile: function (e) {
-    e.preventDefault()
-    $(".navbarmobile").toggleClass("active")
-  },
-
 })

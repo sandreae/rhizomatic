@@ -10,12 +10,14 @@ export default Marionette.View.extend({
   },
 
   loginClicked: function (e) {
+    e.preventDefault()
     e.stopPropagation()
     gc.trigger('user:showLogin')
   },
 
   newClicked: function(e) {
     e.preventDefault()
+    e.stopPropagation()
     gc.trigger('user:new')
   },
 })

@@ -1,7 +1,6 @@
 import template from '../templates/audio.jst'
 import {gc} from '../../../radio'
 import qq from 'fine-uploader'
-import 'fine-uploader/fine-uploader/fine-uploader-new.css'
 
 var Audio = Marionette.View.extend({
   template: template,

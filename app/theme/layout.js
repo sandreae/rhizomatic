@@ -1,5 +1,3 @@
-import './platform.scss';
-import './simplemde.min.css';
 import {gc} from '../../app/components/radio'
 
 export default Mn.View.extend({

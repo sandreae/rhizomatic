@@ -5,29 +5,32 @@ export default Marionette.View.extend({
   template: layout,
 
   regions: {
-    'sidebarRegion': '#js-sidebar-region',
+    'sidebarRegion': '#js-sidebar-region1',
     'sidebarFull': '#js-sidebar-full',
-  },
-
-  onRender: function() {
   },
 
   ui: {
     homeClicked: '#js-home',
-    sidebarClose: '#js-sidebarclose',
     logoutClicked: '#js-logout',
+    sidebarOpen: '#js-sidebaropen',
   },
 
   events: {
     'click @ui.homeClicked': 'homeClicked',
-    'click @ui.sidebarClose': 'sidebarClose',
+    'click @ui.sidebarOpen': 'sidebarOpen',
     'click @ui.logoutClicked': 'logoutClicked',
   },
 
   sidebarClose: function (e) {
     e.preventDefault()
+    e.stopPropagation()
     gc.trigger('sidebar:close')
-    console.log('close clicked')
+  },
+
+  sidebarOpen: function (e) {
+    e.preventDefault()
+    e.stopPropagation()
+    gc.trigger('sidebar:open')
   },
 
   homeClicked: function (e) {

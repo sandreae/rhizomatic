@@ -18,12 +18,12 @@ var SidebarRadio = Marionette.Object.extend({
 
   sidebarOpen: function () {
     $('#js-sidebar-region').addClass('sidebaractive')
-    document.getElementById('js-sidebarclose').style.display = 'block'
+    gc.trigger('sidebarleft:close')
+    // document.getElementById('js-sidebarclose').style.display = 'block'
   },
 
   sidebarClose: function () {
     $('#js-sidebar-region').removeClass('sidebaractive')
-    document.getElementById('js-sidebarclose').style.display = 'none'
   },
 
 /*  checkUserStatus: function () {

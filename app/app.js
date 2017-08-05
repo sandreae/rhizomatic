@@ -2,7 +2,6 @@ import * as Behaviours from './entities/behaviours/behaviours'
 import Layout from './theme/layout/layout'
 import {gc} from './components/radio'
 
-
 var App = Marionette.Application.extend({
   el: 'body',
   region: '#app',

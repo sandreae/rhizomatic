@@ -1,17 +1,17 @@
-import * as pace from 'pace-progress'
 import * as Entities from '../app/entities/models/radio'
 import {Platform} from './../app/app'
 import {PubsApp} from '../app/components/pubs/pubs_app'
 import {AboutApp} from '../app/components/about/about_app'
-import {HeaderApp} from '../app/components/header/header_app'
+import {HeaderApp} from '../app/components/sidebarleft/header_app'
 import {SidebarApp} from '../app/components/sidebar/sidebar_app'
 import {UsersApp} from '../app/components/users/users_app'
 import {Auth} from '../app/entities/authentication/authentication_router'
 import {gc} from '../app/components/radio'
+import * as pace from 'pace-progress'
 
 
 // import {Globals, Authentication} from './../app/entities/authentication'
-pace.start()
+
 Platform.Entities = Entities
 Platform.HeaderApp = HeaderApp
 Platform.AboutApp = AboutApp
@@ -32,5 +32,6 @@ Platform.navigate = function (route) {
 document.addEventListener('DOMContentLoaded', () => {
 
   Platform.start();
+  pace.start()
 
 })

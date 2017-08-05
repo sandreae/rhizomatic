@@ -1,12 +1,12 @@
-@import "reset.scss";
 @import "d3.scss";
 @import "typography.scss";
-@import "nav.scss";
+@import "sidebarleft.scss";
 @import "mainregion.scss";
 @import "footer.scss";
 @import "form.scss";
-@import "sidebar.scss";
+@import "sidebarright.scss";
 @import "image-view.scss";
+@import "pace.scss";
  
 /****************************************
 STRUCTURES
@@ -20,16 +20,4 @@ STRUCTURES
 body {
   overflow-x:hidden;
   font-family:sans-serif;
-}
-
-section {
-	width:1100px;
-	margin:20px auto;
-	background:#f4f4f4;
-	border-radius:2px;
-	padding:20px;
-
-	@include breakpoint(1300) {
-		width:90%;
-	}
 }

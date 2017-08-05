@@ -3,12 +3,12 @@ auto-complete for list of items
 add published date
 edit profile page
 collage edit view
-loading gif
+add new header for pub info
 pub type selector confusiong
-click anywhere hide sidebar
 info texts for media uploads
-open pub in new page
 tidy up scss files for Rod
+invite to publish email/username
+refactor sidebarright into seperate views for form / extras
 
 EDIT METHODS:
 - video

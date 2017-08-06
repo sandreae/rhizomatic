@@ -85,8 +85,8 @@ var Controller = {
       editSidebarView.on('form:submit', function (content, data, pubModel) {
         var newDraft = new Platform.Entities.Pubs.Draft()
 
-        if (data.tags !== "") {data.tags = data.tags.split(', ')}
-        if (data.directedAt !== "") {data.directedAt = data.directedAt.split(', ')}
+        if (data.tags === '') {data.tags = []} else {data.tags = data.tags.split(', ')}
+        if (data.directedAt === '') {data.directedAt = []} else {data.directedAt = data.directedAt.split(', ')}
         var drafts = pubModel.get('drafts')
         var draft = drafts.findWhere({type: type})
         draft.set({content: content})
@@ -116,7 +116,6 @@ var Controller = {
         } else {
           editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError);
           pubModel.set({published: false})
-          console.log(pubModel)
           pubModel.save()
         }
       })

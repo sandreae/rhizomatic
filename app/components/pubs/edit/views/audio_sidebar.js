@@ -1,4 +1,4 @@
-import template from '../templates/edit_sidebar.jst'
+import template from './../../../../entities/behaviors/templates/details.jst'
 import 'jquery-ui'
 
 var AudioSidebar = Marionette.View.extend({
@@ -10,12 +10,14 @@ var AudioSidebar = Marionette.View.extend({
   },
 
   behaviors: {
-    validate: Platform.Behaviours.FormValidate,
-    tagsautocomplete: Platform.Behaviours.TagsAutocomplete,
+    validate: Platform.Behaviors.FormValidate,
+    tagsautocomplete: Platform.Behaviors.TagsAutocomplete,
+    atautocomplete: Platform.Behaviors.AtAutocomplete,
   },
 
   onDomRefresh: function() {
     this.triggerMethod('tagsautocomplete', this.model.get('tags'))
+    this.triggerMethod('atautocomplete', this.model.get('directedAt'))
   },
 
   submitClicked: function(e) {

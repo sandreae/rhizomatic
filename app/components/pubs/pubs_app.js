@@ -4,7 +4,6 @@ import * as New from './new/new_controller'
 import * as Details from './details/details_controller'
 import * as List from './list/list_controller'
 import * as UserList from './userlist/userlist_controller'
-import * as Publish from './publish/publish_controller'
 import PubsRouter from './pubs_router'
 import {gc} from '../radio'
 
@@ -14,7 +13,6 @@ PubsApp.Show = Show
 PubsApp.New = New
 PubsApp.List = List
 PubsApp.UserList = UserList
-PubsApp.Publish = Publish
 
 var PubsRadio = Marionette.Object.extend({
   channelName: 'gc',

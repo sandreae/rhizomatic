@@ -1,4 +1,4 @@
-import template from './../templates/new.jst'
+import template from './../../../../entities/behaviors/templates/details.jst'
 import 'backbone.syphon'
 
 var View = Marionette.View.extend({
@@ -9,9 +9,9 @@ var View = Marionette.View.extend({
   },
 
   behaviors: {
-    validate: Platform.Behaviours.FormValidate,
-    tagsautocomplete: Platform.Behaviours.TagsAutocomplete,
-    atautocomplete: Platform.Behaviours.AtAutocomplete,
+    validate: Platform.Behaviors.FormValidate,
+    tagsautocomplete: Platform.Behaviors.TagsAutocomplete,
+    atautocomplete: Platform.Behaviors.AtAutocomplete,
   },
 
   onDomRefresh: function() {

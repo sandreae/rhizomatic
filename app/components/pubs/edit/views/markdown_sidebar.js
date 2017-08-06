@@ -1,4 +1,4 @@
-import template from '../templates/edit_sidebar.jst'
+import template from './../../../../entities/behaviors/templates/details.jst'
 
 var MarkdownSidebar = Marionette.View.extend({
 
@@ -10,9 +10,9 @@ var MarkdownSidebar = Marionette.View.extend({
   },
 
   behaviors: {
-    validate: Platform.Behaviours.FormValidate,
-    tagsautocomplete: Platform.Behaviours.TagsAutocomplete,
-    atautocomplete: Platform.Behaviours.AtAutocomplete,
+    validate: Platform.Behaviors.FormValidate,
+    tagsautocomplete: Platform.Behaviors.TagsAutocomplete,
+    atautocomplete: Platform.Behaviors.AtAutocomplete,
   },
 
   onDomRefresh: function() {

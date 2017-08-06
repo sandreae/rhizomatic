@@ -1,4 +1,4 @@
-import template from '../templates/edit_sidebar.jst'
+import template from './../../../../entities/behaviors/templates/details.jst'
 import 'jquery-ui'
 
 var ImageSidebar = Marionette.View.extend({
@@ -9,13 +9,15 @@ var ImageSidebar = Marionette.View.extend({
     'click button.js-publish': 'publishClicked'
   },
 
- behaviors: {
-    validate: Platform.Behaviours.FormValidate,
-    tagsautocomplete: Platform.Behaviours.TagsAutocomplete,
+  behaviors: {
+    validate: Platform.Behaviors.FormValidate,
+    tagsautocomplete: Platform.Behaviors.TagsAutocomplete,
+    atautocomplete: Platform.Behaviors.AtAutocomplete,
   },
 
   onDomRefresh: function() {
     this.triggerMethod('tagsautocomplete', this.model.get('tags'))
+    this.triggerMethod('atautocomplete', this.model.get('directedAt'))
   },
 
   submitClicked: function(e) {

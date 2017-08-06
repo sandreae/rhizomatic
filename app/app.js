@@ -1,4 +1,4 @@
-import * as Behaviours from './entities/behaviours/behaviours'
+import * as Behaviors from './entities/behaviors/behaviors'
 import Layout from './theme/layout/layout'
 import {gc} from './components/radio'
 
@@ -24,7 +24,7 @@ var App = Marionette.Application.extend({
 
 var Platform = new App()
 window.Platform = Platform
-Platform.Behaviours = Behaviours
+Platform.Behaviors = Behaviors
 
 export {Platform}
 

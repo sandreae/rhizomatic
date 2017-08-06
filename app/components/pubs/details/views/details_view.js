@@ -12,8 +12,8 @@ var View = Marionette.View.extend({
   },
 
   behaviors: {
-    validate: Platform.Behaviours.FormValidate,
-    autocomplete: Platform.Behaviours.Autocomplete,
+    validate: Platform.Behaviors.FormValidate,
+    autocomplete: Platform.Behaviors.Autocomplete,
   },
 
   onDomRefresh: function() {

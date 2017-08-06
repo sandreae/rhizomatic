@@ -1,5 +1,4 @@
 collage: check file type then apply correct process
-auto-complete for list of items
 add published date
 edit profile page
 collage edit view
@@ -9,6 +8,8 @@ info texts for media uploads
 tidy up scss files for Rod
 invite to publish email/username
 refactor sidebarright into seperate views for form / extras
+make helpers for edit_pub_controler
+
 
 EDIT METHODS:
 - video
@@ -48,6 +49,7 @@ split editing views (in folders)
 -hitting the X in the sidebar should return you to the previous view (so if im in the ‘Your Publications’ view, and click on ‘edit details’ or whatever, if I X out of that, it should return me to ‘Your Publications’, so the X should be local/relative to the ‘current sidebar view’, rather than X-ing out of the whole sidebar altogether)
 change landing sidebar page to 'home'
 iframes doesn't work, change to new window link
+auto-complete for list of items
 
 
 QUESTIONS FOR ROD:

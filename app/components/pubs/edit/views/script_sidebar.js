@@ -1,4 +1,4 @@
-import template from '../templates/edit_sidebar.jst'
+import template from './../../../../entities/behaviors/templates/details.jst'
 
 var ScriptSidebar = Marionette.View.extend({
   
@@ -10,15 +10,18 @@ var ScriptSidebar = Marionette.View.extend({
     'click button.js-update': 'updateUrl'
   },
 
-   behaviors: {
-    validate: Platform.Behaviours.FormValidate,
-    tagsautocomplete: Platform.Behaviours.TagsAutocomplete,
+  behaviors: {
+    validate: Platform.Behaviors.FormValidate,
+    tagsautocomplete: Platform.Behaviors.TagsAutocomplete,
+    atautocomplete: Platform.Behaviors.AtAutocomplete,
   },
 
   onDomRefresh: function() {
     this.triggerMethod('tagsautocomplete', this.model.get('tags'))
+    this.triggerMethod('atautocomplete', this.model.get('directedAt'))
   },
-  
+
+
   initialize: function() {
   	var url = this.model.get('activeContent')
   },

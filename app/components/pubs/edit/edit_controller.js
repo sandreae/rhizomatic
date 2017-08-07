@@ -1,86 +1,22 @@
-import {Markdown} from './views/markdown_view'
-import {Collage} from './views/collage_view'
-import {Script} from './views/script_view'
-import {Audio} from './views/audio_view'
-import {Image} from './views/image_view'
-import {CollageSidebar} from './views/collage_sidebar'
-import {MarkdownSidebar} from './views/markdown_sidebar'
-import {ScriptSidebar} from './views/script_sidebar'
-import {AudioSidebar} from './views/audio_sidebar'
-import {ImageSidebar} from './views/image_sidebar'
+import editSidebarPicker from './helpers/edit_sidebar_picker'
+import editViewPicker from './helpers/edit_view_picker'
 import {gc} from '../../radio'
 
 var Controller = {
-    editPub: function (id) {
-      // request the pub model via API handler using the 'id' argument passed from the router//
-      var fetchingpub = gc.request('pub:get', id)
-      $.when(fetchingpub).done(function(pub){
-        console.log(pub)
-        // grab pub type and instantiate appropriate view//
-        var editPubContentView
-        var type = pub.get('type')
-        if (type === 'markdown') {
-          editPubContentView = new Markdown({
-            model: pub
-          })
-        }
-        if (type === 'collage') {
-          editPubContentView = new Collage({
-            model: pub
-          })
-        }
-        if (type === 'script') {
-          editPubContentView = new Script({
-            model: pub
-          })
-        }
-        if (type === 'audio') {
-          editPubContentView = new Audio({
-            model: pub
-          })
-        }
-        if (type === 'image') {
-          editPubContentView = new Image({
-            model: pub
-          })
-        }
-        Platform.Regions.getRegion('main').show(editPubContentView)
-      })
-    },
-
-  editPubSidebar: function (id) {
-    // request the pub model via API handler using the 'id' argument passed from the router//
+  editPub: function (id) {
     var fetchingpub = gc.request('pub:get', id)
     $.when(fetchingpub).done(function(pub){
-
-      // grab pub type and instantiate appropriate view//
-      var editSidebarView = new CollageSidebar()
       var type = pub.get('type')
-      if (type === 'markdown') {
-        editSidebarView = new MarkdownSidebar({
-          model: pub
-        })
-      }
-      if (type === 'collage') {
-        editSidebarView = new CollageSidebar({
-          model: pub
-        })
-      }
-      if (type === 'script') {
-        editSidebarView = new ScriptSidebar({
-          model: pub
-        })
-      }
-      if (type === 'audio') {
-        editSidebarView = new AudioSidebar({
-          model: pub
-        })
-      }
-      if (type === 'image') {
-        editSidebarView = new ImageSidebar({
-          model: pub
-        })
-      }
+      var editPubContentView = editViewPicker(pub, type)
+      Platform.Regions.getRegion('main').show(editPubContentView)
+    })
+  },
+
+  editPubSidebar: function (id) {
+    var fetchingpub = gc.request('pub:get', id)
+    $.when(fetchingpub).done(function(pub){
+      var type = pub.get('type')
+      var editSidebarView = editSidebarPicker(pub, type)
 
       editSidebarView.on('form:submit', function (content, data, pubModel) {
         var newDraft = new Platform.Entities.Pubs.Draft()
@@ -106,6 +42,7 @@ var Controller = {
 
         if (pubModel.save(data)) {
           if (pubModel.get('type') === type) {
+            Controller.newInvitedPub(pubModel)
             gc.trigger('user:home')
             gc.trigger('pubs:list')
             gc.trigger('sidebar:close')
@@ -120,6 +57,30 @@ var Controller = {
         }
       })
       gc.trigger('sidebar:show', editSidebarView)
+    })
+  },
+
+  newInvitedPub: function (model) {
+    var invitedUsers = model.get('directedAt')
+    var fetchingUsers = gc.request('users:get')
+    $.when(fetchingUsers).done(function (users) {
+      invitedUsers.forEach(function (userName) {
+        if (userName.includes('@')) {console.log(userName)}
+        var invitedUserModels = users.where({userName: userName})
+        invitedUserModels.forEach(function (userModel) {
+          var userId = userModel.get('_id')
+          var newPub = new Platform.Entities.Pubs.PubModel({
+            contributorId: userId,
+            invitedBy: model.get('contributorId'),
+            inRhizome: model.get('memberOf')
+          })
+          newPub.save(null, {
+            success: function () {
+              console.log('newPub created for ' + userName)
+            }
+          })
+        })
+      })
     })
   }
 }

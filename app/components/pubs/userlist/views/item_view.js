@@ -19,11 +19,10 @@ export default Marionette.View.extend({
   },
 
   deleteClicked: function (e) {
-    // stops the 'click' event bubbling up to parent elements//
+    e.preventDefault()
     e.stopPropagation()
     var answer = confirm('Do you want to delete?')
     if (answer) {
-      this.trigger('pub:delete', this.model)
       this.remove()
       this.model.destroy()
       alert('Deleted')
@@ -52,10 +51,7 @@ export default Marionette.View.extend({
 
   remove: function () {
     var self = this
-    // fadeOut ItemView when deleted by accessing the 'remove' lifecycle event//
     this.$el.fadeOut(function () {
-      // once the fadeOut has finished, scope out the original 'remove' function using 'prototype'
-      // and call it on 'this' to remove the model and clear up any dependencies//
       Marionette.View.prototype.remove.call(self)
     })
   },

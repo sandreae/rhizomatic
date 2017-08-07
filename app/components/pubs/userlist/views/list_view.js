@@ -9,20 +9,6 @@ var TableBody = Mn.CollectionView.extend({
   collectionEvents: {
     'change': 'render'
   },
-
-  childViewTriggers: {
-    'deleteClicked': 'deleteClicked',
-    'publishClicked': 'pub:publish'
-  },
-
-  // using e.target gives us the DOM element that triggered this event function//
-  // wrapping it in $() turns it into a jQuery object//
-  // console.log($(e.target).text())
-
-  // this.$el returns a jQuery object wrapping the views DOM element//
-  // in this case, that is <tr>//
-  // this event function should be in the 'view' because it changes the display, not data//
-
 });
 
 var TableView = Mn.View.extend({

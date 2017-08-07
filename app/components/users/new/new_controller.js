@@ -11,7 +11,7 @@ var Controller = {
           userName: data.userName,
           email: data.email,
           password: data.password,
-          permissions: 'admin',
+          permissions: '',
           pendingPub: 'false',
           memberOf: data.memberOf
         })
@@ -21,7 +21,7 @@ var Controller = {
           }
         })
       })
-      Platform.Regions.getRegion('sidebar').show(newView)
+      gc.trigger('sidebar:show', newView)
     }
   }
 

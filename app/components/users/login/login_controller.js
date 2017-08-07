@@ -15,12 +15,12 @@ var Controller = {
             type: 'POST',
             dataType: 'json',
             data: data,
-            success: function(response){
-                if (response.success){
-                  gc.request('user:isAuthenticated', response)
-                } else {
-                    console.log(response)
-                }
+            success: function(response) {
+              if (response.success) {
+                gc.request('user:isAuthenticated', response)
+              } else {
+                  console.log(response)
+              }
             }
         });
       })

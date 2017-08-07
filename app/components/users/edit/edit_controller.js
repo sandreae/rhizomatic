@@ -9,19 +9,36 @@ var Controller = {
       var editView = new View({model: user})
 
       editView.on('form:submit', function (data) {
-        user.set({
-          userName: data.userName,
-          email: data.email,
-          password: data.password,
-          permissions: ['admin']
-        })
-        user.save(null, {
-          success: function () {
-            gc.trigger('user:home')
-          }
-        })
+
+        var globals = gc.request('globals:get')
+
+        $.ajax({
+            url: globals.urls.AUTHENTICATE,
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            success: function(response) {
+              if (response.success) {
+                user.set({
+                  userName: data.userName,
+                  email: data.email,
+                  permissions: data.permissions,
+                  password: data.password
+                })
+                user.save(null, {
+                  success: function () {
+                    gc.trigger('user:home')
+                    gc.trigger('user:list')
+                  }
+                })
+              } else {
+                  console.log(response)
+              }
+            }
+        });
       })
-      Platform.Regions.getRegion('sidebar').show(editView)
+      gc.trigger('sidebar:show', editView)
+      gc.trigger('sidebar:open')
     })
   }
 }

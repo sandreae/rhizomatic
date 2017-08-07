@@ -16,7 +16,7 @@ var Authentication = {
   },
 
   isAdmin: function(permissions) {
-    return _.contains(permissions, 'admin');
+    return (permissions === 'admin')
   },
 
   getAppInfo: function () {

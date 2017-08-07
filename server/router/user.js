@@ -13,7 +13,7 @@ module.exports = function (app, express) {
         userName: req.body.userName,
         email: req.body.email,
         password: req.body.password,
-        permissions: req.body.permissions || [],
+        permissions: req.body.permissions,
         pendingPub: req.body.pendingPub,
         memberOf: req.body.memberOf
       })
@@ -68,14 +68,18 @@ module.exports = function (app, express) {
     })
 
     .delete(function (req, res) {
-      if (_.contains(req.decoded.permissions, 'admin')) {
-        User.remove({_id: req.params.user_id}, function (err, user) {
-          if (err) res.send(err)
-          res.json({})
-        })
-      } else {
-        return res.status(403).send({success: false, message: 'User is not authorized to delete users'})
-      }
+      console.log(req.params)
+      User.findById(req.params.user_id, function (err, user) {
+        console.log(user)
+        if (user.permissions === 'admin') {
+          User.remove({_id: req.params.user_id}, function (err, user) {
+            if (err) res.send(err)
+            res.json({})
+          })
+        } else {
+          return res.status(403).send({success: false, message: 'User is not authorized to delete users'})
+        }
+      })
     })
   return userRouter
 }

@@ -7,9 +7,9 @@ pub type selector confusiong
 info texts for media uploads
 tidy up scss files for Rod
 invite to publish email/username
-refactor sidebarright into seperate views for form / extras
 make helpers for edit_pub_controler
-
+how to create a new Rhizome?
+my contributors
 
 EDIT METHODS:
 - video
@@ -27,7 +27,7 @@ activeContent can be array or string
 audio upload
 collage view: 
 - make resizable when editing
-- make corner dragger lower index
+- make corner dragger lower indexv
 - remove editing elements when viewing
 -hitting “Save” on the ‘new publication’ page should take you directly into the ‘edit contents’ page
 -the “delete” button needs a few warnings before just nuking the pub!
@@ -50,6 +50,8 @@ split editing views (in folders)
 change landing sidebar page to 'home'
 iframes doesn't work, change to new window link
 auto-complete for list of items
+populate contributor pool
+refactor sidebarright into seperate views for form / extras
 
 
 QUESTIONS FOR ROD:

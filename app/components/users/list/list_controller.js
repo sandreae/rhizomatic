@@ -9,8 +9,7 @@ var Controller = {
         collection: users
       })
 
-      Platform.Regions.getRegion('main').show(listUsers)
-      UserList.Controller.userListPubs()
+      gc.trigger('sidebar:show', listUsers)
     })
   }
 }

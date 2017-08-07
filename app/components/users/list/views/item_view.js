@@ -11,9 +11,17 @@ export default Marionette.View.extend({
   },
 
   deleteClicked: function (e) {
-    e.preventDefault()
     e.stopPropagation()
-    this.remove(this.model)  
+    var answer = confirm('Do you want to delete?')
+    if (answer) {
+      console.log(this.model)
+      this.remove()
+      this.model.destroy()
+      alert('Deleted')
+    }
+    else {
+      alert('Not Deleted')
+    }
   },
 
   editClicked: function (e) {
@@ -25,7 +33,7 @@ export default Marionette.View.extend({
   remove: function () {
     var self = this
     this.$el.fadeOut(function () {
-    self.model.destroy()
+      Marionette.View.prototype.remove.call(self)
     })
-  }
+  },
 })

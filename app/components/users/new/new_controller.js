@@ -11,7 +11,7 @@ var Controller = {
           userName: data.userName,
           email: data.email,
           password: data.password,
-          permissions: '',
+          permissions: 'admin',
           pendingPub: 'false',
           memberOf: data.memberOf
         })

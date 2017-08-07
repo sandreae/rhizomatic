@@ -7,9 +7,12 @@ pub type selector confusiong
 info texts for media uploads
 tidy up scss files for Rod
 invite to publish email/username
-make helpers for edit_pub_controler
 how to create a new Rhizome?
 my contributors
+refresh tags and contributors
+what happens when user is deleted?
+refactor server
+nake passwords unreadable in forms
 
 EDIT METHODS:
 - video
@@ -52,6 +55,7 @@ iframes doesn't work, change to new window link
 auto-complete for list of items
 populate contributor pool
 refactor sidebarright into seperate views for form / extras
+make helpers for edit_pub_controler
 
 
 QUESTIONS FOR ROD:

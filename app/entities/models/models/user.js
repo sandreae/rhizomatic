@@ -1,9 +1,13 @@
 import 'backbone-validation'
 
 var User = Backbone.Model.extend({
-
   idAttribute: '_id',
-  urlRoot: '/api/users'
+  urlRoot: '/api/users',
+  defaults: {
+    contributorNames: [''],
+    permissions: '',
+    pendingPub: false,
+  }
 })
 
 var Users = Backbone.Collection.extend({

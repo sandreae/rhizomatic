@@ -12,11 +12,13 @@ var View = Marionette.View.extend({
     validate: Platform.Behaviors.FormValidate,
     tagsautocomplete: Platform.Behaviors.TagsAutocomplete,
     atautocomplete: Platform.Behaviors.AtAutocomplete,
+    namesautocomplete: Platform.Behaviors.NamesAutocomplete,
   },
 
   onDomRefresh: function() {
     this.triggerMethod('tagsautocomplete', [])
     this.triggerMethod('atautocomplete', [])
+    this.triggerMethod('namesautocomplete')
   },
 
   submitClicked: function(e){

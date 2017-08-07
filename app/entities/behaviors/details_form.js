@@ -1,1 +1,0 @@
-details_form.js

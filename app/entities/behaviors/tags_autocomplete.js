@@ -8,7 +8,7 @@ var TagsAutocomplete = Mn.Behavior.extend({
     var tagPool = appState.get('tags')
     var options = tagPool.concat(tags)
     var items = options.map(function(x) { return { item: x }; });
-    $('#tags').selectize({    
+    $('#pub-tags').selectize({    
       delimiter: ', ',
       persist: false,
       options: items,

@@ -9,9 +9,10 @@ var Controller = {
       newView.on('form:submit', function (data) {
         user.set({
           userName: data.userName,
+          contributorNames: [''],
           email: data.email,
           password: data.password,
-          permissions: 'admin',
+          permissions: '',
           pendingPub: 'false',
           memberOf: data.memberOf
         })

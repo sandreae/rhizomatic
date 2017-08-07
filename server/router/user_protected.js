@@ -29,6 +29,7 @@ module.exports = function (app, express) {
       User.findById(req.params.user_id, function (err, user) {
         if (err) res.send(err)
         if (req.body.userName) user.userName = req.body.userName
+        if (req.body.contributorNames) user.contributorNames = req.body.contributorNames
         if (req.body.email) user.email = req.body.email
         if (req.body.password) user.password = req.body.password
         if (req.body.permissions) user.permissions = req.body.permissions

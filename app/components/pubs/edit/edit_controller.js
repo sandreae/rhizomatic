@@ -32,25 +32,33 @@ var Controller = {
         })
 
         if (data.type !== type) {
-          console.log('pubtype does not match')
           newDraft.set({
             type: data.type,
             pub: pubModel.get('_id')
           })
           drafts.add(newDraft)
         }
-
-        if (pubModel.save(data)) {
-          if (pubModel.get('type') === type) {
-            Controller.newInvitedPub(pubModel)
-            gc.trigger('user:home')
-            gc.trigger('pubs:list')
-            gc.trigger('sidebar:close')
-          } else {
-            gc.trigger('pub:content:edit', pubModel.get('_id'))
-          }
-          if (pubModel.get('published') === true) {gc.trigger('sidebar:close')}
-        } else {
+        pubModel.set({
+          contributor: data.contributor,
+          title: data.title,
+          type: data.type,
+          tags: data.tags,
+          directedAt: data.directedAt,
+        })
+        if (pubModel.save(null, {
+          success: function(response){
+            if (pubModel.get('type') === type) {
+              gc.trigger('user:home')
+              gc.trigger('pubs:list')
+              gc.trigger('sidebar:close')
+            } else {
+              gc.trigger('pub:content:edit', pubModel.get('_id'))
+            }
+            if (pubModel.get('published') === true) {
+              console.log('publish = true')
+              Controller.publish(pubModel)}
+          },
+        })) {console.log('save success')} else {
           editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError);
           pubModel.set({published: false})
           pubModel.save()
@@ -60,28 +68,42 @@ var Controller = {
     })
   },
 
-  newInvitedPub: function (model) {
+  newInvitedPub: function(model) {
+    console.log('newInvitedPub triggered')
+
+    console.log(model)
     var invitedUsers = model.get('directedAt')
     var fetchingUsers = gc.request('users:get')
-    $.when(fetchingUsers).done(function (users) {
-      invitedUsers.forEach(function (userName) {
-        if (userName.includes('@')) {console.log(userName)}
+
+    $.when(fetchingUsers).done(function(users) {
+      console.log(users)
+      invitedUsers.forEach(function(userName) {
+        if (userName.includes('@')) {console.log('send email to', userName)}
         var invitedUserModels = users.where({userName: userName})
+        console.log(invitedUserModels)
         invitedUserModels.forEach(function (userModel) {
+          console.log(userModel)
           var userId = userModel.get('_id')
-          var newPub = new Platform.Entities.Pubs.PubModel({
-            contributorId: userId,
-            invitedBy: model.get('contributorId'),
-            inRhizome: model.get('memberOf')
-          })
-          newPub.save(null, {
-            success: function () {
-              console.log('newPub created for ' + userName)
-            }
-          })
+
         })
       })
     })
+  },
+
+  publish: function(pubModel) {
+    console.log('publish triggered')
+    var user = gc.request('user:getCurrentUser')
+    var contributorName = pubModel.get('contributor')
+    var contributors = user.get('contributorNames')
+    contributors.push(contributorName)
+    console.log(contributors)
+    user.set({contributorNames: contributors})
+    user.save(null,{
+      success: function(response){
+        console.log(response)
+      }
+    })
+    gc.trigger('sidebar:close')
   }
 }
 export {Controller}

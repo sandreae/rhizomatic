@@ -3,6 +3,7 @@ var Schema = mongoose.Schema
 
 var UserSchema = new Schema({
   userName: String,
+  contributorNames: Array,
   email: {type: String, required: true, index: {unique: true}},
   password: {type: String, required: true, select: false},
   permissions: String,

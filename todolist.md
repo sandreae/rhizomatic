@@ -12,7 +12,6 @@ my contributors
 refresh tags and contributors
 what happens when user is deleted?
 refactor server
-nake passwords unreadable in forms
 
 EDIT METHODS:
 - video
@@ -56,6 +55,7 @@ auto-complete for list of items
 populate contributor pool
 refactor sidebarright into seperate views for form / extras
 make helpers for edit_pub_controler
+make passwords unreadable in forms
 
 
 QUESTIONS FOR ROD:

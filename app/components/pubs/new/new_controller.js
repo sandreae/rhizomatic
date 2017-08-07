@@ -17,7 +17,6 @@ var Controller = {
     var fetchingPubsCollection = gc.request('pubs:get')
     $.when(fetchingPubsCollection).done(function (pubsCollection) {
       newPubView.on('form:submit', function (data) {
-        console.log(data)
         if (data.tags === '') {data.tags = []} else {data.tags = data.tags.split(', ')}
         if (data.directedAt === '') {data.directedAt = []} else {data.directedAt = data.directedAt.split(', ')}
         if (data.type === 'audio' || 'image') {

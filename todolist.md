@@ -10,7 +10,7 @@ how to create a new Rhizome?
 what happens when user is deleted?
 refactor server
 invite to publish email/username (add array of pending pubs to user, click to accept and create new pub at that point)
-SERVER FUCKING BUGGY!!!! (creating users weird)
+check EVERY call to server is in correct promise format
 
 
 EDIT METHODS:
@@ -58,7 +58,7 @@ make helpers for edit_pub_controler
 make passwords unreadable in forms
 my contributors
 refresh tags and contributors
-
+SERVER FUCKING BUGGY!!!! (creating users weird)
 
 QUESTIONS FOR ROD:
 setup email

@@ -23,7 +23,7 @@ var Controller = {
           newDraft.set({content: []})
           newPub.set({activeContent: []})
         }
-
+        console.log(data)
         newPubSave(newPub, newDraft, drafts, userID, pubsCollection, data, gc)
         newPubView.triggerMethod('form:data:invalid', newPub.validationError);
       })

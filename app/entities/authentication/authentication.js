@@ -25,9 +25,10 @@ var Authentication = {
 
   getCurrentUser: function () {
     var userId = window.localStorage.userId
+    console.log(userId)
     if (userId) {
-      user = new Platform.Entities.Users.User({_id: window.localStorage.userId})
-      user.fetch().then(function () {
+      gc.request('user:get', userId).then(function(user){
+        console.log(user)
         return user
       })
       return user

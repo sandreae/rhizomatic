@@ -22,7 +22,6 @@ var Controller = {
         var newDraft = new Platform.Entities.Pubs.Draft()
         var drafts = pubModel.get('drafts')
         var draft = drafts.findWhere({type: type})
-        var isPublished = pubModel.get('published')
         var newType = data.type
 
         if (data.tags === '') {data.tags = []} else {data.tags = data.tags.split(', ')}
@@ -42,12 +41,21 @@ var Controller = {
           activeContent: content,
         })
 
-        pubSave(pubModel, data, newType, type, isPublished, Controller, gc)
-        if (editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError) !== null){
+        if (!pubModel.save(data)) {
+          editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError)
           pubModel.set({published: false})
           pubModel.save(null, {
             success: function() {console.log('pub not published because of validation error')}
           })
+        } else {
+          Controller.saveContributorName(pubModel)
+          if (newType === type) {
+            gc.trigger('user:home')
+            gc.trigger('pubs:list')
+            gc.trigger('sidebar:close')
+          } else {
+            gc.trigger('pub:content:edit', pubModel.get('_id'))
+          }
         }
       })
       gc.trigger('sidebar:show', editSidebarView)
@@ -83,20 +91,26 @@ var Controller = {
   publish: function(pubModel) {
     console.log('publish triggered')
     Controller.saveContributorName(pubModel)
-    Controller.newInvitedPub(pubModel)
+    //Controller.newInvitedPub(pubModel)
     gc.trigger('sidebar:close')
   },
 
   saveContributorName: function(pubModel) {
     console.log('save contributor names triggered')
-    var user = gc.request('user:getCurrentUser')
-    var contributorName = pubModel.get('contributor')
-    console.log(contributorName)
-    var contributors = user.get('contributorNames')
-    if (!contributors.includes(contributorName)){contributors.push(contributorName)}
-    console.log(contributors)
-    user.set({contributorNames: contributors})
-    user.save()
+    gc.request('user:get', window.localStorage.userId).then(function(user) {
+      console.log(user)
+      var contributorName = pubModel.get('contributor')
+      console.log(contributorName)
+      var contributors = user.get('contributorNames')
+      if (!contributors.includes(contributorName)){contributors.push(contributorName)}
+      contributors = _.flatten(contributors)
+      console.log(contributors)
+      user.set({contributorNames: contributors})
+      user.save(null, {
+        success: function() {console.log('user saved with new contributor names')}
+      })
+      console.log(user)
+    })
   },
 }
 export {Controller}

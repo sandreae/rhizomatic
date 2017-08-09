@@ -9,7 +9,7 @@ module.exports = function (app, express) {
     .get(function(req, res) {
       User.find(function(err, users) {
         if (err) {
-          res.send(err)
+          return res.send(err)
         }
         res.send(users)
       })
@@ -19,7 +19,7 @@ module.exports = function (app, express) {
     .get(function(req, res) {
       User.findById(req.params.user_id, function (err, user) {
         if (err) {
-          res.send(err)
+          return res.send(err)
         }
         res.send(user)
       })
@@ -37,7 +37,9 @@ module.exports = function (app, express) {
         if (req.body.memberOf) user.memberOf = req.body.memberOf
 
         user.save(function(err) {
-          if (err)res.send(err)
+          if (err) {
+            return res.send(err)
+          }
           res.send(user)
         })
       })
@@ -48,7 +50,9 @@ module.exports = function (app, express) {
       User.findById(req.params.user_id, function (err, user) {
         if (user.permissions === 'admin') {
           User.remove({_id: req.params.user_id}, function (err, user) {
-            if (err) res.send(err)
+            if (err) {
+              return res.send(err)
+            }
             res.json({})
           })
         } else {

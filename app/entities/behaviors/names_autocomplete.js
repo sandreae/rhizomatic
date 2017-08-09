@@ -5,11 +5,16 @@ var NamesAutocomplete = Mn.Behavior.extend({
 
   onNamesautocomplete: function(name, errors) {
     console.log('autocomplete names triggered')
+    console.log(name)
+
     var currentUser = gc.request('user:getCurrentUser')
+    console.log(currentUser)
     var names = currentUser.get('contributorNames')
+    console.log(names)
     names.push(name)
+    console.log(names)
     var items = names.map(function(x) { return { item: x }; });
-    $('#pub-contributor').selectize({    
+    $('#pub-contributor').selectize({
       maxItems: 1,
       delimiter: ', ',
       persist: false,

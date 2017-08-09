@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
+var bcrypt = require('bcrypt')
 
 var UserSchema = new Schema({
   userName: String,
@@ -7,11 +8,9 @@ var UserSchema = new Schema({
   email: {type: String, required: true, index: {unique: true}},
   password: {type: String, required: true, select: false},
   permissions: String,
-  pendingPub: String,
+  pendingPub: Array,
   memberOf: String
 })
-
-var bcrypt = require('bcrypt-nodejs')
 
 UserSchema.pre('save', function(next) {
   var user = this
@@ -19,17 +18,18 @@ UserSchema.pre('save', function(next) {
     return next()
   }
 
-  bcrypt.hash(user.password, null, null, function(err, hash) {
+  bcrypt.hash(user.password, 5, function( err, bcryptedPassword) {
     if (err) {
       return next(err)
     }
-    user.password = hash
+    user.password = bcryptedPassword
     next()
-  })
+  });
 })
 
 UserSchema.methods.comparePassword = function(password) {
   var user = this
+  console.log(this)
   return bcrypt.compareSync(password, user.password)
 }
 

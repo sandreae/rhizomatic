@@ -54,16 +54,24 @@ var Radio = Marionette.Object.extend({
     var appState = gc.request('appState:get')
     if (key !== null) {
       var user = Authentication.getCurrentUser()
-      user.fetch().then(function () {
+      user.fetch().then(function() {
         gc.trigger('user:loggedIn')
         appState.set({userName: user.get('userName')})
         var permissions = Authentication.isAdmin(user.get('permissions'))
-        if (permissions === true){appState.set({isAdmin: true})}
-        else {appState.set({isAdmin: false})}
+        if (permissions === true) {
+          appState.set({isAdmin: true})
+        } else {
+          appState.set({isAdmin: false})
+        }
+        console.log(appState)
         gc.trigger('appState:changed', appState)
       })
     } else {
-      appState.set({isAdmin: false})
+      appState.set({
+        isAdmin: false,
+        loggedIn: false,
+        userName: null
+      })
       gc.trigger('appState:changed', appState)
       gc.trigger('sidebar:show:login')
     }

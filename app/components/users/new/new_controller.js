@@ -9,15 +9,15 @@ var Controller = {
       newView.on('form:submit', function (data) {
         user.set({
           userName: data.userName,
-          contributorNames: [''],
+          contributorNames: [],
           email: data.email,
           password: data.password,
-          permissions: '',
+          permissions: 'admin',
           pendingPub: 'false',
           memberOf: data.memberOf
         })
         user.save(null, {
-          success: function () {
+          success: function() {
             gc.trigger('user:showLogin')
           }
         })

@@ -8,7 +8,6 @@ module.exports = function (app, express) {
     .post(function (req, res) {
       var user = new User({
         userName: req.body.userName,
-        contributorNames: req.body.contributorNames,
         email: req.body.email,
         password: req.body.password,
         permissions: req.body.permissions,

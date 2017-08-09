@@ -1,4 +1,5 @@
 import {View} from './views/new_view'
+import newPubSave from './helpers/newPubSave'
 import {gc} from '../../radio'
 
 var Controller = {
@@ -14,8 +15,7 @@ var Controller = {
   })
   var userID = window.localStorage.userId
 
-    var fetchingPubsCollection = gc.request('pubs:get')
-    $.when(fetchingPubsCollection).done(function (pubsCollection) {
+    gc.request('pubs:get').then(function (pubsCollection) {
       newPubView.on('form:submit', function (data) {
         if (data.tags === '') {data.tags = []} else {data.tags = data.tags.split(', ')}
         if (data.directedAt === '') {data.directedAt = []} else {data.directedAt = data.directedAt.split(', ')}
@@ -23,29 +23,11 @@ var Controller = {
           newDraft.set({content: []})
           newPub.set({activeContent: []})
         }
-        if (newPub.save(data, {
-          success: function (pub, response) {
-            newDraft.set({
-              type: data.type,
-              pub: pub.id
-            })
-            newPub.set({contributorId: userID})
-            drafts.add(newDraft)
-            newPub.set({drafts: drafts})
-            pubsCollection.add(newPub)
-            console.log(newPub)
-            newPub.save(null, {
-              success: function () {
-                console.log(newPub)
-                gc.trigger('pub:content:edit', pub.id)
-                gc.trigger('sidebar:close')
-              }
-            })
-          },
-        })) {console.log('success')} else {
-          newPubView.triggerMethod('form:data:invalid', newPub.validationError);
-        }
+
+        newPubSave(newPub, newDraft, drafts, userID, pubsCollection, data, gc)
+        newPubView.triggerMethod('form:data:invalid', newPub.validationError);
       })
+
       gc.trigger('sidebar:show', newPubView)
     })
   }

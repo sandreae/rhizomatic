@@ -17,6 +17,7 @@ var App = Marionette.Application.extend({
       Backbone.history.start()
       if (this.getCurrentRoute() === '') {
         gc.trigger('pubs:list')
+        gc.trigger('sidebar:show:login')
       }
     }
   }

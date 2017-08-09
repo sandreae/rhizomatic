@@ -4,6 +4,7 @@ import 'es-selectize/dist/js/standalone/selectize.js'
 var AtAutocomplete = Mn.Behavior.extend({
 
   onAtautocomplete: function(directedAt, errors) {
+    console.log(directedAt)
     var appState = gc.request('appState:get')
     var contributors = appState.get('contributors')
     var options = contributors.concat(directedAt)

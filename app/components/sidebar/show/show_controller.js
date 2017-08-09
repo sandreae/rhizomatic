@@ -3,7 +3,7 @@ import Layout from './views/layout_view'
 
 var Controller = {
   showLogin: function(){
-  	  	var layoutView = new Layout({
+    var layoutView = new Layout({
   		onRender: function(){
   			this.showChildView('sidebarFull', new View);
   		}

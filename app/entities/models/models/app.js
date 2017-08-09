@@ -6,12 +6,17 @@ var AppState = Backbone.Model.extend({
 var appState
 
 var initAppState = function() {
-  appState = new AppState({userName: 'visitor', loggedIn: true, isAdmin: true, tags: [], contributors: []});
+  appState = new AppState({userName: null, loggedIn: false, isAdmin: false, tags: [], contributors: []});
   $.when(gc.request('pubs:get')).done(function(pubs) {
     var allTags = pubs.pluck('tags')
-    var tagPool = _.flatten(allTags)
+    var tagPool = _.flatten(allTags).filter( function( item, index, inputArray ) {
+           return inputArray.indexOf(item) == index;
+    });
     var allContribs = pubs.pluck('contributor')
-    var contributors = _.flatten(allContribs)
+    var contributors = _.flatten(allContribs).filter( function( item, index, inputArray ) {
+       return inputArray.indexOf(item) == index;
+    });
+
     appState.set({
       tags: tagPool,
       contributors: contributors

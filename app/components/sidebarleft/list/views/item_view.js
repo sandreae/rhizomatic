@@ -19,6 +19,6 @@ export default Marionette.View.extend({
     var model = this.model
     var trigger = model.get('navigationTrigger')
     gc.trigger('sidebar:close')
-    gc.trigger('user:home')
+    gc.trigger('sidebarleft:close')
     gc.trigger(trigger)}
 })

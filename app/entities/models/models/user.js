@@ -4,9 +4,9 @@ var User = Backbone.Model.extend({
   idAttribute: '_id',
   urlRoot: '/api/users',
   defaults: {
-    contributorNames: [''],
+    contributorNames: [],
     permissions: '',
-    pendingPub: false,
+    pendingPub: [],
   }
 })
 

@@ -31,7 +31,7 @@ var PubModel = Backbone.RelationalModel.extend({
     title: '',
     type: 'markdown',
     activeContent: '',
-    drafts: '',
+    drafts: [],
     tags: null,
     invitedBy: '',
     directedAt: null,

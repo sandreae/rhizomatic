@@ -1,7 +1,6 @@
 import * as Edit from './edit/edit_controller'
 import * as Show from './show/show_controller'
 import * as New from './new/new_controller'
-import * as Details from './details/details_controller'
 import * as List from './list/list_controller'
 import * as UserList from './userlist/userlist_controller'
 import PubsRouter from './pubs_router'
@@ -20,7 +19,6 @@ var PubsRadio = Marionette.Object.extend({
     'pubs:list': 'listPubs',
     'pub:show': 'showPub',
     'pub:new': 'newPub',
-    'pub:details:edit': 'editPubDetails',
     'pub:content:edit': 'editPubContent',
     'user:listPubs': 'userListPubs',
   },
@@ -33,11 +31,6 @@ var PubsRadio = Marionette.Object.extend({
   showPub: function(id) {
     Show.Controller.showPub(id)
     Platform.navigate('publications/' + id)
-  },
-
-  editPubDetails: function(id) {
-    Details.Controller.editPubDetails(id)
-    Platform.navigate('publications/details/' + id)
   },
 
   editPubContent: function(id) {

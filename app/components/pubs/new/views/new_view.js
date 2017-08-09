@@ -18,7 +18,7 @@ var View = Marionette.View.extend({
   onDomRefresh: function() {
     this.triggerMethod('tagsautocomplete', [])
     this.triggerMethod('atautocomplete', [])
-    this.triggerMethod('namesautocomplete')
+    this.triggerMethod('namesautocomplete', [])
   },
 
   submitClicked: function(e){

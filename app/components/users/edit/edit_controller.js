@@ -3,8 +3,7 @@ import {gc} from '../../radio'
 
 var Controller = {
   editUser: function (id) {
-    var fetchingUser = gc.request('user:get', id)
-    $.when(fetchingUser).done(function (user) {
+    gc.request('user:get', id).then(function (user) {
 
       var editView = new View({model: user})
 

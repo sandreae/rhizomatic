@@ -6,12 +6,12 @@ add new header for pub info
 pub type selector confusiong
 info texts for media uploads
 tidy up scss files for Rod
-invite to publish email/username
 how to create a new Rhizome?
-my contributors
-refresh tags and contributors
 what happens when user is deleted?
 refactor server
+invite to publish email/username (add array of pending pubs to user, click to accept and create new pub at that point)
+SERVER FUCKING BUGGY!!!! (creating users weird)
+
 
 EDIT METHODS:
 - video
@@ -56,6 +56,8 @@ populate contributor pool
 refactor sidebarright into seperate views for form / extras
 make helpers for edit_pub_controler
 make passwords unreadable in forms
+my contributors
+refresh tags and contributors
 
 
 QUESTIONS FOR ROD:

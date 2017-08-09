@@ -37,6 +37,7 @@ var Authentication = {
   logoutUser: function() {
     window.localStorage.removeItem(Globals.auth.TOKEN_KEY)
     window.localStorage.removeItem(Globals.auth.USER_KEY)
+    gc.request('user:init')
   },
 
 }

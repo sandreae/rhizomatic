@@ -27,6 +27,8 @@ module.exports = function (app, express) {
 
     .put(function(req, res) {
       User.findById(req.params.user_id, function (err, user) {
+      	console.log(user)
+      	console.log(req.body.contributorNames)
         if (err) res.send(err)
         if (req.body.userName) user.userName = req.body.userName
         if (req.body.contributorNames) user.contributorNames = req.body.contributorNames
@@ -38,7 +40,8 @@ module.exports = function (app, express) {
 
         user.save(function(err) {
           if (err) {
-            return res.send(err)
+          	console.log(err)
+          	return  res.send(err)
           }
           res.send(user)
         })

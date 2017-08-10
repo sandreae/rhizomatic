@@ -1,4 +1,5 @@
 import template from './../../../../entities/behaviors/templates/details.jst'
+import {gc} from '../../../radio'
 
 var MarkdownSidebar = Marionette.View.extend({
 

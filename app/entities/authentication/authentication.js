@@ -2,7 +2,6 @@ import {gc} from '../../components/radio'
 import {Globals} from './globals'
 
 var user
-var applicationInfo
 
 var Authentication = {
 
@@ -17,22 +16,6 @@ var Authentication = {
 
   isAdmin: function(permissions) {
     return (permissions === 'admin')
-  },
-
-  getAppInfo: function () {
-    return appInfo
-  },
-
-  getCurrentUser: function () {
-    var userId = window.localStorage.userId
-    console.log(userId)
-    if (userId) {
-      gc.request('user:get', userId).then(function(user){
-        console.log(user)
-        return user
-      })
-      return user
-    } else {return false}
   },
 
   logoutUser: function() {

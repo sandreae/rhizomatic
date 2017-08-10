@@ -12,7 +12,8 @@ module.exports = function (app, express) {
         password: req.body.password,
         permissions: req.body.permissions,
         pendingPub: req.body.pendingPub,
-        memberOf: req.body.memberOf
+        memberOf: req.body.memberOf,
+        contributorNames: req.body.contributorNames
       })
 
       user.save(function(err) {

@@ -3,9 +3,19 @@ import {gc} from '../../radio'
 
 var Controller = {
   showHome: function() {
-    var home = new Home()
-    console.log(home)
-    gc.trigger('sidebar:show', home)
+    gc.request('appState:get').then(function(appState){
+    	console.log('app state init', appState)
+    if (appState.get('loggedIn') === true) {
+      console.log('home triggered')
+      var home = new Home()
+      gc.trigger('sidebar:show', home)
+    } else {
+    	      console.log('login view triggered')
+
+      gc.trigger('sidebar:show:login')
+    }
+    })
+
   }
 }
 

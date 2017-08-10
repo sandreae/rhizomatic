@@ -33,14 +33,12 @@ export default Mn.View.extend({
 
   sidebarleftClose: function (e) {
     e.preventDefault()
-    console.log('close')
     gc.trigger('sidebarleft:close')
   },
 
   sidebarleftOpen: function (e) {
     e.preventDefault()
     e.stopPropagation()
-        console.log('open')
 
     gc.trigger('sidebarleft:open')
   },
@@ -48,7 +46,6 @@ export default Mn.View.extend({
   sidebarOpen: function (e) {
     e.preventDefault()
     e.stopPropagation()
-        console.log('open')
     gc.trigger('sidebar:open')
   }
 

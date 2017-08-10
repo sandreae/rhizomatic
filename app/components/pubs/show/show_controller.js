@@ -4,10 +4,8 @@ import {gc} from '../../radio'
 
 var Controller = {
   showPub: function(id) {
-
     var pub
-    var gettingPub = gc.request('pub:get', id)
-    $.when(gettingPub).done(function(pubModel) {
+    gc.request('pub:get', id).then(function(pubModel) {
       if (pubModel !== undefined) {
         pub = new Pub({model: pubModel})
       } else {

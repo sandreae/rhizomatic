@@ -6,7 +6,6 @@ var Controller = {
 
   listHeaders: function() {
     var headers = new LayoutView()
-
     Platform.Regions.getRegion('header').show(headers)
   },
 }

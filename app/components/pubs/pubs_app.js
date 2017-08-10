@@ -25,6 +25,7 @@ var PubsRadio = Marionette.Object.extend({
 
   listPubs: function() {
     List.Controller.listPubs()
+    gc.trigger('user:home')
     Platform.navigate('publications')
   },
 
@@ -41,6 +42,7 @@ var PubsRadio = Marionette.Object.extend({
 
   userListPubs: function() {
     UserList.Controller.userListPubs()
+    Platform.navigate('publications/userlist')
   },
 
   newPub: function() {

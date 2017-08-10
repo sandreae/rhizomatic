@@ -37,15 +37,3 @@ var MainHandler = Marionette.Object.extend({
 HeaderApp.MainHandler = new MainHandler()
 
 export {HeaderApp}
-
-/*  var API = {
-
-    updateUserInfo: function () {
-      Header.List.Controller.updateUserInfo()
-    }
-  }
-
-  Platform.on('updateUserInfo', function () {
-    API.updateUserInfo()
-  }) */
-

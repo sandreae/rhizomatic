@@ -7,7 +7,8 @@ var appState
 
 var initAppState = function() {
   appState = new AppState({userName: null, loggedIn: false, isAdmin: false, tags: [], contributors: []});
-  $.when(gc.request('pubs:get')).done(function(pubs) {
+  console.log('APP STATE INIT')
+  gc.request('pubs:get').then(function(pubs) {
     var allTags = pubs.pluck('tags')
     var tagPool = _.flatten(allTags).filter( function( item, index, inputArray ) {
            return inputArray.indexOf(item) == index;
@@ -21,16 +22,18 @@ var initAppState = function() {
       tags: tagPool,
       contributors: contributors
     })
+    return appState
   })
-  return appState
 };
 
 var AppStateAPI = {
   getAppState: function() {
-    if (appState === undefined) {
-      initAppState();
-    }
-    return appState;
+    return new Promise((resolve, reject) => {
+      if (appState === undefined) {
+        initAppState();
+      }
+      resolve(appState);
+    })
   }
 };
 

@@ -3,8 +3,7 @@ import {gc} from '../../radio'
 
 var Controller = {
   listUsers: function () {
-    var fetchingUsers = gc.request('users:get')
-    $.when(fetchingUsers).done(function(users) {
+    gc.request('users:get').then(function(users) {
       var listUsers = new TableView({
         collection: users
       })

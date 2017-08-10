@@ -11,15 +11,18 @@ var App = Marionette.Application.extend({
   },
 
   onStart: function() {
-    gc.request('user:init')
-    gc.trigger('headers:list')
-    if (Backbone.history) {
-      Backbone.history.start()
-      if (this.getCurrentRoute() === '') {
-        gc.trigger('pubs:list')
-        gc.trigger('sidebar:show:login')
+    var initPromise = gc.request('user:init')
+    console.log(initPromise)
+    initPromise.then(function(){
+      gc.trigger('headers:list')
+      if (Backbone.history) {
+        Backbone.history.start()
+        if (this.getCurrentRoute() === '') {
+          gc.trigger('pubs:list')
+        }
       }
-    }
+    })
+
   }
 })
 

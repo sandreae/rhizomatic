@@ -36,7 +36,6 @@ export default Marionette.View.extend({
   homeClicked: function (e) {
     e.preventDefault()
     e.stopPropagation()
-    gc.trigger('user:home')
     gc.trigger('pubs:list')
     gc.trigger('sidebar:close')
   },

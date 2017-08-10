@@ -16,14 +16,15 @@ var CollageSidebar = Marionette.View.extend({
     validate: Platform.Behaviors.FormValidate,
     tagsautocomplete: Platform.Behaviors.TagsAutocomplete,
     atautocomplete: Platform.Behaviors.AtAutocomplete,
+    namesautocomplete: Platform.Behaviors.NamesAutocomplete,
   },
 
   onDomRefresh: function() {
     this.triggerMethod('tagsautocomplete', this.model.get('tags'))
     this.triggerMethod('atautocomplete', this.model.get('directedAt'))
+    this.triggerMethod('namesautocomplete', this.model.get('contributor'))
   },
-
-
+  
   onAttach: function () {
 
     var self = this

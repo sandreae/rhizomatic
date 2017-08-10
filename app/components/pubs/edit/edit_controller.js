@@ -49,8 +49,9 @@ var Controller = {
           })
         } else {
           Controller.saveContributorName(pubModel)
+                Controller.newInvitedPub(pubModel)
+
           if (newType === type) {
-            gc.trigger('user:home')
             gc.trigger('pubs:list')
             gc.trigger('sidebar:close')
           } else {
@@ -67,44 +68,42 @@ var Controller = {
 
     var invitedUsers = pubModel.get('directedAt')
     gc.request('users:get').then(function(users) {
-      console.log('newInvitedPub got users')
-      console.log(users)
+      gc.request('pubs:get').then(function(pubs) {
 
-      invitedUsers.forEach(function(contributor) {
-        if (contributor.includes('@')) {console.log('send email to', contributor)}
-        var invitedUserModel = users.findWhere({userName: contributor})
-        var pendingList = invitedUserModel.get('pendingPub')
-        pendingList.push({
-          invitedByContrib: pubModel.get('contributor'),
-          invitedByContribId: pubModel.get('contributorId'),
-          invitedByPub: pubModel.get('title'),
-          invitedByPubId: pubModel.get('_id')
+        invitedUsers.forEach(function(contributor) {
+          if (contributor.includes('@')) {console.log('send email to', contributor)}
+          var invitedPub = pubs.findWhere({contributor: contributor})
+          var invitedUserModel = users.findWhere({_id: invitedPub.get('contributorId')})
+          var pendingList = invitedUserModel.get('pendingPub')
+          pendingList.push({
+            invitedByContrib: pubModel.get('contributor'),
+            invitedByContribId: pubModel.get('contributorId'),
+            invitedByPub: pubModel.get('title'),
+            invitedByPubId: pubModel.get('_id')
+          })
+          invitedUserModel.set({
+            pendingPub: pendingList
+          })
+          invitedUserModel.save()
+          console.log(invitedUserModel)
+
         })
-        invitedUserModel.set({
-          pendingPub: pendingList
-        })
-        console.log(invitedUserModel)
       })
+
     })
   },
 
   publish: function(pubModel) {
-    console.log('publish triggered')
     Controller.saveContributorName(pubModel)
-    //Controller.newInvitedPub(pubModel)
     gc.trigger('sidebar:close')
   },
 
   saveContributorName: function(pubModel) {
-    console.log('save contributor names triggered')
     gc.request('user:get', window.localStorage.userId).then(function(user) {
-      console.log(user)
       var contributorName = pubModel.get('contributor')
-      console.log(contributorName)
       var contributors = user.get('contributorNames')
       if (!contributors.includes(contributorName)){contributors.push(contributorName)}
       contributors = _.flatten(contributors)
-      console.log(contributors)
       user.set({contributorNames: contributors})
       user.save(null, {
         success: function() {console.log('user saved with new contributor names')}

@@ -6,7 +6,7 @@ var UserSchema = new Schema({
   userName: String,
   contributorNames: Array,
   email: {type: String, required: true, index: {unique: true}},
-  password: {type: String, required: true, select: false},
+  password: {type: String, required: true},
   permissions: String,
   pendingPub: Array,
   memberOf: String
@@ -14,11 +14,12 @@ var UserSchema = new Schema({
 
 UserSchema.pre('save', function(next) {
   var user = this
-  if (!user.isModified()) {
+
+  if (!user.isModified('password')) {
     return next()
   }
 
-  bcrypt.hash(user.password, 5, function( err, bcryptedPassword) {
+  bcrypt.hash(user.password, 5, function(err, bcryptedPassword) {
     if (err) {
       return next(err)
     }
@@ -29,7 +30,6 @@ UserSchema.pre('save', function(next) {
 
 UserSchema.methods.comparePassword = function(password) {
   var user = this
-  console.log(this)
   return bcrypt.compareSync(password, user.password)
 }
 

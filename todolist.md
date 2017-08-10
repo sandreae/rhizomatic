@@ -6,12 +6,15 @@ add new header for pub info
 pub type selector confusiong
 info texts for media uploads
 tidy up scss files for Rod
+home button in "login" view
 how to create a new Rhizome?
 what happens when user is deleted?
 refactor server
 invite to publish email/username (add array of pending pubs to user, click to accept and create new pub at that point)
 check EVERY call to server is in correct promise format
-
+refactor authenticate calls (from edit user etc...)
+feedback for failed/successful login
+different template for published or unpublished pubs
 
 EDIT METHODS:
 - video

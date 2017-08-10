@@ -7,7 +7,7 @@ var View = Marionette.View.extend({
   template: template,
 
   events: {
-    "click button.js-submit": "submitClicked"
+    'click button.js-submit': 'submitClicked'
   },
 
   modelEvents: {
@@ -18,8 +18,8 @@ var View = Marionette.View.extend({
     //any other post-render View code here
 
     Validation.bind(this);
-    if(this.validated) {
-        this.model.validate();
+    if (this.validated) {
+      this.model.validate();
     }
   },
 

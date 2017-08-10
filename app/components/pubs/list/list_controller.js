@@ -4,8 +4,7 @@ import {gc} from '../../radio'
 var Controller = {
   listPubs: function() {
 
-   $.when(gc.request('pubs:get')).done(function (pubs) {
-   	console.log(gc.request('appState:get'))
+    gc.request('pubs:get').then(function(pubs) {
       var d3View = new D3View({
         model: false
       })

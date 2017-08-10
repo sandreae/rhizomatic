@@ -25,7 +25,6 @@ var Radio = Marionette.Object.extend({
     'user:userPermissions': 'userPermissions',
     'user:init': 'initUser',
     'user:getKey': 'getKey',
-    'user:getCurrentUser': 'getCurrentUser'
   },
 
   getGlobals: function() {
@@ -34,7 +33,6 @@ var Radio = Marionette.Object.extend({
 
   logoutUser: function() {
     Authentication.logoutUser()
-    console.log('user logged out')
     gc.trigger('user:loggedOut')
     gc.request('user:init')
     gc.trigger('pubs:list')
@@ -50,44 +48,42 @@ var Radio = Marionette.Object.extend({
   },
 
   initUser: function() {
-    var key = Authentication.getKey()
-    var userId = window.localStorage.userId
-    var appState = gc.request('appState:get')
-    if (key !== null) {
-      gc.request('user:get', userId).then(function(user){
-        console.log(user)
-        gc.trigger('user:loggedIn')
-        appState.set({
-          userName: user.get('userName'),
-          loggedIn: true
-        })
-        var permissions = Authentication.isAdmin(user.get('permissions'))
-        if (permissions === true) {
-          appState.set({isAdmin: true})
+    return new Promise((resolve, reject) => {
+      var appState
+      var key = Authentication.getKey()
+      var userId = window.localStorage.userId
+      gc.request('appState:get').then(function(appState) {
+        if (key !== null) {
+          gc.request('user:get', userId).then(function(user) {
+            gc.trigger('user:loggedIn')
+            appState.set({
+              userName: user.get('userName'),
+              loggedIn: true
+            })
+            var permissions = Authentication.isAdmin(user.get('permissions'))
+            if (permissions === true) {
+              appState.set({isAdmin: true})
+            } else {
+              appState.set({isAdmin: false})
+            }
+            gc.trigger('appState:changed', appState)
+          })
         } else {
-          appState.set({isAdmin: false})
+          appState.set({
+            isAdmin: false,
+            loggedIn: false,
+            userName: null
+          })
+          gc.trigger('appState:changed', appState)
         }
-        console.log(appState)
-        gc.trigger('appState:changed', appState)
+        return appState
       })
-
-    } else {
-      appState.set({
-        isAdmin: false,
-        loggedIn: false,
-        userName: null
-      })
-      gc.trigger('appState:changed', appState)
-      gc.trigger('sidebar:show:login')
-    }
+      resolve(appState)
+    })
   },
 
   getKey: function() {
     return Authentication.getKey();
-  },
-
-  getCurrentUser: function() {
-    return Authentication.getCurrentUser();
   },
 })
 

@@ -26,19 +26,6 @@ var SidebarRadio = Marionette.Object.extend({
     $('#js-sidebar-region').removeClass('sidebaractive')
   },
 
-/*  checkUserStatus: function () {
-    gc.request('initialize:entities').done(function () {
-      gc.request('initializeUser:entities').done(function () {
-        var user = gc.request('getUser:entities')
-        if (user.get('userName') === undefined) {
-          SidebarRadio.showLogin()
-        } else {
-          gc.trigger('user:listpubs')
-        }
-      })
-    })
-  }, */
-
   show: function(view) {
     Show.Controller.show(view)
   },

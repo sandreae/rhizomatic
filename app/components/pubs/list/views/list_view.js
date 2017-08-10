@@ -7,12 +7,13 @@ var TableBody = Mn.CollectionView.extend({
   tagName: 'tbody',
 
   childView: function(model, index) {
-    var appState = gc.request('appState:get')
-    if (appState.get('isAdmin') === true) {
-      return AdminItemView
-    } else {
-      return ItemView
-    }
+    gc.request('appState:get').then(function(appState){
+      if (appState.get('isAdmin') === true) {
+        return AdminItemView
+      } else {
+        return ItemView
+      }
+    })
   },
 
   collectionEvents: {

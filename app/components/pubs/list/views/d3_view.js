@@ -36,7 +36,7 @@ var D3View = Mn.View.extend({
     })
     var nodes = pubsJSON.map(function(pub, index, array){
       pub.id = pub._id
-      pub.url = 'http://localhost:8080/#publications/' + pub._id
+      pub.url = 'https://rhizomatic-web-zine.herokuapp.com/#publications/' + pub._id
       return pub
     })
     var data = {}
@@ -73,7 +73,7 @@ var D3View = Mn.View.extend({
       .attr("class", "nodes")
     .selectAll("circle")
     .data(root.nodes)
-    .enter()        
+    .enter()      
     .append("svg:a")
       .attr("xlink:href", function(d){return d.url;})
     .append("circle")
@@ -86,6 +86,7 @@ var D3View = Mn.View.extend({
           .on("start", dragstarted)
           .on("drag", dragged)
           .on("end", dragended));
+
   node.append("title")
       .text(function(d) { return d.title; });
   simulation

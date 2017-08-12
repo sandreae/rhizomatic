@@ -28,4 +28,13 @@ export default Marionette.View.extend({
       model.set({activeContent: html})
     }
   },
+
+  events: {
+    'click a.js-url-link': 'linkClicked',
+  },
+
+  linkClicked: function(e) {
+    e.preventdefault()
+    console.log('link clicked')
+  },
 })

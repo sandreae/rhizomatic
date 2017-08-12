@@ -1,18 +1,10 @@
 collage: check file type then apply correct process
 add published date
-collage edit view
-add new header for pub info
 pub type selector confusiong
 info texts for media uploads
 tidy up scss files for Rod
-home button in "login" view
 how to create a new Rhizome?
-what happens when user is deleted?
-refactor server
-invite to publish email/username (add array of pending pubs to user)
-refactor authenticate calls (from edit user etc...)
 feedback for failed/successful login
-fix url pub type
 collage horizontal scroll + delete button
 
 EDIT METHODS:
@@ -66,6 +58,18 @@ different template for published or unpublished pubs
 check EVERY call to server is in correct promise format
 edit profile page
 double newPub save fixed
+refactor server
+fix url pub type
+collage edit view
+add new header for pub info
+refactor authenticate calls (from edit user etc...)
+invite to publish email/username (add array of pending pubs to user)
+what happens when user is deleted?
+home button in "login" view
+
+
+
+
 
 QUESTIONS FOR ROD:
 setup email

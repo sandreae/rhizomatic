@@ -5,6 +5,7 @@ import 'fine-uploader/fine-uploader/fine-uploader-new.css'
 
 var Image = Marionette.View.extend({
   template: template,
+  
   events: {
     'click button.js-submit': 'submitClicked'
   },

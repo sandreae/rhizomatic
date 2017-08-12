@@ -23,15 +23,14 @@ var ScriptSidebar = Marionette.View.extend({
     this.triggerMethod('namesautocomplete', this.model.get('contributor'))
   },
 
-
-  initialize: function() {
-  	var url = this.model.get('activeContent')
-  },
-
   submitClicked: function(e) {
     e.preventDefault()
     var data = Backbone.Syphon.serialize(this);
-    var content = data.url
+    console.log(data)
+    var drafts = this.model.get('drafts')
+    var draft = drafts.findWhere({type: 'script'})
+    var content = draft.get('content')
+    console.log(drafts)
     this.trigger('form:submit', content, data, this.model)
 
     //nvar data = Backbone.Syphon.serialize(this);
@@ -42,13 +41,6 @@ var ScriptSidebar = Marionette.View.extend({
     this.model.set({published: true})
     this.submitClicked(e)
   },
-
-  updateUrl: function(e) {
-  	e.preventDefault()
-  	var data = Backbone.Syphon.serialize(this);
-  	var url = data.url
-  	this.model.set({activeContent: url})
-	},
 })
 
 export {ScriptSidebar}

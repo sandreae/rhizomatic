@@ -18,47 +18,27 @@ var Controller = {
 
       editSidebarView.on('form:submit', function (content, data, pubModel) {
 
+        var newType = data.type
         var newDraft = new Platform.Entities.Pubs.Draft()
         var drafts = pubModel.get('drafts')
         var draft = drafts.findWhere({type: type})
-        var newType = data.type
+        var nextDraft = drafts.findWhere({type: newType})
+        console.log(drafts)
+        console.log(nextDraft)
 
         if (data.tags === '') {data.tags = []} else {data.tags = data.tags.split(', ')}
         if (data.directedAt === '') {data.directedAt = []} else {data.directedAt = data.directedAt.split(', ')}
-        if (data.type === 'audio' || 'image') {
-          newDraft.set({content: []})
-          pubModel.set({activeContent: []})
-        }
 
-        if (newType !== type) {
-          newDraft.set({
-            type: data.type,
-            pub: pubModel.get('_id')
-          })
-          drafts.add(newDraft)
-        }
-
-        draft.set({content: content})
-
-        pubModel.set({
-          activeContent: content,
-        })
-
-        if (!pubModel.save(data)) {
-          editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError)
-          pubModel.set({published: false})
-          pubModel.save(null, {
-            success: function() {console.log('pub not published because of validation error')}
-          })
+        if (nextDraft === undefined) {
+          console.log('newDraft triggered')
+          Controller.newDraft(pubModel, newDraft, drafts, newType)
         } else {
-          if (pubModel.get('published') === true){
-            Controller.publish(pubModel)
-          }
-          if (newType === type) {
-            gc.trigger('pubs:list')
-            gc.trigger('sidebar:close')
+          console.log('changeDraft triggered')
+          if (type !== newType) {
+            Controller.changeDraft(pubModel, nextDraft, newType)
           } else {
-            gc.trigger('pub:content:edit', pubModel.get('_id'))
+            console.log('saveDraft triggered')
+            Controller.saveDraft(editSidebarView, pubModel, content, draft, data)
           }
         }
       })
@@ -83,7 +63,7 @@ var Controller = {
               email: contributor,
               password: 'password'
             })
-          } else {       
+          } else {
             invitedUserModel = users.findWhere(function(model){
               return ( _.indexOf(model.get('contributorNames'), contributor) >= 0 );
             });
@@ -129,5 +109,58 @@ var Controller = {
       console.log(user)
     })
   },
+
+  newDraft: function(pubModel, newDraft, drafts, newType) {
+    newDraft.set({
+      type: newType,
+      pub: pubModel.get('_id')
+    })
+    if (newType === 'audio' || newType === 'image') {
+      newDraft.set({content: []})
+      pubModel.set({activeContent: []})
+    } else {
+      newDraft.set({content: ''})
+      pubModel.set({activeContent: ''})
+    }
+    drafts.add(newDraft)
+    pubModel.set({
+      drafts: drafts,
+      type: newType,
+      activeContent: '',
+    })
+    pubModel.save(null)
+    gc.trigger('pub:content:edit', pubModel.get('_id'))
+  },
+
+  saveDraft: function(editSidebarView, pubModel, content, draft, data) {
+    draft.set({content: content})
+    pubModel.set({
+      activeContent: content,
+    })
+
+    if (!pubModel.save(data)) {
+      editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError)
+      pubModel.set({published: false})
+      pubModel.save(null, {
+        success: function() {console.log('pub not published because of validation error')}
+      })
+    } else {
+      if (pubModel.get('published') === true){
+        Controller.publish(pubModel)
+      }
+      gc.trigger('pubs:list')
+      gc.trigger('sidebar:close')
+    }
+  },
+
+  changeDraft: function(pubModel, nextDraft, newType) {
+    var nextContent = nextDraft.get('content')
+    pubModel.set({
+      type: newType,
+      activeContent: nextContent,
+    })
+    pubModel.save(null)
+    gc.trigger('pub:content:edit', pubModel.get('_id'))
+  }
 }
 export {Controller}

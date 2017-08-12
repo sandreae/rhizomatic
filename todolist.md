@@ -65,7 +65,7 @@ remove invite from user model
 different template for published or unpublished pubs
 check EVERY call to server is in correct promise format
 edit profile page
-
+double newPub save fixed
 
 QUESTIONS FOR ROD:
 setup email

@@ -1,6 +1,5 @@
 import editSidebarPicker from './helpers/edit_sidebar_picker'
 import editViewPicker from './helpers/edit_view_picker'
-import pubSave from './helpers/pubSave'
 import {gc} from '../../radio'
 
 var Controller = {
@@ -108,7 +107,6 @@ var Controller = {
           console.log(invitedUserModel)
         })
       })
-
     })
   },
 

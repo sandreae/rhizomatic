@@ -23,19 +23,22 @@ var Controller = {
           newDraft.set({content: []})
           newPub.set({activeContent: []})
         }
+        console.log('save1')
+        console.log(data)
         newPub.save(data, {
-          success: function(pub, response) {
-            newDraft.set({
-              type: data.type,
-              pub: pub.id
-            })
-            drafts.add(newDraft)
-            newPub.set({
-              contributorId: userID,
-              drafts: drafts})
-            pubsCollection.add(newPub)
-          }
-        }).done(function() {
+          success: function(pub, response) {console.log('newPub saved')}
+        }).done(function(pub) {
+          console.log(pub)
+          newDraft.set({
+            type: data.type,
+            pub: pub.id
+          })
+          drafts.add(newDraft)
+          newPub.set({
+            contributorId: userID,
+            drafts: drafts})
+          pubsCollection.add(newPub)
+          console.log('save 2')
           newPub.save(null, {
             success: function() {
               console.log(newPub)

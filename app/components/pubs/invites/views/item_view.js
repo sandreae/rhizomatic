@@ -36,8 +36,8 @@ export default Marionette.View.extend({
   respondClicked: function (e) {
     e.preventDefault()
     e.stopPropagation()
-    gc.trigger('pub:new')
     console.log('respond clicked')
+    this.trigger('accept:invite', this.model)
   },
 
 

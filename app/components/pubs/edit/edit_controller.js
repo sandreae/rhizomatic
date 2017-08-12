@@ -47,8 +47,6 @@ var Controller = {
   },
 
   newInvitedPub: function(pubModel) {
-    console.log('newInvitedPub triggered')
-
     var invitedUsers = pubModel.get('directedAt')
     gc.request('users:get').then(function(users) {
       gc.request('pubs:get').then(function(pubs) {
@@ -68,11 +66,8 @@ var Controller = {
               return ( _.indexOf(model.get('contributorNames'), contributor) >= 0 );
             });
           }
-          console.log(contributor)
 
-          console.log(invitedUserModel)
           var pendingList = invitedUserModel.get('pendingPub')
-          console.log(pendingList)
 
           pendingList.push({
             invitedByContrib: pubModel.get('contributor'),
@@ -84,7 +79,6 @@ var Controller = {
             pendingPub: pendingList
           })
           invitedUserModel.save()
-          console.log(invitedUserModel)
         })
       })
     })

@@ -6,6 +6,9 @@ tidy up scss files for Rod
 how to create a new Rhizome?
 feedback for failed/successful login
 collage horizontal scroll + delete button
+move downloads folder outside of dist
+automatically switch editing views when selecting type
+markdown view
 
 EDIT METHODS:
 - video

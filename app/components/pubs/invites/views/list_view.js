@@ -11,10 +11,15 @@ var TableBody = Mn.CollectionView.extend({
 
   childViewEvents: {
     'reject:invite': 'onChildRejectInvite',
+    'accept:invite': 'onChildAcceptInvite',
   },
 
   onChildRejectInvite: function(invite) {
     this.triggerMethod('reject:invite', invite)
+  },
+
+  onChildAcceptInvite: function(invite) {
+    this.triggerMethod('accept:invite', invite)
   }
 });
 

@@ -32,7 +32,9 @@ var Controller = {
             drafts.add(newDraft)
             newPub.set({
               contributorId: userID,
-              drafts: drafts})
+              drafts: drafts,
+              invitedByPubId: invitedByPubId
+            })
             pubsCollection.add(newPub)
             newPub.save(null, {
               success: function() {

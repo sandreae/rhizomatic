@@ -1,7 +1,7 @@
 import template from '../templates/d3.jst'
 import * as d3 from 'd3';
+import ForceGraph3D from '3d-force-graph';
 import {gc} from '../../../radio'
-import data from './data.json'
 
 var D3View = Mn.View.extend({
   tagName: 'div',
@@ -13,19 +13,43 @@ var D3View = Mn.View.extend({
   },
 
   onAttach: function() {
-    var filter = 'directedAtPub'
-    this.runD3(filter)
+    this.runD3()
   },
 
   submitClicked: function(e){
   e.preventDefault();
-  //serialize the form data//
-  var formdata = Backbone.Syphon.serialize(this);
-  var filter = formdata.filter
-  this.runD3(filter)
+  this.runD3()
   },
 
-  runD3: function(filter) {
+  getData: function() {
+    var pubs = this.collection
+    var pubsJSON = pubs.toJSON()
+    var directedAtPub = pubsJSON.map(function(pub, index, array){
+      var invitedBy = {
+        source: pub.invitedByPubId,
+        target: pub._id
+      }
+      return invitedBy
+    })
+    directedAtPub = directedAtPub.filter(function(link) {
+      return link.source !== ''
+    })
+    var nodes = pubsJSON.map(function(pub, index, array){
+      pub.id = pub._id
+      pub.url = 'http://localhost:8080/#publications/' + pub._id
+      return pub
+    })
+    var data = {}
+    var links = {}
+    links.directedAtPub = directedAtPub
+    data.nodes = nodes
+    data.links = links
+    console.log(data)
+    return data
+  },
+
+  runD3: function() {
+    var self = this
     d3.selectAll("svg > *").remove();
     var svg = d3.select("svg"),
     width = +svg.attr("width"),
@@ -35,8 +59,8 @@ var D3View = Mn.View.extend({
     .force("link", d3.forceLink().id(function(d) { return d.id; }))
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2));
-  var root = data
-  var myLinks = root.links[filter];
+  var root = self.getData()
+  var myLinks = root.links.directedAtPub;
   console.log(myLinks);
   
   var link = svg.append("g")
@@ -49,8 +73,11 @@ var D3View = Mn.View.extend({
       .attr("class", "nodes")
     .selectAll("circle")
     .data(root.nodes)
-    .enter().append("circle")
-      .attr("r", 5)
+    .enter()        
+    .append("svg:a")
+      .attr("xlink:href", function(d){return d.url;})
+    .append("circle")
+      .attr("r", 10)
       .attr("fill", function(d) { 
         var inRhizomeNumeric = d.inRhizome.substr(1);
         return color(inRhizomeNumeric);
@@ -60,7 +87,7 @@ var D3View = Mn.View.extend({
           .on("drag", dragged)
           .on("end", dragended));
   node.append("title")
-      .text(function(d) { return d.id; });
+      .text(function(d) { return d.title; });
   simulation
       .nodes(root.nodes)
       .on("tick", ticked);

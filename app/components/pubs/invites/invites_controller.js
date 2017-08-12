@@ -17,6 +17,13 @@ var Controller = {
         user.save({pendingPub: invites.toJSON()})
       })
 
+      invitesView.on('childview:accept:invite', function(invite) {
+      	console.log('controller reveived trigger accept:invite')
+      	gc.trigger('pub:new', invite.get('invitedByContrib'), invite.get('invitedByPubId'))
+        invites.remove(invite)
+        user.save({pendingPub: invites.toJSON()})
+      })
+
       gc.trigger('sidebar:show', invitesView)
     })
   },

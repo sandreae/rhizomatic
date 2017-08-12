@@ -5,8 +5,10 @@ var Controller = {
   listPubs: function() {
 
     gc.request('pubs:get').then(function(pubs) {
-      var d3View = new D3View({
-        model: false
+
+
+	  var d3View = new D3View({
+        collection: pubs
       })
 
       Platform.Regions.getRegion('main').show(d3View)

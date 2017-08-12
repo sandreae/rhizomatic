@@ -26,8 +26,10 @@ var Controller = {
 
         if (data.tags === '') {data.tags = []} else {data.tags = data.tags.split(', ')}
         if (data.directedAt === '') {data.directedAt = []} else {data.directedAt = data.directedAt.split(', ')}
-
-        draft.set({content: content})
+        if (data.type === 'audio' || 'image') {
+          newDraft.set({content: []})
+          pubModel.set({activeContent: []})
+        }
 
         if (newType !== type) {
           newDraft.set({
@@ -36,6 +38,8 @@ var Controller = {
           })
           drafts.add(newDraft)
         }
+
+        draft.set({content: content})
 
         pubModel.set({
           activeContent: content,

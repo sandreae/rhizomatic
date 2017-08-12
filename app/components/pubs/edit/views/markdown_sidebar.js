@@ -26,9 +26,9 @@ var MarkdownSidebar = Marionette.View.extend({
   submitClicked: function(e) {
     e.preventDefault()
     var data = Backbone.Syphon.serialize(this);
-    console.log(data)
     var simplemde = $('#simplemde').data('editor')
     var content = simplemde.value()
+    if (content === '') {content = ' '}
     this.trigger('form:submit', content, data, this.model)
 
     //nvar data = Backbone.Syphon.serialize(this);

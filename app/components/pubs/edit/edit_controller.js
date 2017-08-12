@@ -75,12 +75,22 @@ var Controller = {
       gc.request('pubs:get').then(function(pubs) {
 
         invitedUsers.forEach(function(contributor) {
-          
-          if (contributor.includes('@')) {console.log('send email to', contributor)}
+          var invitedUserModel
+
+          if (contributor.includes('@')) {
+            console.log('send email to', contributor)
+            invitedUserModel = new Platform.Entities.Users.User({
+              userName: contributor,
+              email: contributor,
+              password: 'password'
+            })
+          } else {       
+            invitedUserModel = users.findWhere(function(model){
+              return ( _.indexOf(model.get('contributorNames'), contributor) >= 0 );
+            });
+          }
           console.log(contributor)
-          var invitedUserModel = users.findWhere(function(model){
-            return ( _.indexOf(model.get('contributorNames'), contributor) >= 0 );
-          });
+
           console.log(invitedUserModel)
           var pendingList = invitedUserModel.get('pendingPub')
           console.log(pendingList)

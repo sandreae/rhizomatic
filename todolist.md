@@ -9,10 +9,11 @@ home button in "login" view
 how to create a new Rhizome?
 what happens when user is deleted?
 refactor server
-invite to publish email/username (add array of pending pubs to user, click to accept and create new pub at that point)
+invite to publish email/username (add array of pending pubs to user)
 refactor authenticate calls (from edit user etc...)
 feedback for failed/successful login
 fix url pub type
+collage horizontal scroll + delete button
 
 EDIT METHODS:
 - video

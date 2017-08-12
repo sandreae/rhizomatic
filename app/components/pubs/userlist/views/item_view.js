@@ -44,11 +44,6 @@ export default Marionette.View.extend({
     gc.trigger('pub:content:edit', this.model.get('_id'))
   },
 
-  publishClicked: function (e) {
-    e.preventDefault()
-    gc.trigger('pub:publish', this.model.get('_id'))
-  },
-
   remove: function () {
     var self = this
     this.$el.fadeOut(function () {

@@ -11,7 +11,6 @@ var MainHandler = Marionette.Object.extend({
   },
 
   listHeaders: function() {
-    console.log('listheaders')
     HeaderApp.Controller.listHeaders()
   },
 

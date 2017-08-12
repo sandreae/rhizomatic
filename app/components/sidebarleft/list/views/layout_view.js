@@ -39,7 +39,6 @@ export default Mn.View.extend({
   sidebarleftOpen: function (e) {
     e.preventDefault()
     e.stopPropagation()
-
     gc.trigger('sidebarleft:open')
   },
 

@@ -6,6 +6,7 @@ export default Marionette.View.extend({
 
   events: {
     'click a.js-publications': 'publicationsClicked',
+    'click a.js-invites': 'invitesClicked',
     'click a.js-profile': 'profileClicked'
   },
 
@@ -14,8 +15,13 @@ export default Marionette.View.extend({
     gc.trigger('user:listPubs')
   },
 
+  invitesClicked: function(e) {
+    e.preventDefault()
+    gc.trigger('user:listInvites')
+  },
+
   profileClicked: function(e) {
     e.preventDefault()
-    gc.trigger('user:edit')
+    gc.trigger('user:profile')
   },
 })

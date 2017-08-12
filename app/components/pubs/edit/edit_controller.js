@@ -48,9 +48,9 @@ var Controller = {
             success: function() {console.log('pub not published because of validation error')}
           })
         } else {
-          Controller.saveContributorName(pubModel)
-                Controller.newInvitedPub(pubModel)
-
+          if (pubModel.get('published') === true){
+            Controller.publish(pubModel)
+          }
           if (newType === type) {
             gc.trigger('pubs:list')
             gc.trigger('sidebar:close')
@@ -71,10 +71,16 @@ var Controller = {
       gc.request('pubs:get').then(function(pubs) {
 
         invitedUsers.forEach(function(contributor) {
+          
           if (contributor.includes('@')) {console.log('send email to', contributor)}
-          var invitedPub = pubs.findWhere({contributor: contributor})
-          var invitedUserModel = users.findWhere({_id: invitedPub.get('contributorId')})
+          console.log(contributor)
+          var invitedUserModel = users.findWhere(function(model){
+            return ( _.indexOf(model.get('contributorNames'), contributor) >= 0 );
+          });
+          console.log(invitedUserModel)
           var pendingList = invitedUserModel.get('pendingPub')
+          console.log(pendingList)
+
           pendingList.push({
             invitedByContrib: pubModel.get('contributor'),
             invitedByContribId: pubModel.get('contributorId'),
@@ -86,7 +92,6 @@ var Controller = {
           })
           invitedUserModel.save()
           console.log(invitedUserModel)
-
         })
       })
 
@@ -95,6 +100,7 @@ var Controller = {
 
   publish: function(pubModel) {
     Controller.saveContributorName(pubModel)
+    Controller.newInvitedPub(pubModel)
     gc.trigger('sidebar:close')
   },
 

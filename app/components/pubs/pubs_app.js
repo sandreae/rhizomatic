@@ -3,6 +3,7 @@ import * as Show from './show/show_controller'
 import * as New from './new/new_controller'
 import * as List from './list/list_controller'
 import * as UserList from './userlist/userlist_controller'
+import * as Invites from './invites/invites_controller'
 import PubsRouter from './pubs_router'
 import {gc} from '../radio'
 
@@ -21,6 +22,7 @@ var PubsRadio = Marionette.Object.extend({
     'pub:new': 'newPub',
     'pub:content:edit': 'editPubContent',
     'user:listPubs': 'userListPubs',
+    'user:listInvites': 'userInvites'
   },
 
   listPubs: function() {
@@ -45,10 +47,16 @@ var PubsRadio = Marionette.Object.extend({
     Platform.navigate('publications/userlist')
   },
 
-  newPub: function() {
-    New.Controller.newPub()
+  newPub: function(invitedByContrib, invitedByPubId) {
+    New.Controller.newPub(invitedByContrib, invitedByPubId)
     Platform.navigate('publications/new')
-  }})
+  },
+
+  userInvites: function() {
+    Invites.Controller.listInvites()
+    Platform.navigate('publications/userlist')
+  }
+})
 
 PubsApp.Radio = new PubsRadio()
 PubsApp.Router = new PubsRouter({controller: PubsApp.Radio})

@@ -3,6 +3,8 @@ import * as List from './list/list_controller'
 import * as Login from './login/login_controller'
 import * as New from './new/new_controller'
 import * as Home from './home/home_controller'
+import * as Profile from './profile/profile_controller'
+import * as Password from './password/password_controller'
 import UsersRouter from './users_router'
 import {gc} from '../radio'
 
@@ -12,6 +14,8 @@ UsersApp.List = List
 UsersApp.Login = Login
 UsersApp.New = New
 UsersApp.Home = Home
+UsersApp.Password = Password
+UsersApp.Profile = Profile
 
 var UsersRadio = Marionette.Object.extend({
   channelName: 'gc',
@@ -22,6 +26,8 @@ var UsersRadio = Marionette.Object.extend({
     'user:showLogin': 'showLogin',
     'user:home': 'showHome',
     'user:loggedIn': 'showHome',
+    'user:profile': 'showProfile',
+    'user:password': 'showPassword',
   },
 
   editUser: function(id){
@@ -37,16 +43,23 @@ var UsersRadio = Marionette.Object.extend({
     // if (gc.request('isAuth')){
     UsersApp.List.Controller.listUsers();
     Platform.navigate('users')
-    // } else {
-    //  gc.request('user:login')
-    //,
   },
+
   newUser: function(id){
     UsersApp.New.Controller.newUser();
     Platform.navigate('newuser');
   },
+
   showHome: function(){
     UsersApp.Home.Controller.showHome();
+  },
+
+  showProfile: function(){
+    UsersApp.Profile.Controller.showProfile();
+  },
+
+  showPassword: function(){
+    UsersApp.Password.Controller.showPassword();
   },
 })
 

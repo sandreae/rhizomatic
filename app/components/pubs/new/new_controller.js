@@ -3,7 +3,7 @@ import newPubSave from './helpers/newPubSave'
 import {gc} from '../../radio'
 
 var Controller = {
-  newPub: function () {
+  newPub: function (invitedByContrib, invitedByPubId) {
 
   var newPub = new Platform.Entities.Pubs.PubModel()
   var drafts = new Platform.Entities.Pubs.Drafts()
@@ -34,15 +34,18 @@ var Controller = {
               contributorId: userID,
               drafts: drafts})
             pubsCollection.add(newPub)
-            newPub.save(null, {
-              success: function () {
-                console.log(newPub)
-                gc.trigger('sidebar:close')
-                gc.trigger('pub:content:edit', pub.id)
-              }
-            })
-          },
+          }
+        }).done(function() {
+          newPub.save(null, {
+            success: function() {
+              console.log(newPub)
+              gc.trigger('sidebar:close')
+              gc.trigger('pub:content:edit', newPub.get('_id'))
+            }
+          })
         })
+
+
         newPubView.triggerMethod('form:data:invalid', newPub.validationError);
       })
 

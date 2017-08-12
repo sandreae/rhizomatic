@@ -28,6 +28,8 @@ module.exports = function (app, express) {
   })
 
   pubRouter.post('/publications', function (req, res) {
+          console.log('post pub route triggered')
+
     var postPub = new Pub({
       contributor: req.body.contributor,
       contributorId: req.body.contributorId,
@@ -35,7 +37,8 @@ module.exports = function (app, express) {
       type: req.body.type,
       drafts: req.body.drafts,
       tags: req.body.tags,
-      invitedBy: req.body.invitedBy,
+      invitedByConrib: req.body.invitedByContrib,
+      invitedByPubId: req.body.invitedByPubId,
       directedAt: req.body.directedAt,
       published: req.body.published,
       inRhizome: req.body.inRhizome
@@ -52,6 +55,8 @@ module.exports = function (app, express) {
   })
 
   pubRouter.put('/publications/:id', function (req, res) {
+              console.log('put pub route triggered')
+
     return Pub.findById(req.params.id, function (err, pub) {
       pub.title = req.body.title
       pub.contributor = req.body.contributor
@@ -60,7 +65,8 @@ module.exports = function (app, express) {
       pub.activeContent = req.body.activeContent
       pub.drafts = req.body.drafts
       pub.tags = req.body.tags
-      pub.invitedBy = req.body.invitedBy
+      pub.invitedByContrib = req.body.invitedByContrib
+      pub.invitedByPubId = req.body.invitedByPubId
       pub.directedAt = req.body.directedAt
       pub.published = req.body.published
       pub.inRhizome = req.body.inRhizome

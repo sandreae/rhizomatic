@@ -1,6 +1,5 @@
 collage: check file type then apply correct process
 add published date
-edit profile page
 collage edit view
 add new header for pub info
 pub type selector confusiong
@@ -11,10 +10,9 @@ how to create a new Rhizome?
 what happens when user is deleted?
 refactor server
 invite to publish email/username (add array of pending pubs to user, click to accept and create new pub at that point)
-check EVERY call to server is in correct promise format
 refactor authenticate calls (from edit user etc...)
 feedback for failed/successful login
-different template for published or unpublished pubs
+fix url pub type
 
 EDIT METHODS:
 - video
@@ -62,6 +60,11 @@ make passwords unreadable in forms
 my contributors
 refresh tags and contributors
 SERVER FUCKING BUGGY!!!! (creating users weird)
+remove invite from user model
+different template for published or unpublished pubs
+check EVERY call to server is in correct promise format
+edit profile page
+
 
 QUESTIONS FOR ROD:
 setup email

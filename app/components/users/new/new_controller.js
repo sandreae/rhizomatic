@@ -13,7 +13,7 @@ var Controller = {
           email: data.email,
           password: data.password,
           permissions: 'admin',
-          pendingPub: 'false',
+          pendingPub: [],
           memberOf: data.memberOf
         })
         user.save(null, {

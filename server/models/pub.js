@@ -9,7 +9,8 @@ var PubSchema = new Schema({
   activeContent: Schema.Types.Mixed,
   drafts: Array,
   tags: Array,
-  invitedBy: String,
+  invitedByContrib: String,
+  invitedByPubId: String,
   directedAt: Array,
   published: String,
   inRhizome: String

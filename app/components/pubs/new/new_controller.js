@@ -18,7 +18,7 @@ var Controller = {
       newPubView.on('form:submit', function (data) {
         if (data.tags === '') {data.tags = []} else {data.tags = data.tags.split(', ')}
         if (data.directedAt === '') {data.directedAt = []} else {data.directedAt = data.directedAt.split(', ')}
-        if (data.type === ('audio' || 'image')) {
+        if (data.type === 'audio' || data.type === 'image') {
           newDraft.set({content: []})
           newPub.set({activeContent: []})
         }

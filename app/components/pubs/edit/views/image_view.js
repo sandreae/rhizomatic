@@ -5,7 +5,7 @@ import 'fine-uploader/fine-uploader/fine-uploader-new.css'
 
 var Image = Marionette.View.extend({
   template: template,
-  
+
   events: {
     'click button.js-submit': 'submitClicked'
   },
@@ -28,12 +28,14 @@ var Image = Marionette.View.extend({
       callbacks: {
 
         onComplete: function(id, name, response) {
+          var model = this.model
           if (response.success !== false) {
             var drafts = self.model.get('drafts')
             var draft = drafts.findWhere({type: 'image'})
             var content = draft.get('content')
             content.unshift(response.url)
-            draft.set({content: content})
+            console.log(content)
+            model.get('drafts').findWhere({type: 'image'}).set({content: content})
           } else {console.log('error uploading file')}
         },
       }

@@ -15,7 +15,6 @@ var App = Marionette.Application.extend({
     var initPromise = gc.request('user:init')
     console.log(initPromise)
     initPromise.then(function(){
-      gc.trigger('headers:list')
       if (Backbone.history) {
         Backbone.history.start()
         if (self.getCurrentRoute() === '') {
@@ -23,7 +22,7 @@ var App = Marionette.Application.extend({
         }
       }
     })
-
+    gc.trigger('headers:list')
   }
 })
 

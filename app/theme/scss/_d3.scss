@@ -2,3 +2,11 @@
   stroke: #999;
   stroke-opacity: 0.6;
 }
+
+.nodes circle {
+  fill: $GLOBAL_BACKGROUND_COLOR_THIRDLY;
+}
+
+.nodes a {
+  target-new: tab;
+}

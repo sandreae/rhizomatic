@@ -1,52 +1,62 @@
 /////////////SIDEBARS/////////////
 
-.sidebar {
+$sidebar-background-color-primary: $GLOBAL_BACKGROUND_COLOR_PRIMARY;
+$sidebar-background-color-secondary: $GLOBAL_BACKGROUND_COLOR_SECONDARY;
+$sidebar-background-color-thirdly: $GLOBAL_BACKGROUND_COLOR_THIRDLY;
+$sidebar-border-thickness: $GLOBAL_BORDER_THICKNESS;
+$sidebar-border-color: $GLOBAL_BORDER_COLOR;
+$sidebar-border-radius: $GLOBAL_BORDER_RADIUS;
+
+@mixin sidebar-default {
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 21; /* Stay on top */
     top: 0;
-    background-color: gray; /* Black*/
+    border: $sidebar-border-thickness solid $sidebar-border-color;
+    border-radius: $sidebar-border-radius;
+    background-color: $sidebar-background-color-thirdly; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px; /* Place content 60px from the top */
-    padding-left: 0px;
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+@mixin open-button {
+    width: 30px; 
+    height: 30px;
+    background-color: $sidebar-background-color-primary;
+    position: absolute;
+    display: block;
+    top: 13px;
+    text-decoration: none;
+    font-size: 25px;
+    cursor:pointer;
+    z-index: 20;
 }
 
 ////////SIDEBAR RIGHT///////////////
 
 .sidebar-right {
-    right: 0;
+    @include sidebar-default;
+    @include sidebar-lists(15px, 100%, 4px);
+    right: -2*$sidebar-border-thickness;
     padding-left: 0px;
+    margin-right: 0px;
 }
 
 .sidebar-right-open-button {
-    position: absolute;
-    display: block;
-    top: 13px;
-    text-decoration: none;
+    @include open-button
     right: 25px;
-    font-size: 25px;
-    margin-left: 50px;
-    cursor:pointer;
-    z-index: 20;
 }
 
-.sidebar-right .sidebar-div{
-    padding: 10px 10px 10px 10px;
+// container div //
+
+.sidebar-right .sidebar-div {
+    padding-right: 50px;
+    padding-left: 20px;
     display: block;
-    width: 400px;
-    min-width: 400px;
-}
-
-.sidebar-right table {
-    margin: 8px 8px 8px 8px;
-    width: 400px;
-    min-width: 400px;
-}
-
-.sidebar-right td, th {
-    padding: 0 10px 10px 0px;
+    width: 450px;
+    min-width: 450px;
 }
 
 .sidebaractive-right {
@@ -60,7 +70,9 @@
 ///////////SIDEBAR LEFT////////////
 
 .sidebar-left {
-    left: 0;
+    @include sidebar-default;
+    @include sidebar-lists(22px, 100%, 8px);
+    left: -2*$sidebar-border-thickness;
     padding-left: 0px;
 }
 
@@ -68,34 +80,9 @@
     width: 200px;
 }
 
-.sidebar-left ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    background-color: #f1f1f1;
-
-    li a {
-        display: block;
-        color: #000;
-        padding: 8px 16px;
-        text-decoration: none;
-    }
-    li a:hover {
-        background-color: #555;
-        color: white;
-    }
-}
-
-
 .sidebar-left-open-button {
-    position: absolute;
-    top: 13px;
-    text-decoration: none;
+    @include open-button
     left: 25px;
-    font-size: 25px;
-    cursor:pointer;
-    z-index: 20;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */

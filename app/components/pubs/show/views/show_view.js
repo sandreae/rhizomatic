@@ -25,6 +25,7 @@ export default Marionette.View.extend({
       var content = model.get('activeContent')
       var converter = new showdown.Converter()
       var html = converter.makeHtml(content)
+      console.log(html)
       model.set({activeContent: html})
     }
   },

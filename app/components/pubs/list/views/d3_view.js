@@ -24,7 +24,16 @@ var D3View = Mn.View.extend({
   getData: function() {
     var pubs = this.collection
     var pubsJSON = pubs.toJSON()
-    var directedAtPub = pubsJSON.map(function(pub, index, array){
+
+    var nodes = pubsJSON.map(function(pub, index, array){
+      pub.id = pub._id
+      pub.url = 'http://' + window.location.host + '/#publications/' + pub._id
+      return pub
+    })
+    nodes = nodes.filter(function(obj) {
+      return (obj.published === "true")
+    });
+    var directedAtPub = nodes.map(function(pub, index, array) {
       var invitedBy = {
         source: pub.invitedByPubId,
         target: pub._id
@@ -34,17 +43,11 @@ var D3View = Mn.View.extend({
     directedAtPub = directedAtPub.filter(function(link) {
       return link.source !== ''
     })
-    var nodes = pubsJSON.map(function(pub, index, array){
-      pub.id = pub._id
-      pub.url = 'https://rhizomatic-web-zine.herokuapp.com/#publications/' + pub._id
-      return pub
-    })
     var data = {}
     var links = {}
     links.directedAtPub = directedAtPub
     data.nodes = nodes
     data.links = links
-    console.log(data)
     return data
   },
 
@@ -78,10 +81,6 @@ var D3View = Mn.View.extend({
       .attr("xlink:href", function(d){return d.url;})
     .append("circle")
       .attr("r", 10)
-      .attr("fill", function(d) { 
-        var inRhizomeNumeric = d.inRhizome.substr(1);
-        return color(inRhizomeNumeric);
-      })
       .call(d3.drag()
           .on("start", dragstarted)
           .on("drag", dragged)

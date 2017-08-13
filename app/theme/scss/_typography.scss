@@ -17,6 +17,7 @@ h3 {
     font-size: 16px;
     margin: 0.67em 0;
     font-family:$GLOBAL_FONT;
+    color:$GLOBAL_FONT_COLOR;
 }
  
 h4 {
@@ -29,5 +30,10 @@ p {
     color:$GLOBAL_FONT_COLOR;
     font-family:$GLOBAL_FONT;
     line-height:22px;
+}
+
+a {
+    color:$GLOBAL_FONT_COLOR;
+    font-family:$GLOBAL_FONT;
 }
 

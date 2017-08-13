@@ -5,9 +5,37 @@ $GLOBAL_BORDER_THICKNESS: 2px;
 $GLOBAL_BORDER_RADIUS: 4px;
 $GLOBAL_FONT: sans-serif;
 $GLOBAL_FONT_COLOR: pink;
+$GLOBAL_BACKGROUND_COLOR_PRIMARY: green;
+$GLOBAL_BACKGROUND_COLOR_SECONDARY: pink;
+$GLOBAL_BACKGROUND_COLOR_THIRDLY: red;
+
+//////MIXINS///////////
+
+@mixin sidebar-lists($font-size, $width, $padding) {
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: $width;
+        background-color: $sidebar-background-color-thirdly;
+
+        li a {
+            display: block;
+            padding: $padding 2*$padding;
+            text-decoration: none;
+            font-size: $font-size;
+        }
+        li a:hover {
+            background:darken($sidebar-background-color-thirdly,8%);
+            transition: all 0.3s ease;
+        }
+    }
+}
+
 
 ///////IMPORTS//////
 
+@import "pace.scss";
 @import "d3.scss";
 @import "buttons.scss";
 @import "typography.scss";
@@ -15,7 +43,7 @@ $GLOBAL_FONT_COLOR: pink;
 @import "form.scss";
 @import "sidebars.scss";
 @import "image-view.scss";
-@import "pace.scss";
+@import "my-pubs.scss";
  
 /****************************************
 STRUCTURES

@@ -1,0 +1,13 @@
+.table {
+  width: 100%;
+  min-width: 400px;
+}
+
+.pubs-edit-links {
+  @include sidebar-lists(15px, 100%, 2px);
+  text-align: right;
+}
+
+.pubs-links {
+  @include sidebar-lists(20px, 100%, 0px);
+}

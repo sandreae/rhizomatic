@@ -1,11 +1,16 @@
-<td><a href="#" class="js-show-pub"><%- title %></a></td>
-<td>
+<td class="pubs-links">
 	<ul>
-	  <% if (published == 'false') { %>
-        <li>
-        draft
-	    </li>
-	    <% } else { %> published <% } %>
+	  <li>
+	    <a href="#" class="js-show-pub show-pub-link"><%- title %></a>
+	  </li>
+	  <li>
+	    <% if (published == 'false') { %>draft<% } else { %> published <% } %>
+	  </li>
+	</ul>
+</td>
+	  
+<td class="pubs-edit-links">
+	<ul>
 	  <li>
 	    <a href="#" class="js-edit-content">
 	    Edit

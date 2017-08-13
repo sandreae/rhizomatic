@@ -1,4 +1,4 @@
-/////////SIDEBAR GLOBALS/////////////
+/////////////SIDEBARS/////////////
 
 .sidebar {
     height: 100%; /* 100% Full-height */
@@ -6,7 +6,6 @@
     position: fixed; /* Stay in place */
     z-index: 21; /* Stay on top */
     top: 0;
-    right: 0;
     background-color: gray; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px; /* Place content 60px from the top */
@@ -14,31 +13,11 @@
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
 }
 
-/* The navigation menu links */
-.sidebar a {
-    padding: 0 0 0 0;
-    display: block;
-}
+////////SIDEBAR RIGHT///////////////
 
-.sidebar .sidebar-div{
-    padding: 10px 10px 10px 10px;
-    display: block;
-    width: 400px;
-    min-width: 400px;
-}
-
-.sidebar table {
-    margin: 8px 8px 8px 8px;
-    width: 400px;
-    min-width: 400px;
-}
-
-.sidebar td, th {
-    padding: 0 10px 10px 0px;
-}
-
-/* When you mouse over the navigation links, change their color */
-.sidebar a:hover, .offcanvas a:focus{
+.sidebar-right {
+    right: 0;
+    padding-left: 0px;
 }
 
 .sidebar-right-open-button {
@@ -53,29 +32,61 @@
     z-index: 20;
 }
 
-.sidebaractive {
+.sidebar-right .sidebar-div{
+    padding: 10px 10px 10px 10px;
+    display: block;
+    width: 400px;
+    min-width: 400px;
+}
+
+.sidebar-right table {
+    margin: 8px 8px 8px 8px;
+    width: 400px;
+    min-width: 400px;
+}
+
+.sidebar-right td, th {
+    padding: 0 10px 10px 0px;
+}
+
+.sidebaractive-right {
     width: 450px;
 }
 
-.sidebar .help-inline {
+.sidebar-right .help-inline {
     background-color: red;
 }
 
-///////SIDEBAR LEFT//////////
+///////////SIDEBAR LEFT////////////
 
-#sidebarleft {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 21; /* Stay on top */
-    top: 0;
+.sidebar-left {
     left: 0;
-    background-color: gray; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px; /* Place content 60px from the top */
     padding-left: 0px;
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebarleft */
 }
+
+.sidebaractive-left {
+    width: 200px;
+}
+
+.sidebar-left ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+
+    li a {
+        display: block;
+        color: #000;
+        padding: 8px 16px;
+        text-decoration: none;
+    }
+    li a:hover {
+        background-color: #555;
+        color: white;
+    }
+}
+
 
 .sidebar-left-open-button {
     position: absolute;

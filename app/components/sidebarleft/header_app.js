@@ -22,13 +22,13 @@ var MainHandler = Marionette.Object.extend({
   },
 
   sidebarleftOpen: function () {
-    $('#js-sidebarleft').addClass('sidebaractive')
+    $('#js-sidebar-left').addClass('sidebaractive-left')
     gc.trigger('sidebar:close')
     // document.getElementById('js-sidebarleftclose').style.display = 'block'
   },
 
   sidebarleftClose: function () {
-    $('#js-sidebarleft').removeClass('sidebaractive')
+    $('#js-sidebar-left').removeClass('sidebaractive-left')
   },
 
 })

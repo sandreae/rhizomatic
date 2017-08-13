@@ -1,9 +1,19 @@
+///GLOBAL VARIABLES/////
+
+$GLOBAL_BORDER_COLOR: black;
+$GLOBAL_BORDER_THICKNESS: 2px;
+$GLOBAL_BORDER_RADIUS: 4px;
+$GLOBAL_FONT: sans-serif;
+$GLOBAL_FONT_COLOR: pink;
+
+///////IMPORTS//////
+
 @import "d3.scss";
+@import "buttons.scss";
 @import "typography.scss";
-@import "sidebarleft.scss";
 @import "mainregion.scss";
 @import "form.scss";
-@import "sidebarright.scss";
+@import "sidebars.scss";
 @import "image-view.scss";
 @import "pace.scss";
  

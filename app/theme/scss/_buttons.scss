@@ -1,0 +1,24 @@
+////////////////////BUTTONS///////////////////
+
+$button-background: green;
+$button-text-color: $GLOBAL_FONT_COLOR;
+$button-border-thickness: $GLOBAL_BORDER_THICKNESS;
+$button-border-color: $GLOBAL_BORDER_COLOR;
+$button-border-radius: $GLOBAL_BORDER_RADIUS;
+
+button {
+  color: $button-text-color;
+  padding: 8px;
+  margin: 8px 0px 8px 0px;
+  cursor: pointer;
+  border-radius: $button-border-radius;
+  border: $button-border-thickness solid $button-border-color;
+  background: $button-background;
+  &:hover {
+    background:darken($button-background,8%);
+    transition: all 0.3s ease;
+  }
+  &:active {
+    background:darken($button-background,25%);
+  } 
+}

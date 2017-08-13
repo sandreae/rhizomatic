@@ -1,4 +1,5 @@
- /* The side navigation menu */
+/////////SIDEBAR GLOBALS/////////////
+
 .sidebar {
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
@@ -36,27 +37,11 @@
     padding: 0 10px 10px 0px;
 }
 
-
 /* When you mouse over the navigation links, change their color */
 .sidebar a:hover, .offcanvas a:focus{
 }
 
-/* Position and style the close button (top right corner) */
-.sidebarclose {
-    position: absolute;
-    top: 5px;
-    color: pink;
-    text-decoration: none;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-    z-index: 26;
-    display: none;
-    transition: all 1s ease;
-
-}
-
-.sidebaropen {
+.sidebar-right-open-button {
     position: absolute;
     display: block;
     top: 13px;
@@ -74,6 +59,32 @@
 
 .sidebar .help-inline {
     background-color: red;
+}
+
+///////SIDEBAR LEFT//////////
+
+#sidebarleft {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 21; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: gray; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px; /* Place content 60px from the top */
+    padding-left: 0px;
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebarleft */
+}
+
+.sidebar-left-open-button {
+    position: absolute;
+    top: 13px;
+    text-decoration: none;
+    left: 25px;
+    font-size: 25px;
+    cursor:pointer;
+    z-index: 20;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */

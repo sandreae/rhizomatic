@@ -28,7 +28,6 @@ export default Mn.View.extend({
     'click @ui.navigate': 'navigate',
     'click @ui.sidebarleftOpen': 'sidebarleftOpen',
     'click @ui.sidebarOpen': 'sidebarOpen',
-
   },
 
   sidebarleftClose: function (e) {
@@ -47,14 +46,4 @@ export default Mn.View.extend({
     e.stopPropagation()
     gc.trigger('sidebar:open')
   }
-
-
-  /* isAdmin: function(isAdmin) {
-    console.log('isAdmin filter triggered')
-    var list = this.getChildView('nav-region')
-    var filter = function(child, index, collection) {
-      return child.get('isAdmin') === 'true';
-    };
-    list.setFilter(filter);
-  }, */
 })

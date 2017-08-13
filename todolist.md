@@ -9,6 +9,8 @@ collage horizontal scroll + delete button
 move downloads folder outside of dist
 automatically switch editing views when selecting type
 markdown view
+don't show pub if not published
+remove unusued dependencies
 
 EDIT METHODS:
 - video

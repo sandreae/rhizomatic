@@ -1,5 +1,6 @@
- /* The side navigation menu */
-.sidebarleft {
+///////SIDEBAR LEFT//////////
+
+#sidebarleft {
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
@@ -14,7 +15,7 @@
 }
 
 /* The navigation menu links */
-.sidebarleft a {
+#sidebarleft a {
     padding: 0 0 0 0;
     display: block;
 }
@@ -23,21 +24,7 @@
 .sidebarleft a:hover, .offcanvas a:focus{
 }
 
-/* Position and style the close button (top right corner) */
-.sidebarleftclose {
-    position: absolute;
-    top: 5px;
-    color: pink;
-    text-decoration: none;
-    left: 25px;
-    font-size: 36px;
-    z-index: 26;
-    display: none;
-    transition: all 1s ease;
-
-}
-
-.sidebarleftopen {
+.sidebar-left-open-button {
     position: absolute;
     top: 13px;
     text-decoration: none;
@@ -46,13 +33,3 @@
     cursor:pointer;
     z-index: 20;
 }
-
-.sidebaractive {
-    width: 450px;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-    .sidebar {padding-top: 15px;}
-    .sidebar a {font-size: 18px;}
-} 

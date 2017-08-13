@@ -11,13 +11,14 @@ var App = Marionette.Application.extend({
   },
 
   onStart: function() {
+    var self = this
     var initPromise = gc.request('user:init')
     console.log(initPromise)
     initPromise.then(function(){
       gc.trigger('headers:list')
       if (Backbone.history) {
         Backbone.history.start()
-        if (this.getCurrentRoute() === '') {
+        if (self.getCurrentRoute() === '') {
           gc.trigger('pubs:list')
         }
       }

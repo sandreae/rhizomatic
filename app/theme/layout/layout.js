@@ -1,7 +1,6 @@
 import '../scss/platform.scss';
 import '../vendors/simplemde.min.css';
 import '../vendors/jquery-ui-themes-1.12.1/jquery-ui.css';
-import '../vendors/selectize/selectize.css'
 import {gc} from '../../../app/components/radio'
 
 export default Mn.View.extend({

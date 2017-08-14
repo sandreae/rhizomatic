@@ -2,14 +2,11 @@ collage: check file type then apply correct process
 add published date
 pub type selector confusiong
 info texts for media uploads
-tidy up scss files for Rod
 how to create a new Rhizome?
 feedback for failed/successful login
 collage horizontal scroll + delete button
 move downloads folder outside of dist
 automatically switch editing views when selecting type
-markdown view
-don't show pub if not published
 remove unusued dependencies
 
 EDIT METHODS:
@@ -71,7 +68,9 @@ refactor authenticate calls (from edit user etc...)
 invite to publish email/username (add array of pending pubs to user)
 what happens when user is deleted?
 home button in "login" view
-
+markdown view
+don't show pub if not published
+tidy up scss files for Rod
 
 
 

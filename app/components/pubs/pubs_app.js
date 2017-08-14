@@ -44,7 +44,7 @@ var PubsRadio = Marionette.Object.extend({
 
   userListPubs: function() {
     UserList.Controller.userListPubs()
-    Platform.navigate('publications/userlist')
+    Platform.navigate('publications/user/pubs')
   },
 
   newPub: function(invitedByContrib, invitedByPubId) {
@@ -54,7 +54,7 @@ var PubsRadio = Marionette.Object.extend({
 
   userInvites: function() {
     Invites.Controller.listInvites()
-    Platform.navigate('publications/userlist')
+    Platform.navigate('publications/user/invites')
   }
 })
 

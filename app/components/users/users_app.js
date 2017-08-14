@@ -56,6 +56,7 @@ var UsersRadio = Marionette.Object.extend({
 
   showProfile: function(){
     UsersApp.Profile.Controller.showProfile();
+    Platform.navigate('publications/user/profile');
   },
 
   showPassword: function(){

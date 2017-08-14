@@ -4,6 +4,7 @@ export default Mn.AppRouter.extend({
     'publications': 'listPubs',
     'publications/new': 'newPub',
     'publications/edit/:id': 'editPubContent',
-    'publications/userlist': 'userListPubs'
+    'publications/user/pubs': 'userListPubs',
+    'publications/user/invites': 'userInvites'
   },
 });

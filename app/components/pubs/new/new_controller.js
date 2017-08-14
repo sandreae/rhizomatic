@@ -25,26 +25,31 @@ var Controller = {
         newPub.save(data, {
           success: function(pub, response) {
             console.log('newPub saved')
-            newDraft.set({
-              type: data.type,
-              pub: pub.id,
-            })
-            drafts.add(newDraft)
-            newPub.set({
-              contributorId: userID,
-              drafts: drafts,
-              invitedByPubId: invitedByPubId
-            })
-            pubsCollection.add(newPub)
-            newPub.save(null, {
-              success: function() {
-                console.log(newPub)
-                gc.trigger('sidebar:close')
-                gc.trigger('pub:content:edit', newPub.get('_id'))
-              }
-            })
+            console.log(newPub)
           }
+        }).then(function(){
+          newDraft.set({
+            type: data.type,
+            pub: newPub.get('_id'),
+          })
+          drafts.add(newDraft)
+          newPub.set({
+            contributorId: userID,
+            drafts: drafts,
+            invitedByPubId: invitedByPubId
+          })
+          pubsCollection.add(newPub)
+          newPub.save(null, {
+            success: function() {
+              console.log('newPub saved 2')
+              console.log(newPub)
+              gc.trigger('sidebar:close')
+              gc.trigger('pub:content:edit', newPub.get('_id'))
+            }
+          })
         })
+
+
 
         newPubView.triggerMethod('form:data:invalid', newPub.validationError);
       })

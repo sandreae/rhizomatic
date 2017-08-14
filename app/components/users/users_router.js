@@ -3,5 +3,6 @@ export default Marionette.AppRouter.extend({
     'users': 'listUsers',
     'users/:id/edit': 'editUser',
     'newuser': 'newUser',
+    'publications/user/home': 'showHome',
   }
 })

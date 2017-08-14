@@ -23,8 +23,6 @@ var Controller = {
         var drafts = pubModel.get('drafts')
         var draft = drafts.findWhere({type: type})
         var nextDraft = drafts.findWhere({type: newType})
-        console.log(drafts)
-        console.log(nextDraft)
 
         if (data.tags === '') {data.tags = []} else {data.tags = data.tags.split(', ')}
         if (data.directedAt === '') {data.directedAt = []} else {data.directedAt = data.directedAt.split(', ')}
@@ -100,7 +98,6 @@ var Controller = {
       user.save(null, {
         success: function() {console.log('user saved with new contributor names')}
       })
-      console.log(user)
     })
   },
 

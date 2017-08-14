@@ -7,7 +7,7 @@ var fs = require("fs"),
     fileInputName = process.env.FILE_INPUT_NAME || "qqfile",
     publicDir = process.env.PUBLIC_DIR,
     nodeModulesDir = process.env.NODE_MODULES_DIR,
-    uploadedFilesPath = ("dist/uploads/"),
+    uploadedFilesPath = ("uploads/"),
     chunkDirName = "chunks",
     maxFileSize = process.env.MAX_FILE_SIZE || 0; // in bytes, 0 for unlimited
 

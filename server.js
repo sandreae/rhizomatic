@@ -28,7 +28,7 @@ app.use(bodyParser.json({limit: '20mb'}))
 app.use(bodyParser.urlencoded({extended: true, limit: '20mb'}))
 app.use(morgan('dev'))
 app.use(express.static(__dirname + '/dist'));
-
+app.use('/uploads',  express.static(__dirname + '/uploads'));
 /////////////////UNPROTECTED ROUTES///////////////////////
 
 var userRoutes = require('./server/router/user')(app, express)

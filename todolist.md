@@ -8,6 +8,9 @@ collage horizontal scroll + delete button
 move downloads folder outside of dist
 automatically switch editing views when selecting type
 make image upload 100%
+add username to contributor names
+before any navigation, if user not logged in sidebar "home"
+newpub save error!!!!
 
 EDIT METHODS:
 - video
@@ -77,5 +80,5 @@ sepertate storage for uploads
 
 
 QUESTIONS FOR ROD:
-setup email
+setup host and email
 seeding the rhizome

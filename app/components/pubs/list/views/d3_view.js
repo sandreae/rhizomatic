@@ -1,6 +1,5 @@
 import template from '../templates/d3.jst'
 import * as d3 from 'd3';
-import ForceGraph3D from '3d-force-graph';
 import {gc} from '../../../radio'
 
 var D3View = Mn.View.extend({
@@ -43,6 +42,7 @@ var D3View = Mn.View.extend({
     directedAtPub = directedAtPub.filter(function(link) {
       return link.source !== ''
     })
+    console.log(directedAtPub)
     var data = {}
     var links = {}
     links.directedAtPub = directedAtPub

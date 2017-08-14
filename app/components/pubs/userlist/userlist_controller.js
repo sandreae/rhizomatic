@@ -9,7 +9,13 @@ var Controller = {
           return model.get('contributorId') === user.id
         }))
         var userPubsList = new TableView({
-          collection: userPubs
+          collection: userPubs,
+
+          templateContext: function() {
+            return {
+              permissions: user.get('permissions')
+            }
+          }
         })
         gc.trigger('sidebar:show', userPubsList)
       })

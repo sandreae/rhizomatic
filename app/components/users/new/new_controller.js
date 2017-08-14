@@ -12,7 +12,7 @@ var Controller = {
           contributorNames: [],
           email: data.email,
           password: data.password,
-          permissions: 'admin',
+          permissions: '',
           pendingPub: [],
           memberOf: data.memberOf
         })

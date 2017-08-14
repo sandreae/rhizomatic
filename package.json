@@ -31,6 +31,7 @@
     "body-parser": "^1.17.2",
     "codemirror": "^5.27.4",
     "d3": "^4.10.0",
+    "3d-force-graph": "^1.5.1",
     "es-selectize": "^0.12.9",
     "express": "4.13.3",
     "fine-uploader": "^5.14.5",

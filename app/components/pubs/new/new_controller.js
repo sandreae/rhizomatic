@@ -27,7 +27,7 @@ var Controller = {
             console.log('newPub saved')
             console.log(newPub)
           }
-        }).then(function(){
+        }).then(function() {
           newDraft.set({
             type: data.type,
             pub: newPub.get('_id'),
@@ -48,9 +48,6 @@ var Controller = {
             }
           })
         })
-
-
-
         newPubView.triggerMethod('form:data:invalid', newPub.validationError);
       })
 

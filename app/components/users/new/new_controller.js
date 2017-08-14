@@ -9,7 +9,7 @@ var Controller = {
       newView.on('form:submit', function (data) {
         user.set({
           userName: data.userName,
-          contributorNames: [],
+          contributorNames: [data.userName],
           email: data.email,
           password: data.password,
           permissions: '',

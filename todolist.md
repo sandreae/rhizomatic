@@ -7,7 +7,7 @@ feedback for failed/successful login
 collage horizontal scroll + delete button
 move downloads folder outside of dist
 automatically switch editing views when selecting type
-remove unusued dependencies
+make image upload 100%
 
 EDIT METHODS:
 - video
@@ -71,7 +71,8 @@ home button in "login" view
 markdown view
 don't show pub if not published
 tidy up scss files for Rod
-
+remove unusued dependencies
+sepertate storage for uploads
 
 
 

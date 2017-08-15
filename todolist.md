@@ -3,19 +3,34 @@ add published date
 pub type selector confusiong
 info texts for media uploads
 how to create a new Rhizome?
-feedback for failed/successful login
 collage horizontal scroll + delete button
-move downloads folder outside of dist
-automatically switch editing views when selecting type
-make image upload 100%
-add username to contributor names
-before any navigation, if user not logged in sidebar "home"
-newpub save error!!!!
+nodemailer and auto send email invite
+make upload file are look better.
+profile view rows not columns and "password" / "repeat password"
+preview button
+
+ALERTS
+feedback for failed/successful login
+save success
+redo current warnings
+
+bugs:
+no tags?
+keep sidebar open in edit view?
+directed at validation only happens once.
+
+Amazon S3 hosting
 
 EDIT METHODS:
 - video
 - collage video
 - text for collage view
+
+
+
+
+
+
 
 :::::DONE:::::
 
@@ -76,9 +91,24 @@ don't show pub if not published
 tidy up scss files for Rod
 remove unusued dependencies
 sepertate storage for uploads
+move downloads folder outside of dist
+canvas mode not loading files
+persist login
+save new draft type should go straight to edit that pub
+fix autopulate bug
+change pub bug
+don't go back to d3 view after pub save.
+change view when you get log out
+change edit pub view on select taype change and put type selector at the top of the form
+newpub save error!!!!
+refactor server
+before any navigation, if user not logged in sidebar "home"
+automatically switch editing views when selecting type
+make image upload 100%
 
 
 
-QUESTIONS FOR ROD:
+QUESTIONS FOR ROD & ANG:
+view for single media pubs?
 setup host and email
 seeding the rhizome

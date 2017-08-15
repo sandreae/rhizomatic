@@ -29,6 +29,7 @@ app.use(bodyParser.urlencoded({extended: true, limit: '20mb'}))
 app.use(morgan('dev'))
 app.use(express.static(__dirname + '/dist'));
 app.use('/uploads',  express.static(__dirname + '/uploads'));
+
 /////////////////UNPROTECTED ROUTES///////////////////////
 
 var userRoutes = require('./server/router/user')(app, express)
@@ -37,17 +38,15 @@ app.use('/api', userRoutes)
 var rhizomeRoutes = require('./server/router/rhizome')(app, express)
 app.use('/api', rhizomeRoutes)
 
-// var uploadRoutes = require('./server/router/uploads')(app, express)
-// app.use('/api', uploadRoutes)
-
 var pubRoutes = require('./server/router/pub')(app, express)
 app.use('/api', pubRoutes)
 
-// routes
 var uploadRoutes = require('./server/router/uploads')(app, express)
-app.post("/uploads", uploadRoutes.onUpload);
-app.delete("/uploads/:uuid", uploadRoutes.onDeleteFile);
+app.post('/uploads', uploadRoutes.onUpload);
+app.delete('/uploads/:uuid', uploadRoutes.onDeleteFile);
 
+var emailRoutes = require('./server/router/email')(app, express)
+app.use('/send', emailRoutes.sendMail)
 
 /////////////////PROTECTED ROUTES/////////////////////////
 

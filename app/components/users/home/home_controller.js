@@ -8,7 +8,7 @@ var Controller = {
       var home = new Home()
       gc.trigger('sidebar:show', home)
     } else {
-      gc.trigger('sidebar:show:login')
+      gc.trigger('sidebar:show:welcome')
     }
     })
 

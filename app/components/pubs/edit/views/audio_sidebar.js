@@ -6,7 +6,8 @@ var AudioSidebar = Marionette.View.extend({
 
   events: {
     'click button.js-submit': 'submitClicked',
-    'click button.js-publish': 'publishClicked'
+    'click button.js-publish': 'publishClicked',
+    'change select.js-select': 'submitClicked',
   },
 
   behaviors: {
@@ -28,6 +29,7 @@ var AudioSidebar = Marionette.View.extend({
     var drafts = this.model.get('drafts')
     var draft = drafts.findWhere({type: 'audio'})
     var content = draft.get('content')
+    console.log(content)
     this.trigger('form:submit', content, data, this.model)
   },
 

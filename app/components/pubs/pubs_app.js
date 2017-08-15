@@ -28,23 +28,23 @@ var PubsRadio = Marionette.Object.extend({
   listPubs: function() {
     List.Controller.listPubs()
     gc.trigger('user:home')
-    Platform.navigate('publications')
+    Platform.navigate('rhizomes')
   },
 
   showPub: function(id) {
     Show.Controller.showPub(id)
-    Platform.navigate('publications/' + id)
+    Platform.navigate('publication/' + id)
   },
 
   editPubContent: function(id) {
     Edit.Controller.editPub(id)
     Edit.Controller.editPubSidebar(id)
-    Platform.navigate('publications/edit/' + id)
+    Platform.navigate('publication/' + id + '/edit')
   },
 
   userListPubs: function() {
     UserList.Controller.userListPubs()
-    Platform.navigate('publications/user/pubs')
+    Platform.navigate('user/publications')
   },
 
   newPub: function(invitedByContrib, invitedByPubId) {
@@ -54,7 +54,7 @@ var PubsRadio = Marionette.Object.extend({
 
   userInvites: function() {
     Invites.Controller.listInvites()
-    Platform.navigate('publications/user/invites')
+    Platform.navigate('user/invites')
   }
 })
 

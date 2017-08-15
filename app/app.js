@@ -13,7 +13,6 @@ var App = Marionette.Application.extend({
   onStart: function() {
     var self = this
     var initPromise = gc.request('user:init')
-    console.log(initPromise)
     initPromise.then(function(){
       if (Backbone.history) {
         Backbone.history.start()
@@ -23,6 +22,7 @@ var App = Marionette.Application.extend({
       }
     })
     gc.trigger('headers:list')
+    gc.trigger('sidebar:show:welcome')
   }
 })
 

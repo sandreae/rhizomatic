@@ -37,6 +37,7 @@ var UsersRadio = Marionette.Object.extend({
 
   showLogin: function(){
     UsersApp.Login.Controller.showLogin();
+    Platform.navigate('user/login');
   },
 
   listUsers: function(){
@@ -47,7 +48,7 @@ var UsersRadio = Marionette.Object.extend({
 
   newUser: function(id){
     UsersApp.New.Controller.newUser();
-    Platform.navigate('newuser');
+    Platform.navigate('user/new');
   },
 
   showHome: function(){
@@ -56,11 +57,12 @@ var UsersRadio = Marionette.Object.extend({
 
   showProfile: function(){
     UsersApp.Profile.Controller.showProfile();
-    Platform.navigate('publications/user/profile');
+    Platform.navigate('user/profile');
   },
 
   showPassword: function(){
     UsersApp.Password.Controller.showPassword();
+    Platform.navigate('user/changepassword');
   },
 })
 

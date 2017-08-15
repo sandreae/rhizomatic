@@ -18,7 +18,7 @@ export default function(pub, type) {
       model: pub
     })
   }
-  if (type === 'script') {
+  if (type === 'url') {
     editPubContentView = new Script({
       model: pub
     })

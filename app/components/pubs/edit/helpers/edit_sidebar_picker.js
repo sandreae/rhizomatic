@@ -18,7 +18,7 @@ export default function(pub, type) {
       model: pub
     })
   }
-  if (type === 'script') {
+  if (type === 'url') {
     editSidebarView = new ScriptSidebar({
       model: pub
     })

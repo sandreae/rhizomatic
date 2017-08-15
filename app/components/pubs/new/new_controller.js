@@ -22,12 +22,10 @@ var Controller = {
           newDraft.set({content: []})
           newPub.set({activeContent: []})
         }
-        newPub.save(data, {
-          success: function(pub, response) {
-            console.log('newPub saved')
-            console.log(newPub)
-          }
-        }).then(function() {
+
+        if (newPub.save(data, {
+          success: function() {console.log('newPub saved')}
+        })) {
           newDraft.set({
             type: data.type,
             pub: newPub.get('_id'),
@@ -42,15 +40,16 @@ var Controller = {
           newPub.save(null, {
             success: function() {
               console.log('newPub saved 2')
-              console.log(newPub)
-              gc.trigger('sidebar:close')
-              gc.trigger('pub:content:edit', newPub.get('_id'))
             }
+          }).then(function() {
+            console.log('get pub')
+            gc.trigger('sidebar:close')
+            gc.trigger('pub:content:edit', newPub.get('_id'))
           })
-        })
-        newPubView.triggerMethod('form:data:invalid', newPub.validationError);
+        } else {
+          newPubView.triggerMethod('form:data:invalid', newPub.validationError);
+        }
       })
-
       gc.trigger('sidebar:show', newPubView)
     })
   }

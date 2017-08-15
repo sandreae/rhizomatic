@@ -25,7 +25,7 @@ module.exports = function(app, express) {
             _id: user._id,
             permissions: user.permissions
           }, superSecret, {
-            expiresIn: 60 * 24
+            expiresIn: '28d'
           })
 
           res.json({

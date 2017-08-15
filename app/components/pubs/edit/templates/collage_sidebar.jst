@@ -1,27 +1,26 @@
-  
-upload images
-<div id="fine-uploader-image"></div>
-upload sounds
-<div id="fine-uploader-audio"></div>
 
-<form>
+
+<form id="form">
+
+  <div class="control-group">      
+    <label for="pub-type" class="form-label">Type:</label>
+    <select class="form-control js-select" id="pub-type" name="type">
+      <option selected hidden value="<%- type %>"><%- type %></option>
+      <option value="markdown">markdown</option>
+      <option value="collage">collage</option>
+      <option value="url">url</option>
+      <option value="audio">audio</option>
+      <option value="image">image</option>
+    </select>
+  </div>
   <div class="control-group">
     <label for="pub-contributor">Contributor:</label>
     <input class="form-control" id="pub-contributor" name="contributor" type="text" value="<%- contributor %>"/>
   </div>
+
   <div class="control-group">   
     <label for="pub-title">Title:</label>
     <input class="form-control" id="pub-title" name="title" type="text" value="<%- title %>"/>
-  </div>
-  <div class="control-group">      
-    <label for="pub-type" class="form-label">Type:</label>
-    <select class="form-control" id="pub-type" name="type">
-      <option selected hidden value="<%- type %>"><%- type %></option>
-      <option value="markdown">markdown</option>
-      <option value="collage">collage</option>
-      <option value="script">url</option>
-      <option value="audio">audio</option>
-    </select>
   </div>
   <div class="control-group">      
     <label for="pub-tags" class="form-label">Tags:</label>
@@ -32,7 +31,7 @@ upload sounds
     <input class="form-control" id="pub-directedAt" name="directedAt" type="text" value="<%- directedAt %>"/>
   </div>
   <div class="control-group">
-    <button class="js-submit">Save</button>
+    <button class="js-submit">Save Draft</button>
   </div>    
 </form>
 
@@ -40,57 +39,3 @@ upload sounds
   <button class="js-publish">Publish</a>
 <% } else { %> <p>this is published</p> <% } %>
 
-        
-<script type="text/template" id="qq-template-manual-trigger">
-    <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="Drop files here">
-      
-        <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
-            <span class="qq-upload-drop-area-text-selector"></span>
-        </div>
-        <div class="buttons">
-            <div class="qq-upload-button-selector qq-upload-button">
-                <div>Select files</div>
-            </div>
-        </div>
-        <span class="qq-drop-processing-selector qq-drop-processing">
-            <span>Processing dropped files...</span>
-            <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
-        </span>
-        <ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">
-            <li>
-                <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
-                <img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>
-                <span class="qq-upload-file-selector qq-upload-file"></span>
-                <span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>
-                <button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>
-                <button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Retry</button>
-                <button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>
-                <span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
-            </li>
-        </ul>
-
-        <dialog class="qq-alert-dialog-selector">
-            <div class="qq-dialog-message-selector"></div>
-            <div class="qq-dialog-buttons">
-                <button type="button" class="qq-cancel-button-selector">Close</button>
-            </div>
-        </dialog>
-
-        <dialog class="qq-confirm-dialog-selector">
-            <div class="qq-dialog-message-selector"></div>
-            <div class="qq-dialog-buttons">
-                <button type="button" class="qq-cancel-button-selector">No</button>
-                <button type="button" class="qq-ok-button-selector">Yes</button>
-            </div>
-        </dialog>
-
-        <dialog class="qq-prompt-dialog-selector">
-            <div class="qq-dialog-message-selector"></div>
-            <input type="text">
-            <div class="qq-dialog-buttons">
-                <button type="button" class="qq-cancel-button-selector">Cancel</button>
-                <button type="button" class="qq-ok-button-selector">Ok</button>
-            </div>
-        </dialog>
-    </div>
-</script>

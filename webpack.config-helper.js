@@ -26,12 +26,12 @@ module.exports = (options) => {
       new Webpack.ProvidePlugin({
         _: 'underscore',
         $: 'jquery',
-        "jQuery.tagsinput": "jquery-tags-input",
         jQuery: 'jquery',
         Backbone: 'backbone',
         Bb: 'backbone',
         Marionette: 'backbone.marionette',
         Mn: 'backbone.marionette',
+        alertify: 'alertifyjs',
       }),
       new ExtractTextPlugin('style.css'),
     ],

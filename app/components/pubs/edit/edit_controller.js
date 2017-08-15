@@ -26,19 +26,8 @@ var Controller = {
 
         if (data.tags === '') {data.tags = []} else {data.tags = data.tags.split(', ')}
         if (data.directedAt === '') {data.directedAt = []} else {data.directedAt = data.directedAt.split(', ')}
+        Controller.saveDraft(editSidebarView, pubModel, content, draft, drafts, data, nextDraft, newDraft, newType, type)
 
-        if (nextDraft === undefined) {
-          console.log('newDraft triggered')
-          Controller.newDraft(pubModel, newDraft, drafts, newType)
-        } else {
-          console.log('changeDraft triggered')
-          if (type !== newType) {
-            Controller.changeDraft(pubModel, nextDraft, newType)
-          } else {
-            console.log('saveDraft triggered')
-            Controller.saveDraft(editSidebarView, pubModel, content, draft, data)
-          }
-        }
       })
       gc.trigger('sidebar:show', editSidebarView)
     })
@@ -61,7 +50,7 @@ var Controller = {
             })
           } else {
             invitedUserModel = users.findWhere(function(model){
-              return ( _.indexOf(model.get('contributorNames'), contributor) >= 0 );
+              return (_.indexOf(model.get('contributorNames'), contributor) >= 0 );
             });
           }
 
@@ -77,6 +66,8 @@ var Controller = {
             pendingPub: pendingList
           })
           invitedUserModel.save()
+          gc.trigger('pub:show', pubModel.get("_id"))
+          gc.trigger('user:listPubs')
         })
       })
     })
@@ -84,7 +75,6 @@ var Controller = {
 
   publish: function(pubModel) {
     Controller.saveContributorName(pubModel)
-    Controller.newInvitedPub(pubModel)
     gc.trigger('sidebar:close')
   },
 
@@ -92,11 +82,14 @@ var Controller = {
     gc.request('user:get', window.localStorage.userId).then(function(user) {
       var contributorName = pubModel.get('contributor')
       var contributors = user.get('contributorNames')
-      if (!contributors.includes(contributorName)){contributors.push(contributorName)}
+      if (!contributors.includes(contributorName)) {contributors.push(contributorName)}
       contributors = _.flatten(contributors)
       user.set({contributorNames: contributors})
       user.save(null, {
-        success: function() {console.log('user saved with new contributor names')}
+        success: function() {
+          console.log('user saved with new contributor names')
+          Controller.newInvitedPub(pubModel)
+        }
       })
     })
   },
@@ -123,24 +116,31 @@ var Controller = {
     gc.trigger('pub:content:edit', pubModel.get('_id'))
   },
 
-  saveDraft: function(editSidebarView, pubModel, content, draft, data) {
+  saveDraft: function(editSidebarView, pubModel, content, draft, drafts, data, nextDraft, newDraft, newType, type) {
     draft.set({content: content})
-    pubModel.set({
-      activeContent: content,
-    })
 
-    if (!pubModel.save(data)) {
+    if (!pubModel.save(data, {
+      success: function() {
+          alertify.success('Success message');
+      }
+    })) {
       editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError)
       pubModel.set({published: false})
-      pubModel.save(null, {
-        success: function() {console.log('pub not published because of validation error')}
-      })
+      console.log('pub not published because of validation error')
     } else {
       if (pubModel.get('published') === true){
         Controller.publish(pubModel)
+      } else {
+        if (nextDraft === undefined) {
+          console.log('newDraft triggered')
+          Controller.newDraft(pubModel, newDraft, drafts, newType)
+        } else {
+          console.log('changeDraft triggered')
+          if (type !== newType) {
+            Controller.changeDraft(pubModel, nextDraft, newType)
+          } else {gc.trigger('pub:content:edit', pubModel.get('_id'))}
+        }
       }
-      gc.trigger('pubs:list')
-      gc.trigger('sidebar:close')
     }
   },
 
@@ -150,8 +150,9 @@ var Controller = {
       type: newType,
       activeContent: nextContent,
     })
-    pubModel.save(null)
-    gc.trigger('pub:content:edit', pubModel.get('_id'))
+    pubModel.save(null).then(function() {
+      gc.trigger('pub:content:edit', pubModel.get('_id'))
+    })
   }
 }
 export {Controller}

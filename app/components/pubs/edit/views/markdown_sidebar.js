@@ -7,7 +7,8 @@ var MarkdownSidebar = Marionette.View.extend({
 
   events: {
     'click button.js-submit': 'submitClicked',
-    'click button.js-publish': 'publishClicked'
+    'click button.js-publish': 'publishClicked',
+    'change select.js-select': 'submitClicked',
   },
 
   behaviors: {
@@ -36,6 +37,7 @@ var MarkdownSidebar = Marionette.View.extend({
   },
 
   publishClicked: function(e) {
+    e.preventDefault()
     this.model.set({published: true})
     this.submitClicked(e)
   },

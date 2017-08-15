@@ -7,6 +7,8 @@ $sidebar-border-thickness: $GLOBAL_BORDER_THICKNESS;
 $sidebar-border-color: $GLOBAL_BORDER_COLOR;
 $sidebar-border-radius: $GLOBAL_BORDER_RADIUS;
 
+
+
 @mixin sidebar-default {
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */

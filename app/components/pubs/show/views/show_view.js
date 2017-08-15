@@ -14,7 +14,7 @@ export default Marionette.View.extend({
     var template
     if (type === 'markdown') {template = markdown}
     if (type === 'collage') {template = collage}
-    if (type === 'script') {template = script}
+    if (type === 'url') {template = script}
     if (type === 'audio') {template = audio}
     if (type === 'image') {template = image}
     return template},

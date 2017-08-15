@@ -54,6 +54,7 @@ var Radio = Marionette.Object.extend({
       var userId = window.localStorage.userId
       gc.request('appState:get').then(function(appState) {
         if (key !== null) {
+          console.log(key)
           gc.request('user:get', userId).then(function(user) {
             gc.trigger('user:loggedIn')
             appState.set({
@@ -66,6 +67,8 @@ var Radio = Marionette.Object.extend({
             } else {
               appState.set({isAdmin: false})
             }
+            console.log('user logged in')
+            console.log(appState)
             gc.trigger('appState:changed', appState)
           })
         } else {
@@ -74,6 +77,8 @@ var Radio = Marionette.Object.extend({
             loggedIn: false,
             userName: null
           })
+          console.log('user not logged in')
+          console.log(appState)
           gc.trigger('appState:changed', appState)
         }
         return appState

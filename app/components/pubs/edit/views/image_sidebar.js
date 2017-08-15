@@ -6,7 +6,8 @@ var ImageSidebar = Marionette.View.extend({
 
   events: {
     'click button.js-submit': 'submitClicked',
-    'click button.js-publish': 'publishClicked'
+    'click button.js-publish': 'publishClicked',
+    'change select.js-select': 'submitClicked',
   },
 
   behaviors: {

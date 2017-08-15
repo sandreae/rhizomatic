@@ -19,7 +19,6 @@ Platform.PubsApp = PubsApp
 Platform.SidebarApp = SidebarApp
 Platform.UsersApp = UsersApp
 Platform.Auth = Auth
-console.log(Platform)
 
 Platform.getCurrentRoute = function () {
   return Backbone.history.fragment
@@ -33,5 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   Platform.start();
   pace.start()
-
+  console.log(Platform)
+  console.log(window)
 })
+

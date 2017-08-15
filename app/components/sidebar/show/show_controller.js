@@ -1,11 +1,11 @@
-import Login from './views/login_view'
+import Welcome from './views/welcome_view'
 import Buttons from './views/buttons_view'
 import Layout from './views/layout_view'
 
 var Controller = {
-  showLogin: function() {
+  showWelcome: function() {
     var sidebarRegion = this.checkRegion()
-    sidebarRegion.currentView.showChildView('sidebarRegion1', new Login)
+    sidebarRegion.currentView.showChildView('sidebarRegion1', new Welcome)
     sidebarRegion.currentView.getRegion('sidebarRegion3').empty()
   },
 

@@ -1,4 +1,4 @@
-import template from '../templates/login_message.jst'
+import template from '../templates/welcome_message.jst'
 import {gc} from '../../../radio'
 
 export default Marionette.View.extend({

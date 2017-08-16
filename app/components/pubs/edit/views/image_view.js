@@ -6,7 +6,6 @@ var Image = Marionette.View.extend({
   events: {
     'click button.js-submit': 'submitClicked'
   },
-
   onAttach: function () {
     var model = this.model
     document.getElementById("file-input").onchange = () => {
@@ -37,13 +36,14 @@ var Image = Marionette.View.extend({
   },
 
   uploadFile: function(file, signedRequest, url, model){
-    console.log(model)
+    console.log(url)
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           document.getElementById('avatar-url').value = url;
+          document.getElementById('js-image-preview').src = url;
           model.get('drafts').findWhere({type: 'image'}).set({content: url})
         }
         else{

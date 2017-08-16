@@ -98,8 +98,8 @@ var Controller = {
             pendingPub: pendingList
           })
           invitedUserModel.save()
-          gc.trigger('pub:show', pubModel.get("_id"))
           gc.trigger('user:listPubs')
+          gc.trigger('pub:show', pubModel.get("_id"))
           alertify.success('publication published!');
         })
       })

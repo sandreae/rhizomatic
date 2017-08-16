@@ -26,7 +26,7 @@ var D3View = Mn.View.extend({
 
     var nodes = pubsJSON.map(function(pub, index, array){
       pub.id = pub._id
-      pub.url = 'http://' + window.location.host + '/#publications/' + pub._id
+      pub.url = 'http://' + window.location.host + '/#publication/' + pub._id
       return pub
     })
     nodes = nodes.filter(function(obj) {

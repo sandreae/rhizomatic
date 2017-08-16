@@ -1,33 +1,15 @@
+
+fabric.js for canvas and new uploads
 add published date
-pub type selector confusiong
-info texts for media uploads
-how to create a new Rhizome?
-nodemailer and auto send email invite
-make upload file area look better.
-profile view rows not columns and "password" / "repeat password"
-remove new pub button and add new rhizome view
-save draft button on views for single media pubs
-fabric.js for canvas
-Amazon S3 hosting
 D3 view add tags connections + re-style
-
-bugs:
-no tags? change tags title
-change "directed at" title
-keep sidebar open in edit view?
+remove new pub button and add new rhizome view
+nodemailer and auto send email invite
+info texts for media uploads
+profile view rows not columns and "password" / "repeat password"
+add texts
+change names of tags and directedAt
 directed at validation only happens once.
-
-
-EDIT METHODS:
-- video
-- collage video
-- text for collage view
-
-
-
-
-
-
+keep sidebar open in edit view?
 
 :::::DONE:::::
 
@@ -108,6 +90,7 @@ ALERTS:
 -feedback for failed/successful login
 -save success
 -redo current warnings
+Amazon S3 hosting
 
 
 

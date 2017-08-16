@@ -1,76 +1,85 @@
 import template from '../templates/collage.jst'
-import 'jquery-ui'
-import qq from 'fine-uploader'
 import {gc} from '../../../radio'
-import 'fine-uploader/fine-uploader/fine-uploader-new.css'
+import 'jquery-ui'
 
 var Collage = Marionette.View.extend({
     template: template,
 
-  onAttach: function () {
-
-    var self = this
-    var token = gc.request('user:getKey')
+onAttach: function () {
     $( ".draggable" ).draggable()
     $( ".resizable" ).resizable()
 
-    var uploadImage = new qq.FineUploader({
-      element: document.getElementById('fine-uploader-image'),
-      template: 'qq-template-manual-trigger-images',
-      request: {
-        endpoint: '/uploads',
-        customHeaders: {
-          'x-access-token': token
+    var model = this.model
+    document.getElementById("file-input").onchange = () => {
+      const files = document.getElementById('file-input').files;
+      const file = files[0];
+      if(file == null){
+        return alert('No file selected.');
+      }
+      this.getSignedRequest(file, model);
+    };
+  },
+
+
+
+  getSignedRequest: function(file, model) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          const response = JSON.parse(xhr.responseText);
+          this.uploadFile(file, response.signedRequest, response.url, model);
         }
-      },
-      autoUpload: true,
-      callbacks: {
+        else {
+          alert('Could not get signed URL.');
+        }
+      }
+    };
+    xhr.send();
+  },
 
-        onComplete: function(id, name, response) {
-
-          if (response.success !== false) {
-            var resizable = document.createElement('img')
+  uploadFile: function(file, signedRequest, url, model){
+  	var self = this
+    console.log(model)
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', signedRequest);
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          document.getElementById('avatar-url').value = url;
+          if (file.type.includes('image'))
+			{
+		    var resizable = document.createElement('img')
             var draggable = document.createElement('div')
             $(resizable).css({width: '100%', height: '100%'});
             resizable.className = 'resizable'
-            resizable.src = response.url
+            resizable.src = url
             $(draggable).css({width: '200px', height: '200px', display: 'inline-block', position: 'absolute'});
             draggable.className = 'draggable'
             draggable.appendChild(resizable)
             document.getElementById('draggable-container').appendChild(draggable)
             $('.draggable').draggable()
             $('.resizable').resizable()
-          } else {console.log('error uploading file')}
-        },
-      }
-    });
+			}
 
-    var audioUpload = new qq.FineUploader({
-      element: document.getElementById('fine-uploader-audio'),
-      template: 'qq-template-manual-trigger-audio',
-      request: {
-        endpoint: '/uploads',
-        customHeaders: {
-          'x-access-token': token
-        }
-      },
-      autoUpload: true,
-      callbacks: {
-
-        onComplete: function(id, name, response) {
-          if (response.success !== false) {
-            var sound = document.createElement('audio');
+			if (file.type.includes('audio')){
+		    var sound = document.createElement('audio');
             sound.className = 'draggable'
             sound.style.position = 'absolute'
             sound.controls = 'controls';
-            sound.src = response.url;
+            sound.src = url;
             sound.type = 'audio/mpeg';
             document.getElementById('draggable-container').appendChild(sound);
             $('.draggable').draggable()
-          } else {console.log('error uploading file')}
-        },
+			}
+	        }
+	        else{
+          alert('Could not upload file.');
+        }
       }
-    });
+    };
+    xhr.send(file)
   },
 })
 export {Collage}

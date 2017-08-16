@@ -1,107 +1,11 @@
+<input type="file" id="file-input">
 
+<form method="POST" action="/save-details">
+  <input type="hidden" id="avatar-url" name="avatar-url" value="">
+  <input type="submit" value="Save Image">
+</form>
 
-  <div>
-  upload images
-  <div id="fine-uploader-image"></div>
-  upload sounds
-  <div id="fine-uploader-audio"></div>
-  </div>
-
-
-<script type="text/template" id="qq-template-manual-trigger-images">
-    <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="Drop images here">
-      
-        <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
-            <span class="qq-upload-drop-area-text-selector"></span>
-        </div>
-        <div class="buttons">
-            <div class="qq-upload-button-selector qq-upload-button">
-                <div>Select files</div>
-            </div>
-        </div>
-        <span class="qq-drop-processing-selector qq-drop-processing">
-            <span>Processing dropped files...</span>
-            <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
-        </span>
-        <ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">
-            <li>
-                <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
-                <img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>
-                <span class="qq-upload-file-selector qq-upload-file"></span>
-                <span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>
-                <button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>
-                <button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Retry</button>
-                <button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>
-                <span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
-            </li>
-        </ul>
-
-        <dialog class="qq-alert-dialog-selector">
-            <div class="qq-dialog-message-selector"></div>
-            <div class="qq-dialog-buttons">
-                <button type="button" class="qq-cancel-button-selector">Close</button>
-            </div>
-        </dialog>
-
-        <dialog class="qq-confirm-dialog-selector">
-            <div class="qq-dialog-message-selector"></div>
-            <div class="qq-dialog-buttons">
-                <button type="button" class="qq-cancel-button-selector">No</button>
-                <button type="button" class="qq-ok-button-selector">Yes</button>
-            </div>
-        </dialog>
-
-        <dialog class="qq-prompt-dialog-selector">
-            <div class="qq-dialog-message-selector"></div>
-            <input type="text">
-            <div class="qq-dialog-buttons">
-                <button type="button" class="qq-cancel-button-selector">Cancel</button>
-                <button type="button" class="qq-ok-button-selector">Ok</button>
-            </div>
-        </dialog>
-    </div>
-</script>
-
-<script type="text/template" id="qq-template-manual-trigger-audio">
-    <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="Drop audio here">
-        <div class="buttons">
-            <div class="qq-upload-button-selector qq-upload-button">
-                <div>Select files</div>
-            </div>
-        </div>
-        <ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">
-            <li>
-                <span class="qq-upload-file-selector qq-upload-file"></span>
-            </li>
-        </ul>
-
-        <dialog class="qq-alert-dialog-selector">
-            <div class="qq-dialog-message-selector"></div>
-            <div class="qq-dialog-buttons">
-                <button type="button" class="qq-cancel-button-selector">Close</button>
-            </div>
-        </dialog>
-
-        <dialog class="qq-confirm-dialog-selector">
-            <div class="qq-dialog-message-selector"></div>
-            <div class="qq-dialog-buttons">
-                <button type="button" class="qq-cancel-button-selector">No</button>
-                <button type="button" class="qq-ok-button-selector">Yes</button>
-            </div>
-        </dialog>
-
-        <dialog class="qq-prompt-dialog-selector">
-            <div class="qq-dialog-message-selector"></div>
-            <input type="text">
-            <div class="qq-dialog-buttons">
-                <button type="button" class="qq-cancel-button-selector">Cancel</button>
-                <button type="button" class="qq-ok-button-selector">Ok</button>
-            </div>
-        </dialog>
-    </div>
-</script>
 
 <div id="draggable-container">
 <%= activeContent %>
 </div>
-

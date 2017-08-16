@@ -158,7 +158,9 @@ var Controller = {
     } else {
       if (pubModel.get('published') === true){
         pubModel.set({activeContent: content})
-        Controller.publish(pubModel)
+        pubModel.save(null).then(function(){
+          Controller.publish(pubModel)
+        })
       } else {
         if (nextDraft === undefined) {
           console.log('newDraft triggered')

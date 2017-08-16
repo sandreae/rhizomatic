@@ -1,6 +1,6 @@
 
-fabric.js for canvas and new uploads
 add published date
+upload file feedback and file size restriction
 D3 view add tags connections + re-style
 remove new pub button and add new rhizome view
 nodemailer and auto send email invite

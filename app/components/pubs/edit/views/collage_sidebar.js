@@ -32,6 +32,8 @@ var CollageSidebar = Marionette.View.extend({
     $( ".resizable" ).resizable( "destroy" )
     var container = $('#draggable-container')
     var content = $(container).html()
+    $( ".draggable" ).draggable()
+    $( ".resizable" ).resizable()
     this.trigger('form:submit', content, data, this.model)
   },
 
@@ -42,6 +44,8 @@ var CollageSidebar = Marionette.View.extend({
     $( ".resizable" ).resizable( "destroy" )
     var container = $('#draggable-container')
     var content = $(container).html()
+    $( ".draggable" ).draggable()
+    $( ".resizable" ).resizable()
     this.trigger('silent:save', content, data, this.model)
   },
 

@@ -23,7 +23,14 @@ export default Marionette.View.extend({
     var model = this.model
     if (model.get('type') === 'markdown') {
       var content = model.get('activeContent')
-      var converter = new showdown.Converter()
+      var converter = new showdown.Converter({
+        'tables': true,
+        'ghCodeBlocks': true,
+        'tasklists': true,
+        'ghMentions': true,
+        'openLinksInNewWindow': true,
+        'ghCodeBlocks': true,
+      })
       var html = converter.makeHtml(content)
       console.log(html)
       model.set({activeContent: html})

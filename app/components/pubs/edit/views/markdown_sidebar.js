@@ -9,6 +9,7 @@ var MarkdownSidebar = Marionette.View.extend({
     'click button.js-submit': 'submitClicked',
     'click button.js-publish': 'publishClicked',
     'change select.js-select': 'submitClicked',
+    'click button.js-preview': 'previewClicked',
   },
 
   behaviors: {
@@ -31,9 +32,15 @@ var MarkdownSidebar = Marionette.View.extend({
     var content = simplemde.value()
     if (content === '') {content = ' '}
     this.trigger('form:submit', content, data, this.model)
+  },
 
-    //nvar data = Backbone.Syphon.serialize(this);
-    //  this.trigger('form:submit', data);
+  previewClicked: function(e) {
+    e.preventDefault()
+    var data = Backbone.Syphon.serialize(this);
+    var simplemde = $('#simplemde').data('editor')
+    var content = simplemde.value()
+    if (content === '') {content = ' '}
+    this.trigger('silent:save', content, data, this.model)
   },
 
   publishClicked: function(e) {

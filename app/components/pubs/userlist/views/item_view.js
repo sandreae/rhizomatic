@@ -12,33 +12,25 @@ export default Marionette.View.extend({
   events: {
     'click a.js-show-pub': 'showClicked',
     'click a.js-delete-pub': 'deleteClicked',
-    'click a.js-edit-details': 'editPubDetails',
-    'click a.js-edit-content': 'editPubContent',
-    'click a.js-publish': 'publishClicked'
-
   },
 
   deleteClicked: function (e) {
+    var self = this
     e.preventDefault()
     e.stopPropagation()
-    var answer = confirm('Do you want to delete?')
-    if (answer) {
-      this.remove()
-      this.model.destroy()
-      alert('Deleted')
-    }
-    else {
-      alert('Not Deleted')
-    }
+
+    alertify.confirm('Delete this publication?',
+      function(){
+        self.remove()
+        self.model.destroy()
+        alertify.success('publication deleted');
+      },
+      function(){
+        alertify.error('publication not deleted');
+      });
   },
 
   showClicked: function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-    gc.trigger('pub:show', this.model.get('_id'))
-  },
-
-  editPubContent: function (e) {
     e.preventDefault()
     e.stopPropagation()
     gc.trigger('pub:content:edit', this.model.get('_id'))

@@ -16,6 +16,38 @@ var Controller = {
       var type = pub.get('type')
       var editSidebarView = editSidebarPicker(pub, type)
 
+      editSidebarView.on('silent:save', function (content, data, pubModel) {
+        console.log('silent save')
+
+        var drafts = pubModel.get('drafts')
+        var draft = drafts.findWhere({type: type})
+        if (data.tags === '') {data.tags = []} else {data.tags = data.tags.split(', ')}
+        if (data.directedAt === '') {data.directedAt = []} else {data.directedAt = data.directedAt.split(', ')}
+
+        draft.set({content: content})
+        pubModel.set({activeContent: content})
+
+        if (!pubModel.save(data, {
+          success: function() {
+            alertify.success('publication saved');
+          },
+          error: function() {
+            alertify.success('unknown server error')
+            alertify.success('publication not saved')
+          }
+        })) 
+        {
+          editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError)
+          pubModel.set({published: false})
+          console.log('pub not published because of validation error')
+        } else {
+          console.log(pubModel)
+          gc.trigger('pub:show', pubModel.get('_id'))
+          gc.trigger('sidebar:close')
+          gc.trigger('user:listPubs')
+        }
+      })
+      
       editSidebarView.on('form:submit', function (content, data, pubModel) {
 
         var newType = data.type
@@ -68,6 +100,7 @@ var Controller = {
           invitedUserModel.save()
           gc.trigger('pub:show', pubModel.get("_id"))
           gc.trigger('user:listPubs')
+          alertify.success('publication published!');
         })
       })
     })
@@ -112,16 +145,16 @@ var Controller = {
       type: newType,
       activeContent: '',
     })
-    pubModel.save(null)
-    gc.trigger('pub:content:edit', pubModel.get('_id'))
+    pubModel.save(null).then(function(){
+      gc.trigger('pub:content:edit', pubModel.get('_id'))
+    })
   },
 
   saveDraft: function(editSidebarView, pubModel, content, draft, drafts, data, nextDraft, newDraft, newType, type) {
     draft.set({content: content})
-
     if (!pubModel.save(data, {
       success: function() {
-          alertify.success('Success message');
+          alertify.success('publication saved');
       }
     })) {
       editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError)
@@ -129,6 +162,7 @@ var Controller = {
       console.log('pub not published because of validation error')
     } else {
       if (pubModel.get('published') === true){
+        pubModel.set({activeContent: content})
         Controller.publish(pubModel)
       } else {
         if (nextDraft === undefined) {
@@ -138,7 +172,12 @@ var Controller = {
           console.log('changeDraft triggered')
           if (type !== newType) {
             Controller.changeDraft(pubModel, nextDraft, newType)
-          } else {gc.trigger('pub:content:edit', pubModel.get('_id'))}
+          } else {
+            pubModel.set({activeContent: content})
+            pubModel.save(null).then(function(){
+              gc.trigger('pub:content:edit', pubModel.get('_id'))
+            })
+          }
         }
       }
     }

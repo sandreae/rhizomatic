@@ -8,6 +8,7 @@ var ScriptSidebar = Marionette.View.extend({
     'click button.js-submit': 'submitClicked',
     'click button.js-publish': 'publishClicked',
     'change select.js-select': 'submitClicked',
+    'click button.js-preview': 'previewClicked',
   },
 
   behaviors: {
@@ -27,10 +28,19 @@ var ScriptSidebar = Marionette.View.extend({
     e.preventDefault()
     var data = Backbone.Syphon.serialize(this);
     var drafts = this.model.get('drafts')
-    console.log(drafts)
     var draft = drafts.findWhere({type: 'url'})
     var content = draft.get('content')
     this.trigger('form:submit', content, data, this.model)
+  },
+
+  previewClicked: function(e) {
+    e.preventDefault()
+    console.log('preview clicked')
+    var data = Backbone.Syphon.serialize(this);
+    var drafts = this.model.get('drafts')
+    var draft = drafts.findWhere({type: 'url'})
+    var content = draft.get('content')
+    this.trigger('silent:save', content, data, this.model)
   },
 
   publishClicked: function(e) {

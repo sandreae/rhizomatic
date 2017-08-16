@@ -7,7 +7,8 @@ collage horizontal scroll + delete button
 nodemailer and auto send email invite
 make upload file are look better.
 profile view rows not columns and "password" / "repeat password"
-preview button
+remove new pub button and add new rhizome view
+save draft button on views for single media pubs
 
 ALERTS
 feedback for failed/successful login
@@ -15,7 +16,8 @@ save success
 redo current warnings
 
 bugs:
-no tags?
+no tags? change tags title
+change "directed at" title
 keep sidebar open in edit view?
 directed at validation only happens once.
 
@@ -105,6 +107,8 @@ refactor server
 before any navigation, if user not logged in sidebar "home"
 automatically switch editing views when selecting type
 make image upload 100%
+make clicking pub go to edit view, remove edit button, add preview button to edit sidebar
+preview button
 
 
 

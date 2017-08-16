@@ -1,4 +1,4 @@
-import template from '../templates/collage_sidebar.jst'
+import template from './../../../../entities/behaviors/templates/details.jst'
 import {gc} from '../../../radio'
 import 'jquery-ui'
 
@@ -9,6 +9,7 @@ var CollageSidebar = Marionette.View.extend({
     'click button.js-submit': 'submitClicked',
     'click button.js-publish': 'publishClicked',
     'change select.js-select': 'submitClicked',
+    'click button.js-preview': 'previewClicked',
   },
 
   behaviors: {
@@ -32,6 +33,16 @@ var CollageSidebar = Marionette.View.extend({
     var container = $('#draggable-container')
     var content = $(container).html()
     this.trigger('form:submit', content, data, this.model)
+  },
+
+  previewClicked: function(e) {
+    e.preventDefault()
+    var data = Backbone.Syphon.serialize(this);
+    $( ".draggable" ).draggable( "destroy" )
+    $( ".resizable" ).resizable( "destroy" )
+    var container = $('#draggable-container')
+    var content = $(container).html()
+    this.trigger('silent:save', content, data, this.model)
   },
 
   publishClicked: function (e) {

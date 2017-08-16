@@ -29,12 +29,15 @@
   <div class="control-group">
   <% if (title == '') { %>
     <button class="js-submit">Create Publication</button>
-    <% } else { %> <button class="js-submit">Save Draft</button> <% } %>
+    <% } else { %> 
+    <button class="js-submit">Save Draft</button>
+    <button class="js-preview">Preview</button> 
+    <% if (title == '') { %>
+    <% } else { %> 
+    <% if (published == 'false') { %>
+      <button class="js-publish">Publish</button>
+    <% } else { %> <b>published</b> <% } %><% } %>
+    <% } %>
   </div>    
 </form>
 
-<% if (title == '') { %>
-<% } else { %> 
-<% if (published == 'false') { %>
-  <button class="js-publish">Publish</button>
-<% } else { %> <p>this is published</p> <% } %><% } %>

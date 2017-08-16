@@ -1,19 +1,15 @@
-collage: check file type then apply correct process
 add published date
 pub type selector confusiong
 info texts for media uploads
 how to create a new Rhizome?
-collage horizontal scroll + delete button
 nodemailer and auto send email invite
-make upload file are look better.
+make upload file area look better.
 profile view rows not columns and "password" / "repeat password"
 remove new pub button and add new rhizome view
 save draft button on views for single media pubs
-
-ALERTS
-feedback for failed/successful login
-save success
-redo current warnings
+fabric.js for canvas
+Amazon S3 hosting
+D3 view add tags connections + re-style
 
 bugs:
 no tags? change tags title
@@ -21,7 +17,6 @@ change "directed at" title
 keep sidebar open in edit view?
 directed at validation only happens once.
 
-Amazon S3 hosting
 
 EDIT METHODS:
 - video
@@ -109,6 +104,10 @@ automatically switch editing views when selecting type
 make image upload 100%
 make clicking pub go to edit view, remove edit button, add preview button to edit sidebar
 preview button
+ALERTS:
+-feedback for failed/successful login
+-save success
+-redo current warnings
 
 
 

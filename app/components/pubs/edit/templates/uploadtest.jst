@@ -1,11 +1,6 @@
-<h1><%= title %></h1>
-<h3><%= contributor %></h3>
-
 <input type="file" id="file-input">
 
 <form method="POST" action="/save-details">
   <input type="hidden" id="avatar-url" name="avatar-url">
   <input type="submit" value="Save Image">
 </form>
-
-<img src="<%= activeContent %>" type="audio/mpeg" id="image-view">

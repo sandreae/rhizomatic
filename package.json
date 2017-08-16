@@ -20,6 +20,8 @@
     "dash": "webpack-dashboard -- webpack-dev-server --config webpack-dev.config.js"
   },
   "dependencies": {
+    "aws-sdk": "2.x",
+    "ejs": "2.x",
     "3d-force-graph": "^1.5.1",
     "alertifyjs": "^1.11.0",
     "awesomplete": "^1.1.2",

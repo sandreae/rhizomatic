@@ -10,6 +10,8 @@
 *~
 *.sass-cache
 
+
+
 # OS or Editor folders
 .DS_Store
 .cache
@@ -25,3 +27,7 @@ node_modules
 # Output folder.
 
 uploads
+
+# Local testing
+
+.env

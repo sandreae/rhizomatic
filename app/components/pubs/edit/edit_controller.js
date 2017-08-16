@@ -35,7 +35,7 @@ var Controller = {
             alertify.success('unknown server error')
             alertify.success('publication not saved')
           }
-        })) 
+        }))
         {
           editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError)
           pubModel.set({published: false})
@@ -132,13 +132,8 @@ var Controller = {
       type: newType,
       pub: pubModel.get('_id')
     })
-    if (newType === 'audio' || newType === 'image') {
-      newDraft.set({content: []})
-      pubModel.set({activeContent: []})
-    } else {
-      newDraft.set({content: ''})
-      pubModel.set({activeContent: ''})
-    }
+    newDraft.set({content: ''})
+    pubModel.set({activeContent: ''})
     drafts.add(newDraft)
     pubModel.set({
       drafts: drafts,

@@ -5,7 +5,12 @@ import 'jquery-ui'
 var Collage = Marionette.View.extend({
     template: template,
 
-onAttach: function () {
+  events: {
+    'change input.myUrl': 'urlChanged',
+  },
+
+  onAttach: function () {
+
     $( ".draggable" ).draggable()
     $( ".resizable" ).resizable()
 
@@ -77,11 +82,47 @@ onAttach: function () {
 	        }
 	        else{
           alertify.error('sorry, upload failed')
-
         }
       }
-    };
+    }
     xhr.send(file)
   },
+
+  createVideoFrame: function(){
+	var resizable = document.createElement('div')
+    var draggable = document.createElement('div')
+    var videoFrame = document.createElement('div')
+    $(resizable).css({width: '100%', height: '100%'});
+    resizable.className = 'resizable'
+    $(draggable).css({width: '200px', height: '200px', display: 'inline-block', position: 'absolute'});
+    draggable.className = 'draggable'
+    videoFrame.className = 'videoFrame'
+    draggable.appendChild(resizable)
+    resizable.appendChild(videoFrame)
+    document.getElementById('draggable-container').appendChild(draggable)
+    $('.draggable').draggable()
+    $('.resizable').resizable()
+    $('.videoFrame').attr({id: 'myCode'})
+  },
+  urlChanged: function(e){
+  	e.preventDefault()
+  	if(!$('.videoFrame')){this.createVideoFrame()}
+    var myId;
+    var myUrl = $('#myUrl').val();
+    myId = this.getId(myUrl);
+    var embed = '<iframe src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>'
+    $('#myCode').html(embed);
+  },
+
+  getId: function(url) {
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var match = url.match(regExp);
+
+    if (match && match[2].length == 11) {
+        return match[2];
+    } else {
+        return 'error';
+    }
+  }
 })
 export {Collage}

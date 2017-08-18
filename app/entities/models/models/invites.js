@@ -12,7 +12,7 @@ var initInvites = function(pendingPubs) {
 
 var InvitesAPI = {
   getInvites: function(pendingPubs) {
-  	var invites= initInvites(pendingPubs);
+  	var invites = initInvites(pendingPubs);
     return invites
   }
 };

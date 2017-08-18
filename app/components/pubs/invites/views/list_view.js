@@ -19,6 +19,7 @@ var TableBody = Mn.CollectionView.extend({
   },
 
   onChildAcceptInvite: function(invite) {
+    console.log(invite)
     this.triggerMethod('accept:invite', invite)
   }
 });

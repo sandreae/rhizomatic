@@ -1,4 +1,3 @@
-
 D3 view add tags connections + re-style
 remove new pub button and add new rhizome view
 nodemailer and auto send email invite
@@ -91,7 +90,7 @@ ALERTS:
 Amazon S3 hosting
 add published date
 upload file feedback and file size restriction
-
+videos added to collage
 
 
 QUESTIONS FOR ROD & ANG:

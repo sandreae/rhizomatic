@@ -2,7 +2,8 @@ import {View} from './views/new_view'
 import {gc} from '../../radio'
 
 var Controller = {
-  newPub: function (invitedByContrib, invitedByPubId) {
+  newPub: function (invitedByContrib, invitedByPubId, user, invites, invite) {
+  if (invitedByContrib === "") {invitedByPubId = 'seed pub'}
 
   var newPub = new Platform.Entities.Pubs.PubModel()
   var drafts = new Platform.Entities.Pubs.Drafts()
@@ -20,8 +21,18 @@ var Controller = {
         if (data.directedAt === '') {data.directedAt = []} else {data.directedAt = data.directedAt.split(', ')}
 
         if (newPub.save(data, {
-          success: function() {console.log('newPub saved')}
+          success: function() {
+            console.log('newPub saved')
+          }
         })) {
+          if (user !== undefined) {
+            invites.remove(invite)
+            user.save({pendingPub: invites.toJSON()})
+          }
+
+          if (invitedByPubId === "") {invitedByPubId = newPub.get('_id')}
+
+
           newDraft.set({
             type: data.type,
             pub: newPub.get('_id'),
@@ -49,7 +60,6 @@ var Controller = {
       gc.trigger('sidebar:show', newPubView)
     })
   }
-
 }
 
 export {Controller}

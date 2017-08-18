@@ -85,9 +85,7 @@ var Controller = {
               return (_.indexOf(model.get('contributorNames'), contributor) >= 0 );
             });
           }
-
           var pendingList = invitedUserModel.get('pendingPub')
-
           pendingList.push({
             invitedByContrib: pubModel.get('contributor'),
             invitedByContribId: pubModel.get('contributorId'),
@@ -97,10 +95,11 @@ var Controller = {
           invitedUserModel.set({
             pendingPub: pendingList
           })
-          invitedUserModel.save()
-          gc.trigger('user:listPubs')
-          gc.trigger('pub:show', pubModel.get("_id"))
-          alertify.success('publication published!');
+          invitedUserModel.save().then(function() {
+            gc.trigger('user:listPubs')
+            gc.trigger('pub:show', pubModel.get("_id"))
+            alertify.success('publication published!');
+          })
         })
       })
     })

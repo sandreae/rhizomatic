@@ -37,6 +37,7 @@ export default Marionette.View.extend({
     e.preventDefault()
     e.stopPropagation()
     console.log('respond clicked')
+    console.log(this.model)
     this.trigger('accept:invite', this.model)
   },
 

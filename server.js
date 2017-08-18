@@ -31,6 +31,7 @@ app.use(express.static(__dirname + '/dist'));
 app.use('/uploads',  express.static(__dirname + '/uploads'));
 
 ////////////S3 UPLOADS/////////////////////
+
 const aws = require('aws-sdk');
 app.engine('html', require('ejs').renderFile);
 const S3_BUCKET = process.env.S3_BUCKET_NAME;
@@ -62,10 +63,6 @@ app.get('/sign-s3', (req, res) => {
   });
 });
 
-app.post('/save-details', (req, res) => {
-  // TODO: Read POSTed form data and do something useful
-});
-
 /////////////////UNPROTECTED ROUTES///////////////////////
 
 var userRoutes = require('./server/router/user')(app, express)
@@ -82,7 +79,7 @@ app.post('/uploads', uploadRoutes.onUpload);
 app.delete('/uploads/:uuid', uploadRoutes.onDeleteFile);
 
 var emailRoutes = require('./server/router/email')(app, express)
-app.use('/send', emailRoutes.sendMail)
+app.use('/api', emailRoutes)
 
 /////////////////PROTECTED ROUTES/////////////////////////
 

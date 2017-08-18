@@ -11,10 +11,12 @@ onAttach: function () {
 
     var model = this.model
     document.getElementById("file-input").onchange = () => {
+    	    alertify.message('uploading file')
+
       const files = document.getElementById('file-input').files;
       const file = files[0];
       if(file == null){
-        return alert('No file selected.');
+        return alertify.error('no file selected')
       }
       this.getSignedRequest(file, model);
     };
@@ -32,7 +34,7 @@ onAttach: function () {
           this.uploadFile(file, response.signedRequest, response.url, model);
         }
         else {
-          alert('Could not get signed URL.');
+          alertify.error('sorry, upload failed')
         }
       }
     };
@@ -41,13 +43,12 @@ onAttach: function () {
 
   uploadFile: function(file, signedRequest, url, model){
   	var self = this
-    console.log(model)
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
         if(xhr.status === 200){
-          document.getElementById('avatar-url').value = url;
+        	alertify.success('uploading complete')
           if (file.type.includes('image'))
 			{
 		    var resizable = document.createElement('img')
@@ -75,7 +76,8 @@ onAttach: function () {
 			}
 	        }
 	        else{
-          alert('Could not upload file.');
+          alertify.error('sorry, upload failed')
+
         }
       }
     };

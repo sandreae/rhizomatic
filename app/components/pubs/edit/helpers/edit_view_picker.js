@@ -3,6 +3,7 @@ import {Collage} from '../views/collage_view'
 import {Script} from '../views/script_view'
 import {Audio} from '../views/audio_view'
 import {Image} from '../views/image_view'
+import {Video} from '../views/video_view'
 
 export default function(pub, type) {
 
@@ -30,6 +31,11 @@ export default function(pub, type) {
   }
   if (type === 'image') {
     editPubContentView = new Image({
+      model: pub
+    })
+  }
+  if (type === 'video') {
+    editPubContentView = new Video({
       model: pub
     })
   }

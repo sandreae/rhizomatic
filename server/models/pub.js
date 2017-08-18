@@ -13,6 +13,7 @@ var PubSchema = new Schema({
   invitedByPubId: String,
   directedAt: Array,
   published: String,
+  publishedDate: String,
   inRhizome: String
 })
 

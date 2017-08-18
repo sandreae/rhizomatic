@@ -9,10 +9,12 @@ var Image = Marionette.View.extend({
   onAttach: function () {
     var model = this.model
     document.getElementById("file-input").onchange = () => {
+      alertify.message('uploading, please wait')
       const files = document.getElementById('file-input').files;
       const file = files[0];
       if(file == null){
-        return alert('No file selected.');
+        return alertify.error('no file selected')
+
       }
       this.getSignedRequest(file, model);
     };
@@ -28,7 +30,7 @@ var Image = Marionette.View.extend({
           this.uploadFile(file, response.signedRequest, response.url, model);
         }
         else {
-          alert('Could not get signed URL.');
+          alertify.error('sorry, upload failed')
         }
       }
     };
@@ -42,12 +44,12 @@ var Image = Marionette.View.extend({
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
         if(xhr.status === 200){
-          document.getElementById('avatar-url').value = url;
+          alertify.success('uploading complete')
           document.getElementById('js-image-preview').src = url;
           model.get('drafts').findWhere({type: 'image'}).set({content: url})
         }
         else{
-          alert('Could not upload file.');
+          alertify.error('sorry, upload failed')
         }
       }
     };

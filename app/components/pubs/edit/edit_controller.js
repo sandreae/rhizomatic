@@ -157,7 +157,10 @@ var Controller = {
       console.log('pub not published because of validation error')
     } else {
       if (pubModel.get('published') === true){
-        pubModel.set({activeContent: content})
+        pubModel.set({
+          activeContent: content,
+          publishedDate: Date()
+        })
         pubModel.save(null).then(function(){
           Controller.publish(pubModel)
         })

@@ -37,6 +37,7 @@ var PubModel = Backbone.RelationalModel.extend({
     invitedByPubId: '',
     directedAt: null,
     published: 'false',
+    publishedDate: 'not published',
     inRhizome: ''
   },
 

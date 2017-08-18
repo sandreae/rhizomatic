@@ -10,10 +10,11 @@ var Audio = Marionette.View.extend({
 onAttach: function () {
     var model = this.model
     document.getElementById("file-input").onchange = () => {
+      alertify.message('uploading, please wait')
       const files = document.getElementById('file-input').files;
       const file = files[0];
       if(file == null){
-        return alert('No file selected.');
+        return alertify.error('no file selected')
       }
       this.getSignedRequest(file, model);
     };
@@ -29,7 +30,7 @@ onAttach: function () {
           this.uploadFile(file, response.signedRequest, response.url, model);
         }
         else {
-          alert('Could not get signed URL.');
+          alertify.error('sorry, upload failed')
         }
       }
     };
@@ -43,7 +44,7 @@ onAttach: function () {
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
         if(xhr.status === 200){
-          document.getElementById('avatar-url').value = url;
+          alertify.success('uploading complete')
           var player = document.getElementById('js-audio-player')
           var audiofile = document.getElementById('js-audio-file')
           audiofile.src = url
@@ -51,7 +52,7 @@ onAttach: function () {
           model.get('drafts').findWhere({type: 'audio'}).set({content: url})
         }
         else{
-          alert('Could not upload file.');
+          alertify.error('sorry, upload failed')
         }
       }
     };

@@ -11,8 +11,8 @@ import template from '../templates/script.jst'
       var urlInput = $( "#js-url")
       urlInput.val(draft.get('content'))
       urlInput.keyup(function() {
-        var content = urlInput.val();
-        model.get('drafts').findWhere({type: 'url'}).set({content: content})
+      var content = urlInput.val();
+      model.get('drafts').findWhere({type: 'url'}).set({content: content})
       });
     },
   })

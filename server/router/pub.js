@@ -41,6 +41,7 @@ module.exports = function (app, express) {
       invitedByPubId: req.body.invitedByPubId,
       directedAt: req.body.directedAt,
       published: req.body.published,
+      publishedDate: req.body.publishedDate,
       inRhizome: req.body.inRhizome
 
     })
@@ -69,6 +70,7 @@ module.exports = function (app, express) {
       pub.invitedByPubId = req.body.invitedByPubId
       pub.directedAt = req.body.directedAt
       pub.published = req.body.published
+      pub.publishedDate = req.body.publishedDate
       pub.inRhizome = req.body.inRhizome
       return pub.save(function (err) {
         if (!err) {

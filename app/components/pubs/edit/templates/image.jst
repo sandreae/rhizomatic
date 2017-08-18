@@ -1,16 +1,9 @@
 <h1><%= title %></h1>
 <h3><%= contributor %></h3>
 
+<form>
+<label for="file-input">Image file:</label>
 <input type="file" id="file-input">
-
-<form method="POST" action="/save-details">
-  <input type="hidden" id="avatar-url" name="avatar-url" value="">
-  <input type="submit" value="Save Image">
 </form>
 
-<img class="image-preview" id="js-image-preview" src="<%= activeContent %>">
-
-<video width="350" height="220" id="video1" style="display: none">
-    <source src="http://html5demos.com/assets/dizzy.mp4">
-    <source src="http://html5demos.com/assets/dizzy.ogv">
-</video>    
+<img class="image-preview" id="js-image-preview" src="<%= activeContent %>"> 

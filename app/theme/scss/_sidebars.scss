@@ -5,7 +5,7 @@ $sidebar-background-color-secondary: $GLOBAL_BACKGROUND_COLOR_SECONDARY;
 $sidebar-background-color-thirdly: $GLOBAL_BACKGROUND_COLOR_THIRDLY;
 $sidebar-border-thickness: $GLOBAL_BORDER_THICKNESS;
 $sidebar-border-color: $GLOBAL_BORDER_COLOR;
-$sidebar-border-radius: $GLOBAL_BORDER_RADIUS;
+$sidebar-border-radius: 0;
 
 
 
@@ -15,9 +15,9 @@ $sidebar-border-radius: $GLOBAL_BORDER_RADIUS;
     position: fixed; /* Stay in place */
     z-index: 21; /* Stay on top */
     top: 0;
-    border: $sidebar-border-thickness solid $sidebar-border-color;
+    border: $sidebar-border-thickness solid #5ad7fb;
     border-radius: $sidebar-border-radius;
-    background-color: $sidebar-background-color-thirdly; /* Black*/
+    background-color: white; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
@@ -26,7 +26,7 @@ $sidebar-border-radius: $GLOBAL_BORDER_RADIUS;
 @mixin open-button {
     width: 30px; 
     height: 30px;
-    background-color: $sidebar-background-color-primary;
+    background-color: #77d744;
     position: absolute;
     display: block;
     top: 13px;

@@ -1,15 +1,18 @@
 ////////////////////BUTTONS///////////////////
 
-$button-background: green;
+$button-background: #6cf8fc;
 $button-text-color: $GLOBAL_FONT_COLOR;
-$button-border-thickness: $GLOBAL_BORDER_THICKNESS;
+$button-border-thickness: 0;
 $button-border-color: $GLOBAL_BORDER_COLOR;
-$button-border-radius: $GLOBAL_BORDER_RADIUS;
+$button-border-radius: 0;
 
 button {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
   color: $button-text-color;
   padding: 8px;
-  margin: 8px 0px 8px 0px;
+  margin: 0px 0px 0px 0px;
   cursor: pointer;
   border-radius: $button-border-radius;
   border: $button-border-thickness solid $button-border-color;

@@ -5,6 +5,7 @@ import {AboutApp} from '../app/components/about/about_app'
 import {HeaderApp} from '../app/components/sidebarleft/header_app'
 import {SidebarApp} from '../app/components/sidebar/sidebar_app'
 import {UsersApp} from '../app/components/users/users_app'
+import {RhizomesApp} from '../app/components/rhizomes/rhizomes_app'
 import {Auth} from '../app/entities/authentication/authentication_router'
 import {gc} from '../app/components/radio'
 import * as pace from 'pace-progress'
@@ -18,6 +19,7 @@ Platform.AboutApp = AboutApp
 Platform.PubsApp = PubsApp
 Platform.SidebarApp = SidebarApp
 Platform.UsersApp = UsersApp
+Platform.RhizomesApp = RhizomesApp
 Platform.Auth = Auth
 
 Platform.getCurrentRoute = function () {

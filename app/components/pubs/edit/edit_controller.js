@@ -90,7 +90,8 @@ var Controller = {
             invitedByContrib: pubModel.get('contributor'),
             invitedByContribId: pubModel.get('contributorId'),
             invitedByPub: pubModel.get('title'),
-            invitedByPubId: pubModel.get('_id')
+            invitedByPubId: pubModel.get('_id'),
+            inRhizome: pubModel.get('inRhizome')
           })
           invitedUserModel.set({
             pendingPub: pendingList

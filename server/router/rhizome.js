@@ -7,7 +7,9 @@ module.exports = function (app, express) {
   rhizomeRouter.route('/rhizomes')
     .post(function (req, res) {
       var rhizome = new Rhizome({
-        rhizomeName: req.body.rhizomeName
+        rhizomeName: req.body.rhizomeName,
+        startedBy: req.body.startedBy,
+        seedPubId: req.body.seedPubId
       })
 
       rhizome.save(function (err) {
@@ -42,6 +44,8 @@ module.exports = function (app, express) {
       Rhizome.findById(req.params.rhizome_id, function (err, rhizome) {
         if (err) res.send(err)
         if (req.body.rhizomeName) rhizome.rhizomeName = req.body.rhizomeName
+        if (req.body.startedBy) rhizome.startedBy = req.body.startedBy
+        if (req.body.seedPubId) rhizome.seedPubId = req.body.seedPubId
 
         Rhizome.save(function (err) {
           if (err)res.send(err)

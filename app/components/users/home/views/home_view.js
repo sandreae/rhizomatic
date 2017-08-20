@@ -7,7 +7,8 @@ export default Marionette.View.extend({
   events: {
     'click a.js-publications': 'publicationsClicked',
     'click a.js-invites': 'invitesClicked',
-    'click a.js-profile': 'profileClicked'
+    'click a.js-profile': 'profileClicked',
+    'click a.js-newrhizome': 'newRhizomeClicked'
   },
 
   publicationsClicked: function(e) {
@@ -23,5 +24,9 @@ export default Marionette.View.extend({
   profileClicked: function(e) {
     e.preventDefault()
     gc.trigger('user:profile')
+  },
+  newRhizomeClicked: function(e) {
+    e.preventDefault()
+    gc.trigger('newRhizome:show')
   },
 })

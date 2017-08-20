@@ -2,8 +2,8 @@ import {View} from './views/new_view'
 import {gc} from '../../radio'
 
 var Controller = {
-  newPub: function (invitedByContrib, invitedByPubId, user, invites, invite) {
-  if (invitedByContrib === "") {invitedByPubId = 'seed pub'}
+  newPub: function (invitedByContrib, invitedByPubId, user, invites, invite, rhizome) {
+  if (invitedByContrib === "" || invitedByContrib === null) {invitedByPubId = 'seed pub'}
 
   var newPub = new Platform.Entities.Pubs.PubModel()
   var drafts = new Platform.Entities.Pubs.Drafts()
@@ -15,6 +15,7 @@ var Controller = {
   })
   var userID = window.localStorage.userId
 
+
     gc.request('pubs:get').then(function (pubsCollection) {
       newPubView.on('form:submit', function (data) {
         if (data.tags === '') {data.tags = []} else {data.tags = data.tags.split(', ')}
@@ -25,13 +26,12 @@ var Controller = {
             console.log('newPub saved')
           }
         })) {
-          if (user !== undefined) {
+          if (user !== undefined && user !== null) {
             invites.remove(invite)
             user.save({pendingPub: invites.toJSON()})
           }
 
-          if (invitedByPubId === "") {invitedByPubId = newPub.get('_id')}
-
+          if (invitedByPubId === "" || invitedByPubId === null) {invitedByPubId = newPub.get('_id')}
 
           newDraft.set({
             type: data.type,
@@ -41,7 +41,8 @@ var Controller = {
           newPub.set({
             contributorId: userID,
             drafts: drafts,
-            invitedByPubId: invitedByPubId
+            invitedByPubId: invitedByPubId,
+            inRhizome: rhizome.get('rhizomeName')
           })
           pubsCollection.add(newPub)
           newPub.save(null, {
@@ -49,7 +50,14 @@ var Controller = {
               console.log('newPub saved 2')
             }
           }).then(function() {
-            console.log('get pub')
+          if (rhizome.get('_id') !== undefined) {
+            gc.request('rhizomes:get').then(function(rhizomes) {
+              var x = rhizomes.length
+              return x
+            }).then(function(x){
+              rhizome.save({rhizomeName: '#00' + x}).then(function(){console.log('rhizome saved')})
+            })
+          }
             gc.trigger('sidebar:close')
             gc.trigger('pub:content:edit', newPub.get('_id'))
           })

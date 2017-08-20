@@ -20,7 +20,7 @@ var Controller = {
       invitesView.on('childview:accept:invite', function(invite) {
       	console.log(invite)
       	console.log('controller reveived trigger accept:invite')
-      	gc.trigger('pub:new', invite.get('invitedByContrib'), invite.get('invitedByPubId'), user, invites, invite)
+      	gc.trigger('pub:new', invite.get('invitedByContrib'), invite.get('invitedByPubId'), user, invites, invite, invite.get('inRhizomeId'))
       })
 
       gc.trigger('sidebar:show', invitesView)

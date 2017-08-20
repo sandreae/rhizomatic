@@ -7,6 +7,7 @@ add texts
 change names of tags and directedAt
 directed at validation only happens once.
 keep sidebar open in edit view?
+back button on sidebar
 
 :::::DONE:::::
 

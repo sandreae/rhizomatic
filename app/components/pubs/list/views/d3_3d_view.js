@@ -14,13 +14,13 @@ var D3View = Mn.View.extend({
 
   onAttach: function() {
     var self = this
-    var myGraph = ForceGraph3D();
+    var myGraph = ForceGraph3D().colorField('0xff0000');
+
     myGraph(document.getElementById("3d-graph"))
     .forceEngine(['d3'])
     .graphData(this.getData())
     .nodeResolution([8])
     .onNodeClick(function(node){console.log(node)})
-    console.log(myGraph.state)
   },
 
   submitClicked: function(e){

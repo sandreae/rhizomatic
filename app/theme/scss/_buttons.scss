@@ -2,17 +2,17 @@
 
 $button-background: #6cf8fc;
 $button-text-color: $GLOBAL_FONT_COLOR;
-$button-border-thickness: 0;
-$button-border-color: $GLOBAL_BORDER_COLOR;
+$button-border-thickness: 2px;
+$button-border-color: #5bcdd0;
 $button-border-radius: 0;
 
 button {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   color: $button-text-color;
-  padding: 8px;
-  margin: 0px 0px 0px 0px;
+  padding: 6px;
+  margin: 8px 12px 6px 0px;
   cursor: pointer;
   border-radius: $button-border-radius;
   border: $button-border-thickness solid $button-border-color;

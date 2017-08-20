@@ -1,4 +1,4 @@
-import {D3View} from './views/d3_view'
+import {D3View} from './views/d3_view.js'
 import {gc} from '../../radio'
 
 var Controller = {

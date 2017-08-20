@@ -1,7 +1,8 @@
 
 export default Mn.AppRouter.extend({
   appRoutes: {
-    'about': 'showAbout'
+    'about': 'showAbout',
+    'howto': 'showHowto'
   }
 });
 

@@ -1,6 +1,7 @@
 import template from '../templates/d3_3d.jst'
 import ForceGraph3D from '3d-force-graph';
 import {gc} from '../../../radio'
+import THREE from 'three'
 
 var D3View = Mn.View.extend({
   tagName: 'div',
@@ -15,10 +16,11 @@ var D3View = Mn.View.extend({
     var self = this
     var myGraph = ForceGraph3D();
     myGraph(document.getElementById("3d-graph"))
-    .forceEngine(['ngraph'])
+    .forceEngine(['d3'])
     .graphData(this.getData())
     .nodeResolution([8])
     .onNodeClick(function(node){console.log(node)})
+    console.log(myGraph.state)
   },
 
   submitClicked: function(e){

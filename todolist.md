@@ -1,6 +1,6 @@
 D3 view add tags connections + re-style
-remove new pub button and add new rhizome view
 nodemailer and auto send email invite
+remove new pub button and add new rhizome view
 info texts for media uploads
 profile view rows not columns and "password" / "repeat password"
 add texts

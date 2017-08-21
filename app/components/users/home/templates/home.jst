@@ -3,7 +3,9 @@
 	<ul>
 	  <li><a class="nav-link js-publications" href="#">my publications</a></li>
 	  <li><a class="nav-link js-invites" href="#">my invites</a></li>
-	  <li><a class="nav-link js-newrhizome" href="#">start new rhizome</a></li>
+	  <% if (isAdmin == true) { %>
+        <li><a class="nav-link js-newrhizome" href="#">start new rhizome</a></li>
+      <% } %>
 	  <li><a class="nav-link js-profile" href="#">my profile</a></li>
 	</ul>
 <div>

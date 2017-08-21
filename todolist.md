@@ -1,6 +1,6 @@
 D3 view add tags connections + re-style
-nodemailer and auto send email invite
-remove new pub button and add new rhizome view
+D3 view hover
+connect email to my account
 info texts for media uploads
 profile view rows not columns and "password" / "repeat password"
 add texts
@@ -8,6 +8,9 @@ change names of tags and directedAt
 directed at validation only happens once.
 keep sidebar open in edit view?
 back button on sidebar
+fix published date
+move sidebars
+text for email invite
 
 :::::DONE:::::
 
@@ -92,6 +95,8 @@ Amazon S3 hosting
 add published date
 upload file feedback and file size restriction
 videos added to collage
+nodemailer and auto send email invite
+remove new pub button and add new rhizome view
 
 
 QUESTIONS FOR ROD & ANG:

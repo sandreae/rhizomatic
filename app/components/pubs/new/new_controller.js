@@ -8,7 +8,7 @@ var Controller = {
   var newPub = new Platform.Entities.Pubs.PubModel()
   var drafts = new Platform.Entities.Pubs.Drafts()
   var newDraft = new Platform.Entities.Pubs.Draft({
-    content: 'draft content'
+    content: ''
   })
   var newPubView = new View({
     model: newPub
@@ -33,7 +33,7 @@ var Controller = {
               if (invitedByPubId === "" || invitedByPubId === null) {invitedByPubId = newPub.get('_id')}
               
               var thisRhizome
-            
+
               console.log(rhizome)
               if (rhizome !== null) {
                 var x = rhizomes.length

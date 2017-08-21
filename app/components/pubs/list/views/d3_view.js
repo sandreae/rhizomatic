@@ -8,7 +8,13 @@ var D3View = Mn.View.extend({
   template: template,
 
   events: {
-  'change select.form-control': 'submitClicked'
+  'mouseenter circle.d3-pubs': 'pubHovered'
+  },
+
+  pubHovered: function(e){
+    var pubId = e.currentTarget.children[1].textContent
+    var thisPub = this.collection.get({_id: pubId})
+    alertify.message(thisPub.get('title') + " by " + thisPub.get('contributor'))
   },
 
   onAttach: function() {
@@ -156,6 +162,8 @@ var D3View = Mn.View.extend({
 
   node.append("title")
       .text(function(d) { if(d.title !== undefined) {return d.title;} else {return d.id } });
+  node.append("id")
+      .text(function(d) { return d.id });
   simulation
       .nodes(root.nodes)
       .on("tick", ticked);

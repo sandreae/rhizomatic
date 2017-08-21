@@ -29,7 +29,7 @@ $sidebar-border-radius: 0;
     background-color: white;
     border: $sidebar-border-thickness solid #77d744;
     border-radius: $sidebar-border-radius;
-    position: absolute;
+    position: fixed;
     display: block;
     top: 2%;
     text-decoration: none;
@@ -50,7 +50,7 @@ $sidebar-border-radius: 0;
 
 .sidebar-right-open-button {
     @include open-button
-    right: 25px;
+    right: -5px;
 }
 
 // container div //
@@ -87,7 +87,7 @@ $sidebar-border-radius: 0;
 
 .sidebar-left-open-button {
     @include open-button
-    left: 25px;
+    left: -5px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */

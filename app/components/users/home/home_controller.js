@@ -5,7 +5,11 @@ var Controller = {
   showHome: function() {
     gc.request('appState:get').then(function(appState){
     if (appState.get('loggedIn') === true) {
-      var home = new Home()
+      var home = new Home({
+	  	templateContext: {
+		  isAdmin: appState.get('isAdmin')
+	    } 
+	  })
       gc.trigger('sidebar:show', home)
     } else {
       gc.trigger('sidebar:show:welcome')

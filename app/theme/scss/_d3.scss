@@ -5,6 +5,9 @@
 
 .nodes .d3-pubs {
   fill: $GLOBAL_BACKGROUND_COLOR_PRIMARY;
+	  &:hover {
+	    fill:$GLOBAL_BACKGROUND_COLOR_THIRDLY;
+	}
 }
 .nodes .d3-tags {
   fill: $GLOBAL_BACKGROUND_COLOR_SECONDARY;
@@ -13,3 +16,4 @@
 .nodes a {
   target-new: tab;
 }
+

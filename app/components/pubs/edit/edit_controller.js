@@ -68,6 +68,7 @@ var Controller = {
   },
 
   newInvitedPub: function(pubModel) {
+    var self = this
     var invitedUsers = pubModel.get('directedAt')
     gc.request('users:get').then(function(users) {
       gc.request('pubs:get').then(function(pubs) {
@@ -75,17 +76,21 @@ var Controller = {
         invitedUsers.forEach(function(contributor) {
           var invitedUserModel
 
-          if (contributor.includes('@')) {
+          invitedUserModel = users.findWhere(function(model){
+            return (_.indexOf(model.get('contributorNames'), contributor) >= 0 );
+          });
+
+          if (invitedUserModel === undefined) {
+            if (contributor.includes('@')){
             console.log('send email to', contributor)
+            self.emailNewUser(contributor, pubModel.get('contributor'))
             invitedUserModel = new Platform.Entities.Users.User({
               userName: contributor,
               email: contributor,
               password: 'password'
             })
-          } else {
-            invitedUserModel = users.findWhere(function(model){
-              return (_.indexOf(model.get('contributorNames'), contributor) >= 0 );
-            });
+            console.log(invitedUserModel)    
+            }
           }
           var pendingList = invitedUserModel.get('pendingPub')
           pendingList.push({
@@ -98,10 +103,13 @@ var Controller = {
           invitedUserModel.set({
             pendingPub: pendingList
           })
-          invitedUserModel.save().then(function() {
-            gc.trigger('user:listPubs')
-            gc.trigger('pub:show', pubModel.get("_id"))
-            alertify.success('publication published!');
+          invitedUserModel.save(null, {
+            success: function(res) {
+              console.log(res)
+              gc.trigger('user:listPubs')
+              gc.trigger('pub:show', pubModel.get("_id"))
+              alertify.success('publication published!')
+            },
           })
         })
       })
@@ -193,6 +201,23 @@ var Controller = {
     pubModel.save(null).then(function() {
       gc.trigger('pub:content:edit', pubModel.get('_id'))
     })
-  }
+  },
+
+  emailNewUser: function(contributor, invitedBy) {
+    const xhr = new XMLHttpRequest();
+    var inviteText = invitedBy + ' invited you to respond to their publication.'
+    xhr.open('GET', '/api/send?to=' + contributor + '&subject=Welcome To Rhizomatic&text=' + inviteText);
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          alertify.error('invite sent to' + contributor)
+        }
+        else {
+          alertify.error('sorry, upload failed')
+        }
+      }
+    };
+    xhr.send();
+  },
 }
 export {Controller}

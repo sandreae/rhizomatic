@@ -5,7 +5,7 @@ $form-font-size: 14px;
 $form-font-color: $GLOBAL_FONT_COLOR;
 $form-background-color: $GLOBAL_BACKGROUND_COLOR_THIRDLY;
 $form-border-color: $GLOBAL_BORDER_COLOR;
-$form-border-thickness: $GLOBAL_BORDER_THICKNESS;
+$form-border-thickness: 0;
 $form-border-radius: $GLOBAL_BORDER_RADIUS;
 
 ///////////////FORM INPUTS/////////////////////////////
@@ -14,7 +14,7 @@ input, select, .selectize-input{
   background-color: $form-background-color;
   border-radius: $form-border-radius;
   min-height: 1.5em;
-  padding: 10px;
+  padding: 7px;
   display: inline-block;
   width: 100%;
   overflow: hidden;
@@ -22,8 +22,8 @@ input, select, .selectize-input{
   font-family: $form-font;
   font-size: $form-font-size;
   border: $form-border-thickness solid $form-border-color;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
   color: $form-font-color;
 }
 

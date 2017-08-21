@@ -10,11 +10,11 @@ $sidebar-border-radius: 0;
 
 
 @mixin sidebar-default {
-    height: 100%; /* 100% Full-height */
+    height: 98%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 21; /* Stay on top */
-    top: 0;
+    top: 1%;
     border: $sidebar-border-thickness solid #5ad7fb;
     border-radius: $sidebar-border-radius;
     background-color: white; /* Black*/
@@ -24,12 +24,14 @@ $sidebar-border-radius: 0;
 }
 
 @mixin open-button {
-    width: 30px; 
-    height: 30px;
-    background-color: #77d744;
+    width: 14px; 
+    height: 96%;
+    background-color: white;
+    border: $sidebar-border-thickness solid #77d744;
+    border-radius: $sidebar-border-radius;
     position: absolute;
     display: block;
-    top: 13px;
+    top: 2%;
     text-decoration: none;
     font-size: 25px;
     cursor:pointer;
@@ -74,6 +76,7 @@ $sidebar-border-radius: 0;
 .sidebar-left {
     @include sidebar-default;
     @include sidebar-lists(22px, 100%, 8px);
+    border: $sidebar-border-thickness solid $GLOBAL_BACKGROUND_COLOR_SECONDARY;
     left: -2*$sidebar-border-thickness;
     padding-left: 0px;
 }

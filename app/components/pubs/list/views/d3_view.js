@@ -109,7 +109,7 @@ var D3View = Mn.View.extend({
     nodes = nodes.concat(tagNodes)
 
     directedAtPub = directedAtPub.filter(function(link) {
-      return link.source !== '' || links.source !== 'seed pub'
+      return link.source !== '' || link.source !== 'seed pub'
     })
 
     // directedAtPub = directedAtPub.concat(tagLinks)

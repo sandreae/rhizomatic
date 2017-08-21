@@ -2,7 +2,7 @@ var Rhizome = Backbone.Model.extend({
   idAttribute: '_id',
   urlRoot: '/api/rhizomes',
   defaults: {
-    rhizomeName: '#001'
+    rhizomeName: null
   }
 })
 

@@ -56,10 +56,11 @@ module.exports = function (app, express) {
   })
 
   pubRouter.put('/publications/:id', function (req, res) {
-              console.log('put pub route triggered')
+    console.log('put pub route triggered')
+    console.log(req.params)
 
     return Pub.findById(req.params.id, function (err, pub) {
-      pub.title = req.body.title
+      if (req.body.title) pub.title = req.body.title
       pub.contributor = req.body.contributor
       pub.contributorId = req.body.contributorId
       pub.type = req.body.type

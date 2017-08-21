@@ -43,8 +43,13 @@ var D3View = Mn.View.extend({
     }, 
     {
       'id': 'test', 
-      'group': 
-      'd3-tags', 
+      'group': 'd3-tags', 
+      'size': '1',
+      'strength': '0.01'
+    },
+    {
+      'id': 'one', 
+      'group': 'd3-tags', 
       'size': '1',
       'strength': '0.01'
     }]
@@ -98,10 +103,10 @@ var D3View = Mn.View.extend({
     nodes = nodes.concat(tagNodes)
 
     directedAtPub = directedAtPub.filter(function(link) {
-      return link.source !== ''
+      return link.source !== '' || links.source !== 'seed pub'
     })
 
-    directedAtPub = directedAtPub.concat(tagLinks)
+    // directedAtPub = directedAtPub.concat(tagLinks)
     var data = {}
     var links = {}
     links.directedAtPub = directedAtPub

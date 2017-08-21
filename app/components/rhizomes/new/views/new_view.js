@@ -11,7 +11,7 @@ var View = Marionette.View.extend({
 
   createClicked: function(e) {
     e.preventDefault();
-    var rhizome = new Platform.Entities.Rhizomes.Rhizome()
+    var rhizome = new Platform.Entities.Rhizomes.Rhizome({rhizomeName: 'new'})
     gc.trigger('pub:new', null, null, null, null, null, rhizome)
   },
 });

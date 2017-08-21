@@ -30,6 +30,10 @@ var Controller = {
         if (!pubModel.save(data, {
           success: function() {
             alertify.success('publication saved');
+            console.log(pubModel)
+            gc.trigger('pub:show', pubModel.get('_id'))
+            gc.trigger('sidebar:close')
+            gc.trigger('user:listPubs')
           },
           error: function() {
             alertify.success('unknown server error')
@@ -40,11 +44,6 @@ var Controller = {
           editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError)
           pubModel.set({published: false})
           console.log('pub not published because of validation error')
-        } else {
-          console.log(pubModel)
-          gc.trigger('pub:show', pubModel.get('_id'))
-          gc.trigger('sidebar:close')
-          gc.trigger('user:listPubs')
         }
       })
       
@@ -55,7 +54,10 @@ var Controller = {
         var drafts = pubModel.get('drafts')
         var draft = drafts.findWhere({type: type})
         var nextDraft = drafts.findWhere({type: newType})
-
+        if (draft !== undefined) {
+          draft.set({content: content})
+          pub.set({activeContent: content})
+        }
         if (data.tags === '') {data.tags = []} else {data.tags = data.tags.split(', ')}
         if (data.directedAt === '') {data.directedAt = []} else {data.directedAt = data.directedAt.split(', ')}
         Controller.saveDraft(editSidebarView, pubModel, content, draft, drafts, data, nextDraft, newDraft, newType, type)
@@ -146,7 +148,6 @@ var Controller = {
   },
 
   saveDraft: function(editSidebarView, pubModel, content, draft, drafts, data, nextDraft, newDraft, newType, type) {
-    draft.set({content: content})
     if (!pubModel.save(data, {
       success: function() {
           alertify.success('publication saved');

@@ -34,33 +34,26 @@ var D3View = Mn.View.extend({
       var x
       if (pub.published === 'true') {
         tags = pub.tags.map(function(tag){
-          x = {id: tag, group: 'd3-tags'}
-          return x
+          return tag
         })
         return tags
       }
     })
 
-    var tagNodes = [{
-      'id': 'new', 
-      'group': 'd3-tags', 
-      'size': '1',
-      'strength': '0.01'
-    }, 
-    {
-      'id': 'test', 
-      'group': 'd3-tags', 
-      'size': '1',
-      'strength': '0.01'
-    },
-    {
-      'id': 'one', 
-      'group': 'd3-tags', 
-      'size': '1',
-      'strength': '0.01'
-    }]
-
-    // get rid of dublicates //
+    tags = _.uniq(_.flatten(tags))
+    tags = tags.map(function(tag) {
+      if (tag !== undefined){
+        return {
+          id: tag, 
+          group: 'd3-tags',
+          size: '1',
+          strength: '0'
+        }
+      }
+    });
+    var tagNodes = tags.filter(function(obj) {
+      return (obj !== undefined)
+    });
 
     console.log(tagNodes)
 
@@ -87,7 +80,7 @@ var D3View = Mn.View.extend({
       pub.id = pub._id
       pub.group = 'd3-pubs'
       pub.size = 10
-      pub.strength = 0.5
+      pub.strength = 1
       pub.url = 'http://' + window.location.host + '/#publication/' + pub._id
       return pub
     })
@@ -112,6 +105,8 @@ var D3View = Mn.View.extend({
       return link.source !== '' || link.source !== 'seed pub'
     })
 
+    directedAtPub  = directedAtPub.concat(tagLinks)
+
     // directedAtPub = directedAtPub.concat(tagLinks)
     var data = {}
     var links = {}
@@ -131,11 +126,13 @@ var D3View = Mn.View.extend({
     var color = d3.scaleOrdinal(d3.schemeCategory10);
     var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBody())
+    .force("charge", d3.forceManyBody().strength(-100).distanceMin(20))
     .force("center", d3.forceCenter(width / 2, height / 2))
     .force('x', function(d) { return d.strength; })
-    .force('y', function(d) { return d.strength; });
+    .force('y', function(d) { return d.strength; })
+  
   var root = self.getData()
+
   var myLinks = root.links.directedAtPub;
   
   var link = svg.append("g")
@@ -164,6 +161,7 @@ var D3View = Mn.View.extend({
       .text(function(d) { if(d.title !== undefined) {return d.title;} else {return d.id } });
   node.append("id")
       .text(function(d) { return d.id });
+
   simulation
       .nodes(root.nodes)
       .on("tick", ticked);

@@ -2,6 +2,7 @@ D3 view add tags connections + re-style
 D3 view hover
 connect email to my account
 info texts for media uploads
+media uploads re-style
 profile view rows not columns and "password" / "repeat password"
 add texts
 change names of tags and directedAt
@@ -9,7 +10,6 @@ directed at validation only happens once.
 keep sidebar open in edit view?
 back button on sidebar
 fix published date
-move sidebars
 text for email invite
 
 :::::DONE:::::
@@ -97,6 +97,7 @@ upload file feedback and file size restriction
 videos added to collage
 nodemailer and auto send email invite
 remove new pub button and add new rhizome view
+move sidebars
 
 
 QUESTIONS FOR ROD & ANG:

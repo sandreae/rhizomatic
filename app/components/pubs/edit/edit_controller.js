@@ -211,12 +211,22 @@ var Controller = {
   },
 
   emailNewUser: function(contributor, invitedBy) {
+
+    var email = 
+`<h1>Welcome To Rhizomatic</h1> <p>Welcome to Rhizome, an online space and community for sharing, communication, and discussion.</p><p>You have been invited by ` + invitedBy + ` to respond to their publication.<br />
+You can accept the invitation and create a response in a variety of formats (markdown, collage, url, audio, image) by visiting the Rhizomatic website and logging in:<br />
+<br><a href="http://www.rhizomatic.community">http://www.rhizomatic.community</a></p>
+username: ` + contributor + `<br>
+password: password<br><br>
+<p>When creating a new publication, you can invite any number of existing, or new, users to respond to your publication. In addition to responding to to the publication you have been invited to, you are encouraged to join in on the discussions surrounding other publications and responses.</p>`
+
+
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', '/api/send?to=' + contributor + '&from=contact@rhizomatic.community&subject=Welcome To Rhizomatic&html=' + emailcontent);
+    xhr.open('GET', '/api/send?to=' + contributor + '&from=contact@rhizomatic.community&subject=Welcome To Rhizomatic&html=' + email);
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          alertify.error('invite sent to' + contributor)
+          alertify.error('invite sent to ' + contributor)
         }
         else {
           alertify.error('sorry, upload failed')

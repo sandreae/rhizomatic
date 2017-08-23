@@ -18,17 +18,18 @@ module.exports = function (app, express) {
   // setup email data with unicode symbols
   let mailOptions = {
     to: req.query.to,
+    from: req.query.from,
     subject: req.query.subject,
-    text: req.query.text
+    html: req.query.html
    };
 
   transporter.sendMail(mailOptions, (error, response) => {
     if (error) {
-        return console.log(error);
+        console.log(error);
     } else{
-            console.log("Message sent: " + response.message);
-        res.end("sent");
-         }
+        console.log("Message sent: " + response.message);
+        res.send("sent");
+      }
   });
   });
   return emailRoute

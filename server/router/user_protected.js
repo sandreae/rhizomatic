@@ -9,9 +9,10 @@ module.exports = function (app, express) {
     .get(function(req, res) {
       User.find(function(err, users) {
         if (err) {
-          return res.send(err)
+          res.send(err)
+        } else {
+          return res.send(users)
         }
-        res.send(users)
       })
     })
 
@@ -19,9 +20,10 @@ module.exports = function (app, express) {
     .get(function(req, res) {
       User.findById(req.params.user_id, function (err, user) {
         if (err) {
-          return res.send(err)
+          res.send(err)
+        } else {
+          return res.send(user)
         }
-        res.send(user)
       })
     })
 
@@ -41,9 +43,10 @@ module.exports = function (app, express) {
         user.save(function(err) {
           if (err) {
           	console.log(err)
-          	return  res.send(err)
+          } else {
+            console.log('pub updated')
+            return res.send(user)
           }
-          res.send(user)
         })
       })
     })
@@ -54,12 +57,13 @@ module.exports = function (app, express) {
         if (user.permissions === 'admin') {
           User.remove({_id: req.params.user_id}, function (err, user) {
             if (err) {
-              return res.send(err)
+              res.send(err)
+            } else {
+              res.send('')
             }
-            res.json({})
           })
         } else {
-          return res.status(403).send({success: false, message: 'User is not authorized to delete users'})
+          res.status(403).send({success: false, message: 'User is not authorized to delete users'})
         }
       })
     })

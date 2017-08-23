@@ -19,12 +19,12 @@ module.exports = function (app, express) {
       user.save(function(err) {
         if (err) {
           if (err.code === 11000) {
-            return res.send({success: false, message: 'Duplicate userName.'})
+           res.send({success: false, message: 'Duplicate userName.'})
           } else {
-            return res.send(err)
+           res.send(err)
           }
         } else {
-          res.send(user)
+          return res.send(user)
         }
       })
     })

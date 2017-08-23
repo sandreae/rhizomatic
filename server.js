@@ -9,7 +9,6 @@ var mongoose = require('mongoose')
 var jwt = require('jsonwebtoken')
 var path = require('path');
 var config = require('./server/config')
-
 /////////CONFIG/////////////
 
 var port = process.env.PORT || 3000

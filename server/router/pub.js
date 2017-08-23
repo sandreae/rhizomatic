@@ -12,23 +12,24 @@ module.exports = function (app, express) {
       if (!err) {
       return res.send(pubs)
     } else {
-      return console.log(err)
+      console.log(err)
     }
     })
   })
 
   pubRouter.get('/publications/:id', function (req, res) {
-    return Pub.findById(req.params.id, function (err, pub) {
-      if (!err) {
-        return res.send(pub)
+    Pub.findById(req.params.id, function (err, pub) {
+      if (err) {
+        console.log(err)
       } else {
-        return console.log(err)
+        console.log('pub get')
+        return res.send(pub)
       }
     })
   })
 
   pubRouter.post('/publications', function (req, res) {
-          console.log('post pub route triggered')
+    console.log('post pub route triggered')
 
     var postPub = new Pub({
       contributor: req.body.contributor,
@@ -43,26 +44,26 @@ module.exports = function (app, express) {
       published: req.body.published,
       publishedDate: req.body.publishedDate,
       inRhizome: req.body.inRhizome
-
     })
+
     postPub.save(function (err) {
-      if (!err) {
-        return console.log('created')
+      if (err) {
+        console.log(err)
       } else {
-        return console.log(err)
+        console.log('pub created')
+        return res.send(postPub)
       }
     })
-    return res.send(postPub)
   })
 
   pubRouter.put('/publications/:id', function (req, res) {
     console.log('put pub route triggered')
     console.log(req.params)
 
-    return Pub.findById(req.params.id, function (err, pub) {
-      if (req.body.title) pub.title = req.body.title
+    Pub.findById(req.params.id, function (err, pub) {
       pub.contributor = req.body.contributor
       pub.contributorId = req.body.contributorId
+      pub.title = req.body.title
       pub.type = req.body.type
       pub.activeContent = req.body.activeContent
       pub.drafts = req.body.drafts
@@ -73,24 +74,22 @@ module.exports = function (app, express) {
       pub.published = req.body.published
       pub.publishedDate = req.body.publishedDate
       pub.inRhizome = req.body.inRhizome
-      return pub.save(function (err) {
-        if (!err) {
+      pub.save(function (err) {
+        if (err) {console.log(err)} else {
           console.log('pub updated')
-        } else {
-          console.log(err)
+          return res.send(pub)
         }
-        return res.send(pub)
       })
     })
   })
 
   pubRouter.delete('/publications/:id', function (req, res) {
     console.log('Deleting pub with id: ' + req.params.id)
-    return Pub.findById(req.params.id, function (err, pub) {
-      return pub.remove(function (err) {
+    Pub.findById(req.params.id, function (err, pub) {
+      pub.remove(function (err) {
         if (!err) {
           console.log('Pub removed')
-          return res.send('')
+          res.send('')
         } else {
           console.log(err)
         }

@@ -64,6 +64,7 @@ var D3View = Mn.View.extend({
           x = {
             source: pub._id,
             target: element,
+            width: 1,
           }
           return x
         })
@@ -94,7 +95,8 @@ var D3View = Mn.View.extend({
     var directedAtPub = nodes.map(function(pub, index, array) {
       var invitedBy = {
         source: pub.invitedByPubId,
-        target: pub._id
+        target: pub._id,
+        width: 2
       }
       return invitedBy
     })
@@ -140,7 +142,7 @@ var D3View = Mn.View.extend({
     .selectAll("line")
     .data(myLinks)
     .enter().append("line")
-      .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+      .attr("stroke-width", function(d) { return d.width });
   var node = svg.append("g")
       .attr("class", "nodes")
     .selectAll("circle")

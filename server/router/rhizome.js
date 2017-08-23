@@ -15,12 +15,12 @@ module.exports = function (app, express) {
       rhizome.save(function (err) {
         if (err) {
           if (err.code === 11000) {
-            return res.send({success: false, message: 'Duplicate rhizomeName.'})
+            res.send({success: false, message: 'Duplicate rhizomeName.'})
           } else {
-            return res.send(err)
+            res.send(err)
           }
         } else {
-          res.send(rhizome)
+          return res.send(rhizome)
         }
       })
     })
@@ -29,15 +29,18 @@ module.exports = function (app, express) {
         if (err) {
           res.send(err)
         }
-        res.send(rhizomes)
+        return res.send(rhizomes)
       })
     })
 
   rhizomeRouter.route('/rhizomes/:rhizome_id')
     .get(function (req, res) {
       Rhizome.findById(req.params.rhizome_id, function (err, rhizome) {
-        if (err) res.send(err)
-        res.send(rhizome)
+        if (err) {
+          res.send(err)
+        } else {
+          return res.send(rhizome)
+        }
       })
     })
     .put(function (req, res) {
@@ -48,8 +51,9 @@ module.exports = function (app, express) {
         if (req.body.seedPubId) rhizome.seedPubId = req.body.seedPubId
 
         Rhizome.save(function (err) {
-          if (err)res.send(err)
-          res.send(rhizome)
+          if (err){res.send(err)} else {
+            return res.send(rhizome)
+          }
         })
       })
     })
@@ -57,10 +61,10 @@ module.exports = function (app, express) {
       if (_.contains(req.decoded.permissions, 'admin')) {
         Rhizome.remove({_id: req.params.rhizome_id}, function (err, rhizome) {
           if (err) res.send(err)
-          res.json({})
+          return res.json({})
         })
       } else {
-        return res.status(403).send({success: false, message: 'rhizome is not authorized to delete rhizomes'})
+        res.status(403).send({success: false, message: 'rhizome is not authorized to delete rhizomes'})
       }
     })
   return rhizomeRouter

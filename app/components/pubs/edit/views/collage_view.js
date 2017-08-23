@@ -107,7 +107,7 @@ var Collage = Marionette.View.extend({
   urlChanged: function(e){
   	e.preventDefault()
   	console.log(document.getElementById('myCode'))
-  	if(console.log(document.getElementById('myCode')) === null){this.createVideoFrame()}
+  	if(document.getElementById('myCode') === null){this.createVideoFrame()}
     var myId;
     var myUrl = $('#myUrl').val();
     myId = this.getId(myUrl);

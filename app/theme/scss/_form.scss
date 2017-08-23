@@ -4,6 +4,7 @@ $form-font: $GLOBAL_FONT;
 $form-font-size: 14px;
 $form-font-color: $GLOBAL_FONT_COLOR;
 $form-background-color: $GLOBAL_BACKGROUND_COLOR_THIRDLY;
+$form-background-color2: $GLOBAL_BACKGROUND_COLOR_SECONDARY;
 $form-border-color: $GLOBAL_BORDER_COLOR;
 $form-border-thickness: 0;
 $form-border-radius: $GLOBAL_BORDER_RADIUS;
@@ -183,18 +184,18 @@ input, select, .selectize-input{
   cursor: pointer;
   margin: 0 3px 3px 0;
   padding: 0px 6px;
-  background: $form-background-color;
+  background: $form-background-color2;
   color: $form-font-color;
 }
 .selectize-control.multi .selectize-input > div.active {
-  background: $form-background-color;
+  background: $form-background-color2;
   color: $form-font-color;
   border: 0 solid #cacaca;
 }
 .selectize-control.multi .selectize-input.disabled > div,
 .selectize-control.multi .selectize-input.disabled > div.active {
   color: $form-font-color;
-  background: $form-background-color;
+  background: $form-background-color2;
   border: 0 solid #ffffff;
 }
 .selectize-input > input {

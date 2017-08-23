@@ -44,7 +44,7 @@ module.exports = function(app, express) {
     if (token) {
       jwt.verify(token, superSecret, function(err, decoded) {
         if (err) {
-          return res.status(401).send({success: false, message: 'Failed to authenticate token'})
+          res.status(401).send({success: false, message: 'Failed to authenticate token'})
         } else {
           req.decoded = decoded
           console.log(req.decoded)
@@ -52,7 +52,7 @@ module.exports = function(app, express) {
         }
       })
     } else {
-      return res.status(401).send({success: false, message: 'No token provided'})
+      res.status(401).send({success: false, message: 'No token provided'})
     }
   })
   return authenticateRoute

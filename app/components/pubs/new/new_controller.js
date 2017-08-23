@@ -24,7 +24,8 @@ var Controller = {
 
           if (!newPub.save(data, {
             success: function(pub) {
-              console.log(pub)
+              console.log('save succes 1')
+              console.log(newPub)
               if (user !== undefined && user !== null) {
                 invites.remove(invite)
                 user.save({pendingPub: invites.toJSON()})
@@ -48,7 +49,7 @@ var Controller = {
                       
               newDraft.set({
                 type: data.type,
-                pub: pub.get('_id'),
+                pub: newPub.get('_id'),
               })
               drafts.add(newDraft)
               newPub.set({
@@ -58,13 +59,12 @@ var Controller = {
                 inRhizome: thisRhizome,
 
               })
-              newPub.save(null, {
+              newPub.save(data, {
                 success: function() {
                   console.log('pub saved 2')
+                  gc.trigger('sidebar:close')
+                  gc.trigger('pub:content:edit', newPub.get('_id'))
                 }
-              }).then(function() {
-                gc.trigger('sidebar:close')
-                gc.trigger('pub:content:edit', newPub.get('_id'))
               })
             }
           })) {newPubView.triggerMethod('form:data:invalid', newPub.validationError);}

@@ -6,7 +6,6 @@ var Controller = {
 
     gc.request('pubs:get').then(function(pubs) {
 
-
 	  var d3View = new D3View({
         collection: pubs
       })

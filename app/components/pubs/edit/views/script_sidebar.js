@@ -27,9 +27,8 @@ var ScriptSidebar = Marionette.View.extend({
   submitClicked: function(e) {
     e.preventDefault()
     var data = Backbone.Syphon.serialize(this);
-    var drafts = this.model.get('drafts')
-    var draft = drafts.findWhere({type: 'url'})
-    var content = draft.get('content')
+    var urlInput = $( "#js-url")
+    var content = urlInput.val();
     this.trigger('form:submit', content, data, this.model)
   },
 

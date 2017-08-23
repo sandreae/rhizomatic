@@ -1,4 +1,5 @@
 <form id="form">
+  <% if (published == 'false') { %>
   <div class="control-group">      
     <label for="pub-type" class="form-label">Type:</label>
     <select class="form-control js-select" id="pub-type" name="type">
@@ -10,7 +11,8 @@
       <option value="image">image</option>
       <option value="video">video</option>
     </select>
-  </div>
+  </div>    
+  <% } %>
   <div class="control-group">
     <label for="pub-contributor" class="form-label">Contributor Name:</label>
     <input class="form-control" id="pub-contributor" name="contributor" type="text" value="<%- contributor %>"/>

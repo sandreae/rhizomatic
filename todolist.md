@@ -1,15 +1,9 @@
-D3 view add tags connections + re-style
-D3 view hover
 connect email to my account
 info texts for media uploads
 media uploads re-style
-profile view rows not columns and "password" / "repeat password"
-add texts
-change names of tags and directedAt
 directed at validation only happens once.
 keep sidebar open in edit view?
 back button on sidebar
-fix published date
 text for email invite
 
 :::::DONE:::::
@@ -98,7 +92,13 @@ videos added to collage
 nodemailer and auto send email invite
 remove new pub button and add new rhizome view
 move sidebars
-
+youtube video not working in collage
+fix published date
+D3 view add tags connections + re-style
+D3 view hover
+change names of tags and directedAt
+profile view rows not columns and "password" / "repeat password"
+add texts
 
 QUESTIONS FOR ROD & ANG:
 view for single media pubs?

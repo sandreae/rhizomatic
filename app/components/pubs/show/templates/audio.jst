@@ -1,9 +1,13 @@
-<h1><%= title %></h1>
-<h3><%= contributor %></h3>
-
+<div class="singlemedia-container">
+<div class="singlemedia-content">
 <% _.each(activeContent, function(value){ %>
   <audio controls>
     <source src="<%= value %>" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio> 
-<% }); %>
+<% }); %><div class='pub-info'>
+<i><%= title %></i><br>
+<%= contributor %><br>
+</div>
+</div>
+</div>

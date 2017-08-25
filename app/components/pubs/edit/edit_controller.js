@@ -219,7 +219,7 @@ var Controller = {
 You can accept the invitation and create a response in a variety of formats (markdown, collage, url, audio, image) by visiting the Rhizomatic website and logging in:<br />
 <br><a href="http://www.rhizomatic.community">http://www.rhizomatic.community</a></p>
 username: ` + contributor + `<br>
-password: password<br><br>
+password: password<br>(please change this when you log in for the first time)<br>
 <p>When creating a new publication, you can invite any number of existing, or new, users to respond to your publication. In addition to responding to to the publication you have been invited to, you are encouraged to join in on the discussions surrounding other publications and responses.</p>`
 
 

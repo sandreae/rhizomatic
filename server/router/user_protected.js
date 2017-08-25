@@ -54,7 +54,6 @@ module.exports = function (app, express) {
     .delete(function (req, res) {
       console.log(req.params)
       User.findById(req.params.user_id, function (err, user) {
-        if (user.permissions === 'admin') {
           User.remove({_id: req.params.user_id}, function (err, user) {
             if (err) {
               res.send(err)
@@ -62,9 +61,6 @@ module.exports = function (app, express) {
               res.send('')
             }
           })
-        } else {
-          res.status(403).send({success: false, message: 'User is not authorized to delete users'})
-        }
       })
     })
   return userRouterProtected

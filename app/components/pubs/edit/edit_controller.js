@@ -26,7 +26,7 @@ var Controller = {
         if (data.directedAt === '') {data.directedAt = []} else {data.directedAt = data.directedAt.split(', ')}
       
         draft.set({content: content})
-        pubModel.set({activeContent: content})  
+        pubModel.set({activeContent: content})
 
         if (!pubModel.save(data, {
           success: function() {

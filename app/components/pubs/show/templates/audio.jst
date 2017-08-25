@@ -1,11 +1,9 @@
 <div class="singlemedia-container">
 <div class="singlemedia-content">
-<% _.each(activeContent, function(value){ %>
-  <audio controls>
-    <source src="<%= value %>" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio> 
-<% }); %>
+<audio controls="controls" id="js-audio-player">
+  <source id="js-audio-file" src="<%= activeContent %>" type="audio/mpeg"></source>
+  Your browser does not support the audio element.
+</audio> 
 <i><%= title %></i><br>
 <%= contributor %><br>
 </div>

@@ -46,7 +46,7 @@ var D3View = Mn.View.extend({
         return {
           id: tag, 
           group: 'd3-tags',
-          size: '1',
+          size: '2',
           strength: '0'
         }
       }
@@ -96,7 +96,7 @@ var D3View = Mn.View.extend({
       var invitedBy = {
         source: pub.invitedByPubId,
         target: pub._id,
-        width: 2
+        width: 3
       }
       return invitedBy
     })

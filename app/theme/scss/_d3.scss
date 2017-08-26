@@ -1,16 +1,16 @@
 .links line {
-  stroke: #999;
-  stroke-opacity: 0.6;
+  stroke: black;
+  stroke-opacity: 1;
 }
 
 .nodes .d3-pubs {
-  fill: $GLOBAL_BACKGROUND_COLOR_PRIMARY;
+  fill: red;
 	  &:hover {
-	    fill:$GLOBAL_BACKGROUND_COLOR_THIRDLY;
+	    fill: pink;
 	}
 }
 .nodes .d3-tags {
-  fill: $GLOBAL_BACKGROUND_COLOR_SECONDARY;
+  fill: blue;
 }
 
 .nodes a {

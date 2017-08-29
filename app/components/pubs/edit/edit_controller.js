@@ -121,7 +121,7 @@ var Controller = {
             success: function() {
               gc.trigger('user:listPubs')
               gc.trigger('pub:show', pubModel.get("_id"))
-              alertify.success('publication published!')
+              alertify.error('invite sent to ' + contributor)
             },
           })
         })
@@ -132,6 +132,7 @@ var Controller = {
   publish: function(pubModel) {
     Controller.saveContributorName(pubModel)
     gc.trigger('sidebar:close')
+    alertify.success('publication published!')
   },
 
   saveContributorName: function(pubModel) {
@@ -196,7 +197,7 @@ var Controller = {
           gc.trigger('pub:content:edit', pubModel.get('_id'))
         }
       }
-    }     
+    } 
   },
 
   changeDraft: function(pubModel, nextDraft, newType) {

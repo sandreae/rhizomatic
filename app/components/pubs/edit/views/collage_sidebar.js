@@ -30,10 +30,12 @@ var CollageSidebar = Marionette.View.extend({
     var data = Backbone.Syphon.serialize(this);
     $( ".draggable" ).draggable( "destroy" )
     $( ".resizable" ).resizable( "destroy" )
+    $('#textBox').contentEditable = false
     var container = $('#draggable-container')
     var content = $(container).html()
     $( ".draggable" ).draggable()
     $( ".resizable" ).resizable()
+    $('#textBox').contentEditable = true
     this.trigger('form:submit', content, data, this.model)
   },
 
@@ -42,10 +44,12 @@ var CollageSidebar = Marionette.View.extend({
     var data = Backbone.Syphon.serialize(this);
     $( ".draggable" ).draggable( "destroy" )
     $( ".resizable" ).resizable( "destroy" )
+    $('#textBox').contentEditable = false
     var container = $('#draggable-container')
     var content = $(container).html()
     $( ".draggable" ).draggable()
     $( ".resizable" ).resizable()
+    $('#textBox').contentEditable = true
     this.trigger('silent:save', content, data, this.model)
   },
 

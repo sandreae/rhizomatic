@@ -19,8 +19,8 @@ var promise = mongoose.connect(config.database, {
 app.set('superSecret', config.secret);
 
 //////JUST FOR DEV////////
-//var cors = require('cors')
-//app.use(cors())
+var cors = require('cors')
+app.use(cors())
 //////////////////////////
 
 app.use(bodyParser.json({limit: '20mb'}))

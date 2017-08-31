@@ -3,6 +3,7 @@ info texts for media uploads
 directed at validation only happens once.
 keep sidebar open in edit view?
 back button on sidebar
+multiple image / audio uploads
 
 ::::BUGS::::::
 new user no invite / themes (refresh when login needed)

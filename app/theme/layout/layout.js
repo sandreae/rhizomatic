@@ -14,8 +14,6 @@ export default Mn.View.extend({
     'main': '#js-main-region',
     'header': '#js-header-region',
     'sidebar': '#js-sidebar-region',
-    'footer': '#js-footer-region',
-    'full-screen': '#js-full-screen-region'
   },
 
   click: function(e) {

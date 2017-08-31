@@ -30,6 +30,7 @@ var CollageSidebar = Marionette.View.extend({
     var data = Backbone.Syphon.serialize(this);
     $( ".draggable" ).draggable( "destroy" )
     $( ".resizable" ).resizable( "destroy" )
+    $( ".remove-button").hide()
     $('#textBox').contentEditable = false
     var container = $('#draggable-container')
     var content = $(container).html()
@@ -44,6 +45,7 @@ var CollageSidebar = Marionette.View.extend({
     var data = Backbone.Syphon.serialize(this);
     $( ".draggable" ).draggable( "destroy" )
     $( ".resizable" ).resizable( "destroy" )
+    $( ".remove-button").hide()
     $('#textBox').contentEditable = false
     var container = $('#draggable-container')
     var content = $(container).html()

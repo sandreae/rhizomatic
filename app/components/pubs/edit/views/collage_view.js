@@ -12,6 +12,7 @@ var Collage = Marionette.View.extend({
   },
 
   onAttach: function () {
+  	$( ".remove-button").show()
     $('.draggable').draggable({
       iframeFix: true
     });    

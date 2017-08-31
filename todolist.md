@@ -1,10 +1,12 @@
 connect email to my account
 info texts for media uploads
-media uploads re-style
 directed at validation only happens once.
 keep sidebar open in edit view?
 back button on sidebar
-text for email invite
+
+::::BUGS::::::
+new user no invite / themes (refresh when login needed)
+image size should be 100%
 
 :::::DONE:::::
 
@@ -99,8 +101,11 @@ D3 view hover
 change names of tags and directedAt
 profile view rows not columns and "password" / "repeat password"
 add texts
-
 QUESTIONS FOR ROD & ANG:
 view for single media pubs?
 setup host and email
 seeding the rhizome
+media uploads re-style
+text for email invite
+canvas very buggy
+youtube link not showing

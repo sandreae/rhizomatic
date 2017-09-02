@@ -3,9 +3,10 @@ directed at validation only happens once.
 keep sidebar open in edit view?
 back button on sidebar
 multiple image / audio uploads
-reject pub alertify
+make mobile friendly
 
 :::::DONE:::::
+reject pub alertify
 new user no invite / themes (refresh when login needed)
 image size should be 100%
 different colored rhizomes

@@ -33,42 +33,36 @@ $rhizome005: hsla(292, 100%, 40%, 1);
     opacity: 0.2
   }
   .\30 00 {
-  	transition: 0.2s;
     fill: $rhizome000;
     &:hover {
       fill: lighten($rhizome000, 20%) ;
 	}
   }
   .\30 01 {
-  	transition: 0.2s;
     fill: $rhizome001;
     &:hover {
       fill: lighten($rhizome001, 20%) ;
 	}
   }
   .\30 02 {
-  	transition: 0.2s;
     fill: $rhizome002;
     &:hover {
       fill: lighten($rhizome002, 20%) ;
 	}
   }
   .\30 03 {
-  	transition: 0.2s;
     fill: $rhizome003;
     &:hover {
       fill: lighten($rhizome003, 20%) ;
 	}
   }
   .\30 05 {
-  	transition: 0.2s;
     fill: $rhizome004;
     &:hover {
       fill: lighten($rhizome004, 20%) ;
 	}
   }
   .\30 06 {
-  	transition: 0.2s;
     fill: $rhizome005;
     &:hover {
       fill: lighten($rhizome005, 20%) ;
@@ -82,33 +76,34 @@ $rhizome005: hsla(292, 100%, 40%, 1);
 	right: 40px;
 	height: 100px;
 	text-align: right;
-	position: fixed;
+	position: absolute;
 	display: block;
 	opacity: 0;
 }
 
 .d3-container {
+	position: absolute;
 	display: table;
-	height: 99vh;
-	width: 98vw;
-    align: center;
+	height: 98vh;
+	width: 97vw;
 
 	h1 {
 	  top: 0px;
-	  position: fixed;
+	  position: absolute;
 	  padding: 10px;
 	}
 }
 
 #d3-content {
-    transition: 0.5s;
+	position: absolute;
     display: table-cell;
-	height: 99vh;
-    width: 98vw;
+	height: 98vh;
+    width: 97vw;
 }
 
 svg {
-	height: 99vh;
-    width: 98vw;
+	position: absolute;
+	height: 98vh;
+    width: 97vw;
 }
 

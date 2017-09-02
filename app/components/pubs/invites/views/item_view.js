@@ -23,7 +23,7 @@ export default Marionette.View.extend({
     e.stopPropagation()
     alertify.confirm('Rhizomatic', 'Do you want to remove this invitation?',
       function(){
-        self.trigger('reject:invite', this.model)
+        self.trigger('reject:invite', self.model)
         alertify.success('invite removed');
       },
       function(){

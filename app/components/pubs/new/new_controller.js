@@ -38,7 +38,7 @@ var Controller = {
               console.log(rhizome)
               if (rhizome !== null) {
                 var x = rhizomes.length
-                var newRhizome = '#00' + x
+                var newRhizome = '00' + x
                 rhizome.set({rhizomeName: newRhizome})
                 thisRhizome = newRhizome
                 rhizome.save(null, {})

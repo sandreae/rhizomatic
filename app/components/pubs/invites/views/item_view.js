@@ -21,10 +21,14 @@ export default Marionette.View.extend({
     var self = this
     e.preventDefault()
     e.stopPropagation()
-    var answer = confirm('Do you want to reject?')
-    if (answer) {
-      self.trigger('reject:invite', this.model)
-    }
+    alertify.confirm('Rhizomatic', 'Do you want to remove this invitation?',
+      function(){
+        self.trigger('reject:invite', this.model)
+        alertify.success('invite removed');
+      },
+      function(){
+        alertify.error('invite not removed');
+      });
   },
 
   showClicked: function (e) {

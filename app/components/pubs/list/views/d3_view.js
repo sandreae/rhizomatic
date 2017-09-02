@@ -4,17 +4,36 @@ import {gc} from '../../../radio'
 
 var D3View = Mn.View.extend({
   tagName: 'div',
-  className: 'd3',
+  className: 'd3-container',
   template: template,
 
   events: {
-  'mouseenter circle.d3-pubs': 'pubHovered'
+  'mouseenter circle.d3-pubs': 'pubHovered',
+  'mouseleave circle.d3-pubs': 'pubLeft'
   },
 
   pubHovered: function(e){
-    var pubId = e.currentTarget.children[1].textContent
+    var pubId = e.currentTarget.children[0].textContent
     var thisPub = this.collection.get({_id: pubId})
-    alertify.message(thisPub.get('title') + " by " + thisPub.get('contributor'))
+    var pubDate = new Date(thisPub.get('publishedDate'))
+    const pubInfo = document.querySelector('.pub-info-container')
+    pubInfo.innerHTML =  '<h2>' + thisPub.get('title') + '</h2><h3>by ' + thisPub.get('contributor') + '</h3><p>published: ' + pubDate.toDateString() + '</p>'
+    const start = window.performance.now()
+    const duration = 1000
+    pubInfo.style.display = 'block'
+    window.requestAnimationFrame(function fadeIn (now) {
+      const progress = now - start
+      pubInfo.style.opacity = progress / duration
+
+      if (progress < duration) {
+        window.requestAnimationFrame(fadeIn)
+      }
+    })
+  },
+
+  pubLeft: function(e){
+    const pubInfo = document.querySelector('.pub-info-container')
+    pubInfo.style.display = 'none'
   },
 
   onAttach: function() {
@@ -62,6 +81,7 @@ var D3View = Mn.View.extend({
       if (pub.published === 'true') {
         var connection = pub.tags.map(function(element){
           x = {
+            rhizome: pubs.get({_id: pub._id}).get('inRhizome'),
             source: pub._id,
             target: element,
             width: 1,
@@ -83,6 +103,7 @@ var D3View = Mn.View.extend({
       pub.size = 10
       pub.strength = 1
       pub.url = 'http://' + window.location.host + '/#publication/' + pub._id
+      pub.rhizome = pub.inRhizome
       return pub
     })
 
@@ -94,6 +115,7 @@ var D3View = Mn.View.extend({
 
     var directedAtPub = nodes.map(function(pub, index, array) {
       var invitedBy = {
+        rhizome: pubs.get({_id: pub.invitedByPubId}).get('inRhizome'),
         source: pub.invitedByPubId,
         target: pub._id,
         width: 3
@@ -120,16 +142,19 @@ var D3View = Mn.View.extend({
   },
 
   runD3: function() {
+    const container = $('#d3-content')
+    var width = container.width()
+    var height = container.height()
     var self = this
     d3.selectAll("svg > *").remove();
-    var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height");
+    var svg = d3.select("svg")
+    .attr('viewBox','0 0 '+ width +' '+ height )
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
     var color = d3.scaleOrdinal(d3.schemeCategory10);
     var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBody().strength(-100).distanceMin(20))
-    .force("center", d3.forceCenter(width / 2, height / 2))
+    .force("charge", d3.forceManyBody().strength(-300).distanceMin(20))
     .force('x', function(d) { return d.strength; })
     .force('y', function(d) { return d.strength; })
   
@@ -138,10 +163,11 @@ var D3View = Mn.View.extend({
   var myLinks = root.links.directedAtPub;
   
   var link = svg.append("g")
-      .attr("class", "links")
+      .attr("class", 'links')
     .selectAll("line")
     .data(myLinks)
     .enter().append("line")
+      .attr("class", function(d) { return d.rhizome})
       .attr("stroke-width", function(d) { return d.width });
   var node = svg.append("g")
       .attr("class", "nodes")
@@ -152,15 +178,13 @@ var D3View = Mn.View.extend({
       .attr("xlink:href", function(d){if(d.url !== undefined) {return d.url}})
     .append("circle")
       .attr("r", function(d) { return d.size; })
-      .attr("class", function(d) { return d.group; })
+      .attr("class", function(d) { return d.group + " " + d.rhizome})
 
       .call(d3.drag()
           .on("start", dragstarted)
           .on("drag", dragged)
           .on("end", dragended));
 
-  node.append("title")
-      .text(function(d) { if(d.title !== undefined) {return d.title;} else {return d.id } });
   node.append("id")
       .text(function(d) { return d.id });
 

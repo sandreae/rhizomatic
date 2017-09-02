@@ -1,9 +1,11 @@
-<h1><%= title %></h1>
-<h3><%= contributor %></h3>
-
+<div class="singlemedia-container">
+<div class="singlemedia-content">
 <form>
-<label for="file-input">Image file:</label>
-<input type="file" id="file-input">
+  <input type="file" id="file-input">
+  <progress id="progress" value="0"></progress>
 </form>
-
 <img class="image-preview" id="js-image-preview" src="<%= activeContent %>"> 
+<i><%= title %></i><br>
+<%= contributor %><br>
+</div>
+</div>

@@ -26,9 +26,15 @@ var VideoSidebar = Marionette.View.extend({
 
   submitClicked: function(e) {
     e.preventDefault()
+    console.log(this.model.get('published'))
     var data = Backbone.Syphon.serialize(this);
     var content = $('#myUrl').val();
-    this.trigger('form:submit', content, data, this.model)
+    if (this.model.get('published') === 'true') {
+      console.log('already published')
+      this.trigger('silent:save', content, data, this.model)
+    } else {
+      this.trigger('form:submit', content, data, this.model)
+    }
   },
 
   previewClicked: function(e) {

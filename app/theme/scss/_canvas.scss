@@ -1,5 +1,30 @@
-canvas {
-    border: 1px solid #f00;
+
+.collage-container {
+	form {
+		width: 300px;
+		padding: 20px;
+	}
+}
+
+#draggable-container {
+}
+
+.resizable {
+	min-height: 100%;
+	height: auto;
+}
+
+.draggable {
+	width: 200px;
+	height: auto;
+	position: absolute;
+	
+  a {
+  	text-decoration:none;
+  	position: absolute;
+  	left: -10px;
+  	top: -20px;
+  }
 }
 
 .videoFrame {
@@ -21,16 +46,18 @@ canvas {
 .ui-resizable-resizing iframe { pointer-events: none; }
 
 .textBox-container {
-    height: 100%;
-	display: table;
+	min-height: 100%;
 	width: 100%;
-    border-color: black;
-    border-style: solid;
+	height: auto;
+    background-color: silver;
+    display: block;
+
+    .CodeMirror, .CodeMirror-scroll {
+	min-height: 10px;
+	border: none;
+	background-color: none;
+	background: none;
+
+  }
 }
 
-.textBox-content {
-	display: table-cell;
-	margin: auto;
-    width: 100%;
-    height: 100%;
-}

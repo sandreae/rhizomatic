@@ -24,6 +24,7 @@ var Radio = Marionette.Object.extend({
     'invites:get': 'getInvites',
     'headers:get': 'getHeaders',
     'appState:get': 'getAppState',
+    'appState:getForced': 'getAppStateForced',
   },
 
   getUser: function(id) {
@@ -63,6 +64,10 @@ var Radio = Marionette.Object.extend({
   getHeaders: function() {
     console.log('headers:get request recieved')
     return Headers.HeadersAPI.getHeaders()
+  },
+  getAppStateForced: function() {
+    console.log('appState:getForced request recieved')
+    return AppState.AppStateAPI.getAppStateForced()
   },
   getAppState: function() {
     console.log('appState:get request recieved')

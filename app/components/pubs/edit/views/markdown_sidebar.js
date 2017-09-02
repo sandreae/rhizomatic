@@ -2,7 +2,7 @@ import template from './../../../../entities/behaviors/templates/details.jst'
 import {gc} from '../../../radio'
 
 var MarkdownSidebar = Marionette.View.extend({
-
+  className: 'edit-container',
   template: template,
 
   events: {
@@ -31,7 +31,12 @@ var MarkdownSidebar = Marionette.View.extend({
     var simplemde = $('#simplemde').data('editor')
     var content = simplemde.value()
     if (content === '') {content = ' '}
-    this.trigger('form:submit', content, data, this.model)
+    if (this.model.get('published') === 'true') {
+      console.log('already published')
+      this.trigger('silent:save', content, data, this.model)
+    } else {
+      this.trigger('form:submit', content, data, this.model)
+    }
   },
 
   previewClicked: function(e) {

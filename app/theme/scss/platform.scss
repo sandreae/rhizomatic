@@ -42,12 +42,13 @@ $GLOBAL_BACKGROUND_COLOR_THIRDLY: #f5d7fc;
 @import "mainregion.scss";
 @import "form.scss";
 @import "sidebars.scss";
-@import "image-view.scss";
 @import "my-pubs.scss";
 @import "alertify.scss";
 @import "canvas.scss";
 @import "about.scss";
 @import "singlemedia.scss";
+@import "edit.scss";
+@import "progress.scss";
  
 /****************************************
 STRUCTURES
@@ -59,6 +60,10 @@ STRUCTURES
 }
 
 body {
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
   overflow-x:hidden;
   font-family:sans-serif;
 }

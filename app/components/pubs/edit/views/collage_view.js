@@ -1,18 +1,22 @@
 import template from '../templates/collage.jst'
 import {gc} from '../../../radio'
-import 'jquery-ui'
+import SimpleMDE from 'simplemde'
+
+require('webpack-jquery-ui/interactions')
 
 var Collage = Marionette.View.extend({
-    template: template,
+  className: 'collage-container',
+  template: template,
 
   events: {
     'change input.myUrl': 'urlChanged',
-    'click a.textBoxClick': 'createTextBox',
+    'click button.textBoxClick': 'createTextBox',
     'click a.remove-button': 'removeElement',
   },
 
   onAttach: function () {
-  	$(".remove-button").show()
+
+    $(".remove-button").show()
     $('.draggable').draggable({
       iframeFix: true
     });    
@@ -29,10 +33,19 @@ var Collage = Marionette.View.extend({
       }
       this.getSignedRequest(file, model);
     };
-    $('#textBox').contentEditable = true
-	$('.draggable p').click(function() {
-	    $(this).focus();
-	});
+    var textareas = document.querySelectorAll('.textBox');
+    [].forEach.call(textareas, function(textarea) {
+		console.log(textarea.value)
+			var simplemde = new SimpleMDE({ 
+				element: textarea,
+				spellChecker: false,
+				showIcons: [],
+				toolbar: false,
+				toolbarTips: false,
+				status: false,
+			});
+		$(textarea).data({editor: simplemde});
+    });
   },
 
   getSignedRequest: function(file, model) {
@@ -60,6 +73,19 @@ var Collage = Marionette.View.extend({
     remove.className = 'remove-button'
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
+    var progressBar = document.getElementById("progress")
+    xhr.upload.onprogress = function (e) {
+      if (e.lengthComputable) {
+        progressBar.max = e.total;
+        progressBar.value = e.loaded;
+      }
+    }
+    xhr.upload.onloadstart = function (e) {
+      progressBar.value = 0;
+    }
+    xhr.upload.onloadend = function (e) {
+      progressBar.value = e.loaded;
+    }
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
         if(xhr.status === 200){
@@ -82,7 +108,6 @@ var Collage = Marionette.View.extend({
 			if (file.type.includes('audio')){
 	            var draggable = document.createElement('div')
 			    var sound = document.createElement('audio');
-	            sound.className = 'draggable'
 	            sound.style.position = 'absolute'
 	            sound.controls = 'controls';
 	            sound.src = url;
@@ -135,11 +160,9 @@ var Collage = Marionette.View.extend({
     remove.className = 'remove-button'
 	var resizable = document.createElement('div')
     var draggable = document.createElement('div')
-    var textBox = document.createElement('p')
+    var textBox = document.createElement('textarea')
     var textBoxContainer = document.createElement('div')
-    $(resizable).css({width: '100%', height: '100%'});
     resizable.className = 'resizable'
-    $(draggable).css({width: '200px', height: '200px', display: 'inline-block', position: 'absolute'});
     draggable.className = 'draggable'
     textBox.className = 'textBox-content'
     textBoxContainer.className = 'textBox-container'
@@ -152,11 +175,16 @@ var Collage = Marionette.View.extend({
       cancel: null
     });
     $(resizable).resizable()
-    $(textBox).attr({id: 'textBox'})
-    textBox.contentEditable = true;
-	$('.draggable p').click(function() {
-	    $(this).focus();
+    $(textBox).attr({class: 'textBox'})
+	var simplemde = new SimpleMDE({ 
+		element: textBox,
+		spellChecker: false,
+		showIcons: [],
+		toolbar: false,
+		toolbarTips: false,
+		status: false,
 	});
+	$(textBox).data({editor: simplemde});
   },
 
   urlChanged: function(e){

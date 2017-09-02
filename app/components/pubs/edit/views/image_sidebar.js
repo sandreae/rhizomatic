@@ -30,7 +30,12 @@ var ImageSidebar = Marionette.View.extend({
     var drafts = this.model.get('drafts')
     var draft = drafts.findWhere({type: 'image'})
     var content = draft.get('content')
-    this.trigger('form:submit', content, data, this.model)
+    if (this.model.get('published') === 'true') {
+      console.log('already published')
+      this.trigger('silent:save', content, data, this.model)
+    } else {
+      this.trigger('form:submit', content, data, this.model)
+    }
   },
 
   previewClicked: function(e) {

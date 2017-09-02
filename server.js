@@ -26,7 +26,7 @@ app.use(cors())
 app.use(bodyParser.json({limit: '20mb'}))
 app.use(bodyParser.urlencoded({extended: true, limit: '20mb'}))
 app.use(morgan('dev'))
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname));
 app.use('/uploads',  express.static(__dirname + '/uploads'));
 
 ////////////S3 UPLOADS/////////////////////

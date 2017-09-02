@@ -1,10 +1,13 @@
-<h1><%= title %></h1>
-<h3><%= contributor %></h3>
-
+<div class="singlemedia-container">
+<div class="singlemedia-content">
 <form>
-    <label for="url">Youtube url:</label>
-    <input class= "myUrl" id="myUrl" type="text" value="" />
+  <label for="url">Youtube url:</label>
+  <input class= "myUrl" id="myUrl" type="text" value="" />
 </form>
-
-<pre id="myCode"><%- activeContent %></pre>
-
+<div class="singlemedia-video-wrapper">
+<pre id="myCode"><%- activeContent %></pre><br>
+</div>
+<i><%= title %></i><br>
+<%= contributor %><br>
+</div>
+</div>

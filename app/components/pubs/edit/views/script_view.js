@@ -1,6 +1,7 @@
 import template from '../templates/script.jst'
 
   var Script = Marionette.View.extend({
+    className: 'edit-container',
     template: template,
 
     onAttach: function () {

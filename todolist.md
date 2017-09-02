@@ -1,16 +1,16 @@
-connect email to my account
 info texts for media uploads
 directed at validation only happens once.
 keep sidebar open in edit view?
 back button on sidebar
 multiple image / audio uploads
-
-::::BUGS::::::
-new user no invite / themes (refresh when login needed)
-image size should be 100%
+reject pub alertify
 
 :::::DONE:::::
-
+new user no invite / themes (refresh when login needed)
+image size should be 100%
+different colored rhizomes
+connect email to my account
+show info on hover
 SASS compiler with Webpack
 Admin navigation routes:
 - users

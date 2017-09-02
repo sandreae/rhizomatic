@@ -1,19 +1,114 @@
-.links line {
-  stroke: black;
-  stroke-opacity: 1;
+$rhizome000: hsla(334, 100%, 64%, 1);
+$rhizome001: hsla(165, 100%, 50%, 1);
+$rhizome002: hsla(217, 100%, 50%, 1);
+$rhizome003: hsla(12, 100%, 50%, 1);
+$rhizome004: hsla(35, 100%, 44%, 1);
+$rhizome005: hsla(292, 100%, 40%, 1);
+
+.links {
+  .\30 00 {
+    stroke: $rhizome000;
+  }
+  .\30 01 {
+    stroke: $rhizome001;
+  }
+  .\30 02 {
+    stroke: $rhizome002;
+  }
+  .\30 03 {
+    stroke: $rhizome003;
+  }
+  .\30 05 {
+    stroke: $rhizome004;
+  }
+  .\30 06 {
+    stroke: $rhizome005;
+  }
+
 }
 
-.nodes .d3-pubs {
-  fill: red;
-	  &:hover {
-	    fill: pink;
+.nodes {
+  .d3-tags {
+    fill: white;
+    opacity: 0.2
+  }
+  .\30 00 {
+  	transition: 0.2s;
+    fill: $rhizome000;
+    &:hover {
+      fill: lighten($rhizome000, 20%) ;
+	}
+  }
+  .\30 01 {
+  	transition: 0.2s;
+    fill: $rhizome001;
+    &:hover {
+      fill: lighten($rhizome001, 20%) ;
+	}
+  }
+  .\30 02 {
+  	transition: 0.2s;
+    fill: $rhizome002;
+    &:hover {
+      fill: lighten($rhizome002, 20%) ;
+	}
+  }
+  .\30 03 {
+  	transition: 0.2s;
+    fill: $rhizome003;
+    &:hover {
+      fill: lighten($rhizome003, 20%) ;
+	}
+  }
+  .\30 05 {
+  	transition: 0.2s;
+    fill: $rhizome004;
+    &:hover {
+      fill: lighten($rhizome004, 20%) ;
+	}
+  }
+  .\30 06 {
+  	transition: 0.2s;
+    fill: $rhizome005;
+    &:hover {
+      fill: lighten($rhizome005, 20%) ;
+	}
+  }
+}
+
+.pub-info-container {
+	width: 98vw;
+	bottom: 30px;
+	right: 40px;
+	height: 100px;
+	text-align: right;
+	position: fixed;
+	display: block;
+	opacity: 0;
+}
+
+.d3-container {
+	display: table;
+	height: 99vh;
+	width: 98vw;
+    align: center;
+
+	h1 {
+	  top: 0px;
+	  position: fixed;
+	  padding: 10px;
 	}
 }
-.nodes .d3-tags {
-  fill: blue;
+
+#d3-content {
+    transition: 0.5s;
+    display: table-cell;
+	height: 99vh;
+    width: 98vw;
 }
 
-.nodes a {
-  target-new: tab;
+svg {
+	height: 99vh;
+    width: 98vw;
 }
 

@@ -1,7 +1,19 @@
 ////MAIN REGION//////
 
 .main-region {
-	height:600px;
+	height: 100vh;
+	width: 100vw;
 	padding-left: 30px;
 	padding-right: 30px;
+	transition: 0.5s;
+	overflow: auto;
+	position: relative;
+}
+
+.shrink-left {
+	padding-left: 200px;
+}
+
+.shrink-right {
+	padding-right: 450px;
 }

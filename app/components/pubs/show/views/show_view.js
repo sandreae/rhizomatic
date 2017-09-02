@@ -7,8 +7,10 @@ import image from './../templates/image.jst'
 import video from './../templates/video.jst'
 import showdown from 'showdown'
 import {gc} from '../../../radio'
+import SimpleMDE from 'simplemde'
 
 export default Marionette.View.extend({
+  tagName: 'span',
 
   getTemplate: function(){
     var type = this.model.get('type')
@@ -52,8 +54,29 @@ export default Marionette.View.extend({
       console.log(url)
       var myId;
       myId = getId(url);
-      var embed = '<iframe width="560" height="315" src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>'
+      var embed = '<iframe src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>'
       model.set({activeContent: embed})
+    }
+  },
+
+  onAttach: function(){
+    var model = this.model
+    if (model.get('type') === 'collage') {
+
+      var textareas = document.querySelectorAll('.textBox');
+      [].forEach.call(textareas, function(textarea) {
+        console.log(textarea)
+        var simplemde = new SimpleMDE({ 
+          element: textarea,
+          spellChecker: false,
+          showIcons: [],
+          toolbar: false,
+          toolbarTips: false,
+          status: false,
+        });
+      simplemde.togglePreview();
+      $(textarea).data({editor: simplemde});
+      });    
     }
   },
 

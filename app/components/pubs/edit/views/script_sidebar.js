@@ -1,7 +1,7 @@
 import template from './../../../../entities/behaviors/templates/details.jst'
 
 var ScriptSidebar = Marionette.View.extend({
-  
+  className: 'edit-container',
   template: template,
 
   events: {
@@ -29,7 +29,12 @@ var ScriptSidebar = Marionette.View.extend({
     var data = Backbone.Syphon.serialize(this);
     var urlInput = $( "#js-url")
     var content = urlInput.val();
-    this.trigger('form:submit', content, data, this.model)
+    if (this.model.get('published') === 'true') {
+      console.log('already published')
+      this.trigger('silent:save', content, data, this.model)
+    } else {
+      this.trigger('form:submit', content, data, this.model)
+    }
   },
 
   previewClicked: function(e) {

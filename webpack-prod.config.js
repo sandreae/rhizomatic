@@ -9,13 +9,6 @@ const config = {
     filename: 'bundle.js',
     publicPath: 'dist/'
   },
-  devServer: {
-    proxy: {
-      '/api/*': {
-        target: 'http://localhost:3000'
-      }
-    },
-  },
   module: {
     rules: [{
       test: /\.(jpe?g|png|gif)$/i,
@@ -47,11 +40,11 @@ const config = {
       include: path.resolve(__dirname, 'app'),
       use: [{loader: 'underscore-template-loader'}]
     }
-  ]
+    ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.ProvidePlugin({
       _: 'underscore',
       $: 'jquery',

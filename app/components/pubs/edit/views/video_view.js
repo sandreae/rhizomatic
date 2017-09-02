@@ -1,6 +1,7 @@
 import template from '../templates/video.jst'
 
 var Video = Marionette.View.extend({
+  className: 'edit-container',
   template: template,
 
   events: {
@@ -15,7 +16,7 @@ var Video = Marionette.View.extend({
     $('#myUrl').val(content)
     var myId;
     myId = this.getId(content);
-    var embed = '<iframe width="560" height="315" src="//www.youtube.com/embed/' + myId + '?showinfo=0" frameborder="0" allowfullscreen></iframe>'
+    var embed = '<iframe src="//www.youtube.com/embed/' + myId + '?showinfo=0" frameborder="0" allowfullscreen></iframe>'
     $('#myCode').html(embed);
   },
 
@@ -23,7 +24,7 @@ var Video = Marionette.View.extend({
     var myId;
     var myUrl = $('#myUrl').val();
     myId = this.getId(myUrl);
-    var embed = '<iframe width="560" height="315" src="//www.youtube.com/embed/' + myId + '?showinfo=0" frameborder="0" allowfullscreen></iframe>'
+    var embed = '<iframe src="//www.youtube.com/embed/' + myId + '?showinfo=0" frameborder="0" allowfullscreen></iframe>'
     $('#myCode').html(embed);
   },
 

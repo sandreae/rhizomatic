@@ -52,7 +52,7 @@ var Radio = Marionette.Object.extend({
       var appState
       var key = Authentication.getKey()
       var userId = window.localStorage.userId
-      gc.request('appState:get').then(function(appState) {
+      gc.request('appState:getForced').then(function(appState) {
         if (key !== null) {
           console.log(key)
           gc.request('user:get', userId).then(function(user) {

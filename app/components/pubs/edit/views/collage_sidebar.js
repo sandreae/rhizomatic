@@ -1,6 +1,7 @@
 import template from './../../../../entities/behaviors/templates/details.jst'
 import {gc} from '../../../radio'
 import 'jquery-ui'
+import SimpleMDE from 'simplemde'
 
 var CollageSidebar = Marionette.View.extend({
   template: template,
@@ -28,30 +29,53 @@ var CollageSidebar = Marionette.View.extend({
   submitClicked: function(e) {
     e.preventDefault()
     var data = Backbone.Syphon.serialize(this);
-    $( ".draggable" ).draggable( "destroy" )
-    $( ".resizable" ).resizable( "destroy" )
-    $( ".remove-button").hide()
-    $('#textBox').contentEditable = false
-    var container = $('#draggable-container')
-    var content = $(container).html()
-    $( ".draggable" ).draggable()
-    $( ".resizable" ).resizable()
-    $('#textBox').contentEditable = true
-    this.trigger('form:submit', content, data, this.model)
+    $('#draggable-container').hide()
+    $( '.draggable' ).draggable( 'destroy' )
+    $( '.resizable' ).resizable( 'destroy' )
+    $( '.remove-button').hide()
+    var textareas = document.querySelectorAll('.textBox');
+    [].forEach.call(textareas, function(textarea) {
+      var simplemde = $(textarea).data('editor')
+      var value = simplemde.value()
+      console.log(value)
+      simplemde.toTextArea();
+      simplemde = null;
+      $(textarea).text(value)
+      $(textarea).trigger('change');
+    });
+    var container =  document.querySelector('#draggable-container');
+    var content = container.innerHTML
+    this.restore()
+    if (this.model.get('published') === 'true') {
+      console.log('already published')
+      this.trigger('silent:save', content, data, this.model)
+    } else {
+      this.trigger('form:submit', content, data, this.model)
+    }
   },
 
   previewClicked: function(e) {
     e.preventDefault()
+    $('#draggable-container').hide()
     var data = Backbone.Syphon.serialize(this);
-    $( ".draggable" ).draggable( "destroy" )
-    $( ".resizable" ).resizable( "destroy" )
-    $( ".remove-button").hide()
-    $('#textBox').contentEditable = false
-    var container = $('#draggable-container')
-    var content = $(container).html()
-    $( ".draggable" ).draggable()
-    $( ".resizable" ).resizable()
-    $('#textBox').contentEditable = true
+    $('.draggable').draggable('destroy')
+    $('.resizable').resizable('destroy')
+    $('.remove-button').hide()
+
+    var textareas = document.querySelectorAll('.textBox');
+    console.log(textareas);
+    [].forEach.call(textareas, function(textarea) {
+      console.log(textarea)
+      var simplemde = $(textarea).data('editor')
+      var value = simplemde.value()
+      simplemde.toTextArea();
+      simplemde = null;
+      $(textarea).text(value)
+      $(textarea).trigger('change');
+    });
+    var container =  document.querySelector('#draggable-container'); 
+    var content = container.innerHTML
+    this.restore()
     this.trigger('silent:save', content, data, this.model)
   },
 
@@ -60,5 +84,28 @@ var CollageSidebar = Marionette.View.extend({
     this.model.set({published: true})
     this.submitClicked(e)
   },
+
+  restore: function() {
+    $(".remove-button").show()
+    $('.draggable').draggable({
+      iframeFix: true
+    });    
+    $( ".resizable" ).resizable()
+
+    var textareas = document.querySelectorAll('.textBox');
+    [].forEach.call(textareas, function(textarea) {
+    console.log(textarea.value)
+      var simplemde = new SimpleMDE({ 
+        element: textarea,
+        spellChecker: false,
+        showIcons: [],
+        toolbar: false,
+        toolbarTips: false,
+        status: false,
+      });
+    $(textarea).data({editor: simplemde});
+    });
+    $('#draggable-container').show()
+  }
 })
 export {CollageSidebar}

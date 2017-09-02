@@ -43,6 +43,7 @@ var Controller = {
         {
           editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError)
           console.log('pub not published because of validation error')
+          pubModel.set({published: false})
         }
       })
       
@@ -74,6 +75,7 @@ var Controller = {
         {
           editSidebarView.triggerMethod('form:data:invalid', pubModel.validationError)
           console.log('pub not published because of validation error')
+          pubModel.set({published: false})
         }
       })
       gc.trigger('sidebar:show', editSidebarView)

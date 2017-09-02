@@ -1,9 +1,10 @@
 <form>
     <label for="url">Upload image or audio:</label>
     <input type="file" id="file-input">
+    <progress id="progress" value="0"></progress><br>
     <label for="url">Youtube url:</label>
     <input class= "myUrl" id="myUrl" type="text" value="" />
-    <a href='#' class="textBoxClick">attach text</a>
+    <button class="textBoxClick">attach text</button>
 </form>
 <div id="draggable-container">
 <%= activeContent %>

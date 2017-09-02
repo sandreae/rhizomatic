@@ -19,7 +19,7 @@ export default Marionette.View.extend({
     e.preventDefault()
     e.stopPropagation()
 
-    alertify.confirm('Delete this publication?',
+    alertify.confirm('Rhizomatic', 'Delete this publication?',
       function(){
         self.remove()
         self.model.destroy()

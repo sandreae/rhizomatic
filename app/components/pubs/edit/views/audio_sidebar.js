@@ -30,6 +30,8 @@ var AudioSidebar = Marionette.View.extend({
     var drafts = this.model.get('drafts')
     var draft = drafts.findWhere({type: 'audio'})
     var content = draft.get('content')
+    content = {}
+    content.description = document.getElementById('js-description').value
     if (this.model.get('published') === 'true') {
       console.log('already published')
       this.trigger('silent:save', content, data, this.model)
@@ -44,6 +46,8 @@ var AudioSidebar = Marionette.View.extend({
     var drafts = this.model.get('drafts')
     var draft = drafts.findWhere({type: 'audio'})
     var content = draft.get('content')
+    content = {}
+    content.description = document.getElementById('js-description').value
     this.trigger('silent:save', content, data, this.model)
   },
 

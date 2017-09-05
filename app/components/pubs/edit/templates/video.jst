@@ -3,11 +3,15 @@
 <form>
   <label for="url">Youtube url:</label>
   <input class= "myUrl" id="myUrl" type="text" value="" />
+   <label for="description">Text:</label>
+  <textarea class="js-description" id="js-description" name="textarea" rows="6"><%- activeContent.description %></textarea>
 </form>
 <div class="singlemedia-video-wrapper">
-<pre id="myCode"><%- activeContent %></pre><br>
+<pre id="myCode"><%- activeContent.url %></pre><br>
 </div>
+<div class="singlemedia-info">
 <i><%= title %></i><br>
 <%= contributor %><br>
+</div>
 </div>
 </div>

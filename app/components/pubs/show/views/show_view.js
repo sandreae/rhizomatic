@@ -50,12 +50,12 @@ export default Marionette.View.extend({
             return 'error';
         }
       }
-      var url = model.get('activeContent')
-      console.log(url)
+      var videoContent = model.get('activeContent')
       var myId;
-      myId = getId(url);
+      myId = getId(videoContent.url);
       var embed = '<iframe src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>'
-      model.set({activeContent: embed})
+      videoContent.url = embed
+      model.set({activeContent: videoContent})
     }
   },
 

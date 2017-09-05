@@ -1,10 +1,15 @@
 <div class="singlemedia-container">
 <div class="singlemedia-content">
+<div class="singlemedia-audio">
 <audio controls="controls" id="js-audio-player">
   <source id="js-audio-file" src="<%= activeContent %>" type="audio/mpeg"></source>
   Your browser does not support the audio element.
 </audio><br>
+<p><%= activeContent.description %></p><br>
+<div class="singlemedia-info">
 <i><%= title %></i><br>
 <%= contributor %><br>
+</div>
+</div>
 </div>
 </div>

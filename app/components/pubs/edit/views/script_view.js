@@ -8,7 +8,10 @@ import template from '../templates/script.jst'
       var drafts = this.model.get('drafts')
       var draft = drafts.findWhere({type: 'url'})
       var urlInput = $( "#js-url")
-      urlInput.val(draft.get('content'))
+      var descriptionInput = $( "#js-description")
+      var content = draft.get('content')
+      urlInput.val(content.url)
+      descriptionInput.val(content.description)
     },
   })
 export {Script}

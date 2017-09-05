@@ -27,8 +27,10 @@ var ScriptSidebar = Marionette.View.extend({
   submitClicked: function(e) {
     e.preventDefault()
     var data = Backbone.Syphon.serialize(this);
-    var urlInput = $( "#js-url")
-    var content = urlInput.val();
+    var content = {}
+    content.url = $( "#js-url").val()
+    content.description = $( "#js-description").val()
+    console.log(content)
     if (this.model.get('published') === 'true') {
       console.log('already published')
       this.trigger('silent:save', content, data, this.model)
@@ -40,8 +42,10 @@ var ScriptSidebar = Marionette.View.extend({
   previewClicked: function(e) {
     e.preventDefault()
     var data = Backbone.Syphon.serialize(this);
-    var urlInput = $( "#js-url")
-    var content = urlInput.val();
+    var content = {}
+    content.url = $( "#js-url").val()
+    content.description = $( "#js-description").val()
+    console.log(content)
     this.trigger('silent:save', content, data, this.model)
   },
 

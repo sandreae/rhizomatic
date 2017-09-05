@@ -27,9 +27,9 @@ var ImageSidebar = Marionette.View.extend({
   submitClicked: function(e) {
     e.preventDefault()
     var data = Backbone.Syphon.serialize(this);
-    var drafts = this.model.get('drafts')
-    var draft = drafts.findWhere({type: 'image'})
-    var content = draft.get('content')
+    var content = {}
+    content.description = document.getElementById('js-description').value
+    content.url = document.getElementById('js-image-preview').src
     if (this.model.get('published') === 'true') {
       console.log('already published')
       this.trigger('silent:save', content, data, this.model)
@@ -41,9 +41,9 @@ var ImageSidebar = Marionette.View.extend({
   previewClicked: function(e) {
     e.preventDefault()
     var data = Backbone.Syphon.serialize(this);
-    var drafts = this.model.get('drafts')
-    var draft = drafts.findWhere({type: 'image'})
-    var content = draft.get('content')
+    var content = {}
+    content.description = document.getElementById('js-description').value
+    content.url = document.getElementById('js-image-preview').src
     this.trigger('silent:save', content, data, this.model)
   },
 

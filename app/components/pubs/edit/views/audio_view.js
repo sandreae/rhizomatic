@@ -65,7 +65,10 @@ onAttach: function () {
           var audiofile = document.getElementById('js-audio-file')
           audiofile.src = url
           player.load();
-          model.get('drafts').findWhere({type: 'audio'}).set({content: url})
+          var content = {}
+          content.url = url
+          content.description = document.getElementById('js-description').value
+          model.get('drafts').findWhere({type: 'audio'}).set({content: content})
           progressBar.style.display = 'none'
         }
         else{

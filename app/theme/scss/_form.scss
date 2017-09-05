@@ -11,7 +11,7 @@ $form-border-radius: $GLOBAL_BORDER_RADIUS;
 
 ///////////////FORM INPUTS/////////////////////////////
 
-input, select, .selectize-input{
+input, select, textarea, .selectize-input{
   background-color: $form-background-color;
   border-radius: $form-border-radius;
   min-height: 1.5em;
@@ -26,6 +26,7 @@ input, select, .selectize-input{
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   color: $form-font-color;
+  resize: none;
 }
 
 //////////////CONTAINERS//////////////////////////

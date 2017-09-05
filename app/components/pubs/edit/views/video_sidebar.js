@@ -28,7 +28,9 @@ var VideoSidebar = Marionette.View.extend({
     e.preventDefault()
     console.log(this.model.get('published'))
     var data = Backbone.Syphon.serialize(this);
-    var content = $('#myUrl').val();
+    var content = {}
+    content.url = $('#myUrl').val();
+    content.description = $('#js-description').val();
     if (this.model.get('published') === 'true') {
       console.log('already published')
       this.trigger('silent:save', content, data, this.model)
@@ -40,7 +42,9 @@ var VideoSidebar = Marionette.View.extend({
   previewClicked: function(e) {
     e.preventDefault()
     var data = Backbone.Syphon.serialize(this);
-    var content = $('#myUrl').val();
+    var content = {}
+    content.url = $('#myUrl').val();
+    content.description = $('#js-description').val();
     this.trigger('silent:save', content, data, this.model)
   },
 

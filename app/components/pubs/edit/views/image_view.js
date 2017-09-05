@@ -61,7 +61,10 @@ var Image = Marionette.View.extend({
         if(xhr.status === 200){
           alertify.success('uploading complete')
           document.getElementById('js-image-preview').src = url;
-          model.get('drafts').findWhere({type: 'image'}).set({content: url})
+          var content = model.get('drafts').findWhere({type: 'image'})
+          content = {}
+          content.url = url
+          model.get('drafts').findWhere({type: 'image'}).set({content: content})
           progressBar.style.display = 'none'
         }
         else{

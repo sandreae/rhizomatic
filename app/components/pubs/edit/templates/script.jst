@@ -1,11 +1,14 @@
-
 <div class="singlemedia-container">
 <div class="singlemedia-content">
 <form>
   <label for="url">Url:</label>
-  <input class="js-url" id="js-url" name="url" type="text" value="<%- activeContent %>"/>
+  <input class="js-url" id="js-url" name="url" type="text" value="<%- activeContent.url %>"/>
+  <label for="description">Text:</label>
+  <textarea class="js-description" id="js-description" name="textarea" rows="6"><%- activeContent.description %></textarea>
 </form>
+<div class="singlemedia-info">
 <i><%= title %></i><br>
 <%= contributor %><br>
+</div>
 </div>
 </div>

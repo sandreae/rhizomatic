@@ -13,9 +13,9 @@ var Video = Marionette.View.extend({
     var drafts = this.model.get('drafts')
     var draft = drafts.findWhere({type: 'video'})
     var content = draft.get("content")
-    $('#myUrl').val(content)
+    $('#myUrl').val(content.url)
     var myId;
-    myId = this.getId(content);
+    myId = this.getId(content.url);
     var embed = '<iframe src="//www.youtube.com/embed/' + myId + '?showinfo=0" frameborder="0" allowfullscreen></iframe>'
     $('#myCode').html(embed);
   },

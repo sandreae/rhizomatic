@@ -154,7 +154,7 @@ var D3View = Mn.View.extend({
     var color = d3.scaleOrdinal(d3.schemeCategory10);
     var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBody().strength(-300).distanceMin(20))
+    .force("charge", d3.forceManyBody().strength(-150).distanceMin(40))
     .force('x', function(d) { return d.strength; })
     .force('y', function(d) { return d.strength; })
   

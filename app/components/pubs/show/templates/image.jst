@@ -1,7 +1,12 @@
 <div class="singlemedia-container">
 <div class="singlemedia-content">
-<img src="<%= activeContent %>"><br>
+<div class="singlemedia-image">
+<img src="<%= activeContent.url %>"><br>
+<p><%= activeContent.description %></p><br>
+<div class="singlemedia-info">
 <i><%= title %></i><br>
 <%= contributor %><br>
+</div>
+</div>
 </div>
 </div>

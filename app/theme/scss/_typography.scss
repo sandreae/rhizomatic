@@ -1,33 +1,31 @@
 
 h1 {
     color:$GLOBAL_FONT_COLOR;
-    font-size:3em;
+    font-size:2.4em;
     margin:0;
     font-family:$GLOBAL_FONT;
 }
  
 h2 {
-    font-size:2em;
+    font-size:1.8em;
     color:$GLOBAL_FONT_COLOR;
     margin:0;
     font-family:$GLOBAL_FONT;
 }
  
 h3 {
-    font-size: 16px;
+    font-size: 1.2em;
     margin: 0.67em 0;
     font-family:$GLOBAL_FONT;
     color:$GLOBAL_FONT_COLOR;
-}
- 
-h4 {
-    font-size: 2em;
-    margin: 0.67em 0;
-    font-family:$GLOBAL_FONT;
 }
 
 a {
     color:$GLOBAL_FONT_COLOR;
     font-family:$GLOBAL_FONT;
+}
+
+p {
+    font-size: 1em;
 }
 

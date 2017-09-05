@@ -12,11 +12,7 @@ import {UsersApp} from './components/users/users_app'
 import {RhizomesApp} from './components/rhizomes/rhizomes_app'
 import {Auth} from './entities/authentication/authentication_router'
 import {gc} from './components/radio'
-import * as Pace from 'pace-js'
 
-    window.paceOptions = {
-      elements: true
-    };
 
 // import {Globals, Authentication} from './../app/entities/authentication'
 
@@ -40,6 +36,5 @@ Platform.navigate = function (route) {
 document.addEventListener('DOMContentLoaded', () => {
 
   Platform.start();
-  Pace.start()
 })
 

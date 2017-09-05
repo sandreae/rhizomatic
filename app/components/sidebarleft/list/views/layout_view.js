@@ -1,6 +1,7 @@
 import template from '../templates/layout.jst'
 import ListView from './list_view'
 import {gc} from '../../../radio'
+import 'hammerjs'
 
 export default Mn.View.extend({
 
@@ -14,6 +15,16 @@ export default Mn.View.extend({
     var headers = gc.request('headers:get')
     this.showChildView('nav-region', new ListView({collection: headers}))
   },
+
+  onAttach: function() {
+    var myElement = document.getElementById("js-header-region")
+    console.log(myElement)
+    var sidebarleft = new Hammer(myElement);
+    sidebarleft.on('panleft', function(ev) {
+      gc.trigger('sidebarleft:close')
+    });
+  },
+
 
   ui: {
     sidebarleftOpen: '#js-sidebarleftopen',

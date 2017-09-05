@@ -1,7 +1,6 @@
 import template from './../../../../entities/behaviors/templates/details.jst'
 
 var VideoSidebar = Marionette.View.extend({
-  
   template: template,
 
   events: {

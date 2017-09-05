@@ -13,7 +13,7 @@ $sidebar-border-radius: 0;
     height: 98%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
-    z-index: 21; /* Stay on top */
+    z-index: 100; /* Stay on top */
     top: 1%;
     border: $sidebar-border-thickness solid #5ad7fb;
     border-radius: $sidebar-border-radius;
@@ -35,17 +35,34 @@ $sidebar-border-radius: 0;
     text-decoration: none;
     font-size: 25px;
     cursor:pointer;
-    z-index: 20;
+    z-index: 10;
 }
 
 ////////SIDEBAR RIGHT///////////////
 
 .sidebar-right {
     @include sidebar-default;
-    @include sidebar-lists(15px, 100%, 4px);
+    @include sidebar-lists(1.2em, 100%, 0px);
     right: -2*$sidebar-border-thickness;
     padding-left: 0px;
     margin-right: 0px;
+
+    .sidebar-div {
+      padding-left: 20px;
+      padding-right: 20px;
+      width: 100%;
+      min-width: 100%;
+
+      @include tablet {
+        width: $sidebar-right-width-tablet;
+        min-width: $sidebar-right-width-tablet;
+      }
+
+      @include desktop {
+        width: $sidebar-right-width-desktop;
+        min-width: $sidebar-right-width-desktop;
+      }
+    }
 }
 
 .sidebar-right-open-button {
@@ -53,18 +70,16 @@ $sidebar-border-radius: 0;
     right: -5px;
 }
 
-// container div //
-
-.sidebar-right .sidebar-div {
-    padding-right: 50px;
-    padding-left: 20px;
-    display: block;
-    width: 450px;
-    min-width: 450px;
-}
-
 .sidebaractive-right {
-    width: 450px;
+    width: 100%;
+
+  @include tablet {
+    width: $sidebar-right-width-tablet;
+  }
+
+  @include desktop {
+    width: $sidebar-right-width-desktop;
+  }
 }
 
 .sidebar-right .help-inline {
@@ -75,7 +90,7 @@ $sidebar-border-radius: 0;
 
 .sidebar-left {
     @include sidebar-default;
-    @include sidebar-lists(22px, 100%, 8px);
+    @include sidebar-lists(1.5em, 100%, 8px);
     border: $sidebar-border-thickness solid $GLOBAL_BACKGROUND_COLOR_SECONDARY;
     left: -2*$sidebar-border-thickness;
     padding-left: 0px;
@@ -83,6 +98,14 @@ $sidebar-border-radius: 0;
 
 .sidebaractive-left {
     width: 200px;
+
+  @include tablet {
+    width: 200px;
+  }
+
+  @include desktop {
+    width: 200px;
+  }
 }
 
 .sidebar-left-open-button {

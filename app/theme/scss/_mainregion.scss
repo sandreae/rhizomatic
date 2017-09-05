@@ -15,5 +15,13 @@
 }
 
 .shrink-right {
-	padding-right: 450px;
+	padding-right: 0px;
+  @include tablet {
+    padding-right: $sidebar-right-width-tablet;
+  }
+
+  @include desktop {
+    padding-right: $sidebar-right-width-desktop;
+  }
+
 }

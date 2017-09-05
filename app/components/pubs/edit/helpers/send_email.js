@@ -1,10 +1,13 @@
-$(document).ready(function(){
-    var from,to,subject,text;
+
+    var from
+    var to
+    var subject
+    var text
     $("#send_email").click(function(){     
-        to=$("#to").val();
-        subject=$("#subject").val();
-        text=$("#content").val();
-        $("#message").text("Sending E-mail...Please wait");
+        to =
+        subject =
+        text = 
+        alertify.message("Sending E-mail...Please wait");
         $.get("http://localhost:3000/send",{to:to,subject:subject,text:text},function(data){
         if(data=="sent")
         {
@@ -12,4 +15,3 @@ $(document).ready(function(){
       }
 	});
   });
-});

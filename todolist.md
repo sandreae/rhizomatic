@@ -1,4 +1,3 @@
-info texts for media uploads
 directed at validation only happens once.
 keep sidebar open in edit view?
 back button on sidebar
@@ -7,6 +6,7 @@ make mobile friendly
 
 
 :::::DONE:::::
+info texts for media uploads
 reject pub alertify
 new user no invite / themes (refresh when login needed)
 image size should be 100%

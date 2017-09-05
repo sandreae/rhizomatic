@@ -9,7 +9,27 @@ $GLOBAL_BACKGROUND_COLOR_PRIMARY: #6cf8fc;
 $GLOBAL_BACKGROUND_COLOR_SECONDARY: #f7b136;
 $GLOBAL_BACKGROUND_COLOR_THIRDLY: #f5d7fc;
 
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+$sidebar-right-width-desktop: 450px;
+$sidebar-right-width-tablet: 300px;
+$sidebar-left-width: 200px;
+
+
 //////MIXINS///////////
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
 
 @mixin sidebar-lists($font-size, $width, $padding) {
     ul {
@@ -66,4 +86,14 @@ body {
   height:100%;
   overflow-x:hidden;
   font-family:sans-serif;
+  font-size: 16px;
+
+  @include tablet {
+    font-size: 18px;
+  }
+
+  @include desktop {
+    font-size: 20px;
+  }
+
 }

@@ -1,6 +1,5 @@
 import template from '../templates/audio.jst'
 import {gc} from '../../../radio'
-import * as Pace from 'pace-js'
 
 var Audio = Marionette.View.extend({
   className: 'edit-container',

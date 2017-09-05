@@ -1,5 +1,6 @@
 import layout from '../templates/layout.jst'
 import {gc} from '../../../radio'
+import 'hammerjs'
 
 export default Marionette.View.extend({
   template: layout,
@@ -10,9 +11,20 @@ export default Marionette.View.extend({
     'sidebarRegion3': '#js-sidebar-region3',
   },
 
+  onAttach: function() {
+    var myElement = document.getElementById("js-sidebar-region")
+    console.log(myElement)
+    var hammertime = new Hammer(myElement);
+    hammertime.on('panright', function(ev) {
+      gc.trigger('sidebar:close')
+    });
+  },
+
   ui: {
     sidebarOpen: '#js-sidebar-open-right',
   },
+
+  childViewEventPrefix: false,
 
   events: {
     'click @ui.sidebarOpen': 'sidebarOpen',

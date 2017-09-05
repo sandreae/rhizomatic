@@ -11,7 +11,7 @@ export default Marionette.View.extend({
   // when the views DOM element is clicked call 'highlightName'//
   events: {
     'click a.js-show-pub': 'showClicked',
-    'click a.js-delete-pub': 'deleteClicked',
+    'click button.js-delete-pub': 'deleteClicked',
   },
 
   deleteClicked: function (e) {

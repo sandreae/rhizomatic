@@ -1,6 +1,7 @@
 import template from './../../../../entities/behaviors/templates/details.jst'
 import {gc} from '../../../radio'
-import 'jquery-ui'
+require('webpack-jquery-ui/interactions')
+require('jquery-ui-touch-punch')
 import SimpleMDE from 'simplemde'
 
 var CollageSidebar = Marionette.View.extend({

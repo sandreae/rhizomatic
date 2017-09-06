@@ -1,8 +1,8 @@
 import template from '../templates/collage.jst'
 import {gc} from '../../../radio'
 import SimpleMDE from 'simplemde'
-
 require('webpack-jquery-ui/interactions')
+require('jquery-ui-touch-punch')
 
 var Collage = Marionette.View.extend({
   className: 'collage-container',

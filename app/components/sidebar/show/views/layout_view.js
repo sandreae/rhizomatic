@@ -3,6 +3,7 @@ import {gc} from '../../../radio'
 import 'hammerjs'
 
 export default Marionette.View.extend({
+  className: 'js-sidebar-region',
   template: layout,
 
   regions: {
@@ -11,7 +12,7 @@ export default Marionette.View.extend({
     'sidebarRegion3': '#js-sidebar-region3',
   },
 
-  onAttach: function() {
+  onRender: function() {
     var myElement = document.getElementById("js-sidebar-region")
     console.log(myElement)
     var hammertime = new Hammer(myElement);

@@ -2,25 +2,38 @@ import '../scss/platform.scss';
 import '../vendors/simplemde.min.css';
 import '../vendors/jquery-ui-themes-1.12.1/jquery-ui.css';
 import {gc} from '../../../app/components/radio'
-import 'hammerjs'
+import i18next from 'i18next';
+import jqueryI18next from 'jquery-i18next'
+import translation from '../../theme/translations/en.json'
 
 export default Mn.View.extend({
 
-  onAttach: function() {
-    var myElement = document.getElementById("js-sidebar-region")
-    var myElement = document.getElementById("js-header-region")
-    console.log(myElement)
-    var sidebarright = new Hammer(myElement);
-    sidebarright.on('panright', function(ev) {
-      gc.trigger('sidebar:close')
-    });
-    var sidebarleft = new Hammer(myElement);
-    sidebarleft.on('panleft', function(ev) {
-      gc.trigger('sidebarleft:close')
+  el: '#app',
+
+  initialize: function() {
+    i18next.init({
+      lng: 'en',
+      debug: true,
+      resources: translation
+    }, function(err, t) {
+      console.log('i18n initialized')
+    })
+
+    jqueryI18next.init(i18next, $, {
+      tName: 't', // --> appends $.t = i18next.t 
+      i18nName: 'i18n', // --> appends $.i18n = i18next 
+      handleName: 'localize', // --> appends $(selector).localize(opts); 
+      selectorAttr: 'data-i18n', // selector for translating elements 
+      targetAttr: 'i18n-target', // data-() attribute to grab target element to translate (if diffrent then itself) 
+      optionsAttr: 'i18n-options', // data-() attribute that contains options, will load/set if useOptionsAttr = true 
+      useOptionsAttr: false, // see optionsAttr 
+      parseDefaultValueFromContent: true // parses default values from content ele.val or ele.text 
     });
   },
 
-  el: '#app',
+  onChildviewAttach: function(childView) {
+    $('#js-sidebar-region').localize()
+  },
 
   events: {
     'click #js-main-region': 'click',

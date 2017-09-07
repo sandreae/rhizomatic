@@ -1,0 +1,42 @@
+{
+	"en": {
+	  "translation": {
+	    "sidebar-left": {
+	      "publications": "Publications",
+	      "about": "About",
+	      "users": "Users"
+	    },
+	    "sidebar-right": {
+	      "my-publications": "My Publications",
+	      "my-invites": "My Invites",
+	      "new-rhizome": "Start New Rhizome",
+	      "my-profile": "My Publications"
+	    },
+	    "buttons": {
+	      "home": "Home",
+	      "logout": "Logout"
+	    }
+	  }
+	},
+	
+	"jp": {
+	  "translation": {
+	    "sidebar-left": {
+	      "publications": "Publications",
+	      "about": "About",
+	      "users": "Users"
+	    },
+	    "sidebar-right": {
+	      "my-publications": "My Publications",
+	      "my-invites": "My Invites",
+	      "new-rhizome": "Start New Rhizome",
+	      "my-profile": "My Publications"
+	    },
+	    "buttons": {
+	      "home": "ホーム",
+	      "logout": "ログアウト"
+	    }
+	  }
+	}
+
+}

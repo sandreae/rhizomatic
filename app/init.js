@@ -34,7 +34,6 @@ Platform.navigate = function (route) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-
   Platform.start();
 })
 

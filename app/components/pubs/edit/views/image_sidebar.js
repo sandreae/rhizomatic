@@ -30,6 +30,7 @@ var ImageSidebar = Marionette.View.extend({
     var content = {}
     content.description = document.getElementById('js-description').value
     content.url = document.getElementById('js-image-preview').src
+    console.log(content)
     if (this.model.get('published') === 'true') {
       console.log('already published')
       this.trigger('silent:save', content, data, this.model)
@@ -44,6 +45,7 @@ var ImageSidebar = Marionette.View.extend({
     var content = {}
     content.description = document.getElementById('js-description').value
     content.url = document.getElementById('js-image-preview').src
+    console.log(content)
     this.trigger('silent:save', content, data, this.model)
   },
 

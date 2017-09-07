@@ -1,11 +1,12 @@
 directed at validation only happens once.
 keep sidebar open in edit view?
-back button on sidebar
 multiple image / audio uploads
-make mobile friendly
-
+translations
+only pool tags from published pubs
 
 :::::DONE:::::
+make mobile friendly
+back button on sidebar
 info texts for media uploads
 reject pub alertify
 new user no invite / themes (refresh when login needed)

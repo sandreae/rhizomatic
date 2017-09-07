@@ -31,7 +31,6 @@ var Controller = {
         if (!pubModel.save(data, {
           success: function() {
             alertify.success('publication saved');
-            console.log(pubModel)
             gc.trigger('pub:show', pubModel.get('_id'))
             gc.trigger('sidebar:close')
             gc.trigger('user:listPubs')
@@ -48,8 +47,6 @@ var Controller = {
       })
       
       editSidebarView.on('form:submit', function (content, data, pubModel) {
-        console.log(pubModel)
-        console.log(data)
         type = pubModel.get('type')
         var newType = data.type
         var newDraft = new Platform.Entities.Pubs.Draft()
@@ -65,7 +62,6 @@ var Controller = {
         if (!pubModel.save(data, {
           success: function() {
             alertify.success('publication saved');
-            console.log(pubModel)
             Controller.saveDraft(editSidebarView, pubModel, content, draft, drafts, data, nextDraft, newDraft, newType, type)
           },
           error: function() {

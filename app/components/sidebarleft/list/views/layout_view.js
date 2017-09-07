@@ -4,7 +4,7 @@ import {gc} from '../../../radio'
 import 'hammerjs'
 
 export default Mn.View.extend({
-
+  className: 'js-sidebar-left',
   template: template,
 
   regions: {

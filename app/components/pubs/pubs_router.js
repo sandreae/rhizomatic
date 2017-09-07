@@ -10,8 +10,8 @@ export default Mn.AppRouter.extend({
     'user/publications': 'userListPubs',
     'user/invites': 'userInvites'
   },
+
   execute: function(callback, args, name) {
-  	console.log('pub router')
       if (Authentication.getKey() !== null) {
         if (callback) callback.apply(this, args);  
       } else {
@@ -20,7 +20,6 @@ export default Mn.AppRouter.extend({
         } else {
         gc.trigger('user:home')
         gc.trigger('pubs:list')
-        console.log('route failed')
       }
     }
   }

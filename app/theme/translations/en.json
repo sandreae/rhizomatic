@@ -1,42 +1,73 @@
 {
 	"en": {
 	  "translation": {
+        "headings" : {
+          "rhizomatic": "Rhizomatic",
+          "home": "Home",
+          "profile": "Profile",
+          "publications": "Publications",
+          "requests": "Publication Requests",
+	      "new-rhizome": "Start New Rhizome"
+        },
 	    "sidebar-left": {
 	      "publications": "Publications",
 	      "about": "About",
 	      "users": "Users"
 	    },
 	    "sidebar-right": {
-	      "my-publications": "My Publications",
-	      "my-invites": "My Invites",
+	      "publications": "Publications",
+	      "requests": "Requests",
 	      "new-rhizome": "Start New Rhizome",
-	      "my-profile": "My Publications"
+	      "profile": "Profile",
+	      "published": "published",
+	      "draft": "draft",
+	      "invited-message": "has invited you to respond to their publication"
 	    },
 	    "buttons": {
 	      "home": "Home",
-	      "logout": "Logout"
+	      "logout": "Logout",
+	      "help": "help?!",
+	      "delete": "delete",
+	      "respond": "respond",
+	      "reject": "reject",
+	      "new-rhizome": "Start New Rhizome"
 	    }
 	  }
 	},
-	
+
 	"jp": {
 	  "translation": {
+        "headings" : {
+          "rhizomatic": "ライゾマティック",
+          "home": "ホーム",
+          "profile": "プロフィール",
+          "publications": "投稿",
+          "requests": "招待",
+	      "new-rhizome": "新しいライゾムの投稿"
+        },
 	    "sidebar-left": {
-	      "publications": "Publications",
-	      "about": "About",
-	      "users": "Users"
+	      "publications": "投稿",
+	      "about": "アバウト",
+	      "users": "ユーザー"
 	    },
 	    "sidebar-right": {
-	      "my-publications": "My Publications",
-	      "my-invites": "My Invites",
-	      "new-rhizome": "Start New Rhizome",
-	      "my-profile": "My Publications"
+	      "publications": "投稿",
+	      "requests": "招待",
+	      "new-rhizome": "新しいライゾムの投稿",
+	      "profile": "プロフィール",
+	      "published": "公開",
+	      "draft": "下書き",
+	      "invited-message": "さんがあなたが投稿への返事をしてくれるか聞いています"
 	    },
 	    "buttons": {
 	      "home": "ホーム",
-	      "logout": "ログアウト"
+	      "logout": "ログアウト",
+	      "help": "ヘルプ！？",
+	      "delete": "削除",
+	      "respond": "返信",
+	      "reject": "削除",
+	      "new-rhizome": "新しいライゾムの投稿"
 	    }
 	  }
 	}
-
 }

@@ -94,6 +94,22 @@ $sidebar-border-radius: 0;
     border: $sidebar-border-thickness solid $GLOBAL_BACKGROUND_COLOR_SECONDARY;
     left: -2*$sidebar-border-thickness;
     padding-left: 0px;
+    height: 100%;
+
+
+
+    .nav {
+      width: $sidebar-left-width;
+      min-width: $sidebar-left-width;
+    }
+
+    .languages {
+      width: 100px;
+      min-width: 100px;
+      position: absolute;
+      bottom: 10px;  
+      left: 10px;  
+    }
 }
 
 .sidebaractive-left {

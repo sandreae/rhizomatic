@@ -14,6 +14,7 @@ export default Mn.View.extend({
     i18next.init({
       lng: 'en',
       debug: true,
+      fallbackLng: ['en', 'jp'],
       resources: translation
     }, function(err, t) {
       console.log('i18n initialized')
@@ -29,10 +30,6 @@ export default Mn.View.extend({
       useOptionsAttr: false, // see optionsAttr 
       parseDefaultValueFromContent: true // parses default values from content ele.val or ele.text 
     });
-  },
-
-  onChildviewRender: function(childView) {
-    $('#js-sidebar-region').localize()
   },
 
   events: {

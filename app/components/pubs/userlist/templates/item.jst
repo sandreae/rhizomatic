@@ -4,13 +4,12 @@
 	    <a href="#" class="js-show-pub show-pub-link"><%- title %></a>
 	  </li>
 	  <li>
-	    <% if (published == 'false') { %>draft<% } else { %> published <% } %>
+	    <% if (published == 'false') { %><i data-i18n="sidebar-right.draft"></i><% } else { %> <i data-i18n="sidebar-right.published"></i> <% } %>
 	  </li>
 	</ul>
 </td>
 	  
 <td class="pubs-edit-links">
-<button class="js-delete-pub prompt-for-delete">
-  Delete
+<button class="js-delete-pub prompt-for-delete" data-i18n="buttons.delete">
 </button>
 </td>

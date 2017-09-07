@@ -1,10 +1,19 @@
 directed at validation only happens once.
 keep sidebar open in edit view?
 multiple image / audio uploads
-translations
+alertify translations
 only pool tags from published pubs
+old safari buggy?
+
+TRANSLATIONS:
+Arabic - Jordan
+Russian - Asiya
+Korean - Heesun
+Chinese - Yulan
+Spanish - Rod
 
 :::::DONE:::::
+translations
 make mobile friendly
 back button on sidebar
 info texts for media uploads

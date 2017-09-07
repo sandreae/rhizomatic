@@ -9,11 +9,6 @@ export default Marionette.View.extend({
     'click a.nav-link': 'navigate',
   },
 
-  modelEvents: {
-  'change': function() {
-    }
-  },
-
   navigate: function(e) {
     e.preventDefault()
     var model = this.model

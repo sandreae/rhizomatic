@@ -21,11 +21,18 @@ export default Marionette.View.extend({
     });
   },
 
+  onChildviewAttach: function(childView) {
+    $('#js-sidebar-region').localize()
+  },
+
+  onAttach: function(childView) {
+    $('#js-sidebar-region').localize()
+  },
+
+
   ui: {
     sidebarOpen: '#js-sidebar-open-right',
   },
-
-  childViewEventPrefix: false,
 
   events: {
     'click @ui.sidebarOpen': 'sidebarOpen',

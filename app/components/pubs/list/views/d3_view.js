@@ -38,6 +38,7 @@ var D3View = Mn.View.extend({
 
   onAttach: function() {
     this.runD3()
+    $('#js-main-region').localize()
   },
 
   submitClicked: function(e){

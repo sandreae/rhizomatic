@@ -7,7 +7,8 @@ var Controller = {
     if (appState.get('loggedIn') === true) {
       var home = new Home({
 	  	templateContext: {
-		  isAdmin: appState.get('isAdmin')
+      isAdmin: appState.get('isAdmin'),
+		  userName: appState.get('userName'),
 	    } 
 	  })
       gc.trigger('sidebar:show', home)

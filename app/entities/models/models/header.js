@@ -19,11 +19,9 @@ var Headers = Backbone.Collection.extend({
 
 var initializeHeaders = function() {
   headers = new Headers([
-    {id: '1', name: 'Publications', url: 'publications', navigationTrigger: 'pubs:list', admin: false},
-    {id: '2', name: 'About', url: 'about', navigationTrigger: 'about:show', admin: false },
-    {id: '3', name: 'Users', url: 'users', navigationTrigger: 'users:list', admin: true },
-//  {id: '4', name: 'Rhizomes', url: 'rhizomes', navigationTrigger: 'rhizomes:list', admin: true },
-//    {id: '5', name: 'Login', url: 'login', navigationTrigger: 'login:clicked', admin: false },
+    {id: '1', name: 'publications', url: 'publications', navigationTrigger: 'pubs:list', admin: false},
+    {id: '2', name: 'about', url: 'about', navigationTrigger: 'about:show', admin: false },
+    {id: '3', name: 'users', url: 'users', navigationTrigger: 'users:list', admin: true }
   ]);
   return headers
 };

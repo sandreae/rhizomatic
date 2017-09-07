@@ -23,13 +23,11 @@ var MainHandler = Marionette.Object.extend({
 
   sidebarleftOpen: function () {
     $('#js-sidebar-left').addClass('sidebaractive-left')
-    $('.main-region').addClass('shrink-left')
     gc.trigger('sidebar:close')
   },
 
   sidebarleftClose: function () {
     $('#js-sidebar-left').removeClass('sidebaractive-left')
-    $('.main-region').removeClass('shrink-left')
   },
 
 })

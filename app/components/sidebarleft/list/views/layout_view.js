@@ -25,13 +25,16 @@ export default Mn.View.extend({
     });
   },
 
+  onChildviewAttach: function(childView) {
+    $('#js-nav').localize()
+  },
 
   ui: {
     sidebarleftOpen: '#js-sidebarleftopen',
     mobile: '#js-mobile',
     sidebarleftOpen: '#js-sidebarleftopen',
     sidebarOpen: '#js-sidebaropen',
-
+    translate: '#js-translate',
   },
 
   events: {
@@ -39,6 +42,16 @@ export default Mn.View.extend({
     'click @ui.navigate': 'navigate',
     'click @ui.sidebarleftOpen': 'sidebarleftOpen',
     'click @ui.sidebarOpen': 'sidebarOpen',
+    'click @ui.translate': 'translate',
+  },
+
+  translate: function(e) {
+    e.preventDefault()
+    var key = e.target.text
+    $.i18n.changeLanguage(key)
+    $('#js-main-region').localize()
+    $('#js-sidebar-region').localize()
+    $('#js-header-region').localize()
   },
 
   sidebarleftClose: function (e) {

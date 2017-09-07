@@ -5,7 +5,6 @@ import {gc} from '../../../radio'
 var TableBody = Mn.CollectionView.extend({
   tagName: 'tbody',
   childView: ItemView,
-
   collectionEvents: {
     'change': 'render'
   },

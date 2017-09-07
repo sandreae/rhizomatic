@@ -31,7 +31,7 @@ export default Mn.View.extend({
     });
   },
 
-  onChildviewAttach: function(childView) {
+  onChildviewRender: function(childView) {
     $('#js-sidebar-region').localize()
   },
 

@@ -143,19 +143,23 @@ var D3View = Mn.View.extend({
   },
 
   runD3: function() {
+
     const container = $('#d3-content')
     var width = container.width()
     var height = container.height()
     var self = this
     d3.selectAll("svg > *").remove();
+
     var svg = d3.select("svg")
     .attr('viewBox','0 0 '+ width +' '+ height )
+    .call(d3.zoom().on("zoom", function () {
+      svg.attr("transform", d3.event.transform)
+    }))
     .append("g")
-    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-    var color = d3.scaleOrdinal(d3.schemeCategory10);
+
     var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBody().strength(-150).distanceMin(40))
+    .force("charge", d3.forceManyBody().strength(-150).distanceMin(30).distanceMax(200))
     .force('x', function(d) { return d.strength; })
     .force('y', function(d) { return d.strength; })
   
@@ -170,6 +174,7 @@ var D3View = Mn.View.extend({
     .enter().append("line")
       .attr("class", function(d) { return d.rhizome})
       .attr("stroke-width", function(d) { return d.width });
+
   var node = svg.append("g")
       .attr("class", "nodes")
     .selectAll("circle")
@@ -186,6 +191,7 @@ var D3View = Mn.View.extend({
           .on("drag", dragged)
           .on("end", dragended));
 
+
   node.append("id")
       .text(function(d) { return d.id });
 
@@ -195,16 +201,15 @@ var D3View = Mn.View.extend({
   simulation.force("link")
       .links(myLinks);
 
-
   function ticked() {
     link
-        .attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
+        .attr("x1", function(d) { return d.source.x  + width / 2; })
+        .attr("y1", function(d) { return d.source.y  + height / 2; })
+        .attr("x2", function(d) { return d.target.x  + width / 2; })
+        .attr("y2", function(d) { return d.target.y + height / 2; });
     node
-        .attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
+        .attr("cx", function(d) { return d.x  + width / 2; })
+        .attr("cy", function(d) { return d.y + height / 2; });
   }
 
 

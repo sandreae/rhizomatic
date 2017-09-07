@@ -4,6 +4,10 @@ multiple image / audio uploads
 alertify translations
 only pool tags from published pubs
 old safari buggy?
+email invites to existing contributors
+invite by email finds existing members
+fix runaway rhizome
+d3 add scroll and zoom
 
 TRANSLATIONS:
 Arabic - Jordan

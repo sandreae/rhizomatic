@@ -82,28 +82,46 @@ var Controller = {
     console.log('new invited pub triggered')
     var self = this
     var invitedUsers = pubModel.get('directedAt')
+    var pubTitle = pubModel.get('title')
     gc.request('users:get').then(function(users) {
       gc.request('pubs:get').then(function(pubs) {
 
         invitedUsers.forEach(function(contributor) {
           var invitedUserModel
-
-          invitedUserModel = users.findWhere(function(model){
+          var x = users.findWhere(function(model){
             return (_.indexOf(model.get('contributorNames'), contributor) >= 0 );
-          });
+          })
 
-          if (invitedUserModel === undefined) {
-            if (contributor.includes('@')){
-            console.log('send email to', contributor)
-            self.emailNewUser(contributor, pubModel.get('contributor'))
-            invitedUserModel = new Platform.Entities.Users.User({
-              userName: contributor,
-              email: contributor,
-              password: 'password'
-            })
-            console.log(invitedUserModel)    
-            }
+          var y = users.findWhere({email: contributor})
+
+          if (x !== undefined) {
+            console.log('user found by contributor name ' + x.get('userName'))
+            invitedUserModel = x
           }
+          if (y !== undefined) {
+            console.log('user found by email ' + y.get('userName'))
+            invitedUserModel = y
+          }
+
+          if (x === undefined && y === undefined) {
+            console.log('user does not exist')
+            if (contributor.includes('@')) {
+              console.log('create and invite new user: ' + contributor)
+              self.emailUser(contributor, pubModel.get('contributor'), true, pubTitle)
+              invitedUserModel = new Platform.Entities.Users.User({
+                userName: contributor,
+                email: contributor,
+                password: 'password'
+              })
+            console.log(invitedUserModel)    
+            } else {
+              console.log('invite email address invalid')
+            }
+          } else {
+            console.log('invite ' + invitedUserModel.get('userName') + ' to respond')
+            self.emailUser(invitedUserModel.get('email'), pubModel.get('contributor'), false, pubTitle)
+          }
+
           var pendingList = invitedUserModel.get('pendingPub')
           pendingList.push({
             invitedByContrib: pubModel.get('contributor'),
@@ -119,7 +137,6 @@ var Controller = {
             success: function() {
               gc.trigger('user:listPubs')
               gc.trigger('pub:show', pubModel.get("_id"))
-              alertify.error('invite sent to ' + contributor)
             },
           })
         })
@@ -211,19 +228,33 @@ var Controller = {
     })
   },
 
-  emailNewUser: function(contributor, invitedBy) {
+  emailUser: function(contributor, invitedBy, isNew, pubTitle) {
+    var email
+    var subject
+    var emailNewUser = 
+    `<h1>Welcome To Rhizomatic</h1> <p>Welcome to Rhizome, an online space and community for sharing, communication, and discussion.</p><p>You have been invited by <b>` + invitedBy + `</b> to respond to their publication <b>` + pubTitle + `</b>.<br />
+    You can accept the invitation and create a response in a variety of formats (markdown, collage, url, audio, video, image) by visiting the Rhizomatic website and logging in:<br />
+    <br><a href="http://www.rhizomatic.community">http://www.rhizomatic.community</a></p>
+    username: ` + contributor + `<br>
+    password: password<br>(please change this when you log in for the first time)<br>
+    <p>When creating a new publication, you can invite any number of existing, or new, users to respond to your publication.</p>`
 
-    var email = 
-`<h1>Welcome To Rhizomatic</h1> <p>Welcome to Rhizome, an online space and community for sharing, communication, and discussion.</p><p>You have been invited by ` + invitedBy + ` to respond to their publication.<br />
-You can accept the invitation and create a response in a variety of formats (markdown, collage, url, audio, image) by visiting the Rhizomatic website and logging in:<br />
-<br><a href="http://www.rhizomatic.community">http://www.rhizomatic.community</a></p>
-username: ` + contributor + `<br>
-password: password<br>(please change this when you log in for the first time)<br>
-<p>When creating a new publication, you can invite any number of existing, or new, users to respond to your publication. In addition to responding to to the publication you have been invited to, you are encouraged to join in on the discussions surrounding other publications and responses.</p>`
+    var emailUser = 
+    `<h1>Rhizomatic</h1> <p>You have been invited by <b>` + invitedBy + `</b> to respond to their publication <b>` + pubTitle + `</b>.<br />
+    You can accept the invitation and create a response in a variety of formats (markdown, collage, url, audio, video, image) by visiting the Rhizomatic website and logging in with your existing profile details.<br />
+    <br><a href="http://www.rhizomatic.community">http://www.rhizomatic.community</a></p>
+    <p>When creating a new publication, you can invite any number of existing, or new, users to respond to your publication.</p>`
 
+    if (isNew === true) {
+      email = emailNewUser
+      subject = 'Welcome To Rhizomatic' 
+    } else {
+      email = emailUser
+      subject = 'Rhizomatic: new publication request'
+    }
 
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', '/api/send?to=' + contributor + '&from=contact@rhizomatic.community&subject=Welcome To Rhizomatic&html=' + email);
+    xhr.open('GET', '/api/send?to=' + contributor + '&from=contact@rhizomatic.community&subject=' + subject + '&html=' + email);
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {

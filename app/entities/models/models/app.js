@@ -10,10 +10,20 @@ var initAppState = function() {
   console.log('APP STATE INIT')
   gc.request('pubs:get').then(function(pubs) {
     gc.request('users:get').then(function(users) {
-      var allTags = pubs.pluck('tags')
+      var pubsJSON = pubs.toJSON()
+      var allTags = pubsJSON.map(function(pub, index, array){
+        var tags
+        if (pub.published === 'true') {
+          tags = pub.tags.map(function(tag){
+            return tag
+          })
+          return tags
+        }
+      })
       var tagPool = _.flatten(allTags).filter( function( item, index, inputArray ) {
-             return inputArray.indexOf(item) == index;
+        return inputArray.indexOf(item) == index;
       });
+
       var allContribs = users.pluck('contributorNames')
       var contributors = _.flatten(allContribs).filter( function( item, index, inputArray ) {
          return inputArray.indexOf(item) == index;
@@ -33,15 +43,24 @@ var refreshAppState = function() {
   console.log('APP STATE INIT')
   gc.request('pubs:get').then(function(pubs) {
     gc.request('users:get').then(function(users) {
-      var allTags = pubs.pluck('tags')
+      var pubsJSON = pubs.toJSON()
+      var allTags = pubsJSON.map(function(pub, index, array){
+        var tags
+        if (pub.published === 'true') {
+          tags = pub.tags.map(function(tag){
+            return tag
+          })
+          return tags
+        }
+      })
       var tagPool = _.flatten(allTags).filter( function( item, index, inputArray ) {
-             return inputArray.indexOf(item) == index;
+        return inputArray.indexOf(item) == index;
       });
-      var allContribs = users.pluck('contributorNames')
+
+      var allContribs = pubs.pluck('contributor')
       var contributors = _.flatten(allContribs).filter( function( item, index, inputArray ) {
          return inputArray.indexOf(item) == index;
       });
-
       appState.set({
         tags: tagPool,
         contributors: contributors

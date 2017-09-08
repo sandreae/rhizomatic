@@ -1,13 +1,9 @@
 directed at validation only happens once.
-keep sidebar open in edit view?
 multiple image / audio uploads
 alertify translations
 only pool tags from published pubs
+only pool contribs from published pubs
 old safari buggy?
-email invites to existing contributors
-invite by email finds existing members
-fix runaway rhizome
-d3 add scroll and zoom
 
 TRANSLATIONS:
 Arabic - Jordan
@@ -15,8 +11,17 @@ Russian - Asiya
 Korean - Heesun
 Chinese - Yulan
 Spanish - Rod
+German
+French
+Dutch
+Danish
 
 :::::DONE:::::
+keep sidebar open in edit view?
+email invites to existing contributors
+invite by email finds existing members
+fix runaway rhizome
+d3 add scroll and zoom
 translations
 make mobile friendly
 back button on sidebar

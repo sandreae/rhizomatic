@@ -26,12 +26,34 @@
 	    "buttons": {
 	      "home": "Home",
 	      "logout": "Logout",
+	      "ok": "ok",
+	      "cancel": "cancel",
 	      "help": "help?!",
 	      "delete": "delete",
 	      "respond": "respond",
 	      "reject": "reject",
 	      "new-rhizome": "Start New Rhizome"
+	    },
+	    "alertify": {
+	      "delete-pub": "Delete this publication?",
+	      "pub-deleted": "publication deleted",
+	      "pub-not-deleted": "publication not deleted",
+	      "pub-saved": "publication saved",
+	      "pub-published": "publication published",
+	      "pub-not-saved": "publication failed to saved",
+	      "pub-not-deleted": "publication not deleted",
+	      "invite-sent-to": "invitation sent to",
+	      "invite-failed": "invitation failed to",
+	      "remove-invite": "Remove this request?",
+	      "invite-removed": "request removed",
+	      "invite-not-removed": "invite not removed",
+	      "upload-failed": "sorry, upload failed",
+	      "upload-success": "file uploaded",
+	      "no-file": "no file selected",
+	      "uploading": "uploading file, please wait",
+	      "login-success": "Welcome to Rhizomatic!"
 	    }
+
 	  }
 	},
 
@@ -62,11 +84,32 @@
 	    "buttons": {
 	      "home": "ホーム",
 	      "logout": "ログアウト",
+	      "ok": "ひいい",
+	      "cancel": "カヌセル",
 	      "help": "ヘルプ！？",
 	      "delete": "削除",
 	      "respond": "返信",
 	      "reject": "削除",
 	      "new-rhizome": "新しいライゾムの投稿"
+	    },
+	    "alertify": {
+	      "delete-pub": "Delete this publication?",
+	      "pub-deleted": "publication deleted",
+	      "pub-not-deleted": "publication not deleted",
+	      "pub-saved": "publication saved",
+	      "pub-published": "publication published",
+	      "pub-not-saved": "publication failed to saved",
+	      "pub-not-deleted": "publication not deleted",
+	      "invite-sent-to": "invitation sent to",
+	      "invite-failed": "invitation failed to",
+	      "remove-invite": "Remove this request?",
+	      "invite-removed": "request removed",
+	      "invite-not-removed": "invite not removed",
+	      "upload-failed": "sorry, upload failed",
+	      "upload-success": "file uploaded",
+	      "no-file": "no file selected",
+	      "uploading": "uploading file, please wait",
+	      "login-success": "Welcome to Rhizomatic!"
 	    }
 	  }
 	}

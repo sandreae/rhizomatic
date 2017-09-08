@@ -59,7 +59,7 @@ var Image = Marionette.View.extend({
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
         if(xhr.status === 200){
-          alertify.success('uploading complete')
+          alertify.success($.i18n.t('alertify.upload-success'))
           document.getElementById('js-image-preview').src = url;
           var content = model.get('drafts').findWhere({type: 'image'})
           content = {}
@@ -68,7 +68,7 @@ var Image = Marionette.View.extend({
           progressBar.style.display = 'none'
         }
         else{
-          alertify.error('sorry, upload failed')
+          alertify.error($.i18n.t('alertify.upload-failed'))
         }
       }
     };

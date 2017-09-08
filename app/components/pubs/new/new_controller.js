@@ -17,36 +17,19 @@ var Controller = {
 
 
     gc.request('pubs:get').then(function (pubsCollection) {
-      gc.request('rhizomes:get').then(function(rhizomes){
         newPubView.on('form:submit', function (data) {
           if (data.tags === '') {data.tags = []} else {data.tags = data.tags.split(', ')}
           if (data.directedAt === '') {data.directedAt = []} else {data.directedAt = data.directedAt.split(', ')}
 
           if (!newPub.save(data, {
             success: function(pub) {
-              console.log('save succes 1')
-              console.log(newPub)
               if (user !== undefined && user !== null) {
                 invites.remove(invite)
                 user.save({pendingPub: invites.toJSON()})
               }
 
               if (invitedByPubId === "" || invitedByPubId === null) {invitedByPubId = newPub.get('_id')}
-              
-              var thisRhizome
-
-              console.log(rhizome)
-              if (rhizome !== null) {
-                var x = rhizomes.length
-                var newRhizome = '00' + x
-                rhizome.set({rhizomeName: newRhizome})
-                thisRhizome = newRhizome
-                rhizome.save(null, {})
-              } else {
-                thisRhizome = rhizomeName
-              }
-              console.log(thisRhizome)
-                      
+                                    
               newDraft.set({
                 type: data.type,
                 pub: newPub.get('_id'),
@@ -56,12 +39,11 @@ var Controller = {
                 contributorId: userID,
                 drafts: drafts,
                 invitedByPubId: invitedByPubId,
-                inRhizome: thisRhizome,
+                inRhizome: rhizomeName,
 
               })
               newPub.save(data, {
                 success: function() {
-                  console.log('pub saved 2')
                   gc.trigger('sidebar:close')
                   gc.trigger('pub:content:edit', newPub.get('_id'))
                 }
@@ -70,7 +52,6 @@ var Controller = {
           })) {newPubView.triggerMethod('form:data:invalid', newPub.validationError);}
         })
         gc.trigger('sidebar:show', newPubView)
-      })
     })
   }
 }

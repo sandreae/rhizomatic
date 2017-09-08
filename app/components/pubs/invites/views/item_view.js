@@ -14,6 +14,7 @@ export default Marionette.View.extend({
     'click a.js-show-pub': 'showClicked',
     'click a.js-reject-pub': 'rejectClicked',
     'click a.js-respond-pub': 'respondClicked',
+    'click a.js-invited-pub': 'pubClicked',
 
   },
 
@@ -21,14 +22,14 @@ export default Marionette.View.extend({
     var self = this
     e.preventDefault()
     e.stopPropagation()
-    alertify.confirm('Rhizomatic', 'Do you want to remove this invitation?',
-      function(){
-        self.trigger('reject:invite', self.model)
-        alertify.success('invite removed');
-      },
-      function(){
-        alertify.error('invite not removed');
-      });
+    alertify.confirm($.i18n.t('alertify.remove-invite'),
+    function(){
+      self.trigger('reject:invite', self.model)
+      alertify.success($.i18n.t('alertify.invite-removed'))
+    },
+    function(){
+      alertify.error($.i18n.t('alertify.invite-not-removed'))
+    });
   },
 
   showClicked: function (e) {
@@ -37,11 +38,15 @@ export default Marionette.View.extend({
     console.log('show clicked')
   },
 
+  pubClicked: function (e) {
+    e.preventDefault()
+    e.stopPropagation()
+    gc.trigger('pub:show', this.model.get('invitedByPubId'))
+  },
+
   respondClicked: function (e) {
     e.preventDefault()
     e.stopPropagation()
-    console.log('respond clicked')
-    console.log(this.model)
     this.trigger('accept:invite', this.model)
   },
 

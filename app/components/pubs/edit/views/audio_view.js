@@ -59,7 +59,7 @@ onAttach: function () {
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4){
         if (xhr.status === 200){
-          alertify.success('uploading complete')
+          alertify.success($.i18n.t('alertify.upload-success'))
           var player = document.getElementById('js-audio-player')
           var audiofile = document.getElementById('js-audio-file')
           audiofile.src = url
@@ -71,7 +71,7 @@ onAttach: function () {
           progressBar.style.display = 'none'
         }
         else{
-          alertify.error('sorry, upload failed')
+          alertify.error($.i18n.t('alertify.upload-failed'))
         }
       }
     };    

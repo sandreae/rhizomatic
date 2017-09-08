@@ -52,6 +52,12 @@ export default Mn.View.extend({
     $('#js-main-region').localize()
     $('#js-sidebar-region').localize()
     $('#js-header-region').localize()
+    console.log($.i18n.t('headings.rhizomatic'))
+    alertify.defaults.glossary.title = $.i18n.t('headings.rhizomatic');
+    alertify.defaults.glossary.ok = $.i18n.t('buttons.ok');
+    alertify.defaults.glossary.cancel = $.i18n.t('buttons.cancel');
+    alertify.alert().destroy()
+    alertify.confirm().destroy()
   },
 
   sidebarleftClose: function (e) {

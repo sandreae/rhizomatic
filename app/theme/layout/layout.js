@@ -30,6 +30,9 @@ export default Mn.View.extend({
       useOptionsAttr: false, // see optionsAttr 
       parseDefaultValueFromContent: true // parses default values from content ele.val or ele.text 
     });
+    alertify.defaults.glossary.title = i18next.t('headings.rhizomatic');
+    alertify.defaults.glossary.ok = i18next.t('buttons.ok');
+    alertify.defaults.glossary.cancel = i18next.t('buttons.cancel');
   },
 
   events: {

@@ -19,14 +19,14 @@ export default Marionette.View.extend({
     e.preventDefault()
     e.stopPropagation()
 
-    alertify.confirm('Rhizomatic', 'Delete this publication?',
+    alertify.confirm($.i18n.t('alertify.delete-pub'),
       function(){
         self.remove()
         self.model.destroy()
-        alertify.success('publication deleted');
+        alertify.success($.i18n.t('alertify.pub-deleted'));
       },
       function(){
-        alertify.error('publication not deleted');
+        alertify.error($.i18n.t('alertify.pub-not-deleted'));
       });
   },
 

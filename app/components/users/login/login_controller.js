@@ -16,7 +16,7 @@ var Controller = {
         success: function(response) {
           if (response.success) {
             gc.request('user:isAuthenticated', response)
-            alertify.success('you are logged into Rhizomatic')
+            alertify.success($.i18n.t('alertify.login-success'))
           } else {alertify.error(response.message)}
         }
       });

@@ -30,13 +30,13 @@ var Controller = {
 
         if (!pubModel.save(data, {
           success: function() {
-            alertify.success('publication saved');
+            alertify.success($.i18n.t('alertify.pub-saved'));
             gc.trigger('pub:show', pubModel.get('_id'))
             gc.trigger('sidebar:close')
             gc.trigger('user:listPubs')
           },
           error: function() {
-            alertify.success('publication not saved')
+            alertify.success($.i18n.t('alertify.pub-not-saved'))
           }
         }))
         {
@@ -61,11 +61,11 @@ var Controller = {
 
         if (!pubModel.save(data, {
           success: function() {
-            alertify.success('publication saved');
+            alertify.success($.i18n.t('alertify.pub-saved'));
             Controller.saveDraft(editSidebarView, pubModel, content, draft, drafts, data, nextDraft, newDraft, newType, type)
           },
           error: function() {
-            alertify.success('publication not saved')
+            alertify.success($.i18n.t('alertify.pub-not-saved'))
           }
         }))
         {
@@ -79,6 +79,7 @@ var Controller = {
   },
 
   newInvitedPub: function(pubModel) {
+    gc.trigger('pubs:list')
     console.log('new invited pub triggered')
     var self = this
     var invitedUsers = pubModel.get('directedAt')
@@ -136,7 +137,6 @@ var Controller = {
           invitedUserModel.save(null, {
             success: function() {
               gc.trigger('user:listPubs')
-              gc.trigger('pub:show', pubModel.get("_id"))
             },
           })
         })
@@ -147,7 +147,6 @@ var Controller = {
   publish: function(pubModel) {
     Controller.saveContributorName(pubModel)
     gc.trigger('sidebar:close')
-    alertify.success('publication published!')
   },
 
   saveContributorName: function(pubModel) {
@@ -161,9 +160,28 @@ var Controller = {
       user.save(null, {
         success: function() {
           console.log('user saved with new contributor names')
-          Controller.newInvitedPub(pubModel)
+          Controller.newRhizome(pubModel)
         }
       })
+    })
+  },
+
+  newRhizome: function(pubModel) {
+    gc.request('rhizomes:get').then(function(rhizomes) {
+      var inRhizome = pubModel.get('inRhizome')
+      console.log(inRhizome)
+      if (inRhizome === null) {
+        console.log('create new rhizome for seed pub')
+        var rhizome = new Platform.Entities.Rhizomes.Rhizome({rhizomeName: 'new'})
+        var x = rhizomes.length
+        var newRhizome = '00' + x
+        rhizome.set({rhizomeName: newRhizome})
+        pubModel.set({inRhizome: newRhizome})
+        rhizome.save(null, {})
+        pubModel.save(null, {
+          success: function() {Controller.newInvitedPub(pubModel)}
+        })
+      } else {Controller.newInvitedPub(pubModel)}
     })
   },
 
@@ -190,13 +208,13 @@ var Controller = {
   },
 
   saveDraft: function(editSidebarView, pubModel, content, draft, drafts, data, nextDraft, newDraft, newType, type) {
-    console.log(pubModel)
     if (pubModel.get('published') === 'true'){
       console.log('publish triggered')
       pubModel.set({publishedDate: Date()})
       pubModel.save(null, {
         success: function() {
           Controller.publish(pubModel)
+          alertify.success($.i18n.t('alertify.pub-published'))
         }
       })
     } else {
@@ -258,10 +276,10 @@ var Controller = {
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          alertify.error('invite sent to ' + contributor)
+          alertify.success($.i18n.t('alertify.invite-sent-to') + ' ' + contributor)
         }
         else {
-          alertify.error('sorry, upload failed')
+          alertify.error($.i18n.t('alertify.invite-failed' + ' ' + contributor))
         }
       }
     };

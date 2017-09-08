@@ -25,11 +25,11 @@ var Collage = Marionette.View.extend({
     var model = this.model
 
     document.getElementById("file-input").onchange = () => {
-      alertify.message('uploading file')
+      alertify.message($.i18n.t('alertify.uploading'))
       const files = document.getElementById('file-input').files;
       const file = files[0];
       if(file == null){
-        return alertify.error('no file selected')
+        return alertify.error($.i18n.t('alertify.no-file'))
       }
       this.getSignedRequest(file, model);
     };
@@ -58,7 +58,7 @@ var Collage = Marionette.View.extend({
           this.uploadFile(file, response.signedRequest, response.url, model);
         }
         else {
-          alertify.error('sorry, upload failed')
+          alertify.error($.i18n.t('alertify.upload-failed'))
         }
       }
     };
@@ -89,7 +89,7 @@ var Collage = Marionette.View.extend({
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
         if(xhr.status === 200){
-        	alertify.success('uploading complete')
+        	alertify.success($.i18n.t('alertify.upload-success'))
           if (file.type.includes('image')){
 			    var resizable = document.createElement('img')
 	            var draggable = document.createElement('div')
@@ -121,7 +121,7 @@ var Collage = Marionette.View.extend({
 				}
 	        }
 	        else{
-          alertify.error('sorry, upload failed')
+          alertify.error($.i18n.t('alertify.upload-failed'))
         }
       }
     }

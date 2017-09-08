@@ -1,9 +1,8 @@
 directed at validation only happens once.
 multiple image / audio uploads
 alertify translations
-only pool tags from published pubs
-only pool contribs from published pubs
 old safari buggy?
+only create new rhizome at publish
 
 TRANSLATIONS:
 Arabic - Jordan
@@ -17,6 +16,8 @@ Dutch
 Danish
 
 :::::DONE:::::
+only pool tags from published pubs
+only pool contribs from published pubs
 keep sidebar open in edit view?
 email invites to existing contributors
 invite by email finds existing members

@@ -18,10 +18,10 @@ $rhizome005: hsla(292, 100%, 40%, 1);
   .\30 03 {
     stroke: $rhizome003;
   }
-  .\30 05 {
+  .\30 04 {
     stroke: $rhizome004;
   }
-  .\30 06 {
+  .\30 05 {
     stroke: $rhizome005;
   }
 
@@ -56,13 +56,13 @@ $rhizome005: hsla(292, 100%, 40%, 1);
       fill: lighten($rhizome003, 20%) ;
 	}
   }
-  .\30 05 {
+  .\30 04 {
     fill: $rhizome004;
     &:hover {
       fill: lighten($rhizome004, 20%) ;
 	}
   }
-  .\30 06 {
+  .\30 05 {
     fill: $rhizome005;
     &:hover {
       fill: lighten($rhizome005, 20%) ;

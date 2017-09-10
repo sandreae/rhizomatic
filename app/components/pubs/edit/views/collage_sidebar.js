@@ -91,7 +91,9 @@ var CollageSidebar = Marionette.View.extend({
     $('.draggable').draggable({
       iframeFix: true
     });    
-    $( ".resizable" ).resizable()
+    $( ".resizable" ).resizable({
+      handles: "e"
+    })
 
     var textareas = document.querySelectorAll('.textBox');
     [].forEach.call(textareas, function(textarea) {

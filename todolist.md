@@ -1,8 +1,7 @@
 directed at validation only happens once.
 multiple image / audio uploads
-alertify translations
 old safari buggy?
-only create new rhizome at publish
+translate edit form
 
 TRANSLATIONS:
 Arabic - Jordan
@@ -16,6 +15,8 @@ Dutch
 Danish
 
 :::::DONE:::::
+only create new rhizome at publish
+alertify translations
 only pool tags from published pubs
 only pool contribs from published pubs
 keep sidebar open in edit view?

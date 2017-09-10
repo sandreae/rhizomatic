@@ -65,18 +65,21 @@ export default Marionette.View.extend({
 
       var textareas = document.querySelectorAll('.textBox');
       [].forEach.call(textareas, function(textarea) {
-        console.log(textarea)
-        var simplemde = new SimpleMDE({ 
-          element: textarea,
-          spellChecker: false,
-          showIcons: [],
-          toolbar: false,
-          toolbarTips: false,
-          status: false,
-        });
-      simplemde.togglePreview();
-      $(textarea).data({editor: simplemde});
-      });    
+      var converter = new showdown.Converter({
+        'tables': true,
+        'ghCodeBlocks': true,
+        'tasklists': true,
+        'ghMentions': true,
+        'openLinksInNewWindow': true,
+        'ghCodeBlocks': true,
+        'simpleLineBreaks': true,
+      })
+      var html = converter.makeHtml(textarea.value)
+      var div = document.createElement("div")
+      div.className = 'text-show'
+      div.innerHTML = html
+      $( textarea).replaceWith(div);      
+      });
     }
   },
 

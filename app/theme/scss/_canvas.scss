@@ -17,7 +17,7 @@
 .draggable {
 	width: 200px;
 	height: auto;
-	position: absolute;
+	position: fixed;
 	
   a {
   	text-decoration:none;
@@ -49,15 +49,15 @@
 	min-height: 100%;
 	width: 100%;
 	height: auto;
-    background-color: silver;
     display: block;
 
-    .CodeMirror, .CodeMirror-scroll {
+    .CodeMirror, .CodeMirror-scroll, .CodeMirror-wrap, {
 	min-height: 10px;
-	border: none;
-	background-color: none;
 	background: none;
-
   }
 }
 
+.text-show {
+	word-break:break-all;
+	background: none;
+}

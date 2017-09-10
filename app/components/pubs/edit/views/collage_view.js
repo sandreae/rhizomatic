@@ -20,7 +20,10 @@ var Collage = Marionette.View.extend({
     $('.draggable').draggable({
       iframeFix: true
     });    
-    $( ".resizable" ).resizable()
+    $( ".resizable" ).resizable({
+      handles: "e"
+    })
+
 
     var model = this.model
 
@@ -174,7 +177,9 @@ var Collage = Marionette.View.extend({
     $(draggable).draggable({
       cancel: null
     });
-    $(resizable).resizable()
+    $(resizable).resizable({
+      handles: "e"
+    })
     $(textBox).attr({class: 'textBox'})
 	var simplemde = new SimpleMDE({ 
 		element: textBox,

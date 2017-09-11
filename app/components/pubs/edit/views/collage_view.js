@@ -157,12 +157,13 @@ var Collage = Marionette.View.extend({
     $('.videoFrame').attr({id: 'myCode'})
   },
 
-  createTextBox: function(){
+  createTextBox: function(e){
+    e.preventDefault()
   	var remove = document.createElement('a')
   	remove.setAttribute('href', '#');
     remove.innerHTML = 'x'
     remove.className = 'remove-button'
-	var resizable = document.createElement('div')
+	  var resizable = document.createElement('div')
     var draggable = document.createElement('div')
     var textBox = document.createElement('textarea')
     var textBoxContainer = document.createElement('div')

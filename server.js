@@ -90,6 +90,13 @@ app.use('/api', authenticateRoutes)
 var userRoutesProtected = require('./server/router/user_protected')(app, express)
 app.use('/api', userRoutesProtected)
 
+///////////////// KEEP AWAKE /////////////////////////
+
+var http = require('http');
+setInterval(function() {
+  http.get("http://rhizomatic-web-zine.herokuapp.com");
+}, 300000); // every 5 minutes (300000)
+
 app.listen(port, function() {
   console.log('Express server is up and running!');
 });

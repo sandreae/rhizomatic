@@ -12,12 +12,13 @@
 .resizable {
 	min-height: 100%;
 	height: auto;
+  	position: absolute;
 }
 
 .draggable {
 	width: 200px;
 	height: auto;
-	position: fixed;
+	position: absolute;
 	
   a {
   	text-decoration:none;
@@ -50,6 +51,8 @@
 	width: 100%;
 	height: auto;
     display: block;
+    position: relative;
+    z-index: 500;
 
     .CodeMirror, .CodeMirror-scroll, .CodeMirror-wrap, {
 	min-height: 10px;
@@ -60,4 +63,5 @@
 .text-show {
 	word-break:break-all;
 	background: none;
+	font-size: 18px !important;
 }

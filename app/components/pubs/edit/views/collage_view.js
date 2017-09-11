@@ -20,10 +20,7 @@ var Collage = Marionette.View.extend({
     $('.draggable').draggable({
       iframeFix: true
     });    
-    $( ".resizable" ).resizable({
-      handles: "e"
-    })
-
+    $( ".resizable" ).resizable()
 
     var model = this.model
 
@@ -39,6 +36,7 @@ var Collage = Marionette.View.extend({
     var textareas = document.querySelectorAll('.textBox');
     [].forEach.call(textareas, function(textarea) {
 		console.log(textarea.value)
+    $(textarea).closest(".resizable").resizable( "option", "handles", "e" )
 			var simplemde = new SimpleMDE({ 
 				element: textarea,
 				spellChecker: false,

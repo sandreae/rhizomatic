@@ -13,7 +13,7 @@ $sidebar-border-radius: 0;
     height: 98%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
-    z-index: 100; /* Stay on top */
+    z-index: 1000; /* Stay on top */
     top: 1%;
     border: $sidebar-border-thickness solid #5ad7fb;
     border-radius: $sidebar-border-radius;
@@ -35,7 +35,7 @@ $sidebar-border-radius: 0;
     text-decoration: none;
     font-size: 25px;
     cursor:pointer;
-    z-index: 10;
+    z-index: 999;
 }
 
 ////////SIDEBAR RIGHT///////////////

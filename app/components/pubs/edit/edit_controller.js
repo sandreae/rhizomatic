@@ -89,6 +89,8 @@ var Controller = {
 
         invitedUsers.forEach(function(contributor) {
           var invitedUserModel
+          var pendingList = []
+
           var x = users.findWhere(function(model){
             return (_.indexOf(model.get('contributorNames'), contributor) >= 0 );
           })
@@ -98,10 +100,13 @@ var Controller = {
           if (x !== undefined) {
             console.log('user found by contributor name ' + x.get('userName'))
             invitedUserModel = x
+            pendingList = invitedUserModel.get('pendingPub')
           }
+
           if (y !== undefined) {
             console.log('user found by email ' + y.get('userName'))
             invitedUserModel = y
+            pendingList = invitedUserModel.get('pendingPub')
           }
 
           if (x === undefined && y === undefined) {
@@ -123,7 +128,6 @@ var Controller = {
             self.emailUser(invitedUserModel.get('email'), pubModel.get('contributor'), false, pubTitle)
           }
 
-          var pendingList = invitedUserModel.get('pendingPub')
           pendingList.push({
             invitedByContrib: pubModel.get('contributor'),
             invitedByContribId: pubModel.get('contributorId'),

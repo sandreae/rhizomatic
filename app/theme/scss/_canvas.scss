@@ -61,7 +61,8 @@
 }
 
 .text-show {
-	word-break:break-all;
-	background: none;
+	background: rgba(white, 0.5);
 	font-size: 18px !important;
+	overflow-wrap: break-word;
+    word-wrap: break-word;
 }

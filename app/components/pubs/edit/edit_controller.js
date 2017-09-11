@@ -249,23 +249,13 @@ var Controller = {
   emailUser: function(contributor, invitedBy, isNew, pubTitle) {
     var email
     var subject
-    var emailNewUser = 
-    `<h1>Welcome To Rhizomatic</h1> <p>Welcome to Rhizome, an online space and community for sharing, communication, and discussion.</p><p>You have been invited by <b>` + invitedBy + `</b> to respond to their publication <b>` + pubTitle + `</b>.<br />
-    You can accept the invitation and create a response in a variety of formats (markdown, collage, url, audio, video, image) by visiting the Rhizomatic website and logging in:<br />
-    <br><a href="http://www.rhizomatic.community">http://www.rhizomatic.community</a></p>
-    username: ` + contributor + `<br>
-    password: password<br>(please change this when you log in for the first time)<br>
-    <p>When creating a new publication, you can invite any number of existing, or new, users to respond to your publication.</p>`
+    var emailNewUser = `<h1>Welcome To Rhizomatic</h1> <p>Welcome to Rhizome, an online space and community for sharing, communication, and discussion.</p><p>You have been invited by <b>` + invitedBy + `</b> to respond to their publication <b>` + pubTitle + `</b>.<br/>You can accept the invitation and create a response in a variety of formats (markdown, collage, url, audio, video, image) by visiting the Rhizomatic website and logging in:<br/><br><a href="http://www.rhizomatic.community">http://www.rhizomatic.community</a></p>username: ` + contributor + `<br>password: password<br>(please change this when you log in for the first time)<br><p>When creating a new publication, you can invite any number of existing, or new, users to respond to your publication.</p>`
 
-    var emailUser = 
-    `<h1>Rhizomatic</h1> <p>You have been invited by <b>` + invitedBy + `</b> to respond to their publication <b>` + pubTitle + `</b>.<br />
-    You can accept the invitation and create a response in a variety of formats (markdown, collage, url, audio, video, image) by visiting the Rhizomatic website and logging in with your existing profile details.<br />
-    <br><a href="http://www.rhizomatic.community">http://www.rhizomatic.community</a></p>
-    <p>When creating a new publication, you can invite any number of existing, or new, users to respond to your publication.</p>`
+    var emailUser = `<h1>Rhizomatic</h1> <p>You have been invited by <b>` + invitedBy + `</b> to respond to their publication <b>` + pubTitle + `</b>.<br/> You can accept the invitation and create a response in a variety of formats (markdown, collage, url, audio, video, image) by visiting the Rhizomatic website and logging in with your existing profile details.<br/><br><a href="http://www.rhizomatic.community">http://www.rhizomatic.community</a></p><p>When creating a new publication, you can invite any number of existing, or new, users to respond to your publication.</p>`
 
     if (isNew === true) {
       email = emailNewUser
-      subject = 'Welcome To Rhizomatic' 
+      subject = 'Welcome To Rhizomatic'
     } else {
       email = emailUser
       subject = 'Rhizomatic: new publication request'
@@ -279,7 +269,7 @@ var Controller = {
           alertify.success($.i18n.t('alertify.invite-sent-to') + ' ' + contributor)
         }
         else {
-          alertify.error($.i18n.t('alertify.invite-failed' + ' ' + contributor))
+          alertify.error($.i18n.t('alertify.invite-failed') + ' ' + contributor)
         }
       }
     };

@@ -51,7 +51,10 @@ var Collage = Marionette.View.extend({
 
   getSignedRequest: function(file, model) {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+    var pubTitle = model.get('title')
+    var pubId = model.get('_id')
+    var fileName = pubId + '_' + pubTitle + '_' + file.name
+    xhr.open('GET', `/sign-s3?file-name=${fileName}&file-type=${file.type}`);
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
@@ -97,7 +100,7 @@ var Collage = Marionette.View.extend({
 	            $(resizable).css({width: '100%', height: '100%'});
 	            resizable.className = 'resizable'
 	            resizable.src = url
-	            $(draggable).css({width: '200px', height: '200px', display: 'inline-block', position: 'absolute'});
+	            
 	            draggable.className = 'draggable'
 	            draggable.appendChild(remove)
 	            draggable.appendChild(resizable)
@@ -113,7 +116,7 @@ var Collage = Marionette.View.extend({
 	            sound.controls = 'controls';
 	            sound.src = url;
 	            sound.type = 'audio/mpeg';
-	            $(draggable).css({width: '200px', height: '80px', display: 'inline-block', position: 'absolute'});
+	            $(draggable).css({width: '400px', height: '80px', display: 'inline-block', position: 'absolute'});
 	            draggable.className = 'draggable'
 	            draggable.appendChild(remove)
 	            draggable.appendChild(sound)
@@ -140,7 +143,7 @@ var Collage = Marionette.View.extend({
     var videoFrame = document.createElement('div')
     $(resizable).css({width: '100%', height: '100%'});
     resizable.className = 'resizable'
-    $(draggable).css({width: '200px', height: '200px', display: 'inline-block', position: 'absolute'});
+    
     draggable.className = 'draggable'
     videoFrame.className = 'videoFrame'
     draggable.appendChild(remove)

@@ -13,18 +13,26 @@
 	min-height: 100%;
 	height: auto;
   	position: absolute;
+    display: inline-block;
 }
 
 .draggable {
 	width: 200px;
 	height: auto;
 	position: absolute;
+    display: inline-block;
 	
   a {
   	text-decoration:none;
   	position: absolute;
   	left: -10px;
   	top: -20px;
+  }
+  audio {
+  	margin: 20px;
+	display: block;
+    border: none;
+    width: 100%;
   }
 }
 

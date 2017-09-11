@@ -8,13 +8,13 @@ var Audio = Marionette.View.extend({
     'click button.js-submit': 'submitClicked'
   },
 
-onAttach: function () {
+  onAttach: function () {
     var model = this.model
     document.getElementById("file-input").onchange = () => {
       alertify.message('uploading, please wait')
       const files = document.getElementById('file-input').files;
       const file = files[0];
-      if(file == null){
+      if(file == null) {
         return alertify.error('no file selected')
       }
       this.getSignedRequest(file, model);
@@ -23,7 +23,10 @@ onAttach: function () {
 
   getSignedRequest: function(file, model) {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+    var pubTitle = model.get('title')
+    var pubId = model.get('_id')
+    var fileName = pubId + '_' + pubTitle + '_' + file.name
+    xhr.open('GET', `/sign-s3?file-name=${fileName}&file-type=${file.type}`);
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {

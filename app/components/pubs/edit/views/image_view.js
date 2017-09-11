@@ -23,7 +23,10 @@ var Image = Marionette.View.extend({
 
   getSignedRequest: function(file, model) {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+    var pubTitle = model.get('title')
+    var pubId = model.get('_id')
+    var fileName = pubId + '_' + pubTitle + '_' + file.name
+    xhr.open('GET', `/sign-s3?file-name=${fileName}&file-type=${file.type}`);
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {

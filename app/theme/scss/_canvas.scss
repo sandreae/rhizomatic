@@ -22,7 +22,7 @@
 	position: absolute;
     display: inline-block;
 	
-  a {
+  .remove-button {
   	text-decoration:none;
   	position: absolute;
   	left: -10px;
@@ -31,8 +31,7 @@
   audio {
   	margin: 20px;
 	display: block;
-    border: none;
-    width: 100%;
+    width: 200px;
   }
 }
 

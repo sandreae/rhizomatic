@@ -185,12 +185,12 @@
 	      "respond": "responder",
 	      "reject": "rechazar",
 	      "new-rhizome": "Crear Rhizome Nuevo",
-	      "save": "Save",
-	      "publish": "Publish",
-	      "preview": "Preview",
-	      "create": "Create Publication",
-	      "change-password": "Change Password",
-	      "save-password": "Save New Password"
+	      "save": "save",
+	      "publish": "publicar",
+	      "preview": "preestrenar",
+	      "create": "crear publicación",
+	      "change-password": "cambia la contraseña",
+	      "save-password": "guardar nueva contraseña"
 	    },
 	    "alertify": {
 	      "delete-pub": "¿Eliminar esta publicación?",
@@ -213,17 +213,17 @@
 	    },
 
 	    "edit-pub": {
-	      "type": "Type",
-	      "contrib": "Contributor Name",
-	      "title": "Title",
-	      "themes": "Themes/Tags",
-	      "response": "Invite responses from",
-	      "response-explain": "invite current user or input email address"
+	      "type": "Tipo",
+	      "contrib": "Nombre del contribuyente",
+	      "title": "Título",
+	      "themes": "Temas/Tags",
+	      "response": "Invitar a las respuestas de",
+	      "response-explain": "invitar al usuario actual o introducir la dirección de correo electrónico"
 	    },
 	    "misc": {
-	      "email": "Email",
-	      "new-password": "New Password",
-	      "repeat-password": "Repeat Password"
+	      "email": "Correo electrónico",
+	      "new-password": "Nueva contraseña",
+	      "repeat-password": "Repite la contraseña"
 	    }
 	  }
 	},

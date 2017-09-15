@@ -10,11 +10,11 @@ $sidebar-border-radius: 0;
 
 
 @mixin sidebar-default {
-    height: 98%; /* 100% Full-height */
+    height: 96%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1000; /* Stay on top */
-    top: 1%;
+    top: 2%;
     border: $sidebar-border-thickness solid #5ad7fb;
     border-radius: $sidebar-border-radius;
     background-color: white; /* Black*/
@@ -94,8 +94,6 @@ $sidebar-border-radius: 0;
     border: $sidebar-border-thickness solid $GLOBAL_BACKGROUND_COLOR_SECONDARY;
     left: -2*$sidebar-border-thickness;
     padding-left: 0px;
-    height: 100%;
-
 
     .nav {
       width: $sidebar-left-width;

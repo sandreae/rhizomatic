@@ -119,7 +119,7 @@ $sidebar-border-radius: 0;
   }
 
   @include desktop {
-    width: 220px;
+    width: $sidebar-left-width;
   }
 }
 

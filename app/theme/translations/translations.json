@@ -112,5 +112,62 @@
 	      "login-success": "Welcome to Rhizomatic!"
 	    }
 	  }
+	},
+
+    "es": {
+      "translation": {
+	    "headings" : {
+	      "rhizomatic": "Rhizomatic",
+	      "home": "Home",
+	      "profile": "Perfil",
+	      "publications": "Publicaciones",
+	      "requests": "Solicitudes de Publicación",
+	       "new-rhizome": "Crear Nuevo Rhizome"
+	    },
+        "sidebar-left": {
+          "publications": "Publicaciones",
+          "about": "Detalles",
+          "users": "Usadores"
+	    },
+	    "sidebar-right": {
+	      "publications": "Publicaciones",
+	      "requests": "Requestas",
+	      "new-rhizome": "Crear Rhizome Nuevo",
+	      "profile": "Perfil",
+	      "published": "Publicado",
+	      "draft": "draft",
+	      "invited-message": "has invitado a responder a tu publicación"
+	    },
+	    "buttons": {
+	      "home": "Home",
+	      "logout": "Cerrar Sesión",
+	      "ok": "ok",
+	      "cancel": "cancelar",
+	      "help": "ayuda",
+	      "delete": "borrar",
+	      "respond": "responder",
+	      "reject": "rechazar",
+	      "new-rhizome": "Crear Rhizome Nuevo"
+	    },
+	    "alertify": {
+	      "delete-pub": "¿Eliminar esta publicación?",
+	      "pub-deleted": "publicación suprimida",
+	      "pub-not-deleted": "publicación no suprimida",
+	      "pub-saved": "publicación guardada",
+	      "pub-published": "publicación publicada",
+	      "pub-not-saved": "no guardo publicación",
+	      "pub-not-deleted": "publicación no suprimida",
+	      "invite-sent-to": "invitación enviada a",
+	      "invite-failed": "invitación ha fallado",
+	      "remove-invite": "¿Eliminar esta invitacion?",
+	      "invite-removed": "invitacion eliminada",
+	      "invite-not-removed": "invitacion no eliminada",
+	      "upload-failed": "lo siento, no cargo.",
+	      "upload-success": "archivo subido",
+	      "no-file": "nada seleccionado",
+	      "uploading": "cargando archivo, por favor espere",
+	      "login-success": "Vienvenido a Rhizomatic!"
+	    }
+	  }
 	}
 }

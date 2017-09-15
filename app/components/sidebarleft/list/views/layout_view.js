@@ -34,7 +34,7 @@ export default Mn.View.extend({
     mobile: '#js-mobile',
     sidebarleftOpen: '#js-sidebarleftopen',
     sidebarOpen: '#js-sidebaropen',
-    translate: '#js-translate',
+    translate: '.js-translate',
   },
 
   events: {

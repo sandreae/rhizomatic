@@ -4,7 +4,7 @@ import '../vendors/jquery-ui-themes-1.12.1/jquery-ui.css';
 import {gc} from '../../../app/components/radio'
 import i18next from 'i18next';
 import jqueryI18next from 'jquery-i18next'
-import translation from '../../theme/translations/en.json'
+import translation from '../../theme/translations/translations.json'
 
 export default Mn.View.extend({
 
@@ -14,7 +14,7 @@ export default Mn.View.extend({
     i18next.init({
       lng: 'en',
       debug: true,
-      fallbackLng: ['en', 'jp'],
+      fallbackLng: ['en', 'jp', 'es'],
       resources: translation
     }, function(err, t) {
       console.log('i18n initialized')

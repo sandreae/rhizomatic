@@ -97,7 +97,6 @@ $sidebar-border-radius: 0;
     height: 100%;
 
 
-
     .nav {
       width: $sidebar-left-width;
       min-width: $sidebar-left-width;
@@ -120,7 +119,7 @@ $sidebar-border-radius: 0;
   }
 
   @include desktop {
-    width: 200px;
+    width: 220px;
   }
 }
 

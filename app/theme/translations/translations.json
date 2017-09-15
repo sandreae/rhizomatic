@@ -32,7 +32,13 @@
 	      "delete": "delete",
 	      "respond": "respond",
 	      "reject": "reject",
-	      "new-rhizome": "Start New Rhizome"
+	      "new-rhizome": "Start New Rhizome",
+	      "save": "Save",
+	      "publish": "Publish",
+	      "preview": "Preview",
+	      "create": "Create Publication",
+	      "change-password": "Change Password",
+	      "save-password": "Save New Password"
 	    },
 	    "alertify": {
 	      "delete-pub": "Delete this publication?",
@@ -52,8 +58,20 @@
 	      "no-file": "no file selected",
 	      "uploading": "uploading file, please wait",
 	      "login-success": "Welcome to Rhizomatic!"
+	    },
+	    "edit-pub": {
+	      "type": "Type",
+	      "contrib": "Contributor Name",
+	      "title": "Title",
+	      "themes": "Themes/Tags",
+	      "response": "Invite responses from",
+	      "response-explain": "invite current user or input email address"
+	    },
+	    "misc": {
+	      "email": "Email",
+	      "new-password": "New Password",
+	      "repeat-password": "Repeat Password"
 	    }
-
 	  }
 	},
 
@@ -90,7 +108,13 @@
 	      "delete": "削除",
 	      "respond": "返信",
 	      "reject": "削除",
-	      "new-rhizome": "新しいライゾムの投稿"
+	      "new-rhizome": "新しいライゾムの投稿",
+	      "save": "Save",
+	      "publish": "Publish",
+	      "preview": "Preview",
+	      "create": "Create Publication",
+	      "change-password": "Change Password",
+	      "save-password": "Save New Password"
 	    },
 	    "alertify": {
 	      "delete-pub": "Delete this publication?",
@@ -110,6 +134,19 @@
 	      "no-file": "no file selected",
 	      "uploading": "uploading file, please wait",
 	      "login-success": "Welcome to Rhizomatic!"
+	    },
+	    "edit-pub": {
+	      "type": "Type",
+	      "contrib": "Contributor Name",
+	      "title": "Title",
+	      "themes": "Themes/Tags",
+	      "response": "Invite responses from",
+	      "response-explain": "invite current user or input email address"
+	    },
+	    "misc": {
+	      "email": "Email",
+	      "new-password": "New Password",
+	      "repeat-password": "Repeat Password"
 	    }
 	  }
 	},
@@ -147,7 +184,13 @@
 	      "delete": "borrar",
 	      "respond": "responder",
 	      "reject": "rechazar",
-	      "new-rhizome": "Crear Rhizome Nuevo"
+	      "new-rhizome": "Crear Rhizome Nuevo",
+	      "save": "Save",
+	      "publish": "Publish",
+	      "preview": "Preview",
+	      "create": "Create Publication",
+	      "change-password": "Change Password",
+	      "save-password": "Save New Password"
 	    },
 	    "alertify": {
 	      "delete-pub": "¿Eliminar esta publicación?",
@@ -167,6 +210,94 @@
 	      "no-file": "nada seleccionado",
 	      "uploading": "cargando archivo, por favor espere",
 	      "login-success": "Vienvenido a Rhizomatic!"
+	    },
+
+	    "edit-pub": {
+	      "type": "Type",
+	      "contrib": "Contributor Name",
+	      "title": "Title",
+	      "themes": "Themes/Tags",
+	      "response": "Invite responses from",
+	      "response-explain": "invite current user or input email address"
+	    },
+	    "misc": {
+	      "email": "Email",
+	      "new-password": "New Password",
+	      "repeat-password": "Repeat Password"
+	    }
+	  }
+	},
+	"ar": {
+	  "translation": {
+        "headings" : {
+          "rhizomatic": "Rhizomatic",
+          "home": "Home",
+          "profile": "Profile",
+          "publications": "Publications",
+          "requests": "Publication Requests",
+	      "new-rhizome": "Start New Rhizome"
+        },
+	    "sidebar-left": {
+	      "publications": "Publications",
+	      "about": "About",
+	      "users": "Users"
+	    },
+	    "sidebar-right": {
+	      "publications": "Publications",
+	      "requests": "Requests",
+	      "new-rhizome": "Start New Rhizome",
+	      "profile": "Profile",
+	      "published": "published",
+	      "draft": "draft",
+	      "invited-message": "has invited you to respond to their publication"
+	    },
+	    "buttons": {
+	      "home": "Home",
+	      "logout": "Logout",
+	      "ok": "ok",
+	      "cancel": "cancel",
+	      "help": "help?!",
+	      "delete": "delete",
+	      "respond": "respond",
+	      "reject": "reject",
+	      "new-rhizome": "Start New Rhizome",
+	      "save": "Save",
+	      "publish": "Publish",
+	      "preview": "Preview",
+	      "create": "Create Publication",
+	      "change-password": "Change Password"
+	    },
+	    "alertify": {
+	      "delete-pub": "Delete this publication?",
+	      "pub-deleted": "publication deleted",
+	      "pub-not-deleted": "publication not deleted",
+	      "pub-saved": "publication saved",
+	      "pub-published": "publication published",
+	      "pub-not-saved": "publication failed to saved",
+	      "pub-not-deleted": "publication not deleted",
+	      "invite-sent-to": "invitation sent to",
+	      "invite-failed": "invitation failed to",
+	      "remove-invite": "Remove this request?",
+	      "invite-removed": "request removed",
+	      "invite-not-removed": "invite not removed",
+	      "upload-failed": "sorry, upload failed",
+	      "upload-success": "file uploaded",
+	      "no-file": "no file selected",
+	      "uploading": "uploading file, please wait",
+	      "login-success": "Welcome to Rhizomatic!"
+	    },
+	    "edit-pub": {
+	      "type": "Type",
+	      "contrib": "Contributor Name",
+	      "title": "Title",
+	      "themes": "Themes/Tags",
+	      "response": "Invite responses from",
+	      "response-explain": "invite current user or input email address"
+	    },
+	    "misc": {
+	      "email": "Email",
+	      "new-password": "New Password",
+	      "repeat-password": "Repeat Password"
 	    }
 	  }
 	}

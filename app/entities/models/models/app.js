@@ -24,7 +24,13 @@ var initAppState = function() {
         return inputArray.indexOf(item) == index;
       });
 
-      var allContribs = users.pluck('contributorNames')
+      var allContribs = pubsJSON.map(function(pub, index, array){
+        var contributor
+        if (pub.published === 'true') {
+          contributor = pub.contributor
+          return contributor
+        }
+      })      
       var contributors = _.flatten(allContribs).filter( function( item, index, inputArray ) {
          return inputArray.indexOf(item) == index;
       });
@@ -57,7 +63,13 @@ var refreshAppState = function() {
         return inputArray.indexOf(item) == index;
       });
 
-      var allContribs = pubs.pluck('contributor')
+      var allContribs = pubsJSON.map(function(pub, index, array){
+        var contributor
+        if (pub.published === 'true') {
+          contributor = pub.contributor
+          return contributor
+        }
+      })
       var contributors = _.flatten(allContribs).filter( function( item, index, inputArray ) {
          return inputArray.indexOf(item) == index;
       });

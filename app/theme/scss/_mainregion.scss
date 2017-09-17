@@ -5,8 +5,6 @@
 	width: 100vw;
 	padding-left: 30px;
 	padding-right: 30px;
-	transition: 0.5s;
-	overflow: auto;
 	position: relative;
 }
 
@@ -23,5 +21,4 @@
   @include desktop {
     padding-right: $sidebar-right-width-desktop;
   }
-
 }

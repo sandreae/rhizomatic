@@ -38,6 +38,12 @@ $sidebar-border-radius: 0;
     z-index: 999;
 }
 
+.sidebar-region {
+      overflow:auto;
+    overflow:initial;
+
+}
+
 ////////SIDEBAR RIGHT///////////////
 
 .sidebar-right {
@@ -68,6 +74,9 @@ $sidebar-border-radius: 0;
 .sidebar-right-open-button {
     @include open-button
     right: -5px;
+    overflow:auto;
+    overflow:initial;
+
 }
 
 .sidebaractive-right {

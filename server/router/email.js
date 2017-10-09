@@ -6,9 +6,9 @@ module.exports = function (app, express) {
 
   emailRoute.get('/send',function(req,res){
   let transporter = nodemailer.createTransport({
-    host: 'imap.fastmail.com',
-    port: 993,
-    secure: false, // secure:true for port 465, secure:false for port 587
+    host: 'smtp.fastmail.com',
+    port: 465,
+    secure: true, // secure:true for port 465, secure:false for port 587
     ignoreTLS: true,
     auth: {
       user: process.env.EMAIL_ADDRESS,

@@ -73,7 +73,6 @@ var App = Marionette.Application.extend({
         }
       }
     });
-     
     client.recordEvent('pageview', {});
   },
 

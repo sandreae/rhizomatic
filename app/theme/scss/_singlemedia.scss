@@ -92,7 +92,15 @@
 
 .singlemedia-markdown {
 	img {
+	  max-width: 100%;
+      margin: auto;
+      
+      @include tablet {
+        max-width: 80%;
+      }
+
+      @include desktop {
         max-width: 50%;
-        margin: auto;
+      }
 	}
 }

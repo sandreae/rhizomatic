@@ -8,7 +8,8 @@ module.exports = function (app, express) {
   let transporter = nodemailer.createTransport({
     host: 'imap.fastmail.com',
     port: 993,
-    secure: true, // secure:true for port 465, secure:false for port 587
+    secure: false, // secure:true for port 465, secure:false for port 587
+    ignoreTLS: true,
     auth: {
       user: process.env.EMAIL_ADDRESS,
       pass: process.env.EMAIL_PASSWORD

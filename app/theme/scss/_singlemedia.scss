@@ -36,16 +36,27 @@
 }
 
 .singlemedia-video {
-	width: 400px;
+	width: 100%;
 	margin: auto;
 	@include tablet {
-		padding: 20px;
+		width: 320px;
       }
 
     @include desktop {
-		padding: 20px;
+		width: 320px;
       }
 
+    video {
+    	width: 100%;
+		@include tablet {
+			width: 320px;
+	      }
+
+	    @include desktop {
+			width: 320px;
+
+    	}
+    }
 }
 
 .singlemedia-script {

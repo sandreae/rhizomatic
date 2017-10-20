@@ -25,11 +25,10 @@ var VideoSidebar = Marionette.View.extend({
 
   submitClicked: function(e) {
     e.preventDefault()
-    console.log(this.model.get('published'))
     var data = Backbone.Syphon.serialize(this);
     var content = {}
-    content.url = $('#myUrl').val();
-    content.description = $('#js-description').val();
+    content.description = document.getElementById('js-description').value
+    content.url = document.getElementById('js-video-file').src
     if (this.model.get('published') === 'true') {
       console.log('already published')
       this.trigger('silent:save', content, data, this.model)
@@ -42,12 +41,12 @@ var VideoSidebar = Marionette.View.extend({
     e.preventDefault()
     var data = Backbone.Syphon.serialize(this);
     var content = {}
-    content.url = $('#myUrl').val();
-    content.description = $('#js-description').val();
+    content.description = document.getElementById('js-description').value
+    content.url = document.getElementById('js-video-file').src
     this.trigger('silent:save', content, data, this.model)
   },
 
-  publishClicked: function(e) {
+  publishClicked: function (e) {
     e.preventDefault()
     this.model.set({published: true})
     this.submitClicked(e)

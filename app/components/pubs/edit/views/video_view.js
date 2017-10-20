@@ -3,39 +3,81 @@ import template from '../templates/video.jst'
 var Video = Marionette.View.extend({
   className: 'edit-container',
   template: template,
-
   events: {
-    'change input.myUrl': 'urlChanged',
+    'click button.js-submit': 'submitClicked'
   },
 
 
-  onAttach: function() {
-    var drafts = this.model.get('drafts')
-    var draft = drafts.findWhere({type: 'video'})
-    var content = draft.get("content")
-    $('#myUrl').val(content.url)
-    var myId;
-    myId = this.getId(content.url);
-    var embed = '<iframe src="//www.youtube.com/embed/' + myId + '?showinfo=0" frameborder="0" allowfullscreen></iframe>'
-    $('#myCode').html(embed);
+  onAttach: function () {
+    var model = this.model
+    document.getElementById("file-input").onchange = () => {
+      alertify.message('uploading, please wait')
+      const files = document.getElementById('file-input').files;
+      const file = files[0];
+      if(file == null) {
+        return alertify.error('no file selected')
+      }
+      this.getSignedRequest(file, model);
+    };
   },
 
-  urlChanged: function(){
-    var myId;
-    var myUrl = $('#myUrl').val();
-    myId = this.getId(myUrl);
-    var embed = '<iframe src="//www.youtube.com/embed/' + myId + '?showinfo=0" frameborder="0" allowfullscreen></iframe>'
-    $('#myCode').html(embed);
+  getSignedRequest: function(file, model) {
+    const xhr = new XMLHttpRequest();
+    var pubTitle = model.get('title')
+    var pubId = model.get('_id')
+    var fileName = pubId + '_' + pubTitle + '_' + file.name
+    xhr.open('GET', `/sign-s3?file-name=${fileName}&file-type=${file.type}`);
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          const response = JSON.parse(xhr.responseText);
+          this.uploadFile(file, response.signedRequest, response.url, model);
+        }
+        else {
+          alertify.error('sorry, upload failed')
+        }
+      }
+    };
+    xhr.send();
   },
 
-  getId: function(url) {
-    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    var match = url.match(regExp);
-    if (match && match[2].length == 11) {
-        return match[2];
-    } else {
-        return 'error';
+  uploadFile: function(file, signedRequest, url, model){
+    console.log(model)
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', signedRequest);
+    var progressBar = document.getElementById("progress")
+    progressBar.style.display = 'block'
+    xhr.upload.onprogress = function (e) {
+      if (e.lengthComputable) {
+        progressBar.max = e.total;
+        progressBar.value = e.loaded;
+      }
     }
+    xhr.upload.onloadstart = function (e) {
+      progressBar.value = 0;
+    }
+    xhr.upload.onloadend = function (e) {
+      progressBar.value = e.loaded;
+    }
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4){
+        if (xhr.status === 200){
+          alertify.success($.i18n.t('alertify.upload-success'))
+          var player = document.getElementById('js-video-player')
+          var videofile = document.getElementById('js-video-file')
+          videofile.src = url
+          player.load();
+          var content = {}
+          content.url = url
+          content.description = document.getElementById('js-description').value
+          model.get('drafts').findWhere({type: 'video'}).set({content: content})
+          progressBar.style.display = 'none'
+        } else {
+          alertify.error($.i18n.t('alertify.upload-failed'))
+        }
+      }
+    };
+    xhr.send(file)
   }
 })
 

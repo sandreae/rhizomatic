@@ -23,11 +23,10 @@ app.set('superSecret', config.secret);
 // app.use(cors())
 //////////////////////////
 
-app.use(bodyParser.json({limit: '100mb'}))
-app.use(bodyParser.urlencoded({extended: true, limit: '100mb'}))
+app.use(bodyParser.json({limit: '20mb'}))
+app.use(bodyParser.urlencoded({extended: true, limit: '20mb'}))
 app.use(morgan('dev'))
 app.use(express.static(__dirname));
-app.use('/uploads',  express.static(__dirname + '/uploads'));
 
 ////////////S3 UPLOADS/////////////////////
 
@@ -72,10 +71,6 @@ app.use('/api', rhizomeRoutes)
 
 var pubRoutes = require('./server/router/pub')(app, express)
 app.use('/api', pubRoutes)
-
-var uploadRoutes = require('./server/router/uploads')(app, express)
-app.post('/uploads', uploadRoutes.onUpload);
-app.delete('/uploads/:uuid', uploadRoutes.onDeleteFile);
 
 var emailRoutes = require('./server/router/email')(app, express)
 app.use('/api', emailRoutes)

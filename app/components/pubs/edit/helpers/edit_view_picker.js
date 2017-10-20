@@ -4,6 +4,7 @@ import {Script} from '../views/script_view'
 import {Audio} from '../views/audio_view'
 import {Image} from '../views/image_view'
 import {Video} from '../views/video_view'
+import {Code} from '../views/code_view'
 
 export default function(pub, type) {
 
@@ -36,6 +37,11 @@ export default function(pub, type) {
   }
   if (type === 'video') {
     editPubContentView = new Video({
+      model: pub
+    })
+  }
+  if (type === 'code') {
+    editPubContentView = new Code({
       model: pub
     })
   }

@@ -4,6 +4,7 @@ import {ScriptSidebar} from '../views/script_sidebar'
 import {AudioSidebar} from '../views/audio_sidebar'
 import {ImageSidebar} from '../views/image_sidebar'
 import {VideoSidebar} from '../views/video_sidebar'
+import {CodeSidebar} from '../views/code_sidebar'
 
 export default function(pub, type) {
 
@@ -36,6 +37,11 @@ export default function(pub, type) {
   }
   if (type === 'video') {
     editSidebarView = new VideoSidebar({
+      model: pub
+    })
+  }
+  if (type === 'code') {
+    editSidebarView = new CodeSidebar({
       model: pub
     })
   }

@@ -23,8 +23,8 @@ app.set('superSecret', config.secret);
 // app.use(cors())
 //////////////////////////
 
-app.use(bodyParser.json({limit: '20mb'}))
-app.use(bodyParser.urlencoded({extended: true, limit: '20mb'}))
+app.use(bodyParser.json({limit: '100mb'}))
+app.use(bodyParser.urlencoded({extended: true, limit: '100mb'}))
 app.use(morgan('dev'))
 app.use(express.static(__dirname));
 app.use('/uploads',  express.static(__dirname + '/uploads'));

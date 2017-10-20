@@ -87,7 +87,6 @@ var PubAPI = {
     pubsCollection.fetch({
       success: function (data) {
         _.each(data.toJSON(), function (item) {
-          console.log('Successfully GOT pub with _id: ' + item._id)
         })
         defer.resolve(data)
       },

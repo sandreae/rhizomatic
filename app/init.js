@@ -13,7 +13,6 @@ import {RhizomesApp} from './components/rhizomes/rhizomes_app'
 import {Auth} from './entities/authentication/authentication_router'
 import {gc} from './components/radio'
 
-
 // import {Globals, Authentication} from './../app/entities/authentication'
 
 Platform.Entities = Entities

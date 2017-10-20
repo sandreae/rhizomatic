@@ -47,6 +47,7 @@ const config = {
       include: path.resolve(__dirname, 'app'),
       use: [{loader: 'underscore-template-loader'}]
     }
+
   ]
   },
   plugins: [

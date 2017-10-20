@@ -1,7 +1,6 @@
 .edit-container {
 	height: 100%;
 	width: 100%;
-	margin: auto;
 	@include tablet {
         width: 400px;
         min-width: 400px;
@@ -11,4 +10,22 @@
         width: 400px;
         min-width: 400px;
       }
+}
+
+.code-container {
+  height: 90%;
+  width: 100%;
+}
+
+.singlemedia-code-editor {
+  padding: 22px;
+  height: 100%;
+  width: 100%;
+}
+
+#myCode {
+  font-size: 0.7em;
+  height: 100%;
+  width: 100%;
+
 }

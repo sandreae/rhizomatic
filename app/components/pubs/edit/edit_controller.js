@@ -1,6 +1,5 @@
 import editSidebarPicker from './helpers/edit_sidebar_picker'
 import editViewPicker from './helpers/edit_view_picker'
-import emailcontent from './templates/email.jst'
 import {gc} from '../../radio'
 
 var Controller = {
@@ -18,6 +17,10 @@ var Controller = {
       var editSidebarView = editSidebarPicker(pub, type)
 
       editSidebarView.on('silent:save', function (content, data, pubModel) {
+        console.log('silent save')
+        console.log('data:', data)
+        console.log('pub:', pubModel)
+
         console.log('silent save')
         type = pubModel.get('type')
         var drafts = pubModel.get('drafts')
@@ -47,6 +50,9 @@ var Controller = {
       })
       
       editSidebarView.on('form:submit', function (content, data, pubModel) {
+        console.log('form submit')
+        console.log('data:', data)
+        console.log('pub:', pubModel)
         type = pubModel.get('type')
         var newType = data.type
         var newDraft = new Platform.Entities.Pubs.Draft()

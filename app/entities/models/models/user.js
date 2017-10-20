@@ -22,7 +22,6 @@ var UserAPI = {
     users.fetch({
       success: function(data) {
         _.each(data.toJSON(), function (item) {
-          console.log('Successfully GOT user with _id: ' + item._id)
         })
         defer.resolve(data)
       },

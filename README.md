@@ -1,4 +1,4 @@
-## RHIZOMATIC WEB ZINE
+## RHIZOMATIC
 
 Rhizomatic is a space for community discourse, where publications by contributors act as points of departure for ideas and conversations. Rhizomatic aims to provide a space for community-generated discourse through creative action. Each Rhizomatic community defines itself, and the structures they function within, encouraging conversation through expression.
 

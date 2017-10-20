@@ -3,8 +3,6 @@ const nodemailer = require('nodemailer');
 module.exports = function (app, express) {
 
   var emailRoute = express.Router()
-  console.log(process.env.EMAIL_ADDRESS)
-  console.log(process.env.EMAIL_PASSWORD)
   emailRoute.get('/send',function(req,res){
   let transporter = nodemailer.createTransport({
     host: 'smtp.fastmail.com',

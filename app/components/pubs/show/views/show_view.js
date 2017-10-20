@@ -52,25 +52,6 @@ export default Marionette.View.extend({
       var html = converter.makeHtml(content)
       model.set({activeContent: html})
     }
-
-    if (model.get('type') === 'video') {
-
-      var getId = function(url) {
-        var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-        var match = url.match(regExp);
-        if (match && match[2].length == 11) {
-            return match[2];
-        } else {
-            return 'error';
-        }
-      }
-      var videoContent = model.get('activeContent')
-      var myId;
-      myId = getId(videoContent.url);
-      var embed = '<iframe src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>'
-      videoContent.url = embed
-      model.set({activeContent: videoContent})
-    }
   },
 
   onAttach: function(){

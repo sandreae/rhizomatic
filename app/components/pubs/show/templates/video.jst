@@ -1,9 +1,10 @@
 <div class="singlemedia-container">
 <div class="singlemedia-content">
 <div class="singlemedia-video">
-<div class="singlemedia-video-wrapper">
-<%= activeContent.url %><br>
-</div>
+<video width="320" height="240" autoplay id="js-video-player">
+  <source id="js-video-file" src="<%= activeContent.url %>">
+Your browser does not support the video tag.
+</video><br>
 <div class="singlemedia-description">
 <p><%= activeContent.description %></p><br>
 </div>
@@ -14,3 +15,4 @@
 </div>
 </div>
 </div>
+

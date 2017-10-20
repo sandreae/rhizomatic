@@ -8,10 +8,17 @@
 	display: table-cell;
 	vertical-align: middle;
 	text-align: center;
-	padding: 20px;
+	padding: 2px;
 	margin: auto;
     width: 95%;
 	height: 100%;
+	@include tablet {
+		padding: 20px;
+      }
+
+    @include desktop {
+		padding: 20px;
+      }
 
 	form {
 		width: 100%;
@@ -43,17 +50,37 @@
 }
 
 .singlemedia-audio {
-	width: 400px;
+	width: 100%;
 	margin: auto;
 	border: solid;
-	padding: 20px;
+	padding: 2px;
 	border: solid;
 	border-color: $GLOBAL_BORDER_COLOR;
+	  @include tablet {
+        width: 80%;
+		padding: 20px;
+      }
+
+      @include desktop {
+        width: 50%;
+		padding: 20px;
+      }
+    audio {
+      width: 100%;
+		@include tablet {
+	      width: 300px;
+	    }
+
+	    @include desktop {
+	      width: 300px;
+	    }
+	}
 }
 
 .singlemedia-image {
    padding-top: 10px;
    display: inline-block;
+
 }
 
 .singlemedia-info {
@@ -66,9 +93,17 @@
 }
 
 .singlemedia-description {
-   width: 50%;
+   width: 100%;
    display: inline-block;
    font-size: 0.8em;
+   	  @include tablet {
+        width: 70%;
+      }
+
+      @include desktop {
+        width: 70%;
+      }
+
 }
 
 .singlemedia-video-wrapper iframe,

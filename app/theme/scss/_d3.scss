@@ -79,6 +79,14 @@ $rhizome005: hsla(292, 100%, 40%, 1);
 	position: absolute;
 	display: block;
 	opacity: 0;
+  font-size: 0.6em;
+  @include tablet {
+    font-size: 1em;
+      }
+
+  @include desktop {
+    font-size: 1em;
+      }
 }
 
 .d3-container {
@@ -88,10 +96,22 @@ $rhizome005: hsla(292, 100%, 40%, 1);
 	width: 97vw;
 
 	h1 {
+    transition: 0.2s;
 	  top: 0px;
 	  position: absolute;
 	  padding: 10px;
+    font-size: 1.2em;
+  @include tablet {
+    font-size: 1.8em;
+      }
+
+  @include desktop {
+    font-size: 2em;
+      }
 	}
+
+    
+
 }
 
 #d3-content {

@@ -38,6 +38,14 @@
 .singlemedia-video {
 	width: 400px;
 	margin: auto;
+	@include tablet {
+		padding: 20px;
+      }
+
+    @include desktop {
+		padding: 20px;
+      }
+
 }
 
 .singlemedia-script {

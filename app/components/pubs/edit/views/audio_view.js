@@ -26,7 +26,7 @@ var Audio = Marionette.View.extend({
     var pubTitle = model.get('title')
     var pubId = model.get('_id')
     var fileName = pubId + '_' + pubTitle + '_' + file.name
-    var fileType = file.type
+    var fileType = 'audio/*'
     xhr.open('GET', `/sign-s3?file-name=${fileName}&file-type=${fileType}`);
     xhr.responseType = 'text';
     xhr.onreadystatechange = () => {

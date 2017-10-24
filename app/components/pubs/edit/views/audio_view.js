@@ -23,7 +23,9 @@ var Audio = Marionette.View.extend({
 
   getSignedRequest: function(file, model) {
     const xhr = new XMLHttpRequest();
-    var fileName = encodeURIComponent(file.name)
+    var pubTitle = model.get('title')
+    var pubId = model.get('_id')
+    var fileName = pubId + '_' + pubTitle + '_' + file.name
     var fileType = file.type
     xhr.open('GET', `/sign-s3?file-name=${fileName}&file-type=${fileType}`);
     xhr.responseType = 'text';

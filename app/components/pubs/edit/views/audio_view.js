@@ -23,10 +23,10 @@ var Audio = Marionette.View.extend({
 
   getSignedRequest: function(file, model) {
     const xhr = new XMLHttpRequest();
-    var pubTitle = model.get('title')
-    var pubId = model.get('_id')
-    var fileName = pubId + '_' + pubTitle + '_' + file.name
-    xhr.open('GET', `/sign-s3?file-name=${fileName}&file-type=${file.type}`);
+    var fileName = encodeURIComponent(file.name)
+    var fileType = file.type
+    xhr.open('GET', `/sign-s3?file-name=${fileName}&file-type=${fileType}`);
+    xhr.responseType = 'text';
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
@@ -45,6 +45,7 @@ var Audio = Marionette.View.extend({
     console.log(model)
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
+    xhr.responseType = 'text';
     var progressBar = document.getElementById("progress")
     progressBar.style.display = 'block'
     xhr.upload.onprogress = function (e) {

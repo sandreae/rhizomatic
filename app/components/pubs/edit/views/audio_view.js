@@ -28,7 +28,6 @@ var Audio = Marionette.View.extend({
     var fileName = pubId + '_' + pubTitle + '_' + file.name
     var fileType = 'audio/*'
     xhr.open('GET', `/sign-s3?file-name=${fileName}&file-type=${fileType}`);
-    xhr.responseType = 'text';
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
@@ -36,7 +35,7 @@ var Audio = Marionette.View.extend({
           this.uploadFile(file, response.signedRequest, response.url, model);
         }
         else {
-          alertify.error('sorry, upload failed')
+          alertify.error($.i18n.t('alertify.upload-failed'))
         }
       }
     };
@@ -47,7 +46,6 @@ var Audio = Marionette.View.extend({
     console.log(model)
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
-    xhr.responseType = 'text';
     var progressBar = document.getElementById("progress")
     progressBar.style.display = 'block'
     xhr.upload.onprogress = function (e) {

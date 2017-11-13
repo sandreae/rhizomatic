@@ -159,7 +159,7 @@ var D3View = Mn.View.extend({
 
     var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBody().strength(-150).distanceMin(30).distanceMax(200))
+    .force("charge", d3.forceManyBody().strength(-150).distanceMin(30).distanceMax(300))
     .force('x', function(d) { return d.strength; })
     .force('y', function(d) { return d.strength; })
   

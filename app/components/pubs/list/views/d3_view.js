@@ -159,10 +159,10 @@ var D3View = Mn.View.extend({
 
     var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBody().strength(-100).distanceMin(60).distanceMax(300))
+    .force("charge", d3.forceManyBody().strength(-300).distanceMin(5).distanceMax(200))
     .force('x', function(d) { return d.strength; })
     .force('y', function(d) { return d.strength; })
-  
+
   var root = self.getData()
 
   var myLinks = root.links.directedAtPub;

@@ -88,7 +88,7 @@ app.use('/api', userRoutesProtected)
 var http = require('http');
 setInterval(function() {
   http.get("http://rhizomatic-web-zine.herokuapp.com");
-}, 300000); // every 5 minutes (300000)
+}, 3000000); // every 50 minutes (3000000)
 
 app.listen(port, function() {
   console.log('Express server is up and running!');

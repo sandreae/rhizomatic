@@ -24,7 +24,7 @@
     "backbone.marionette": "~3.0.0",
     "backbone.radio": "^2.0.0",
     "backbone.syphon": "^0.7.0",
-    "bcrypt": "^1.0.2",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.17.2",
     "codemirror": "^5.27.4",
     "d3": "^4.10.0",

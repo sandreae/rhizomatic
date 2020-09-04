@@ -53,7 +53,7 @@
     "nodemailer": "^4.0.1",
     "pace-js": "^1.0.2",
     "rimraf": "^2.6.1",
-    "showdown": "^1.7.1",
+    "showdown": "^1.9.1",
     "simplemde": "^1.11.2",
     "typeahead": "^0.2.2",
     "underscore": "^1.6.0",

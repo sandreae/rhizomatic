@@ -56,7 +56,7 @@
     "showdown": "^1.7.1",
     "simplemde": "^1.11.2",
     "typeahead": "^0.2.2",
-    "underscore": "^1.6.0",
+    "underscore": "^1.12.1",
     "webpack-jquery-ui": "^1.0.0"
   },
   "devDependencies": {
